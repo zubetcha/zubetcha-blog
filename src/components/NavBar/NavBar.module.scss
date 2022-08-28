@@ -11,8 +11,12 @@
   border-radius: $border-radius;
   @include flex-direction(column, 48);
 
-  .icon_wrapper {
+  .menuIcon_wrapper {
     @include flex-box(end, center);
+    svg {
+      width: toRem(24);
+      height: toRem(24);
+    }
   }
 
   .profile_wrapper {
@@ -26,6 +30,15 @@
     .profile_info_wrapper {
       @include flex-box(center, center);
       @include flex-direction(column, 8);
+    }
+
+    .profile_contacts_wrapper {
+      @include flex-direction(row, 8);
+      svg {
+        width: toRem(24);
+        height: toRem(24);
+        cursor: pointer;
+      }
     }
   }
 }

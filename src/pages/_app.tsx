@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import '../styles/globals.scss';
 import type { AppProps } from 'next/app';
 import { Layout } from '../components/Layout/Layout';
+import { IconContext } from 'react-icons';
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
@@ -9,9 +10,11 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, []);
 
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <IconContext.Provider value={{ className: 'icon' }}>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </IconContext.Provider>
   );
 }
 
