@@ -66,3 +66,16 @@ $body-medium-letter: toRem(0);
 $body-small-font: toRem(12);
 $body-small-line: toRem(16);
 $body-small-letter: toRem(0);
+
+// DESCRIBE: Border-radius
+$border-radius: 24px;
+
+// DESCRIBE: Flex-map
+$flex-map: (
+  start: flex-start,
+  end: flex-end,
+  between: space-between,
+  around: space-around,
+  stretch: stretch,
+  center: center,
+);

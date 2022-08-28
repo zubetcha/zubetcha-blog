@@ -1,0 +1,26 @@
+@import '../../styles/colors';
+@import '../../styles/mixins';
+@import '../../styles/sizes';
+
+.container {
+  width: toRem(320);
+  height: calc(100vh - toRem(64));
+  background-color: var(--color-bg-navbar);
+  margin: toRem(32);
+  padding: toRem(24);
+  border-radius: $border-radius;
+  @include flex-direction(column, 48);
+
+  .icon_wrapper {
+    @include flex-box(end, center);
+  }
+
+  .profile_wrapper {
+    @include flex-box(center, center);
+    @include flex-direction(column, 32);
+
+    .profile_image {
+      border-radius: 50%;
+    }
+  }
+}

@@ -16,5 +16,13 @@
     "incremental": true
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "paths": {
+    "@assets/*": ["./src/assets/*"],
+    "@components/*": ["./src/components/*"],
+    "@constants/*": ["./src/constants/*"],
+    "@hooks/*": ["./src/hooks/*"],
+    "@styles/*": ["./src/styles/*"],
+    "@utils/*": ["./src/utils/*"]
+  }
 }
