@@ -1,45 +1,36 @@
 import Image from 'next/image';
 import classes from './NavBar.module.scss';
 import Profile from '../../assets/images/profile.jpeg';
+import { IconRoleUnionType } from '../Elements/Icon/Icon.types';
 
-import { IoLogoGithub, IoLogoTwitter, IoLogoLinkedin } from 'react-icons/io';
-import { MdOutlineEmail } from 'react-icons/md';
-import { RiMenuFoldLine, RiMenuUnfoldLine } from 'react-icons/ri';
-
+import { Icon } from '../Elements/Icon/Icon';
 import { Typo } from '../Elements/Typo/Typo';
 import { NavItem } from './NavItem';
 
 export const NavBar = () => {
-  const navItems = [
-    {
-      name: 'About',
-      icon: '',
-      path: '/about',
-      isFocused: false,
-    },
-    {
-      name: 'Posts',
-      icon: '',
-      path: '/posts',
-      isFocused: false,
-    },
-    {
-      name: 'About',
-      icon: '',
-      path: '/about',
-      isFocused: false,
-    },
-    {
-      name: 'About',
-      icon: '',
-      path: '/about',
-      isFocused: false,
-    },
+  const navList = [
+    'About',
+    'HTML',
+    'CSS',
+    'Javascript',
+    'Typescript',
+    'React',
+    'GraphQL',
   ];
+
+  const navItems = navList.map((navItem, i) => {
+    return {
+      name: navItem,
+      icon: navItem.toLowerCase() as IconRoleUnionType,
+      path: i === 0 ? '/about' : `posts/${navItem.toLowerCase()}`,
+      isFocused: false,
+    };
+  });
+
   return (
     <div className={classes.container}>
       <div className={classes.menuIcon_wrapper}>
-        <RiMenuFoldLine />
+        <Icon role='menu-fold' />
       </div>
       <div className={classes.profile_wrapper}>
         <Image
@@ -53,16 +44,21 @@ export const NavBar = () => {
           <Typo role='body-small'>Web Frontend Developer</Typo>
         </div>
         <div className={classes.profile_contacts_wrapper}>
-          <IoLogoGithub />
-          <IoLogoLinkedin />
-          <IoLogoTwitter />
-          <MdOutlineEmail />
+          <Icon role='github' />
+          <Icon role='linkedIn' />
+          <Icon role='twitter' />
+          <Icon role='email' />
         </div>
       </div>
       <div className={classes.navItems_wrapper}>
-        <NavItem />
+        {navItems.map((navItem) => {
+          return <NavItem key={navItem.name} {...navItem} />;
+        })}
       </div>
-      <div>Footer</div>
+      <div className={classes.footer_container}>
+        <Typo>© 2022 zubetcha.</Typo>
+        <Typo>All Rights Reserved.</Typo>
+      </div>
     </div>
   );
 };

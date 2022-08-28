@@ -1,7 +1,21 @@
-import React from 'react'
+import { useRouter } from 'next/router';
+import classes from './NavBar.module.scss';
+import { NavItemProps } from './NavBar.types';
 
-export const NavItem = () => {
+import { Icon } from '../Elements/Icon/Icon';
+import { Typo } from '../Elements/Typo/Typo';
+
+export const NavItem = ({ name, icon, path, isFocused }: NavItemProps) => {
+  const router = useRouter();
   return (
-    <div>NavItem</div>
-  )
-}
+    <div
+      className={classes.navItem_container}
+      onClick={() => router.replace(path)}
+    >
+      <Icon role={icon} />
+      <Typo role='body-large' style={{ cursor: 'pointer' }}>
+        {name}
+      </Typo>
+    </div>
+  );
+};

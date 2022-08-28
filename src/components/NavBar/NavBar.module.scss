@@ -16,6 +16,7 @@
     svg {
       width: toRem(24);
       height: toRem(24);
+      cursor: pointer;
     }
   }
 
@@ -38,7 +39,41 @@
         width: toRem(24);
         height: toRem(24);
         cursor: pointer;
+        transition: fill 0.2s ease-out;
+
+        &:hover {
+          fill: var(--color-text-primary);
+        }
       }
     }
   }
+
+  .navItems_wrapper {
+    @include flex-direction(column, 8);
+  }
+}
+
+.navItem_container {
+  @include flex-direction(row, 16);
+  @include flex-box(start, center);
+
+  width: 100%;
+  padding: 16px;
+  cursor: pointer;
+  border-radius: 40px;
+
+  &:hover {
+    background-color: var(--color-bg-navitem-hover);
+  }
+
+  svg {
+    width: toRem(20);
+    height: toRem(20);
+  }
+}
+
+.footer_container {
+  height: 100%;
+  @include flex-box(end, center);
+  @include flex-direction(column, 4);
 }
