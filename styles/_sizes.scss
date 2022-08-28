@@ -1,0 +1,68 @@
+@import './mixins';
+
+// DESCRIBE 반응형 화면 크기
+$mobile: 0px;
+$tablet: 0px;
+$laptop: 0px;
+$desktop: 0px;
+
+// DESCRIBE: font-size
+$display-large-font: toRem(57);
+$display-large-line: toRem(64);
+$display-large-letter: -0.01em;
+
+$display-medium-font: toRem(45);
+$display-medium-line: toRem(52);
+$display-medium-letter: -0.01em;
+
+$display-small-font: toRem(36);
+$display-small-line: toRem(44);
+$display-small-letter: -0.01em;
+
+$headline-large-font: toRem(32);
+$headline-large-line: toRem(40);
+$headline-large-letter: toRem(0);
+
+$headline-medium-font: toRem(28);
+$headline-medium-line: toRem(36);
+$headline-medium-letter: toRem(0);
+
+$headline-small-font: toRem(24);
+$headline-small-line: toRem(32);
+$headline-small-letter: toRem(0);
+
+$title-large-font: toRem(22);
+$title-large-line: toRem(28);
+$title-large-letter: toRem(0);
+
+$title-medium-font: toRem(16);
+$title-medium-line: toRem(24);
+$title-medium-letter: toRem(0.1);
+
+$title-small-font: toRem(14);
+$title-small-line: toRem(20);
+$title-small-letter: toRem(0.1);
+
+$label-large-font: toRem(14);
+$label-large-line: toRem(20);
+$label-large-letter: toRem(0);
+
+$label-medium-font: toRem(12);
+$label-medium-line: toRem(16);
+$label-medium-letter: toRem(0);
+
+$label-small-font: toRem(11);
+$label-small-line: toRem(16);
+$label-small-letter: toRem(0);
+
+$body-large-font: toRem(16);
+$body-large-line: toRem(24);
+$body-large-letter: toRem(0);
+
+$body-medium-font: toRem(14);
+$body-medium-line: toRem(20);
+$body-medium-letter: toRem(0);
+
+$body-small-font: toRem(12);
+$body-small-line: toRem(16);
+$body-small-letter: toRem(0);
