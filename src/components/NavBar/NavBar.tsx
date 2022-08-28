@@ -2,6 +2,7 @@ import Image from 'next/image';
 import classes from './NavBar.module.scss';
 import Profile from '../../assets/images/profile.jpeg';
 
+import { Typo } from '../Elements/Typo/Typo';
 import { NavItem } from './NavItem';
 
 export const NavBar = () => {
@@ -15,9 +16,9 @@ export const NavBar = () => {
           height={160}
           className={classes.profile_image}
         />
-        <div>
-          <p>이름</p>
-          <p>소개</p>
+        <div className={classes.profile_info_wrapper}>
+          <Typo role='title-medium'>zubetcha</Typo>
+          <Typo role='body-small'>Web Frontend Developer</Typo>
         </div>
         <div>Contact</div>
       </div>

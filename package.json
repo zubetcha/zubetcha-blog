@@ -13,6 +13,7 @@
     "next": "12.2.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-icons": "^4.4.0",
     "rehype-autolink-headings": "^6.1.1",
     "rehype-katex": "^6.0.2",
     "rehype-prism-plus": "^1.5.0",

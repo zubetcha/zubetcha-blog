@@ -1,21 +1,23 @@
 export interface TypoProps {
   role: TypoRoleUnionType;
   color: string;
+  style?: { [key: string]: string };
+  children: any;
 }
 
 export type TypoRoleUnionType =
   | 'display-large'
-  | 'display-meidum'
+  | 'display-medium'
   | 'display-small'
   | 'headline-large'
-  | 'headline-meidum'
+  | 'headline-medium'
   | 'headline-small'
   | 'title-large'
-  | 'title-meidum'
+  | 'title-medium'
   | 'title-small'
   | 'label-large'
-  | 'label-meidum'
+  | 'label-medium'
   | 'label-small'
   | 'body-large'
-  | 'body-meidum'
+  | 'body-medium'
   | 'body-small';

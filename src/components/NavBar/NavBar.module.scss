@@ -22,5 +22,10 @@
     .profile_image {
       border-radius: 50%;
     }
+
+    .profile_info_wrapper {
+      @include flex-box(center, center);
+      @include flex-direction(column, 8);
+    }
   }
 }

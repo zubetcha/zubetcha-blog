@@ -1,0 +1,59 @@
+@import '../../../styles/colors';
+@import '../../../styles/mixins';
+@import '../../../styles/sizes';
+
+.first_class {
+  cursor: default;
+}
+
+.display-large {
+  @include display-large();
+}
+.display-medium {
+  @include display-medium();
+}
+.display-small {
+  @include display-small();
+}
+.headline-large {
+  @include headline-large();
+}
+.headline-medium {
+  @include headline-medium();
+}
+.headline-small {
+  @include headline-small();
+}
+.title-large {
+  @include title-large();
+}
+.title-medium {
+  @include title-medium();
+}
+.title-small {
+  @include title-small();
+}
+.label-large {
+  @include label-large();
+}
+.label-medium {
+  @include label-medium();
+}
+.label-small {
+  @include label-small();
+}
+.body-large {
+  @include body-large();
+}
+.body-medium {
+  @include body-medium();
+}
+.body-small {
+  @include body-small();
+}
+
+// @each $color, $value in $colors-map {
+//   p.first_class[class*='#{$color}'] {
+//     color: $value;
+//   }
+// }
