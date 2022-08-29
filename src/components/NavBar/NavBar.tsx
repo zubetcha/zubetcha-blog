@@ -79,7 +79,9 @@ export const NavBar = () => {
           onClick={onClickProfileImage}
         >
           <Image src={Profile} className={classes.profile_image} />
-          <span className={classes.highlight}></span>
+          <div className={classes.highlight_wrapper}>
+            <span className={classes.highlight}></span>
+          </div>
         </div>
         <div className={classes.profile_info_wrapper}>
           <Typo role='title-small'>zubetcha</Typo>
@@ -104,8 +106,8 @@ export const NavBar = () => {
         })}
       </div>
       <div className={classes.footer_container}>
-        <Typo>© 2022 zubetcha.</Typo>
-        <Typo>All Rights Reserved.</Typo>
+        <Typo role='body-small'>© 2022 zubetcha.</Typo>
+        <Typo role='body-small'>All Rights Reserved.</Typo>
       </div>
     </div>
   );

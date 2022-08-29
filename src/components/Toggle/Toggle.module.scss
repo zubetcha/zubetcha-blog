@@ -1,0 +1,41 @@
+@import '../../styles/colors';
+@import '../../styles/mixins';
+@import '../../styles/sizes';
+
+.container {
+  width: 36px;
+  height: 16px;
+  border-radius: 16px;
+  background-color: transparent;
+  border: 1.5px solid var(--color-text-contents);
+  position: relative;
+
+  .handler {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: var(--color-text-primary);
+    cursor: pointer;
+    -webkit-transition: transform 0.3s ease-in-out;
+    -moz-transition: transform 0.3s ease-in-out;
+    -o-transition: transform 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out;
+    left: -8px;
+
+    @include pos-center-y(absolute);
+
+    &:hover {
+    }
+  }
+
+  &.on {
+    .handler {
+      transform: translate(24px, -50%);
+    }
+  }
+  &.off {
+    .handler {
+      transform: translateX(0, -50%);
+    }
+  }
+}

@@ -1,2 +1,13 @@
-@import "../../styles/colors";
-@import "../../styles/mixins";
+@import '../../styles/colors';
+@import '../../styles/mixins';
+@import '../../styles/sizes';
+
+.container {
+  @include flex-direction(row, 32);
+  padding: toRem(32);
+
+  .body {
+    width: 100%;
+    @include flex-direction(column, 32);
+  }
+}
