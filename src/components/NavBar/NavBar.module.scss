@@ -25,9 +25,7 @@
     @include flex-direction(column, 32);
 
     .profile_image_wrapper {
-      border-radius: 50%;
-      width: toRem(144);
-      height: toRem(144);
+      @include circle(144);
       border: 1px solid var(--color-bg-navitem-hover);
       padding: toRem(16);
       position: relative;
@@ -45,12 +43,10 @@
         animation: infinite-spinning 2s infinite;
 
         .highlight {
+          @include circle(10);
           position: absolute;
           right: toRem(15);
           bottom: toRem(15);
-          width: toRem(10);
-          height: toRem(10);
-          border-radius: 50%;
           background-color: var(--color-text-primary);
         }
       }
