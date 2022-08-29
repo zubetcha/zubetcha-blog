@@ -2,9 +2,14 @@ import classes from './Icon.module.scss';
 import classNames from 'classnames';
 import { IconRoleUnionType, IconProps } from './Icon.types';
 
-import { IoLogoGithub, IoLogoTwitter, IoLogoLinkedin } from 'react-icons/io';
+import {
+  IoLogoGithub,
+  IoLogoTwitter,
+  IoLogoLinkedin,
+  IoIosSearch,
+} from 'react-icons/io';
 
-import { MdOutlineEmail, MdSearch } from 'react-icons/md';
+import { MdOutlineEmail } from 'react-icons/md';
 import {
   RiMenuFoldLine,
   RiMenuUnfoldLine,
@@ -73,7 +78,9 @@ export const Icon = ({ role, size, onClick }: IconProps) => {
     about: (
       <RiCodeSSlashLine className={classes[size]} onClick={onClick} id={role} />
     ),
-    search: <MdSearch className={classes[size]} onClick={onClick} id={role} />,
+    search: (
+      <IoIosSearch className={classes[size]} onClick={onClick} id={role} />
+    ),
   };
 
   return icons[role];
