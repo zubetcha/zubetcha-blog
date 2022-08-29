@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import Image from 'next/image';
 import classNames from 'classnames';
 import classes from './NavBar.module.scss';
@@ -10,6 +11,7 @@ import { Typo } from '../Elements/Typo/Typo';
 import { NavItem } from './NavItem';
 
 export const NavBar = () => {
+  const router = useRouter();
   const [isFolded, setIsFolded] = useState(false);
   const contactList = {
     github: 'https://github.com/zubetcha',
@@ -36,6 +38,10 @@ export const NavBar = () => {
       isFocused: false,
     };
   });
+
+  const onClickProfileImage = () => {
+    router.replace('/');
+  };
 
   const onClickContact = (e: React.MouseEvent<SVGElement>) => {
     const { id } = e.currentTarget;
@@ -68,12 +74,13 @@ export const NavBar = () => {
         />
       </div>
       <div className={classes.profile_wrapper}>
-        <Image
-          src={Profile}
-          width={120}
-          height={120}
-          className={classes.profile_image}
-        />
+        <div
+          className={classes.profile_image_wrapper}
+          onClick={onClickProfileImage}
+        >
+          <Image src={Profile} className={classes.profile_image} />
+          <span className={classes.highlight}></span>
+        </div>
         <div className={classes.profile_info_wrapper}>
           <Typo role='title-small'>zubetcha</Typo>
           <Typo role='body-small'>Web Frontend Developer</Typo>

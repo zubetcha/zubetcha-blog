@@ -25,8 +25,26 @@
     @include flex-box(center, center);
     @include flex-direction(column, 32);
 
-    .profile_image {
+    .profile_image_wrapper {
       border-radius: 50%;
+      width: toRem(144);
+      height: toRem(144);
+      border: 1px solid var(--color-bg-navitem-hover);
+      padding: toRem(16);
+      cursor: pointer;
+      position: relative;
+      .profile_image {
+        border-radius: 50%;
+      }
+      .highlight {
+        position: absolute;
+        right: toRem(15);
+        bottom: toRem(15);
+        width: toRem(10);
+        height: toRem(10);
+        border-radius: 50%;
+        background-color: var(--color-text-primary);
+      }
     }
 
     .profile_info_wrapper {
@@ -66,6 +84,9 @@
 
     .profile_wrapper {
       display: none;
+    }
+    .navItems_wrapper {
+      @include flex-direction(column, 12);
     }
 
     .navItem_container {
