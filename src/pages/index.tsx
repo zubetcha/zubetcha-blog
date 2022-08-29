@@ -15,6 +15,8 @@ const Home: NextPage = () => {
         <Typo role='display-medium' style={{ fontWeight: '700' }}>
           All Posts
         </Typo>
+        <div>divider</div>
+        <div>드롭다운: 태그, 최신순</div>
         <PostCard />
       </div>
     </>

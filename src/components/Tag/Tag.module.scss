@@ -4,10 +4,10 @@
 
 .container {
   width: fit-content;
-  padding: toRem(6) toRem(12);
+  padding: toRem(4) toRem(8);
   border: 1px solid var(--color-text-primary);
   color: var(--color-text-primary);
-  box-shadow: #{var(--color-text-primary)} 0px 0px 8px;
+  box-shadow: #{var(--color-text-primary)} 0px 0px 6px;
   border-radius: toRem(24);
   cursor: pointer;
 

@@ -5,7 +5,7 @@ import { Typo } from '../Elements/Typo/Typo';
 export const Tag = ({ tag, onClick }: TagProps) => {
   return (
     <div className={classes.container} onClick={onClick}>
-      <Typo role='body-small'>{tag}</Typo>
+      <Typo role='label-small'>{tag}</Typo>
     </div>
   );
 };

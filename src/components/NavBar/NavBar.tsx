@@ -74,6 +74,7 @@ export const NavBar = () => {
           onClick={onClickMenu}
         />
       </div>
+
       <div className={classes.profile_wrapper}>
         <div className={classes.profile_image_wrapper} onClick={onClickHome}>
           <Image src={Profile} className={classes.profile_image} />
@@ -97,6 +98,7 @@ export const NavBar = () => {
           })}
         </div>
       </div>
+
       <div className={classes.navItems_wrapper}>
         {isFolded && (
           <div className={classes.navItem_container} onClick={onClickHome}>
@@ -108,6 +110,7 @@ export const NavBar = () => {
           return <NavItem key={navItem.name} {...navItem} />;
         })}
       </div>
+
       <div className={classes.footer_container}>
         <Typo role='body-small'>© 2022 zubetcha.</Typo>
         <Typo role='body-small'>All Rights Reserved.</Typo>
