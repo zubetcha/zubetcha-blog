@@ -9,7 +9,7 @@
   margin: toRem(32);
   padding: toRem(24);
   border-radius: $border-radius;
-  @include flex-direction(column, 48);
+  @include flex-direction(column, 60);
 
   .menuIcon_wrapper {
     @include flex-box(end, center);

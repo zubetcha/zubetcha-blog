@@ -1,6 +1,7 @@
 export interface IconProps {
   role: IconRoleUnionType;
   size: 'large' | 'medium' | 'small';
+  onClick?: (e: React.MouseEvent<HTMLOrSVGElement>) => void;
 }
 
 export type IconRoleUnionType =

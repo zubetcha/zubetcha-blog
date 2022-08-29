@@ -8,6 +8,12 @@ import { Typo } from '../Elements/Typo/Typo';
 import { NavItem } from './NavItem';
 
 export const NavBar = () => {
+  const contactList = {
+    github: 'https://github.com/zubetcha',
+    twitter: 'https://twitter.com/zubetcha_',
+    linkedIn: 'https://www.linkedin.com/in/juhye-jeong-0994a0234/',
+    email: 'zuhye5@gmail.com',
+  };
   const navList = [
     'About',
     'HTML',
@@ -27,6 +33,11 @@ export const NavBar = () => {
     };
   });
 
+  const onClickContact = (e: React.MouseEvent<HTMLElement>) => {
+    const { id } = e.currentTarget;
+    window.open(contactList[id]);
+  };
+
   return (
     <div className={classes.container}>
       <div className={classes.menuIcon_wrapper}>
@@ -35,19 +46,24 @@ export const NavBar = () => {
       <div className={classes.profile_wrapper}>
         <Image
           src={Profile}
-          width={160}
-          height={160}
+          width={120}
+          height={120}
           className={classes.profile_image}
         />
         <div className={classes.profile_info_wrapper}>
-          <Typo role='title-medium'>zubetcha</Typo>
+          <Typo role='title-small'>zubetcha</Typo>
           <Typo role='body-small'>Web Frontend Developer</Typo>
         </div>
         <div className={classes.profile_contacts_wrapper}>
-          <Icon role='github' />
-          <Icon role='linkedIn' />
-          <Icon role='twitter' />
-          <Icon role='email' />
+          {Object.keys(contactList).map((contact) => {
+            return (
+              <Icon
+                key={contact}
+                role={contact as IconRoleUnionType}
+                onClick={onClickContact}
+              />
+            );
+          })}
         </div>
       </div>
       <div className={classes.navItems_wrapper}>
