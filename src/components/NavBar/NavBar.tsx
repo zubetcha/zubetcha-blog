@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import Image from 'next/image';
+import classNames from 'classnames';
 import classes from './NavBar.module.scss';
 import Profile from '../../assets/images/profile.jpeg';
 import { IconRoleUnionType } from '../Elements/Icon/Icon.types';
@@ -8,12 +10,14 @@ import { Typo } from '../Elements/Typo/Typo';
 import { NavItem } from './NavItem';
 
 export const NavBar = () => {
+  const [isFolded, setIsFolded] = useState(false);
   const contactList = {
     github: 'https://github.com/zubetcha',
     twitter: 'https://twitter.com/zubetcha_',
     linkedIn: 'https://www.linkedin.com/in/juhye-jeong-0994a0234/',
     email: 'zuhye5@gmail.com',
   };
+
   const navList = [
     'About',
     'HTML',
@@ -33,13 +37,17 @@ export const NavBar = () => {
     };
   });
 
-  const onClickContact = (e: React.MouseEvent<HTMLElement>) => {
+  const onClickContact = (e: React.MouseEvent<SVGElement>) => {
     const { id } = e.currentTarget;
     window.open(contactList[id]);
   };
 
   return (
-    <div className={classes.container}>
+    <div
+      className={classNames(classes.container, {
+        [classes.close]: setIsFolded,
+      })}
+    >
       <div className={classes.menuIcon_wrapper}>
         <Icon role='menu-fold' />
       </div>
