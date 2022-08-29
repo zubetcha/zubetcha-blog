@@ -7,6 +7,7 @@ import {
   IoLogoTwitter,
   IoLogoLinkedin,
   IoIosSearch,
+  IoMdHome,
 } from 'react-icons/io';
 
 import { MdOutlineEmail } from 'react-icons/md';
@@ -15,7 +16,6 @@ import {
   RiMenuUnfoldLine,
   RiCodeSSlashLine,
 } from 'react-icons/ri';
-import { BsToggle2Off, BsToggle2On } from 'react-icons/bs';
 import {
   SiTypescript,
   SiJavascript,
@@ -44,12 +44,6 @@ export const Icon = ({ role, size, onClick }: IconProps) => {
     ),
     'menu-unfold': (
       <RiMenuUnfoldLine className={classes[size]} onClick={onClick} id={role} />
-    ),
-    'toggle-on': (
-      <BsToggle2On className={classes[size]} onClick={onClick} id={role} />
-    ),
-    'toggle-off': (
-      <BsToggle2Off className={classes[size]} onClick={onClick} id={role} />
     ),
     javascript: (
       <SiJavascript className={classes[size]} onClick={onClick} id={role} />
@@ -81,6 +75,7 @@ export const Icon = ({ role, size, onClick }: IconProps) => {
     search: (
       <IoIosSearch className={classes[size]} onClick={onClick} id={role} />
     ),
+    home: <IoMdHome className={classes[size]} onClick={onClick} id={role} />,
   };
 
   return icons[role];

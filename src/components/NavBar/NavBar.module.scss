@@ -14,8 +14,6 @@
   .menuIcon_wrapper {
     @include flex-box(end, center);
     svg {
-      width: toRem(24);
-      height: toRem(24);
       cursor: pointer;
     }
   }
@@ -60,8 +58,6 @@
     .profile_contacts_wrapper {
       @include flex-direction(row, 16);
       svg {
-        width: toRem(24);
-        height: toRem(24);
         cursor: pointer;
         transition: fill 0.2s ease-out;
 
@@ -92,6 +88,11 @@
     }
     .navItems_wrapper {
       @include flex-direction(column, 12);
+      @include flex-box(center, center);
+
+      .divider {
+        margin: toRem(16) 0;
+      }
     }
 
     .navItem_container {
@@ -127,8 +128,6 @@
   }
 
   svg {
-    width: toRem(20);
-    height: toRem(20);
     transition: fill 0.2s ease-out;
   }
 }

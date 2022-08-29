@@ -12,7 +12,7 @@ html[data-theme='dark'] {
   --color-bg-navitem-hover: #{$gray800};
   --color-bg-tag: #{$teal900};
   --color-bg-tag-hover: #{$teal800};
-  --color-bg-postcard: #{$black};
+  --color-bg-postcard: #{$gray900};
 }
 
 html[data-theme='light'] {
@@ -27,5 +27,5 @@ html[data-theme='light'] {
   --color-bg-navitem-hover: #{$gray200};
   --color-bg-tag: #{$teal900};
   --color-bg-tag-hover: #{$teal800};
-  --color-bg-postcard: #{$gray050};
+  --color-bg-postcard: #{$gray100};
 }

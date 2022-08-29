@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import { PostCard } from '../components/PostCard/PostCard';
+import { Typo } from '../components/Elements/Typo/Typo';
 
 const Home: NextPage = () => {
   return (
@@ -11,6 +12,9 @@ const Home: NextPage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <div>
+        <Typo role='display-medium' style={{ fontWeight: '700' }}>
+          All Posts
+        </Typo>
         <PostCard />
       </div>
     </>

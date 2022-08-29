@@ -2,17 +2,15 @@
 @import '../../../styles/mixins';
 @import '../../../styles/sizes';
 
-.icon {
-  &.large {
-    width: toRem(20);
-    height: toRem(20);
-  }
-  &.medium {
-    width: toRem(16);
-    height: toRem(16);
-  }
-  &.medium {
-    width: toRem(12);
-    height: toRem(12);
-  }
+.large {
+  width: toRem(24);
+  height: toRem(24);
+}
+.medium {
+  width: toRem(20);
+  height: toRem(20);
+}
+.small {
+  width: toRem(16);
+  height: toRem(16);
 }

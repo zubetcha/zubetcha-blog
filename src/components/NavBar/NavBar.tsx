@@ -13,6 +13,7 @@ import { NavItem } from './NavItem';
 export const NavBar = () => {
   const router = useRouter();
   const [isFolded, setIsFolded] = useState(false);
+
   const contactList = {
     github: 'https://github.com/zubetcha',
     twitter: 'https://twitter.com/zubetcha_',
@@ -39,7 +40,7 @@ export const NavBar = () => {
     };
   });
 
-  const onClickProfileImage = () => {
+  const onClickHome = () => {
     router.replace('/');
   };
 
@@ -74,10 +75,7 @@ export const NavBar = () => {
         />
       </div>
       <div className={classes.profile_wrapper}>
-        <div
-          className={classes.profile_image_wrapper}
-          onClick={onClickProfileImage}
-        >
+        <div className={classes.profile_image_wrapper} onClick={onClickHome}>
           <Image src={Profile} className={classes.profile_image} />
           <div className={classes.highlight_wrapper}>
             <span className={classes.highlight}></span>
@@ -100,6 +98,11 @@ export const NavBar = () => {
         </div>
       </div>
       <div className={classes.navItems_wrapper}>
+        {isFolded && (
+          <div className={classes.navItem_container} onClick={onClickHome}>
+            <Icon role='home' />
+          </div>
+        )}
         <div className={classes.divider}></div>
         {navItems.map((navItem) => {
           return <NavItem key={navItem.name} {...navItem} />;

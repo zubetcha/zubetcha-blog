@@ -1,0 +1,11 @@
+@import '../../styles/colors';
+@import '../../styles/mixins';
+@import '../../styles/sizes';
+
+.container {
+  border-radius: $border-radius;
+  background-color: var(--color-bg-postcard);
+  width: toRem(800);
+
+  @include flex-box(row, 0);
+}
