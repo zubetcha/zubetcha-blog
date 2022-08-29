@@ -1,5 +1,11 @@
-import React from 'react';
+import classes from './SearchBar.module.scss';
+import { Icon } from '../Elements/Icon/Icon';
 
 export const SearchBar = () => {
-  return <div>SearchBar</div>;
+  return (
+    <div className={classes.container}>
+      <input className={classes.textField} />
+      <Icon role='search' />
+    </div>
+  );
 };

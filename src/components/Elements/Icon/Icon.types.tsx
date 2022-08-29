@@ -20,4 +20,5 @@ export type IconRoleUnionType =
   | 'typescript'
   | 'react'
   | 'graphql'
-  | 'about';
+  | 'about'
+  | 'search';

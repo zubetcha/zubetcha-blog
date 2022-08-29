@@ -7,7 +7,7 @@
   height: 16px;
   border-radius: 16px;
   background-color: transparent;
-  border: 1.5px solid var(--color-text-contents);
+  border: 1px solid var(--color-text-contents);
   position: relative;
 
   .handler {
@@ -30,7 +30,7 @@
 
   &.on {
     .handler {
-      transform: translate(24px, -50%);
+      transform: translate(28px, -50%);
     }
   }
   &.off {
