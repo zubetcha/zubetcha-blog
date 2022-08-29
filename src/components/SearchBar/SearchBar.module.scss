@@ -1,0 +1,37 @@
+@import '../../styles/colors';
+@import '../../styles/mixins';
+@import '../../styles/sizes';
+
+.container {
+  position: relative;
+  width: toRem(480);
+  border-radius: 48px;
+
+  background-color: var(--color-bg-navbar);
+
+  .textField {
+    width: 100%;
+    border: none;
+    padding: 16px 24px;
+    border-radius: 48px;
+    background-color: var(--color-bg-navbar);
+    color: var(--color-text-contents);
+    letter-spacing: 0.015em;
+
+    &:focus {
+      outline: none;
+    }
+  }
+  svg {
+    @include pos-center-y(absolute);
+    right: 20px;
+    width: 24px;
+    height: 24px;
+    transition: fill 0.2s ease-out;
+    cursor: pointer;
+
+    &:hover {
+      // fill: var(--color-text-primary);
+    }
+  }
+}

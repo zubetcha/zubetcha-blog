@@ -1,7 +1,7 @@
 export interface IconProps {
   role: IconRoleUnionType;
   size: 'large' | 'medium' | 'small';
-  onClick?: (e: React.MouseEvent<HTMLOrSVGElement>) => void;
+  onClick?: (e: React.MouseEvent<SVGElement>) => void;
 }
 
 export type IconRoleUnionType =
@@ -20,4 +20,5 @@ export type IconRoleUnionType =
   | 'typescript'
   | 'react'
   | 'graphql'
-  | 'about';
+  | 'about'
+  | 'search';

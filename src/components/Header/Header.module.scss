@@ -1,2 +1,7 @@
-@import "../../styles/colors";
-@import "../../styles/mixins";
+@import '../../styles/colors';
+@import '../../styles/mixins';
+@import '../../styles/sizes';
+
+.container {
+  @include flex-box(between, center);
+}

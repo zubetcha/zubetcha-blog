@@ -6,9 +6,9 @@
   width: toRem(320);
   height: calc(100vh - toRem(64));
   background-color: var(--color-bg-navbar);
-  margin: toRem(32);
   padding: toRem(24);
   border-radius: $border-radius;
+  transition: all 0.3s ease-in-out;
   @include flex-direction(column, 60);
 
   .menuIcon_wrapper {
@@ -24,8 +24,36 @@
     @include flex-box(center, center);
     @include flex-direction(column, 32);
 
-    .profile_image {
+    .profile_image_wrapper {
       border-radius: 50%;
+      width: toRem(144);
+      height: toRem(144);
+      border: 1px solid var(--color-bg-navitem-hover);
+      padding: toRem(16);
+      position: relative;
+      cursor: pointer;
+
+      .profile_image {
+        border-radius: 50%;
+      }
+      .highlight_wrapper {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        animation: infinite-spinning 2s infinite;
+
+        .highlight {
+          position: absolute;
+          right: toRem(15);
+          bottom: toRem(15);
+          width: toRem(10);
+          height: toRem(10);
+          border-radius: 50%;
+          background-color: var(--color-text-primary);
+        }
+      }
     }
 
     .profile_info_wrapper {
@@ -34,7 +62,7 @@
     }
 
     .profile_contacts_wrapper {
-      @include flex-direction(row, 8);
+      @include flex-direction(row, 16);
       svg {
         width: toRem(24);
         height: toRem(24);
@@ -50,6 +78,39 @@
 
   .navItems_wrapper {
     @include flex-direction(column, 8);
+    .divider {
+      width: 100%;
+      height: 1px;
+      background-color: var(--color-bg-navitem-hover);
+      margin: 0 0 toRem(16);
+    }
+  }
+
+  &.isFolded {
+    @include flex-box(start, center);
+    width: toRem(72);
+    padding: toRem(16);
+
+    .profile_wrapper {
+      display: none;
+    }
+    .navItems_wrapper {
+      @include flex-direction(column, 12);
+    }
+
+    .navItem_container {
+      @include flex-box(center, center);
+      padding: 0;
+      width: toRem(48);
+      height: toRem(48);
+
+      p {
+        display: none;
+      }
+    }
+    .footer_container {
+      display: none;
+    }
   }
 }
 
@@ -64,11 +125,15 @@
 
   &:hover {
     background-color: var(--color-bg-navitem-hover);
+    svg {
+      fill: var(--color-text-primary);
+    }
   }
 
   svg {
     width: toRem(20);
     height: toRem(20);
+    transition: fill 0.2s ease-out;
   }
 }
 

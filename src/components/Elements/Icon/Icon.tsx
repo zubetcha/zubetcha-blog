@@ -1,7 +1,14 @@
 import classes from './Icon.module.scss';
+import classNames from 'classnames';
 import { IconRoleUnionType, IconProps } from './Icon.types';
 
-import { IoLogoGithub, IoLogoTwitter, IoLogoLinkedin } from 'react-icons/io';
+import {
+  IoLogoGithub,
+  IoLogoTwitter,
+  IoLogoLinkedin,
+  IoIosSearch,
+} from 'react-icons/io';
+
 import { MdOutlineEmail } from 'react-icons/md';
 import {
   RiMenuFoldLine,
@@ -9,8 +16,14 @@ import {
   RiCodeSSlashLine,
 } from 'react-icons/ri';
 import { BsToggle2Off, BsToggle2On } from 'react-icons/bs';
-import { TbBrandHtml5, TbBrandCss3, TbCode } from 'react-icons/tb';
-import { SiTypescript, SiJavascript, SiReact, SiGraphql } from 'react-icons/si';
+import {
+  SiTypescript,
+  SiJavascript,
+  SiReact,
+  SiGraphql,
+  SiCss3,
+  SiHtml5,
+} from 'react-icons/si';
 
 export const Icon = ({ role, size, onClick }: IconProps) => {
   const icons: { [key: string]: JSX.Element } = {
@@ -42,9 +55,19 @@ export const Icon = ({ role, size, onClick }: IconProps) => {
       <SiJavascript className={classes[size]} onClick={onClick} id={role} />
     ),
     html: (
-      <TbBrandHtml5 className={classes[size]} onClick={onClick} id={role} />
+      <SiHtml5
+        className={classNames(classes[size], classes.stroke)}
+        onClick={onClick}
+        id={role}
+      />
     ),
-    css: <TbBrandCss3 className={classes[size]} onClick={onClick} id={role} />,
+    css: (
+      <SiCss3
+        className={classNames(classes[size], classes.stroke)}
+        onClick={onClick}
+        id={role}
+      />
+    ),
     typescript: (
       <SiTypescript className={classes[size]} onClick={onClick} id={role} />
     ),
@@ -54,6 +77,9 @@ export const Icon = ({ role, size, onClick }: IconProps) => {
     ),
     about: (
       <RiCodeSSlashLine className={classes[size]} onClick={onClick} id={role} />
+    ),
+    search: (
+      <IoIosSearch className={classes[size]} onClick={onClick} id={role} />
     ),
   };
 
