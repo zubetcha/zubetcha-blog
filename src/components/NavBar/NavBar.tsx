@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import classNames from 'classnames';
 import classes from './NavBar.module.scss';
@@ -42,6 +42,19 @@ export const NavBar = () => {
     window.open(contactList[id]);
   };
 
+  const onClickMenu = () => {
+    setIsFolded((prev) => !prev);
+    localStorage.setItem('isFolded', isFolded ? 'false' : 'true');
+  };
+
+  useEffect(() => {
+    const isFolded = localStorage.getItem('isFolded');
+
+    if (isFolded) {
+      setIsFolded(JSON.parse(isFolded));
+    }
+  }, []);
+
   return (
     <div
       className={classNames(classes.container, {
@@ -51,7 +64,7 @@ export const NavBar = () => {
       <div className={classes.menuIcon_wrapper}>
         <Icon
           role={isFolded ? 'menu-unfold' : 'menu-fold'}
-          onClick={() => setIsFolded((prev) => !prev)}
+          onClick={onClickMenu}
         />
       </div>
       <div className={classes.profile_wrapper}>
