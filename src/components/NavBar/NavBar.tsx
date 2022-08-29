@@ -45,11 +45,14 @@ export const NavBar = () => {
   return (
     <div
       className={classNames(classes.container, {
-        [classes.close]: setIsFolded,
+        [classes.isFolded]: isFolded,
       })}
     >
       <div className={classes.menuIcon_wrapper}>
-        <Icon role='menu-fold' />
+        <Icon
+          role={isFolded ? 'menu-unfold' : 'menu-fold'}
+          onClick={() => setIsFolded((prev) => !prev)}
+        />
       </div>
       <div className={classes.profile_wrapper}>
         <Image
@@ -75,6 +78,7 @@ export const NavBar = () => {
         </div>
       </div>
       <div className={classes.navItems_wrapper}>
+        <div className={classes.divider}></div>
         {navItems.map((navItem) => {
           return <NavItem key={navItem.name} {...navItem} />;
         })}
