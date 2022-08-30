@@ -14,17 +14,21 @@
     background-color: var(--color-text-secondary);
   }
 
-  .tags_wrapper {
-    @include flex-direction(row, 12);
-  }
-
   .contents_wrapper {
     width: 100%;
     padding: toRem(32);
     @include flex-direction(column, 24);
 
+    .tags_wrapper {
+      @include flex-direction(row, 12);
+    }
+
+    .typos_wrapper {
+      @include flex-direction(column, 8);
+    }
+
     .date_wrapper {
-      @include flex-box(end, center);
+      @include flex-box(between, center);
     }
   }
 }

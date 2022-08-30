@@ -13,17 +13,20 @@ export const PostCard = () => {
           <Tag tag='javascript' />
         </div>
 
-        <div>
-          <Typo role='title-large' style={{ fontWeight: '700' }}>
+        <div className={classes.typos_wrapper}>
+          <Typo role='headline-small' style={{ fontWeight: '700' }}>
             타이틀
           </Typo>
-          <Typo>한줄요약</Typo>
+          <Typo role='body-large'>한줄요약</Typo>
         </div>
 
         <div className={classes.date_wrapper}>
           <Typo role='body-small' style={{ fontStyle: 'selif' }}>
-            날짜
+            last modified: 날짜
           </Typo>
+          <div>
+            <Typo>read more</Typo>
+          </div>
         </div>
       </div>
     </div>
