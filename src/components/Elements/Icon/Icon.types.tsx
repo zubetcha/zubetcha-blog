@@ -11,8 +11,6 @@ export type IconRoleUnionType =
   | 'email'
   | 'menu-fold'
   | 'menu-unfold'
-  | 'toggle-on'
-  | 'toggle-off'
   | 'about'
   | 'html'
   | 'css'
@@ -21,4 +19,5 @@ export type IconRoleUnionType =
   | 'react'
   | 'graphql'
   | 'about'
-  | 'search';
+  | 'search'
+  | 'home';

@@ -1,0 +1,34 @@
+@import '../../styles/colors';
+@import '../../styles/mixins';
+@import '../../styles/sizes';
+
+.container {
+  border-radius: $border-radius;
+  background-color: var(--color-bg-postcard);
+  width: toRem(800);
+  @include flex-box(row, 0);
+
+  .image_wrapper {
+    border-radius: $border-radius;
+    width: toRem(320);
+    background-color: var(--color-text-secondary);
+  }
+
+  .contents_wrapper {
+    width: 100%;
+    padding: toRem(32);
+    @include flex-direction(column, 24);
+
+    .tags_wrapper {
+      @include flex-direction(row, 12);
+    }
+
+    .typos_wrapper {
+      @include flex-direction(column, 8);
+    }
+
+    .date_wrapper {
+      @include flex-box(between, center);
+    }
+  }
+}

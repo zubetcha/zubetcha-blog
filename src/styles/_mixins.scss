@@ -156,7 +156,14 @@
   font-weight: $weight;
 }
 
-// DESCRIBE: Function
+// DESCRIBE: Utils
+
+@mixin circle($size) {
+  width: toRem($size);
+  height: toRem($size);
+  border-radius: 50%;
+}
+
 @function toRem($value) {
   $remValue: ($value / 16) + rem;
   @return $remValue;

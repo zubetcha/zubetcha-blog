@@ -10,7 +10,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, []);
 
   return (
-    <IconContext.Provider value={{ className: 'icon' }}>
+    <IconContext.Provider value={{ className: 'react-icon' }}>
       <Layout>
         <Component {...pageProps} />
       </Layout>

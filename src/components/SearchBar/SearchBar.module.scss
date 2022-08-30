@@ -12,6 +12,7 @@
   .textField {
     width: 100%;
     border: none;
+    margin: 0 0 0 32px;
     padding: 16px 24px;
     border-radius: 48px;
     background-color: var(--color-bg-navbar);
@@ -24,7 +25,7 @@
   }
   svg {
     @include pos-center-y(absolute);
-    right: 20px;
+    left: 20px;
     width: 24px;
     height: 24px;
     transition: fill 0.2s ease-out;

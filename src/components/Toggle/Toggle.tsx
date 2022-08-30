@@ -4,8 +4,13 @@ import { ToggleProps } from './Toggle.types';
 
 export const Toggle = ({ status, onClick }: ToggleProps) => {
   return (
-    <div className={classNames(classes.container, classes[status])}>
-      <div className={classes.handler} onClick={onClick}></div>
+    <div
+      className={classNames(classes.container, classes[status])}
+      onClick={onClick}
+    >
+      <div className={classes.toggle_bar}>
+        <div className={classes.handler}></div>
+      </div>
     </div>
   );
 };
