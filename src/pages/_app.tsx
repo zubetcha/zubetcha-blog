@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import '../styles/globals.scss';
 import type { AppProps } from 'next/app';
-import { Layout } from '../components/Layout/Layout';
+import { Layout } from '../components/Layout';
 import { IconContext } from 'react-icons';
 
 function MyApp({ Component, pageProps }: AppProps) {

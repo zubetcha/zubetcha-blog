@@ -1,6 +1,6 @@
 import classes from './PostCard.module.scss';
-import { Tag } from '../Tag/Tag';
-import { Typo } from '../Elements/Typo/Typo';
+import { Tag } from '../Tag';
+import { Typo } from '../Elements/Typo';
 
 export const PostCard = () => {
   return (
