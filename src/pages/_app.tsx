@@ -1,21 +1,20 @@
 import { useEffect } from 'react';
 import '../styles/globals.scss';
 import type { AppProps } from 'next/app';
-import { Layout } from '../components/Layout/Layout';
-import { IconContext } from 'react-icons';
+
+import { ThemeProvider, ExpandedProvider } from '../context';
+import { Layout } from '../components/Layout';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', 'dark');
-  }, []);
-
-  return (
-    <IconContext.Provider value={{ className: 'react-icon' }}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </IconContext.Provider>
-  );
+    return (
+        <ThemeProvider>
+            <ExpandedProvider>
+                <Layout>
+                    <Component {...pageProps} />
+                </Layout>
+            </ExpandedProvider>
+        </ThemeProvider>
+    );
 }
 
 export default MyApp;

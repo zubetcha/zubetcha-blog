@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import { PostCard } from '../components/PostCard/PostCard';
-import { Typo } from '../components/Elements/Typo/Typo';
+import { PostCard } from '../components/PostCard';
+import { Typo } from '../components/Elements/Typo';
 
 const Home: NextPage = () => {
   return (
