@@ -8,8 +8,6 @@ export const Header = () => {
     const { theme, setTheme } = useTheme();
     const newTheme = theme === 'dark' ? 'light' : 'dark';
 
-    console.log(theme);
-
     const onClickToggle = () => {
         setTheme(newTheme);
         localStorage.setItem('theme', newTheme);

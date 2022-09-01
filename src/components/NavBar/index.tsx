@@ -15,7 +15,7 @@ import { NavItem } from './NavItem';
 export const NavBar = () => {
     const router = useRouter();
     const { expanded, setExpanded } = useExpanded();
-    const [isFolded, setIsFolded] = useState(false);
+    const newExpanded = expanded ? false : true;
 
     const contactList = {
         github: 'https://github.com/zubetcha',
@@ -49,27 +49,25 @@ export const NavBar = () => {
     };
 
     const onClickMenu = () => {
-        setIsFolded((prev) => !prev);
-        localStorage.setItem('isFolded', isFolded ? 'false' : 'true');
+        setExpanded(newExpanded);
+        localStorage.setItem('expanded', String(newExpanded));
     };
 
     useEffect(() => {
-        const isFolded = localStorage.getItem('isFolded');
+        const storedExpanded = localStorage.getItem('expanded');
 
-        if (isFolded) {
-            setIsFolded(JSON.parse(isFolded));
-        }
+        setExpanded(storedExpanded ? JSON.parse(storedExpanded) : expanded);
     }, []);
 
     return (
         <div
             className={classNames(classes.container, {
-                [classes.isFolded]: isFolded,
+                [classes.isFolded]: !expanded,
             })}
         >
             <div className={classes.menuIcon_wrapper}>
                 <Icon
-                    role={isFolded ? 'menu-unfold' : 'menu-fold'}
+                    role={expanded ? 'menu-fold' : 'menu-unfold'}
                     onClick={onClickMenu}
                 />
             </div>
@@ -102,7 +100,7 @@ export const NavBar = () => {
             </div>
 
             <div className={classes.navItems_wrapper}>
-                {isFolded && (
+                {!expanded && (
                     <div
                         className={classes.navItem_container}
                         onClick={() => router.replace('/')}
