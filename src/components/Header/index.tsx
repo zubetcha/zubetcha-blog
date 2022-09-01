@@ -1,20 +1,24 @@
-import { useTheme } from '../../context/ThemeContext';
+import { useTheme } from '../../context/theme';
 import classes from './Header.module.scss';
 
 import { SearchBar } from '../SearchBar';
 import { Toggle } from '../Toggle';
 
 export const Header = () => {
-	const { theme, setTheme } = useTheme();
-	const isDark = theme === 'dark';
+    const { theme, setTheme } = useTheme();
+    const newTheme = theme === 'dark' ? 'light' : 'dark';
 
-	return (
-		<div className={classes.container}>
-			<SearchBar />
-			<Toggle
-				status={isDark ? 'on' : 'off'}
-				onClick={() => setTheme(isDark ? 'light' : 'dark')}
-			/>
-		</div>
-	);
+    console.log(theme);
+
+    const onClickToggle = () => {
+        setTheme(newTheme);
+        localStorage.setItem('theme', newTheme);
+    };
+
+    return (
+        <div className={classes.container}>
+            <SearchBar />
+            <Toggle status={theme} onClick={onClickToggle} />
+        </div>
+    );
 };

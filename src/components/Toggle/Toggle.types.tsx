@@ -1,4 +1,4 @@
 export interface ToggleProps {
-  status: 'on' | 'off';
-  onClick: () => void;
+    status: 'dark' | 'light';
+    onClick: () => void;
 }
