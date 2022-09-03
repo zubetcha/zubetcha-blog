@@ -1,0 +1,27 @@
+@import '../../styles/colors';
+@import '../../styles/mixins';
+@import '../../styles/sizes';
+
+.container {
+	width: 100%;
+	height: 100%;
+	border-radius: $border-radius;
+	@include flex-direction(column, 32);
+
+	.contents_wrapper {
+		@include flex-direction(row, 48);
+		.profile_image_wrapper {
+			width: toRem(320);
+			height: toRem(320);
+
+			.profile_image {
+				border-radius: 80px;
+			}
+		}
+
+		.intro_wrapper {
+			@include flex-direction(column, 24);
+			padding: toRem(16) 0 0;
+		}
+	}
+}
