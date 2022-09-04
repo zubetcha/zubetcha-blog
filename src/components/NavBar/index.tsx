@@ -4,9 +4,9 @@ import { useExpanded } from '../../context';
 import classNames from 'classnames';
 import classes from './NavBar.module.scss';
 
-import Profile from '../../assets/images/profile.jpeg';
 import Zubetcha from '../../assets/images/zubetcha.jpeg';
 import { IconRoleUnionType } from '../Elements/Icon/Icon.types';
+import { contactList, navItems } from '../../constants/navigation';
 
 import Image from 'next/image';
 import { Icon } from '../Elements/Icon';
@@ -17,32 +17,6 @@ export const NavBar = () => {
 	const router = useRouter();
 	const { expanded, setExpanded } = useExpanded();
 	const newExpanded = expanded ? false : true;
-
-	const contactList = {
-		github: 'https://github.com/zubetcha',
-		twitter: 'https://twitter.com/zubetcha_',
-		linkedIn: 'https://www.linkedin.com/in/juhye-jeong-0994a0234/',
-		email: 'zuhye5@gmail.com',
-	};
-
-	const navList = [
-		'About',
-		'HTML',
-		'CSS',
-		'Javascript',
-		'Typescript',
-		'React',
-		'GraphQL',
-	];
-
-	const navItems = navList.map((navItem, i) => {
-		return {
-			name: navItem,
-			icon: navItem.toLowerCase() as IconRoleUnionType,
-			path: i === 0 ? '/about' : `posts/${navItem.toLowerCase()}`,
-			isFocused: false,
-		};
-	});
 
 	const onClickContact = (e: React.MouseEvent<SVGElement>) => {
 		const { id } = e.currentTarget;
@@ -56,7 +30,6 @@ export const NavBar = () => {
 
 	useEffect(() => {
 		const storedExpanded = localStorage.getItem('expanded');
-
 		setExpanded(storedExpanded ? JSON.parse(storedExpanded) : expanded);
 	}, []);
 
