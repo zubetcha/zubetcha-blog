@@ -4,10 +4,12 @@
 
 .container {
 	@include flex-direction(row, 48);
-	padding: toRem(32);
 
 	.body {
 		width: 100%;
+		overflow: hidden auto;
+		height: 100vh;
+		padding: toRem(32) 0 0 0;
 		@include flex-direction(column, 32);
 	}
 }
