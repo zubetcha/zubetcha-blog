@@ -2,14 +2,10 @@
 @import '../../styles/mixins';
 @import '../../styles/sizes';
 
-.container {
-	margin-top: $margin-top;
-
-	.cards_wrapper {
-		width: fit-content;
-		margin: toRem(32) auto;
-		display: grid;
-		grid-template-columns: repeat(2, toRem(600));
-		gap: toRem(24);
-	}
+.cards_wrapper {
+	width: fit-content;
+	margin: toRem(32) auto;
+	display: grid;
+	grid-template-columns: repeat(2, toRem(600));
+	gap: toRem(24);
 }

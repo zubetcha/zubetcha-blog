@@ -5,13 +5,12 @@ import classNames from 'classnames';
 import classes from './Layout.module.scss';
 
 import { ThemeUnionType } from '../../context/theme/theme.types';
+import { PageLayoutProps } from './Layout.types';
 
 import { NavBar } from '../NavBar/NavBar';
 import { Header } from '../Header/Header';
 
-import { LayoutProps } from './Layout.types';
-
-export const EntireLayout = ({ children }: LayoutProps) => {
+export const PageLayout = ({ children }: PageLayoutProps) => {
 	const { theme, setTheme } = useTheme();
 	const { expanded } = useExpanded();
 
@@ -21,7 +20,6 @@ export const EntireLayout = ({ children }: LayoutProps) => {
 
 	useEffect(() => {
 		const newTheme = localStorage.getItem('theme');
-
 		if (newTheme) {
 			setTheme(newTheme as ThemeUnionType);
 		}
@@ -29,7 +27,7 @@ export const EntireLayout = ({ children }: LayoutProps) => {
 	}, []);
 
 	return (
-		<div className={classes.container}>
+		<div className={classes.page_container}>
 			<NavBar />
 			<div
 				className={classNames(classes.body, { [classes.expanded]: expanded })}

@@ -2,7 +2,7 @@
 @import '../../styles/mixins';
 @import '../../styles/sizes';
 
-.container {
+.page_container {
 	@include flex-direction(row, 48);
 
 	.body {
@@ -12,4 +12,8 @@
 		padding: toRem(32) 0 0 0;
 		@include flex-direction(column, 32);
 	}
+}
+
+.content_container {
+	margin-top: $margin-top;
 }

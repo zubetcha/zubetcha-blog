@@ -3,15 +3,15 @@ import '../styles/globals.scss';
 import type { AppProps } from 'next/app';
 
 import { ThemeProvider, ExpandedProvider } from '../context';
-import { EntireLayout } from '../components/Layout/EntireLayout';
+import { PageLayout } from '../components/Layout/PageLayout';
 
 function MyApp({ Component, pageProps }: AppProps) {
 	return (
 		<ThemeProvider>
 			<ExpandedProvider>
-				<EntireLayout>
+				<PageLayout>
 					<Component {...pageProps} />
-				</EntireLayout>
+				</PageLayout>
 			</ExpandedProvider>
 		</ThemeProvider>
 	);
