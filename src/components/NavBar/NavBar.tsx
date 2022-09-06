@@ -9,8 +9,8 @@ import { IconRoleUnionType } from '../Elements/Icon/Icon.types';
 import { contactList, navItems } from '../../constants/navigation';
 
 import Image from 'next/image';
-import { Icon } from '../Elements/Icon';
-import { Typo } from '../Elements/Typo';
+import { Icon } from '../Elements/Icon/Icon';
+import { Typo } from '../Elements/Typo/Typo';
 import { NavItem } from './NavItem';
 
 export const NavBar = () => {

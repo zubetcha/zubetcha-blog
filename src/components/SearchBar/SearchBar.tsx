@@ -1,5 +1,5 @@
 import classes from './SearchBar.module.scss';
-import { Icon } from '../Elements/Icon';
+import { Icon } from '../Elements/Icon/Icon';
 
 export const SearchBar = () => {
   return (
