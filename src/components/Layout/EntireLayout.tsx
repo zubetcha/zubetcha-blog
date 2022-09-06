@@ -6,12 +6,12 @@ import classes from './Layout.module.scss';
 
 import { ThemeUnionType } from '../../context/theme/theme.types';
 
-import { NavBar } from '../NavBar';
-import { Header } from '../Header';
+import { NavBar } from '../NavBar/NavBar';
+import { Header } from '../Header/Header';
 
 import { LayoutProps } from './Layout.types';
 
-export const Layout = ({ children }: LayoutProps) => {
+export const EntireLayout = ({ children }: LayoutProps) => {
 	const { theme, setTheme } = useTheme();
 	const { expanded } = useExpanded();
 

@@ -1,6 +1,8 @@
 import type { NextPage } from 'next';
+
 import Head from 'next/head';
-import { Main } from '../components/Main';
+import { Main } from '../components/Main/Main';
+import { Typo } from '../components/Elements/Typo/Typo';
 
 const Home: NextPage = () => {
 	return (
@@ -10,6 +12,7 @@ const Home: NextPage = () => {
 				<meta name='description' content='zubetcha blog' />
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
+
 			<Main />
 		</>
 	);

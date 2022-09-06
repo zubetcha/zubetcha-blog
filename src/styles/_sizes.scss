@@ -72,10 +72,12 @@ $border-radius: 24px;
 
 // DESCRIBE: Flex-map
 $flex-map: (
-  start: flex-start,
-  end: flex-end,
-  between: space-between,
-  around: space-around,
-  stretch: stretch,
-  center: center,
+	start: flex-start,
+	end: flex-end,
+	between: space-between,
+	around: space-around,
+	stretch: stretch,
+	center: center,
 );
+
+$margin-top: toRem(80);

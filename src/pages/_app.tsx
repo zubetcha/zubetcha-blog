@@ -3,18 +3,18 @@ import '../styles/globals.scss';
 import type { AppProps } from 'next/app';
 
 import { ThemeProvider, ExpandedProvider } from '../context';
-import { Layout } from '../components/Layout';
+import { EntireLayout } from '../components/Layout/EntireLayout';
 
 function MyApp({ Component, pageProps }: AppProps) {
-    return (
-        <ThemeProvider>
-            <ExpandedProvider>
-                <Layout>
-                    <Component {...pageProps} />
-                </Layout>
-            </ExpandedProvider>
-        </ThemeProvider>
-    );
+	return (
+		<ThemeProvider>
+			<ExpandedProvider>
+				<EntireLayout>
+					<Component {...pageProps} />
+				</EntireLayout>
+			</ExpandedProvider>
+		</ThemeProvider>
+	);
 }
 
 export default MyApp;

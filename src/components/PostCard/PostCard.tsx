@@ -1,6 +1,6 @@
 import classes from './PostCard.module.scss';
-import { Tag } from '../Tag';
-import { Typo } from '../Elements/Typo';
+import { Tag } from '../Tag/Tag';
+import { Typo } from '../Elements/Typo/Typo';
 
 export const PostCard = () => {
 	return (
@@ -21,10 +21,10 @@ export const PostCard = () => {
 
 				<div className={classes.date_wrapper}>
 					<div>
-						<Typo>read more</Typo>
+						<Typo role='body-medium'>read more</Typo>
 					</div>
 					<Typo role='body-small' style={{ fontStyle: 'selif' }}>
-						2022 / 09 / 05
+						2022/09/05
 					</Typo>
 				</div>
 			</div>

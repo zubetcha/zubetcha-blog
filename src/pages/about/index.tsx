@@ -2,7 +2,7 @@ import classes from './about.module.scss';
 
 import Head from 'next/head';
 import Image from 'next/image';
-import { Typo } from '../../components/Elements/Typo';
+import { Typo } from '../../components/Elements/Typo/Typo';
 
 import Zubetcha from '../../assets/images/zubetcha.jpeg';
 
