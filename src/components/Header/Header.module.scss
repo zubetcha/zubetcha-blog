@@ -3,5 +3,6 @@
 @import '../../styles/sizes';
 
 .container {
-  @include flex-box(between, center);
+	@include flex-box(between, center);
+	position: fixed;
 }

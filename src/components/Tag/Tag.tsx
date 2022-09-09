@@ -1,6 +1,6 @@
 import classes from './Tag.module.scss';
 import { TagProps } from './Tag.types';
-import { Typo } from '../Elements/Typo';
+import { Typo } from '../Elements/Typo/Typo';
 
 export const Tag = ({ tag, onClick }: TagProps) => {
   return (

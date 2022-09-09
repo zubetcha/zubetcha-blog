@@ -3,36 +3,37 @@
 @import '../../styles/sizes';
 
 .container {
-  position: relative;
-  width: toRem(480);
-  border-radius: 48px;
+	position: relative;
+	width: toRem(480);
+	height: toRem(48);
+	border-radius: 48px;
 
-  background-color: var(--color-bg-navbar);
+	background-color: var(--color-bg-navbar);
 
-  .textField {
-    width: 100%;
-    border: none;
-    margin: 0 0 0 32px;
-    padding: 16px 24px;
-    border-radius: 48px;
-    background-color: var(--color-bg-navbar);
-    color: var(--color-text-contents);
-    letter-spacing: 0.015em;
+	.textField {
+		width: 100%;
+		border: none;
+		margin: 0 0 0 32px;
+		padding: 16px 24px;
+		border-radius: 48px;
+		background-color: var(--color-bg-navbar);
+		color: var(--color-text-contents);
+		letter-spacing: 0.015em;
 
-    &:focus {
-      outline: none;
-    }
-  }
-  svg {
-    @include pos-center-y(absolute);
-    left: 20px;
-    width: 24px;
-    height: 24px;
-    transition: fill 0.2s ease-out;
-    cursor: pointer;
+		&:focus {
+			outline: none;
+		}
+	}
+	svg {
+		@include pos-center-y(absolute);
+		left: 20px;
+		width: 24px;
+		height: 24px;
+		transition: fill 0.2s ease-out;
+		cursor: pointer;
 
-    &:hover {
-      // fill: var(--color-text-primary);
-    }
-  }
+		&:hover {
+			// fill: var(--color-text-primary);
+		}
+	}
 }
