@@ -1,9 +1,9 @@
 @import './mixins';
 
 // DESCRIBE 반응형 화면 크기
-$mobile: 0px;
+$mobile: 767px;
 $tablet: 0px;
-$laptop: 0px;
+$laptop: 1440px;
 $desktop: 0px;
 
 // DESCRIBE: font-size
