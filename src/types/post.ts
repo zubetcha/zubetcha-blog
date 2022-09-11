@@ -7,3 +7,12 @@ export interface FrontMatter {
 	updated: string;
 	description: string;
 }
+
+export interface Post {
+	fields: {
+		slug: string;
+	};
+	frontMatter: FrontMatter;
+	source: string;
+	path: string;
+}
