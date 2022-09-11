@@ -13,6 +13,5 @@ export interface Post {
 		slug: string;
 	};
 	frontMatter: FrontMatter;
-	source: string;
-	path: string;
+	body: string;
 }
