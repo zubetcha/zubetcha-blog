@@ -15,7 +15,8 @@ import rehypePrism from 'rehype-prism-plus/.';
 const postsDir = path.join(process.cwd(), 'posts');
 
 export const getAllPosts = async () => {
-	const fileNames = fs.readdirSync(postsDir);
+	const files = sync(`${postsDir}/**/*.md*`).reverse();
+  
 };
 
 export const parseMdx = async (source: string) => {
