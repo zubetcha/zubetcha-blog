@@ -11,7 +11,7 @@ import remarkMath from 'remark-math';
 
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeKatex from 'rehype-katex';
-import rehypePrism from 'rehype-prism-plus/.';
+import rehypePrism from 'rehype-prism-plus';
 
 import { Post, FrontMatter } from '../types/post';
 
