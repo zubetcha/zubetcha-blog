@@ -15,7 +15,7 @@ export const Main = ({ posts }: Props) => {
 			<div>드롭다운: 태그, 최신순</div>
 			<div className={classes.cards_wrapper}>
 				{new Array(45).fill(posts[0]).map((post: Post) => (
-					<PostCard post={post} />
+					<PostCard post={post} key={post.fields.slug} />
 				))}
 			</div>
 		</ContentLayout>
