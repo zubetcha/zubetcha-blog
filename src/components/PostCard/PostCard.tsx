@@ -1,22 +1,31 @@
 import classes from './PostCard.module.scss';
 import { Tag } from '../Tag/Tag';
 import { Typo } from '../Elements/Typo/Typo';
+import { Post } from '../../types/post';
 
-export const PostCard = () => {
+interface Props {
+	post: Post;
+}
+export const PostCard = ({ post }: Props) => {
+	console.log(post);
+	const { frontMatter, fields } = post;
+	const { tags, title, description, date } = frontMatter;
+	const updatedAt = new Date(date);
+	console.log(updatedAt);
 	return (
 		<div className={classes.container}>
 			<div className={classes.contents_wrapper}>
 				<div className={classes.tags_wrapper}>
-					<Tag tag='javascript' />
-					<Tag tag='javascript' />
-					<Tag tag='javascript' />
+					{tags.map((tag) => (
+						<Tag tag={tag} />
+					))}
 				</div>
 
 				<div className={classes.typos_wrapper}>
 					<Typo role='headline-small' style={{ fontWeight: '700' }}>
-						타이틀
+						{title}
 					</Typo>
-					<Typo role='body-large'>한줄요약</Typo>
+					<Typo role='body-large'>{description}</Typo>
 				</div>
 
 				<div className={classes.date_wrapper}>
@@ -24,7 +33,7 @@ export const PostCard = () => {
 						<Typo role='body-medium'>read more</Typo>
 					</div>
 					<Typo role='body-small' style={{ fontStyle: 'selif' }}>
-						2022/09/05
+						{date}
 					</Typo>
 				</div>
 			</div>

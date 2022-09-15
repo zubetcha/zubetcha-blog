@@ -6,7 +6,9 @@ import Head from 'next/head';
 import { Main } from '../components/Main/Main';
 import { Typo } from '../components/Elements/Typo/Typo';
 
-const Home: NextPage = ({ posts }) => {
+import { Post } from '../types/post';
+
+const Home = ({ posts }: { posts: Post[] }) => {
 	console.log(posts);
 	return (
 		<>
@@ -15,8 +17,7 @@ const Home: NextPage = ({ posts }) => {
 				<meta name='description' content='zubetcha blog' />
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
-
-			<Main />
+			<Main posts={posts} />
 		</>
 	);
 };
