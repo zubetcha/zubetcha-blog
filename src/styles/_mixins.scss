@@ -3,177 +3,192 @@
 // DESCRIBE: Position
 
 @mixin pos-center-x($type: absolute) {
-  @if ($type == fixed or $type == absolute) {
-    position: $type;
-    left: 50%;
-    transform: translateX(-50%);
-  }
+	@if ($type == fixed or $type == absolute) {
+		position: $type;
+		left: 50%;
+		transform: translateX(-50%);
+	}
 }
 
 @mixin pos-center-y($type: absolute) {
-  @if ($type == fixed or $type == absolute) {
-    position: $type;
-    top: 50%;
-    transform: translateY(-50%);
-  }
+	@if ($type == fixed or $type == absolute) {
+		position: $type;
+		top: 50%;
+		transform: translateY(-50%);
+	}
 }
 
 @mixin pos-center($type: absolute) {
-  @if ($type == fixed or $type == absolute) {
-    position: $type;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
+	@if ($type == fixed or $type == absolute) {
+		position: $type;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+	}
 }
 
 @function _get-flex-value($key) {
-  @return map-get($flex-map, $key);
+	@return map-get($flex-map, $key);
 }
 
 @mixin flex-box($jc: center, $ai: center) {
-  display: flex;
-  justify-content: _get-flex-value($jc);
-  align-items: _get-flex-value($ai);
+	display: flex;
+	justify-content: _get-flex-value($jc);
+	align-items: _get-flex-value($ai);
 }
 
 @mixin flex-direction($direction, $gap: 0) {
-  display: flex;
-  flex-direction: $direction;
+	display: flex;
+	flex-direction: $direction;
 
-  @if ($direction == column) {
-    row-gap: toRem($gap);
-  }
-  @if ($direction == row) {
-    column-gap: toRem($gap);
-  }
+	@if ($direction == column) {
+		row-gap: toRem($gap);
+	}
+	@if ($direction == row) {
+		column-gap: toRem($gap);
+	}
 }
 
 // DESCRIBE Typography
 
 @mixin display-large($weight: 400) {
-  font-size: $display-large-font;
-  line-height: $display-large-line;
-  letter-spacing: $display-large-letter;
-  font-weight: $weight;
+	font-size: $display-large-font;
+	line-height: $display-large-line;
+	letter-spacing: $display-large-letter;
+	font-weight: $weight;
 }
 
 @mixin display-medium($weight: 400) {
-  font-size: $display-medium-font;
-  line-height: $display-medium-line;
-  letter-spacing: $display-medium-letter;
-  font-weight: $weight;
+	font-size: $display-medium-font;
+	line-height: $display-medium-line;
+	letter-spacing: $display-medium-letter;
+	font-weight: $weight;
 }
 
 @mixin display-small($weight: 400) {
-  font-size: $display-small-font;
-  line-height: $display-small-line;
-  letter-spacing: $display-small-letter;
-  font-weight: $weight;
+	font-size: $display-small-font;
+	line-height: $display-small-line;
+	letter-spacing: $display-small-letter;
+	font-weight: $weight;
 }
 
 @mixin headline-large($weight: 400) {
-  font-size: $headline-large-font;
-  line-height: $headline-large-line;
-  letter-spacing: $headline-large-letter;
-  font-weight: $weight;
+	font-size: $headline-large-font;
+	line-height: $headline-large-line;
+	letter-spacing: $headline-large-letter;
+	font-weight: $weight;
 }
 
 @mixin headline-medium($weight: 400) {
-  font-size: $headline-medium-font;
-  line-height: $headline-medium-line;
-  letter-spacing: $headline-medium-letter;
-  font-weight: $weight;
+	font-size: $headline-medium-font;
+	line-height: $headline-medium-line;
+	letter-spacing: $headline-medium-letter;
+	font-weight: $weight;
 }
 
 @mixin headline-small($weight: 400) {
-  font-size: $headline-small-font;
-  line-height: $headline-small-line;
-  letter-spacing: $headline-small-letter;
-  font-weight: $weight;
+	font-size: $headline-small-font;
+	line-height: $headline-small-line;
+	letter-spacing: $headline-small-letter;
+	font-weight: $weight;
 }
 
 @mixin title-large($weight: 400) {
-  font-size: $title-large-font;
-  line-height: $title-large-line;
-  letter-spacing: $title-large-letter;
-  font-weight: $weight;
+	font-size: $title-large-font;
+	line-height: $title-large-line;
+	letter-spacing: $title-large-letter;
+	font-weight: $weight;
 }
 
 @mixin title-medium($weight: 400) {
-  font-size: $title-medium-font;
-  line-height: $title-medium-line;
-  letter-spacing: $title-medium-letter;
-  font-weight: $weight;
+	font-size: $title-medium-font;
+	line-height: $title-medium-line;
+	letter-spacing: $title-medium-letter;
+	font-weight: $weight;
 }
 
 @mixin title-small($weight: 400) {
-  font-size: $title-small-font;
-  line-height: $title-small-line;
-  letter-spacing: $title-small-letter;
-  font-weight: $weight;
+	font-size: $title-small-font;
+	line-height: $title-small-line;
+	letter-spacing: $title-small-letter;
+	font-weight: $weight;
 }
 
 @mixin label-large($weight: 400) {
-  font-size: $label-large-font;
-  line-height: $label-large-line;
-  letter-spacing: $label-large-letter;
-  font-weight: $weight;
+	font-size: $label-large-font;
+	line-height: $label-large-line;
+	letter-spacing: $label-large-letter;
+	font-weight: $weight;
 }
 
 @mixin label-medium($weight: 400) {
-  font-size: $label-medium-font;
-  line-height: $label-medium-line;
-  letter-spacing: $label-medium-letter;
-  font-weight: $weight;
+	font-size: $label-medium-font;
+	line-height: $label-medium-line;
+	letter-spacing: $label-medium-letter;
+	font-weight: $weight;
 }
 
 @mixin label-small($weight: 400) {
-  font-size: $label-small-font;
-  line-height: $label-small-line;
-  letter-spacing: $label-small-letter;
-  font-weight: $weight;
+	font-size: $label-small-font;
+	line-height: $label-small-line;
+	letter-spacing: $label-small-letter;
+	font-weight: $weight;
 }
 
 @mixin body-large($weight: 400) {
-  font-size: $body-large-font;
-  line-height: $body-large-line;
-  letter-spacing: $body-large-letter;
-  font-weight: $weight;
+	font-size: $body-large-font;
+	line-height: $body-large-line;
+	letter-spacing: $body-large-letter;
+	font-weight: $weight;
 }
 
 @mixin body-medium($weight: 400) {
-  font-size: $body-medium-font;
-  line-height: $body-medium-line;
-  letter-spacing: $body-medium-letter;
-  font-weight: $weight;
+	font-size: $body-medium-font;
+	line-height: $body-medium-line;
+	letter-spacing: $body-medium-letter;
+	font-weight: $weight;
 }
 
 @mixin body-small($weight: 400) {
-  font-size: $body-small-font;
-  line-height: $body-small-line;
-  letter-spacing: $body-small-letter;
-  font-weight: $weight;
+	font-size: $body-small-font;
+	line-height: $body-small-line;
+	letter-spacing: $body-small-letter;
+	font-weight: $weight;
 }
 
 // DESCRIBE: Utils
 
 @mixin circle($size) {
-  width: toRem($size);
-  height: toRem($size);
-  border-radius: 50%;
+	width: toRem($size);
+	height: toRem($size);
+	border-radius: 50%;
 }
 
 @function toRem($value) {
-  $remValue: ($value / 16) + rem;
-  @return $remValue;
+	$remValue: ($value / 16) + rem;
+	@return $remValue;
 }
 
 @keyframes infinite-spinning {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@mixin scroll-bar() {
+	&::-webkit-scrollbar {
+		width: 6px;
+	}
+	&::-webkit-scrollbar-thumb {
+		background-color: $gray400;
+		border-radius: 6px;
+		background-clip: padding-box;
+		border: 1px solid transparent;
+	}
+	&::-webkit-scrollbar-track {
+		background-color: transparent;
+	}
 }

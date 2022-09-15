@@ -1,17 +1,18 @@
 import classes from './PostCard.module.scss';
+
 import { Tag } from '../Tag/Tag';
 import { Typo } from '../Elements/Typo/Typo';
 import { Post } from '../../types/post';
+
+import { formatDate } from '../../utils/date';
 
 interface Props {
 	post: Post;
 }
 export const PostCard = ({ post }: Props) => {
-	console.log(post);
 	const { frontMatter, fields } = post;
 	const { tags, title, description, date } = frontMatter;
-	const updatedAt = new Date(date);
-	console.log(updatedAt);
+
 	return (
 		<div className={classes.container}>
 			<div className={classes.contents_wrapper}>
@@ -33,7 +34,7 @@ export const PostCard = ({ post }: Props) => {
 						<Typo role='body-medium'>read more</Typo>
 					</div>
 					<Typo role='body-small' style={{ fontStyle: 'selif' }}>
-						{date}
+						{formatDate(date)}
 					</Typo>
 				</div>
 			</div>

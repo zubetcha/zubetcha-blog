@@ -11,6 +11,8 @@
 		height: 100vh;
 		padding: toRem(32) 0 0 0;
 		@include flex-direction(column, 32);
+
+		@include scroll-bar();
 	}
 }
 
