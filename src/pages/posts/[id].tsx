@@ -1,17 +1,20 @@
-import { GetStaticPaths, GetStaticProps } from 'next';
-
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { getAllPosts } from '../../utils/post';
+import { NUMBER_OF_POSTS } from '../../constants/post';
 
-export const PostListPage = () => {
+const PostListPage: NextPage = (props) => {
+	console.log(props);
 	return <div>PostListPage</div>;
 };
+
+export default PostListPage;
 
 export const getStaticPaths: GetStaticPaths = async () => {
 	const posts = await getAllPosts();
 
-	const paths = [...new Array(Math.round(posts.length / 10)).keys()].map(
-		(i) => ({ params: { id: `${i + 1}` } }),
-	);
+	const paths = [
+		...new Array(Math.round(posts.length / NUMBER_OF_POSTS)).keys(),
+	].map((i) => ({ params: { id: `${i + 1}` } }));
 
 	return {
 		paths,
@@ -19,4 +22,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
 	};
 };
 
-export const getStaticProps = async () => {};
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+	const posts = await getAllPosts();
+
+	return {
+		props: {
+			params,
+		},
+	};
+};
