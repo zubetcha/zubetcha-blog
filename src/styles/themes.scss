@@ -1,31 +1,31 @@
 @use './colors' as *;
 
 html[data-theme='dark'] {
-  --color-text-title: #{$gray050};
-  --color-text-contents: #{$gray200};
-  --color-text-primary: #{$lime400};
-  --color-text-secondary: #{$teal400};
+	--color-text-title: #{$gray050};
+	--color-text-contents: #{$gray200};
+	--color-text-primary: #{$lime400};
+	--color-text-secondary: #{$teal400};
 
-  --color-bg-page: #{$black};
-  --color-bg-navbar: #{$gray900};
-  --color-bg-navitem: #{$gray900};
-  --color-bg-navitem-hover: #{$gray800};
-  --color-bg-tag: #{$teal900};
-  --color-bg-tag-hover: #{$teal800};
-  --color-bg-postcard: #{$gray900};
+	--color-bg-page: #{$black};
+	--color-bg-navbar: #{$gray900};
+	--color-bg-navitem: #{$gray900};
+	--color-bg-navitem-hover: #{$gray800};
+	--color-bg-tag: #{$teal900};
+	--color-bg-tag-hover: #{$teal800};
+	--color-bg-postcard: #{$gray900};
 }
 
 html[data-theme='light'] {
-  --color-text-title: #{$black};
-  --color-text-contents: #{$gray900};
-  --color-text-primary: #{$indigo700};
-  --color-text-secondary: #{$teal700};
+	--color-text-title: #{$black};
+	--color-text-contents: #{$gray900};
+	--color-text-primary: #{$indigo700};
+	--color-text-secondary: #{$teal700};
 
-  --color-bg-page: #{$white};
-  --color-bg-navbar: #{$gray100};
-  --color-bg-navitem: #{$gray100};
-  --color-bg-navitem-hover: #{$gray200};
-  --color-bg-tag: #{$teal900};
-  --color-bg-tag-hover: #{$teal800};
-  --color-bg-postcard: #{$gray100};
+	--color-bg-page: #{$white};
+	--color-bg-navbar: #{$gray100};
+	--color-bg-navitem: #{$gray100};
+	--color-bg-navitem-hover: #{$gray200};
+	--color-bg-tag: #{$teal900};
+	--color-bg-tag-hover: #{$teal800};
+	--color-bg-postcard: #{$gray100};
 }
