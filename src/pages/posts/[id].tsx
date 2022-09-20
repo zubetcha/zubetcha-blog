@@ -1,6 +1,7 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { getAllPosts } from '../../utils/post';
 import { NUMBER_OF_POSTS } from '../../constants/post';
+import { ParsedUrlQuery } from 'querystring';
 
 const PostListPage: NextPage = (props) => {
 	console.log(props);
@@ -23,11 +24,31 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
+	const { id } = params as ParsedUrlQuery;
+
 	const posts = await getAllPosts();
+	const pageNo = parseInt(id as string);
+	const maximumPageNo = Math.ceil(posts.length / NUMBER_OF_POSTS);
+
+	let slicedPosts;
+	let hasMore;
+
+	if (!params || !pageNo || isNaN(pageNo) || pageNo > maximumPageNo) {
+		return { notFound: true };
+	}
+
+	if (params && typeof params.id === 'string') {
+		const startIndex = (parseInt(params.id) - 1) * NUMBER_OF_POSTS;
+		const endIndex = startIndex + NUMBER_OF_POSTS;
+		slicedPosts = posts.slice(startIndex, endIndex);
+		hasMore = posts[endIndex] !== undefined ? true : false;
+	}
 
 	return {
 		props: {
-			params,
+			posts: slicedPosts,
+			hasMore,
+			pageNo,
 		},
 	};
 };
