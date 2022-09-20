@@ -1,11 +1,27 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { getAllPosts } from '../../utils/post';
+
 import { NUMBER_OF_POSTS } from '../../constants/post';
+import { PostCard } from '../../components';
+import { Post } from '../../types/post';
 import { ParsedUrlQuery } from 'querystring';
 
-const PostListPage: NextPage = (props) => {
-	console.log(props);
-	return <div>PostListPage</div>;
+interface Props {
+	posts: Array<Post>;
+	hasMore: boolean;
+	pageNo: number;
+}
+
+const PostListPage = ({ posts, hasMore, pageNo }: Props) => {
+	// console.log(props);
+	return (
+		<div>
+			{posts.map((post) => (
+				<PostCard post={post} />
+			))}
+			{hasMore && <div>다음 페이지: {pageNo + 1}</div>}
+		</div>
+	);
 };
 
 export default PostListPage;
