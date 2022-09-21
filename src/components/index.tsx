@@ -3,7 +3,6 @@ export * from './Elements/Typo/Typo';
 export * from './Header/Header';
 export * from './Layout/PageLayout';
 export * from './Layout/ContentLayout';
-export * from './Main/Main';
 export * from './NavBar/NavBar';
 export * from './NavBar/NavItem';
 export * from './PostCard/PostCard';

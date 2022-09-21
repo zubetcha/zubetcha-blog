@@ -1,8 +1,9 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { getAllPosts } from '../../utils/post';
 
+import { PostsPageContainer } from '../../container/posts/PostsPageContainer';
+
 import { NUMBER_OF_POSTS } from '../../constants/post';
-import { PostCard } from '../../components';
 import { Post } from '../../types/post';
 import { ParsedUrlQuery } from 'querystring';
 
@@ -12,19 +13,11 @@ interface Props {
 	pageNo: number;
 }
 
-const PostListPage = ({ posts, hasMore, pageNo }: Props) => {
-	// console.log(props);
-	return (
-		<div>
-			{posts.map((post) => (
-				<PostCard post={post} />
-			))}
-			{hasMore && <div>다음 페이지: {pageNo + 1}</div>}
-		</div>
-	);
+const PostsPage = (props: Props) => {
+	return <PostsPageContainer {...props} />;
 };
 
-export default PostListPage;
+export default PostsPage;
 
 export const getStaticPaths: GetStaticPaths = async () => {
 	const posts = await getAllPosts();
