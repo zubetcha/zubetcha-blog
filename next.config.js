@@ -4,6 +4,7 @@ const path = require('path');
 const withPlugins = require('next-compose-plugins');
 
 const nextConfig = {
+	trailingSlash: false,
 	reactStrictMode: true,
 	swcMinify: true,
 	sassOptions: {
@@ -11,7 +12,12 @@ const nextConfig = {
 		reactStrictMode: true,
 	},
 	async rewrites() {
-		return [];
+		return [
+			{
+				source: '/',
+				destination: '/page=1',
+			},
+		];
 	},
 	webpack(config, { webpack }) {
 		config.resolve = {

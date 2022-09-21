@@ -13,18 +13,16 @@ interface Props {
 	pageNo: number;
 }
 
-const PostsPage = (props: Props) => {
+export default function PostsPage(props: Props) {
 	return <PostsPageContainer {...props} />;
-};
-
-export default PostsPage;
+}
 
 export const getStaticPaths: GetStaticPaths = async () => {
 	const posts = await getAllPosts();
 
 	const paths = [
 		...new Array(Math.round(posts.length / NUMBER_OF_POSTS)).keys(),
-	].map((i) => ({ params: { id: `${i + 1}` } }));
+	].map((i) => ({ params: { id: `page=${i + 1}` } }));
 
 	return {
 		paths,
@@ -34,9 +32,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
 	const { id } = params as ParsedUrlQuery;
+	console.log(id);
 
 	const posts = await getAllPosts();
-	const pageNo = parseInt(id as string);
+	const pageNo = parseInt((id as string)?.split('=')[1]);
 	const maximumPageNo = Math.ceil(posts.length / NUMBER_OF_POSTS);
 
 	let slicedPosts;
@@ -47,7 +46,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 	}
 
 	if (params && typeof params.id === 'string') {
-		const startIndex = (parseInt(params.id) - 1) * NUMBER_OF_POSTS;
+		const startIndex = (pageNo - 1) * NUMBER_OF_POSTS;
 		const endIndex = startIndex + NUMBER_OF_POSTS;
 		slicedPosts = posts.slice(startIndex, endIndex);
 		hasMore = posts[endIndex] !== undefined ? true : false;
