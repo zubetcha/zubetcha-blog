@@ -1,7 +1,7 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { getAllPosts } from '../utils/post';
 
-import { PostsPageContainer } from '../container/posts/PostsPageContainer';
+import { PostListPageContainer } from '../container/postList/PostListPageContainer';
 
 import { NUMBER_OF_POSTS } from '../constants/post';
 import { Post } from '../types/post';
@@ -13,8 +13,8 @@ interface Props {
 	pageNo: number;
 }
 
-export default function PostsPage(props: Props) {
-	return <PostsPageContainer {...props} />;
+export default function PostListPage(props: Props) {
+	return <PostListPageContainer {...props} />;
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {

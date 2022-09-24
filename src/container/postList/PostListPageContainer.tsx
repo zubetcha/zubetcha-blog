@@ -1,4 +1,4 @@
-import classes from './posts.module.scss';
+import classes from './postList.module.scss';
 
 import { ContentLayout } from '../../components';
 import { PostCard } from '../../components';
@@ -11,7 +11,7 @@ interface Props {
 	pageNo: number;
 }
 
-export const PostsPageContainer = ({ posts, hasMore, pageNo }: Props) => {
+export const PostListPageContainer = ({ posts, hasMore, pageNo }: Props) => {
 	return (
 		<div>
 			<ContentLayout title='All Posts'>
