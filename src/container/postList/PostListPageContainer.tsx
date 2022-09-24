@@ -1,9 +1,12 @@
+import { useState } from 'react';
+import { useRouter } from 'next/router';
 import classes from './postList.module.scss';
 
 import { ContentLayout } from '../../components';
 import { PostCard } from '../../components';
 import { Select } from '../../components/Elements/Select';
 
+import { NUMBER_OF_POSTS } from '../../constants/post';
 import { Post } from '../../types/post';
 
 interface Props {
@@ -15,30 +18,52 @@ interface Props {
 
 export const PostListPageContainer = ({
 	posts,
-	hasMore,
+	// hasMore,
 	pageNo,
 	categories,
 }: Props) => {
-	console.log(posts);
-	console.log(categories);
+	const router = useRouter();
+	const startIndex = (pageNo - 1) * NUMBER_OF_POSTS;
+	const endIndex = startIndex + NUMBER_OF_POSTS;
+	const [postList, setPostList] = useState<Array<Post>>(posts);
+	const [hasMore, setHasMore] = useState(
+		posts[endIndex] !== undefined ? true : false,
+	);
+	console.log(hasMore);
+	console.log(pageNo);
+	console.log(posts[endIndex]);
+	const onChangeCategory = (selected: string) => {
+		const selectedCategory = categories[parseInt(selected)];
+		selectedCategory === 'all'
+			? setPostList(posts)
+			: setPostList(
+					posts.filter(
+						(post) =>
+							post.frontMatter.category === categories[parseInt(selected)],
+					),
+			  );
+	};
 	return (
 		<div>
 			<ContentLayout title='All Posts'>
 				<div>
-					<Select defaultLabel='Category' onChange={() => {}}>
+					<Select defaultLabel='Category' onChange={onChangeCategory}>
 						{categories.map((category, i) => (
 							<Select.Option id={String(i)} label={category} />
 						))}
 					</Select>
 				</div>
 				<div className={classes.cards_wrapper}>
-					{posts.map((post: Post) => (
+					{postList.slice(startIndex, endIndex).map((post: Post) => (
 						<PostCard post={post} key={post.fields.slug} />
 					))}
 				</div>
 			</ContentLayout>
-			{/* {hasMore && <div>다음 페이지: {pageNo + 1}</div>} */}
-			<div>다음 페이지 {pageNo + 1}</div>
+			{hasMore && (
+				<div onClick={() => router.push(`/page=${pageNo + 1}`)}>
+					다음 페이지 {pageNo + 1}
+				</div>
+			)}
 		</div>
 	);
 };
