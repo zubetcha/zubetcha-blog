@@ -18,7 +18,7 @@ export const PostCard = ({ post }: Props) => {
 			<div className={classes.contents_wrapper}>
 				<div className={classes.tags_wrapper}>
 					{tags.map((tag) => (
-						<Tag tag={tag} />
+						<Tag tag={tag} key={tag} />
 					))}
 				</div>
 
