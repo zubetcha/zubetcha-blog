@@ -1,5 +1,6 @@
 ---
 title: '[블로그] PWA 임시 중지'
+category: 'pwa'
 tags:
   - blog
   - diary

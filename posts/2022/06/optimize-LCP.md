@@ -1,5 +1,6 @@
 ---
 title: 'Largest Contentful Paint (LCP) 최적화하기'
+category: 'web'
 tags:
   - web
   - browser

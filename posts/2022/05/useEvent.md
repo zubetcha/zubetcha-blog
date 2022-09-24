@@ -1,5 +1,6 @@
 ---
 title: '리액트의 새로운 훅, useEvent'
+category: 'react'
 tags:
   - react
   - typescript

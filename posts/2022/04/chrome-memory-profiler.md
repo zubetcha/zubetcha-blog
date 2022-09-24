@@ -1,5 +1,6 @@
 ---
 title: '크롬 메모리 프로파일러 사용하는 방법'
+category: 'javascript'
 tags:
   - javascript
   - chrome

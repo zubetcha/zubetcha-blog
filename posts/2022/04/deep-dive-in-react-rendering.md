@@ -1,5 +1,6 @@
 ---
 title: '리액트의 렌더링은 어떻게 일어나는가?'
+category: 'react'
 tags:
   - web
   - javascript

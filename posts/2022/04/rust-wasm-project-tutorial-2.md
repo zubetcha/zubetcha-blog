@@ -1,5 +1,6 @@
 ---
 title: 'Rust로 web assembly로 game of life 만들어보기 (2)'
+category: 'javascript'
 tags:
   - web
   - javascript

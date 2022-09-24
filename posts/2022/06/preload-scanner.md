@@ -1,5 +1,6 @@
 ---
 title: '브라우저의 프리로드 스캐너(pre-load scanner)와 파싱 동작의 이해'
+category: 'web'
 tags:
   - web
   - browser

@@ -1,5 +1,6 @@
 ---
 title: 'V8에서 관리되는 자바스크립트 변수'
+category: 'javascript'
 tags:
   - javascript
   - nodejs

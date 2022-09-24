@@ -1,5 +1,6 @@
 ---
 title: 'JSON.stringify 만들어보기'
+category: 'javascript'
 tags:
   - javascript
   - typescript

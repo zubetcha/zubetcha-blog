@@ -1,5 +1,6 @@
 ---
 title: '나만의 eslint 룰 만들어보기'
+category: 'javascript'
 tags:
   - javascript
   - eslint

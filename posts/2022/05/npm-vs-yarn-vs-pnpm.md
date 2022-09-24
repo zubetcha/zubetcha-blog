@@ -1,5 +1,6 @@
 ---
 title: 'npm, yarn, pnpm 비교해보기'
+category: 'javascript'
 tags:
   - javascript
   - npm

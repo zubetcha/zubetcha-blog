@@ -1,5 +1,6 @@
 ---
 title: '알아두면 유용한 타입스크립트 팁'
+category: 'typescript'
 tags:
   - typescript
 published: true

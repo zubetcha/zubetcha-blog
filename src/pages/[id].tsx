@@ -1,5 +1,5 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
-import { getAllPosts } from '../utils/post';
+import { getAllPosts, getAllCategories } from '../utils/post';
 
 import { PostListPageContainer } from '../container/postList/PostListPageContainer';
 
@@ -11,6 +11,7 @@ interface Props {
 	posts: Array<Post>;
 	hasMore: boolean;
 	pageNo: number;
+	categories: Array<string>;
 }
 
 export default function PostListPage(props: Props) {
@@ -54,6 +55,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 	return {
 		props: {
 			posts: slicedPosts,
+			categories: getAllCategories(posts),
 			hasMore,
 			pageNo,
 		},

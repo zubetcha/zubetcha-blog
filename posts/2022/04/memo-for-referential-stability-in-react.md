@@ -1,5 +1,6 @@
 ---
 title: '참조 동일성을 위한 메모이제이션'
+category: 'javascript'
 tags:
   - javascript
   - react

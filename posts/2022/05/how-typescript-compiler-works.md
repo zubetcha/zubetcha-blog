@@ -1,5 +1,6 @@
 ---
 title: '타입스크립트 컴파일러는 어떻게 동작하는가?'
+category: 'typescript'
 tags:
   - typescript
   - javascript

@@ -1,5 +1,6 @@
 ---
 title: '리액트 v18 버전 톺아보기'
+category: 'javascript'
 tags:
   - react
   - javascript
