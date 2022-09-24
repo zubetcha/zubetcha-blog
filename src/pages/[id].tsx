@@ -54,7 +54,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 	return {
 		props: {
-			posts: slicedPosts,
+			posts: posts,
 			categories: getAllCategories(posts),
 			hasMore,
 			pageNo,

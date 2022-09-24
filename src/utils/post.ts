@@ -85,5 +85,5 @@ export const parseMdx = async (source: string) => {
 export const getAllCategories = (posts: Array<Post>) => {
 	const categories = posts.map((post) => post.frontMatter.category);
 	console.log(categories);
-	return [...new Set(categories)];
+	return ['all', ...new Set(categories)];
 };
