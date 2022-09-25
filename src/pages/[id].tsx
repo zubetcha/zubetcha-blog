@@ -23,7 +23,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 	const paths = [
 		...new Array(Math.round(posts.length / NUMBER_OF_POSTS)).keys(),
-	].map((i) => ({ params: { id: `page=${i + 1}` } }));
+	].map((i) => ({ params: { id: `${i + 1}` } }));
 
 	return {
 		paths,
@@ -35,7 +35,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 	const { id } = params as ParsedUrlQuery;
 
 	const posts = await getAllPosts();
-	const pageNo = parseInt((id as string)?.split('=')[1]);
+	const pageNo = parseInt(id as string);
 	const maximumPageNo = Math.ceil(posts.length / NUMBER_OF_POSTS);
 
 	let slicedPosts;

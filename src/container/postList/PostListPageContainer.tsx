@@ -29,9 +29,7 @@ export const PostListPageContainer = ({
 	const [hasMore, setHasMore] = useState(
 		posts[endIndex] !== undefined ? true : false,
 	);
-	console.log(hasMore);
-	console.log(pageNo);
-	console.log(posts[endIndex]);
+
 	const onChangeCategory = (selected: string) => {
 		const selectedCategory = categories[parseInt(selected)];
 		selectedCategory === 'all'
@@ -42,7 +40,18 @@ export const PostListPageContainer = ({
 							post.frontMatter.category === categories[parseInt(selected)],
 					),
 			  );
+
+		router.push(
+			{ query: { ...router.query, category: selectedCategory } },
+			undefined,
+			{
+				shallow: true,
+			},
+		);
 	};
+
+	console.log(pageNo);
+
 	return (
 		<div>
 			<ContentLayout title='All Posts'>
@@ -60,7 +69,22 @@ export const PostListPageContainer = ({
 				</div>
 			</ContentLayout>
 			{hasMore && (
-				<div onClick={() => router.push(`/page=${pageNo + 1}`)}>
+				<div
+					onClick={() =>
+						router.push(
+							{
+								query: {
+									...router.query,
+									id: parseInt(router.query.id as string) + 1,
+								},
+							},
+							undefined,
+							{
+								shallow: true,
+							},
+						)
+					}
+				>
 					다음 페이지 {pageNo + 1}
 				</div>
 			)}

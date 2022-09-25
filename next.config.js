@@ -15,7 +15,7 @@ const nextConfig = {
 		return [
 			{
 				source: '/',
-				destination: '/page=1',
+				destination: '/1',
 			},
 		];
 	},

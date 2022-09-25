@@ -49,7 +49,7 @@ export const NavBar = () => {
 			<div className={classes.profile_wrapper}>
 				<div
 					className={classes.profile_image_wrapper}
-					onClick={() => router.replace('/')}
+					onClick={() => router.push('/')}
 				>
 					<Image src={Zubetcha} className={classes.profile_image} />
 					<div className={classes.highlight_wrapper}>
@@ -77,7 +77,7 @@ export const NavBar = () => {
 				{!expanded && (
 					<div
 						className={classes.navItem_container}
-						onClick={() => router.replace('/')}
+						onClick={() => router.push('/')}
 					>
 						<Icon role='home' />
 					</div>
