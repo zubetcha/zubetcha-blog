@@ -17,6 +17,10 @@ const nextConfig = {
 				source: '/',
 				destination: '/1',
 			},
+			{
+				source: '/category/:category',
+				destination: '/category/:category/1',
+			},
 		];
 	},
 	webpack(config, { webpack }) {

@@ -18,39 +18,39 @@ interface Props {
 
 export const PostListPageContainer = ({
 	posts,
-	// hasMore,
+	hasMore,
 	pageNo,
 	categories,
 }: Props) => {
 	const router = useRouter();
-	const startIndex = (pageNo - 1) * NUMBER_OF_POSTS;
-	const endIndex = startIndex + NUMBER_OF_POSTS;
-	const [postList, setPostList] = useState<Array<Post>>(posts);
-	const [hasMore, setHasMore] = useState(
-		posts[endIndex] !== undefined ? true : false,
-	);
+	// const startIndex = (pageNo - 1) * NUMBER_OF_POSTS;
+	// const endIndex = startIndex + NUMBER_OF_POSTS;
+	// const [postList, setPostList] = useState<Array<Post>>(posts);
+	// const [hasMore, setHasMore] = useState(
+	// 	posts[endIndex] !== undefined ? true : false,
+	// );
 
 	const onChangeCategory = (selected: string) => {
 		const selectedCategory = categories[parseInt(selected)];
+		// selectedCategory === 'all'
+		// 	? setPostList(posts)
+		// 	: setPostList(
+		// 			posts.filter(
+		// 				(post) =>
+		// 					post.frontMatter.category === categories[parseInt(selected)],
+		// 			),
+		// 	  );
+		// router.push(
+		// 	{ query: { ...router.query, category: selectedCategory } },
+		// 	undefined,
+		// 	{
+		// 		shallow: true,
+		// 	},
+		// );
 		selectedCategory === 'all'
-			? setPostList(posts)
-			: setPostList(
-					posts.filter(
-						(post) =>
-							post.frontMatter.category === categories[parseInt(selected)],
-					),
-			  );
-
-		router.push(
-			{ query: { ...router.query, category: selectedCategory } },
-			undefined,
-			{
-				shallow: true,
-			},
-		);
+			? router.push('/')
+			: router.push(`/category/${selectedCategory}`);
 	};
-
-	console.log(pageNo);
 
 	return (
 		<div>
@@ -63,28 +63,13 @@ export const PostListPageContainer = ({
 					</Select>
 				</div>
 				<div className={classes.cards_wrapper}>
-					{postList.slice(startIndex, endIndex).map((post: Post) => (
+					{posts.map((post: Post) => (
 						<PostCard post={post} key={post.fields.slug} />
 					))}
 				</div>
 			</ContentLayout>
 			{hasMore && (
-				<div
-					onClick={() =>
-						router.push(
-							{
-								query: {
-									...router.query,
-									id: parseInt(router.query.id as string) + 1,
-								},
-							},
-							undefined,
-							{
-								shallow: true,
-							},
-						)
-					}
-				>
+				<div onClick={() => router.replace(`/${pageNo + 1}`)}>
 					다음 페이지 {pageNo + 1}
 				</div>
 			)}
