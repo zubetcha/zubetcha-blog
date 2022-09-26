@@ -1,5 +1,9 @@
 import { useState, useEffect } from 'react';
+import classNames from 'classnames';
 import { SelectContext } from '../../../context/select';
+
+import { Icon } from '../Icon/Icon';
+import classes from './Select.module.scss';
 
 interface Props {
 	children: JSX.Element | JSX.Element[];
@@ -24,9 +28,21 @@ export const Select = ({ children, onChange, defaultLabel }: Props) => {
 
 	return (
 		<SelectContext.Provider value={{ open, toggle, selected, setSelected }}>
-			<div>
-				<button onClick={(e) => onClickButton(e)}>{defaultLabel}</button>
-				{open && <ul>{children}</ul>}
+			<div className={classes.container}>
+				<button
+					onClick={(e) => onClickButton(e)}
+					className={classes['trigger-button']}
+				>
+					{defaultLabel}
+					<Icon role='dropdown' />
+				</button>
+				<ul
+					className={classNames(classes['options-wrapper'], {
+						[classes.open]: open,
+					})}
+				>
+					{children}
+				</ul>
 			</div>
 		</SelectContext.Provider>
 	);

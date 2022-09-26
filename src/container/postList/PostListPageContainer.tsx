@@ -23,33 +23,12 @@ export const PostListPageContainer = ({
 	categories,
 }: Props) => {
 	const router = useRouter();
-	// const startIndex = (pageNo - 1) * NUMBER_OF_POSTS;
-	// const endIndex = startIndex + NUMBER_OF_POSTS;
-	// const [postList, setPostList] = useState<Array<Post>>(posts);
-	// const [hasMore, setHasMore] = useState(
-	// 	posts[endIndex] !== undefined ? true : false,
-	// );
 
 	const onChangeCategory = (selected: string) => {
 		const selectedCategory = categories[parseInt(selected)];
-		// selectedCategory === 'all'
-		// 	? setPostList(posts)
-		// 	: setPostList(
-		// 			posts.filter(
-		// 				(post) =>
-		// 					post.frontMatter.category === categories[parseInt(selected)],
-		// 			),
-		// 	  );
-		// router.push(
-		// 	{ query: { ...router.query, category: selectedCategory } },
-		// 	undefined,
-		// 	{
-		// 		shallow: true,
-		// 	},
-		// );
 		selectedCategory === 'all'
 			? router.push('/')
-			: router.push(`/category/${selectedCategory}`);
+			: router.push(`/category/${selectedCategory}/1`);
 	};
 
 	return (

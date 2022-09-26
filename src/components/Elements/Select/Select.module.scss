@@ -1,3 +1,50 @@
 @import '../../../styles/colors';
 @import '../../../styles/mixins';
 @import '../../../styles/sizes';
+
+.container {
+	position: relative;
+
+	.trigger-button {
+		width: fit-content;
+		border-radius: 48px;
+		background-color: var(--color-bg-navbar);
+		padding: toRem(12) toRem(16) toRem(12) toRem(20);
+		color: var(--color-text-contents);
+		cursor: pointer;
+		transition: all 0.5s ease-in-out;
+
+		@include flex-box(between, center);
+		@include flex-direction(row, 8);
+		@include label-large();
+	}
+
+	.options-wrapper {
+		position: absolute;
+		top: toRem(48);
+		border-radius: 12px;
+		background-color: var(--color-bg-navbar);
+		@include flex-direction(column, 0);
+		transition: all 0.3s ease-in-out;
+		max-height: 0;
+		overflow: hidden;
+
+		&.open {
+			transition: all 0.3s ease-in-out;
+			max-height: toRem(600);
+			padding: toRem(8) 0;
+		}
+
+		.option {
+			padding: toRem(12) toRem(16);
+			min-width: toRem(144);
+			@include label-large();
+			color: var(--color-text-contents);
+			cursor: pointer;
+			transition: background-color 0.2s ease-in-out;
+			&:hover {
+				background-color: var(--color-bg-navitem-hover);
+			}
+		}
+	}
+}

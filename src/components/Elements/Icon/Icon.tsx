@@ -7,6 +7,7 @@ import {
 	IoLogoLinkedin,
 	IoIosSearch,
 	IoMdHome,
+	IoMdArrowDropdown,
 } from 'react-icons/io';
 
 import { MdOutlineEmail } from 'react-icons/md';
@@ -44,6 +45,7 @@ export const Icon = ({ role, size, onClick }: IconProps) => {
 		search: <IoIosSearch {...props} />,
 		home: <IoMdHome {...props} />,
 		tags: <RiHashtag {...props} />,
+		dropdown: <IoMdArrowDropdown {...props} />,
 	};
 
 	return icons[role];
