@@ -15,7 +15,7 @@ export const Header = () => {
 
 	return (
 		<div className={classes.container}>
-			<SearchBar />
+			{/* <SearchBar /> */}
 			<Toggle status={theme} onClick={onClickToggle} />
 		</div>
 	);

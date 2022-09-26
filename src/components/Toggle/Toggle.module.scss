@@ -9,6 +9,7 @@
 	background-color: var(--color-bg-navbar);
 	position: fixed;
 	right: toRem(32);
+	top: toRem(32);
 	cursor: pointer;
 	@include flex-box(center, center);
 
