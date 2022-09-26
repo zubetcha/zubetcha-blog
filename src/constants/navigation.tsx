@@ -17,7 +17,7 @@ export const navItems = navList.map((navItem, i) => {
 	return {
 		name: name,
 		icon: smallLetter as IconRoleUnionType,
-		path: !isPost ? `/${smallLetter}` : `posts?category=${smallLetter}`,
+		path: !isPost ? `/${smallLetter}` : `/category/${smallLetter}/1`,
 		isFocused: false,
 	};
 });
