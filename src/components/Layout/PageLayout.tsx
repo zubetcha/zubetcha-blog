@@ -5,12 +5,15 @@ import classNames from 'classnames';
 import classes from './Layout.module.scss';
 
 import { ThemeUnionType } from '../../context/theme/theme.types';
-import { PageLayoutProps } from './Layout.types';
 
 import { NavBar } from '../NavBar/NavBar';
 import { Header } from '../Header/Header';
 
-export const PageLayout = ({ children }: PageLayoutProps) => {
+interface Props {
+	children: JSX.Element[] | JSX.Element;
+}
+
+export const PageLayout = ({ children }: Props) => {
 	const { theme, setTheme } = useTheme();
 	const { expanded } = useExpanded();
 
