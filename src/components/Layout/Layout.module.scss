@@ -17,5 +17,7 @@
 }
 
 .content_container {
-	margin-top: $margin-top;
+	margin: $margin-top auto toRem(32);
+	width: fit-content;
+	@include flex-direction(column, 24);
 }
