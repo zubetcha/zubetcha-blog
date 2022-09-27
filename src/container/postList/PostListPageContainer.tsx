@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useEffect, useRef, MouseEvent, ReactElement } from 'react';
 import { useRouter } from 'next/router';
 import classes from './postList.module.scss';
 
@@ -23,43 +23,60 @@ export const PostListPageContainer = ({
 	children,
 }: Props) => {
 	const router = useRouter();
-	const onClickNextPage = (e: React.MouseEvent<HTMLButtonElement>) => {
+	const ref = useRef<null | HTMLDivElement>(null);
+
+	const onClickPrev = (e: MouseEvent<HTMLButtonElement>) => {
+		e.preventDefault();
+		router.replace(`/${pageNo - 1}`);
+	};
+
+	const onClickNext = (e: MouseEvent<HTMLButtonElement>) => {
 		e.preventDefault();
 		router.replace(`/${pageNo + 1}`);
 	};
 
+	useEffect(() => {
+		if (ref.current) {
+			ref.current.scrollIntoView({ behavior: 'smooth' });
+		}
+	}, [pageNo]);
+
 	return (
-		<ContentLayout title={title}>
+		<ContentLayout title={title} ref={ref}>
 			<>{children}</>
 			<div className={classes['cards-wrapper']}>
 				{posts.map((post: Post) => (
 					<PostCard post={post} key={post.fields.slug} />
 				))}
 			</div>
-			{hasMore ? (
-				<div className={classes['button-wrapper']}>
-					<button
-						className={classes['next-page-button']}
-						onClick={(e) => onClickNextPage(e)}
-					>
-						{/* Page {pageNo + 1} */}
-						Next
-						<Icon role='forward' />
-					</button>
-				</div>
-			) : (
-				<></>
-			)}
-			{pageNo > 1 ? (
+			<div className={classes['button-wrapper']}>
 				<div>
-					<button>
-						<Icon role='forward' />
-						Prev
-					</button>
+					{pageNo > 1 ? (
+						<button
+							className={classes['prev-page-button']}
+							onClick={(e) => onClickPrev(e)}
+						>
+							<Icon role='backward' />
+							Prev
+						</button>
+					) : (
+						<></>
+					)}
 				</div>
-			) : (
-				<></>
-			)}
+				<div>
+					{hasMore ? (
+						<button
+							className={classes['next-page-button']}
+							onClick={(e) => onClickNext(e)}
+						>
+							Next
+							<Icon role='forward' />
+						</button>
+					) : (
+						<></>
+					)}
+				</div>
+			</div>
 		</ContentLayout>
 	);
 };

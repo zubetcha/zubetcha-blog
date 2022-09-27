@@ -9,6 +9,7 @@ import {
 	IoMdHome,
 	IoMdArrowDropdown,
 	IoMdArrowForward,
+	IoMdArrowBack,
 } from 'react-icons/io';
 
 import { MdOutlineEmail } from 'react-icons/md';
@@ -54,6 +55,7 @@ export const Icon = ({ role, size, onClick }: Props) => {
 		tags: <RiHashtag {...props} />,
 		dropdown: <IoMdArrowDropdown {...props} />,
 		forward: <IoMdArrowForward {...props} />,
+		backward: <IoMdArrowBack {...props} />,
 	};
 
 	return icons[role];
