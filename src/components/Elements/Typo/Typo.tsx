@@ -1,23 +1,26 @@
 import classNames from 'classnames';
+import { TypoRoleUnionType } from 'src/type/element';
 import classes from './Typo.module.scss';
-import { TypoProps } from './Typo.types';
 
-export const Typo = ({ children, role, color, style }: TypoProps) => {
-    return (
-        <p
-            className={classNames(
-                classes.first_class,
-                classes[role],
-                classes[color],
-            )}
-            style={style}
-        >
-            {children}
-        </p>
-    );
+interface Props {
+	role: TypoRoleUnionType;
+	color: string;
+	style?: { [key: string]: string };
+	children: any;
+}
+
+export const Typo = ({ children, role, color, style }: Props) => {
+	return (
+		<p
+			className={classNames(classes.first_class, classes[role], classes[color])}
+			style={style}
+		>
+			{children}
+		</p>
+	);
 };
 
 Typo.defaultProps = {
-    role: 'body-medium',
-    color: 'title',
+	role: 'body-medium',
+	color: 'title',
 };

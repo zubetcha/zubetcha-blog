@@ -12,3 +12,4 @@ export const SelectContext =
 	createContext<SelectContextType>(selectDefaultValue);
 
 export const useSelect = () => useContext(SelectContext);
+export * from './types';

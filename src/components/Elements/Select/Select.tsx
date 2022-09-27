@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import classNames from 'classnames';
-import { SelectContext } from '../../../context/select';
+import classes from './Select.module.scss';
+import { SelectContext } from '@context/select';
 
 import { Icon } from '../Icon/Icon';
-import classes from './Select.module.scss';
 
 interface Props {
 	children: JSX.Element | JSX.Element[];

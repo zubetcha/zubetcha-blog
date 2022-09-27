@@ -1,22 +1,24 @@
 import { createContext, useContext, useState } from 'react';
-import { ExpandedContextType, ExpandedProviderProps } from './expanded.types';
+import { ExpandedContextType, ExpandedProviderProps } from './types';
 
 const ExpandedDefaultValue: ExpandedContextType = {
-    expanded: true,
-    setExpanded: async (Expanded: boolean) => null,
+	expanded: true,
+	setExpanded: async (Expanded: boolean) => null,
 };
 
 export const ExpandedContext =
-    createContext<ExpandedContextType>(ExpandedDefaultValue);
+	createContext<ExpandedContextType>(ExpandedDefaultValue);
 
 export const useExpanded = () => useContext(ExpandedContext);
 
 export const ExpandedProvider = ({ children }: ExpandedProviderProps) => {
-    const [expanded, setExpanded] = useState(true);
+	const [expanded, setExpanded] = useState(true);
 
-    return (
-        <ExpandedContext.Provider value={{ expanded, setExpanded }}>
-            {children}
-        </ExpandedContext.Provider>
-    );
+	return (
+		<ExpandedContext.Provider value={{ expanded, setExpanded }}>
+			{children}
+		</ExpandedContext.Provider>
+	);
 };
+
+export * from './types';

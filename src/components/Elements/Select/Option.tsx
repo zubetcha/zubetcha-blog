@@ -1,5 +1,5 @@
 import classes from './Select.module.scss';
-import { useSelect } from '../../../context/select';
+import { useSelect } from '@context/select';
 
 interface Props {
 	id: string;

@@ -1,10 +1,7 @@
 import classes from './PostCard.module.scss';
-
-import { Tag } from '../Tag/Tag';
-import { Typo } from '../Elements/Typo/Typo';
-import { Post } from '../../types/post';
-
-import { formatDate } from '../../utils/date';
+import { Tag, Typo } from '@components/index';
+import { Post } from 'src/type/post';
+import { formatDate } from '@utils/date';
 
 interface Props {
 	post: Post;

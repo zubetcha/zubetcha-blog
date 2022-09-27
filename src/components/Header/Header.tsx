@@ -1,8 +1,7 @@
-import { useTheme } from '../../context/theme';
+import { useTheme } from '@context/theme';
 import classes from './Header.module.scss';
 
-import { SearchBar } from '../SearchBar/SearchBar';
-import { Toggle } from '../Toggle/Toggle';
+import { SearchBar, Toggle } from '@components/index';
 
 export const Header = () => {
 	const { theme, setTheme } = useTheme();

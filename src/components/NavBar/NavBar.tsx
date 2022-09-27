@@ -1,17 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { useExpanded } from '../../context';
+import { useExpanded } from '@context/expanded';
 import classNames from 'classnames';
 import classes from './NavBar.module.scss';
 
 import Zubetcha from '../../assets/images/zubetcha.jpeg';
-import { IconRoleUnionType } from '../Elements/Icon/Icon.types';
-import { contactList, navItems } from '../../constants/navigation';
+import { IconRoleUnionType } from 'src/type/element';
+import { contactList, navItems } from '@constants/navigation';
 
 import Image from 'next/image';
-import { Icon } from '../Elements/Icon/Icon';
-import { Typo } from '../Elements/Typo/Typo';
-import { NavItem } from './NavItem';
+import { Icon, Typo, NavItem } from '@components/index';
 
 export const NavBar = () => {
 	const router = useRouter();

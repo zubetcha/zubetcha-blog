@@ -1,20 +1,22 @@
 {
-  "presets": ["next/babel"],
-  "plugins": [
-    //...
-    [
-      "module-resolver",
-      {
-        "root": ["./src"],
-        "alias": {
-          "@assets": "./src/assets",
-          "@components": "./src/components",
-          "@constants": "./src/constants",
-          "@hooks": "./src/hooks",
-          "@styles": "./src/styles",
-          "@utils": "./src/utils"
-        }
-      }
-    ]
-  ]
+	"presets": ["next/babel"],
+	"plugins": [
+		[
+			"module-resolver",
+			{
+				"root": ["./src"],
+				"alias": {
+					"@assets": "./src/assets",
+					"@components": "./src/components",
+					"@constants": "./src/constants",
+					"@container": "./src/container",
+					"@context": "./src/context",
+					"@hooks": "./src/hooks",
+					"@styles": "./src/styles",
+					"@type": "./src/type",
+					"@utils": "./src/utils"
+				}
+			}
+		]
+	]
 }

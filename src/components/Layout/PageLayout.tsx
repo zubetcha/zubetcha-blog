@@ -1,16 +1,16 @@
 import { useEffect } from 'react';
-import { useTheme } from '../../context/theme';
-import { useExpanded } from '../../context';
+import { useTheme, ThemeUnionType } from '@context/theme';
+import { useExpanded } from '@context/expanded';
 import classNames from 'classnames';
 import classes from './Layout.module.scss';
 
-import { ThemeUnionType } from '../../context/theme/theme.types';
-import { PageLayoutProps } from './Layout.types';
+import { Header, NavBar } from '..';
 
-import { NavBar } from '../NavBar/NavBar';
-import { Header } from '../Header/Header';
+interface Props {
+	children: JSX.Element[] | JSX.Element;
+}
 
-export const PageLayout = ({ children }: PageLayoutProps) => {
+export const PageLayout = ({ children }: Props) => {
 	const { theme, setTheme } = useTheme();
 	const { expanded } = useExpanded();
 

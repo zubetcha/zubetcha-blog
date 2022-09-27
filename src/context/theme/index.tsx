@@ -1,13 +1,9 @@
 import { createContext, useContext, useState } from 'react';
-import {
-    ThemeContextType,
-    ThemeUnionType,
-    ThemeProviderProps,
-} from './theme.types';
+import { ThemeContextType, ThemeUnionType, ThemeProviderProps } from './types';
 
 const themeDefaultValue: ThemeContextType = {
-    theme: 'dark',
-    setTheme: async (theme: ThemeUnionType) => null,
+	theme: 'dark',
+	setTheme: async (theme: ThemeUnionType) => null,
 };
 
 export const ThemeContext = createContext<ThemeContextType>(themeDefaultValue);
@@ -15,11 +11,12 @@ export const ThemeContext = createContext<ThemeContextType>(themeDefaultValue);
 export const useTheme = () => useContext(ThemeContext);
 
 export const ThemeProvider = ({ children }: ThemeProviderProps) => {
-    const [theme, setTheme] = useState('dark');
+	const [theme, setTheme] = useState('dark');
 
-    return (
-        <ThemeContext.Provider value={{ theme, setTheme } as ThemeContextType}>
-            {children}
-        </ThemeContext.Provider>
-    );
+	return (
+		<ThemeContext.Provider value={{ theme, setTheme } as ThemeContextType}>
+			{children}
+		</ThemeContext.Provider>
+	);
 };
+export * from './types';

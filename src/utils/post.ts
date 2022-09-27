@@ -13,7 +13,7 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeKatex from 'rehype-katex';
 import rehypePrism from 'rehype-prism-plus';
 
-import { Post, FrontMatter } from '../types/post';
+import { Post, FrontMatter } from '../type/post';
 
 const DIR_REPLACE_STRING = '/posts';
 const postsDir = path.join(process.cwd(), 'posts');

@@ -1,10 +1,12 @@
 import classes from './Layout.module.scss';
+import { Typo } from '@components/Elements';
 
-import { ContentLayoutProps } from './Layout.types';
+interface Props {
+	children: JSX.Element[] | JSX.Element;
+	title: string;
+}
 
-import { Typo } from '../Elements/Typo/Typo';
-
-export const ContentLayout = ({ children, title }: ContentLayoutProps) => {
+export const ContentLayout = ({ children, title }: Props) => {
 	return (
 		<div className={classes.content_container}>
 			<Typo role='display-medium' style={{ fontWeight: '700' }}>

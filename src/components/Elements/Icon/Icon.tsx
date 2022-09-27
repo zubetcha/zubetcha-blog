@@ -1,5 +1,5 @@
 import classes from './Icon.module.scss';
-import { IconRoleUnionType, IconProps } from './Icon.types';
+import { IconRoleUnionType } from 'src/type/element';
 
 import {
 	IoLogoGithub,
@@ -26,7 +26,13 @@ import {
 	SiHtml5,
 } from 'react-icons/si';
 
-export const Icon = ({ role, size, onClick }: IconProps) => {
+interface Props {
+	role: IconRoleUnionType;
+	size: 'large' | 'medium' | 'small';
+	onClick?: (e: React.MouseEvent<SVGElement>) => void;
+}
+
+export const Icon = ({ role, size, onClick }: Props) => {
 	const props = { className: classes[size], onClick, id: role };
 	const icons: { [key: string]: JSX.Element } = {
 		github: <IoLogoGithub {...props} />,

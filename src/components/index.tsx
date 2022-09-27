@@ -1,5 +1,4 @@
-export * from './Elements/Icon/Icon';
-export * from './Elements/Typo/Typo';
+export * from './Elements/index';
 export * from './Header/Header';
 export * from './Layout/PageLayout';
 export * from './Layout/ContentLayout';
