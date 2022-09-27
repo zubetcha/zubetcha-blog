@@ -9,15 +9,19 @@
 		width: 100%;
 		overflow: hidden auto;
 		height: 100vh;
-		padding: toRem(32) 0 0 0;
+		// padding: toRem(32) 0 0 0;
+		padding: 0;
 		@include flex-direction(column, 32);
 
 		@include scroll-bar();
 	}
 }
 
-.content_container {
-	margin: $margin-top auto toRem(32);
-	width: fit-content;
-	@include flex-direction(column, 24);
+.content-container {
+	padding: toRem(32) 0 0 0;
+	.content-wrapper {
+		margin: $margin-top auto toRem(32);
+		width: fit-content;
+		@include flex-direction(column, 24);
+	}
 }

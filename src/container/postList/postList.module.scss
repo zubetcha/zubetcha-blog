@@ -10,7 +10,7 @@
 }
 
 .button-wrapper {
-	@include flex-box(end, center);
+	@include flex-box(between, center);
 	.next-page-button {
 		width: fit-content;
 		border-radius: 48px;
@@ -23,4 +23,17 @@
 		@include flex-box(between, center);
 		@include flex-direction(row, 8);
 	}
+}
+
+.prev-page-button {
+	width: fit-content;
+	border-radius: 48px;
+	background-color: var(--color-bg-navbar);
+	padding: toRem(12) toRem(20) toRem(12) toRem(16);
+	color: var(--color-text-contents);
+	cursor: pointer;
+	transition: all 0.5s ease-in-out;
+	@include label-large();
+	@include flex-box(between, center);
+	@include flex-direction(row, 8);
 }
