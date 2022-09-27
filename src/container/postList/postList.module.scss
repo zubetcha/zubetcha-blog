@@ -2,10 +2,25 @@
 @import '../../styles/mixins';
 @import '../../styles/sizes';
 
-.cards_wrapper {
+.cards-wrapper {
 	width: fit-content;
-	margin: toRem(32) auto;
 	display: grid;
 	grid-template-columns: repeat(2, toRem(600));
 	gap: toRem(24);
+}
+
+.button-wrapper {
+	@include flex-box(end, center);
+	.next-page-button {
+		width: fit-content;
+		border-radius: 48px;
+		background-color: var(--color-bg-navbar);
+		padding: toRem(12) toRem(16) toRem(12) toRem(20);
+		color: var(--color-text-contents);
+		cursor: pointer;
+		transition: all 0.5s ease-in-out;
+		@include label-large();
+		@include flex-box(between, center);
+		@include flex-direction(row, 8);
+	}
 }

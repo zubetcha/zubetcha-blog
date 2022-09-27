@@ -12,7 +12,6 @@ interface Props {
 }
 
 export const NavItem = ({ name, icon, path, isFocused }: Props) => {
-	console.log(path);
 	const router = useRouter();
 	return (
 		<div

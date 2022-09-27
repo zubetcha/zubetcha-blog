@@ -1,20 +1,26 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
-import { getAllPosts, getAllCategories } from '@utils/post';
+import {
+	getAllPosts,
+	getAllCategories,
+	getPageInfo,
+	getUpperCategory,
+} from '@utils/index';
+import { PostListPageContainer } from '@container/index';
 
 import { NUMBER_OF_POSTS } from '@constants/post';
-import { Post } from 'src/type/post';
+import { Post } from '@type/post';
 import { ParsedUrlQuery } from 'querystring';
 
 interface Props {
 	posts: Array<Post>;
 	hasMore: boolean;
 	pageNo: number;
-	categories: string;
+	category: string;
 }
 
-export default function CategoryPage(props: Props) {
-	console.log(props);
-	return <div> CategoryPage</div>;
+export default function CategoryPage({ category, ...props }: Props) {
+	const title = getUpperCategory(category);
+	return <PostListPageContainer {...props} title={title} />;
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -42,33 +48,24 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 	const { category, id } = params as ParsedUrlQuery;
 
 	const posts = await getAllPosts();
-	const pageNo = parseInt(id as string);
 	const filteredPosts = posts.filter(
 		(post) => post.frontMatter.category === category,
 	);
-	const maximumPageNo = Math.ceil(filteredPosts.length / NUMBER_OF_POSTS);
-
-	let slicedPosts;
-	let hasMore;
+	const { pageNo, maximumPageNo, slicedPosts, hasMore } = getPageInfo({
+		id,
+		posts: filteredPosts,
+	});
 
 	if (!params || !pageNo || isNaN(pageNo) || pageNo > maximumPageNo) {
 		return { notFound: true };
 	}
 
-	if (params && typeof params.id === 'string') {
-		const startIndex = (pageNo - 1) * NUMBER_OF_POSTS;
-		const endIndex = startIndex + NUMBER_OF_POSTS;
-		slicedPosts = filteredPosts.slice(startIndex, endIndex);
-		hasMore = filteredPosts[endIndex] !== undefined ? true : false;
-	}
-
 	return {
 		props: {
-			posts: posts,
+			posts: slicedPosts,
 			category,
 			hasMore,
 			pageNo,
-			params,
 		},
 	};
 };

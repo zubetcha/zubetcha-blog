@@ -15,7 +15,8 @@ export type IconRoleUnionType =
 	| 'about'
 	| 'search'
 	| 'home'
-	| 'dropdown';
+	| 'dropdown'
+	| 'forward';
 
 export type TypoRoleUnionType =
 	| 'display-large'
