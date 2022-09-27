@@ -1,16 +1,17 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
-import { getAllPosts } from '../../utils/post';
+import { getAllPosts } from '@utils/post';
 
-import { PostListPageContainer } from '../../container/postList/PostListPageContainer';
+import { PostListPageContainer } from '@container/index';
 
-import { NUMBER_OF_POSTS } from '../../constants/post';
-import { Post } from '../../types/post';
+import { NUMBER_OF_POSTS } from '@constants/post';
+import { Post } from 'src/type/post';
 import { ParsedUrlQuery } from 'querystring';
 
 interface Props {
 	posts: Array<Post>;
 	hasMore: boolean;
 	pageNo: number;
+	categories: Array<string>;
 }
 
 export default function PostListPage(props: Props) {
@@ -32,7 +33,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
 	const { id } = params as ParsedUrlQuery;
-	console.log(id);
 
 	const posts = await getAllPosts();
 	const pageNo = parseInt((id as string)?.split('=')[1]);

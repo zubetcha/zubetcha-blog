@@ -1,10 +1,8 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
-import { getAllPosts, getAllCategories } from '../utils/post';
-
-import { PostListPageContainer } from '../container/postList/PostListPageContainer';
-
-import { NUMBER_OF_POSTS } from '../constants/post';
-import { Post } from '../types/post';
+import { getAllPosts, getAllCategories } from '@utils/post';
+import { PostListPageContainer } from '@container/index';
+import { NUMBER_OF_POSTS } from '@constants/post';
+import { Post } from 'src/type/post';
 import { ParsedUrlQuery } from 'querystring';
 
 interface Props {

@@ -1,8 +1,9 @@
 import '../styles/globals.scss';
 import type { AppProps } from 'next/app';
 
-import { ThemeProvider, ExpandedProvider } from '../context';
-import { PageLayout } from '../components/Layout/PageLayout';
+import { ThemeProvider } from '@context/theme';
+import { ExpandedProvider } from '@context/expanded';
+import { PageLayout } from '@components/index';
 
 function MyApp({ Component, pageProps }: AppProps) {
 	return (

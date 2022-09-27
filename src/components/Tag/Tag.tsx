@@ -1,5 +1,5 @@
 import classes from './Tag.module.scss';
-import { Typo } from '../Elements/Typo/Typo';
+import { Typo } from '@components/index';
 
 interface Props {
 	tag: string;

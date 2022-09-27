@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { TypoRoleUnionType } from '../../../types/element';
+import { TypoRoleUnionType } from 'src/type/element';
 import classes from './Typo.module.scss';
 
 interface Props {

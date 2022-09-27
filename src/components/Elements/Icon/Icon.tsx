@@ -1,5 +1,5 @@
 import classes from './Icon.module.scss';
-import { IconRoleUnionType } from '../../../types/element';
+import { IconRoleUnionType } from 'src/type/element';
 
 import {
 	IoLogoGithub,

@@ -2,12 +2,10 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import classes from './postList.module.scss';
 
-import { ContentLayout } from '../../components';
-import { PostCard } from '../../components';
-import { Select } from '../../components/Elements/Select';
+import { ContentLayout, PostCard, Select } from '@components/index';
 
 import { NUMBER_OF_POSTS } from '../../constants/post';
-import { Post } from '../../types/post';
+import { Post } from 'src/type/post';
 
 interface Props {
 	posts: Array<Post>;

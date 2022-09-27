@@ -1,13 +1,10 @@
 import { useEffect } from 'react';
-import { useTheme } from '../../context/theme';
-import { useExpanded } from '../../context';
+import { useTheme, ThemeUnionType } from '@context/theme';
+import { useExpanded } from '@context/expanded';
 import classNames from 'classnames';
 import classes from './Layout.module.scss';
 
-import { ThemeUnionType } from '../../context/theme/theme.types';
-
-import { NavBar } from '../NavBar/NavBar';
-import { Header } from '../Header/Header';
+import { Header, NavBar } from '..';
 
 interface Props {
 	children: JSX.Element[] | JSX.Element;

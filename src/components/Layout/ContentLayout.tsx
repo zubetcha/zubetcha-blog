@@ -1,6 +1,5 @@
 import classes from './Layout.module.scss';
-
-import { Typo } from '../Elements/Typo/Typo';
+import { Typo } from '@components/Elements';
 
 interface Props {
 	children: JSX.Element[] | JSX.Element;
