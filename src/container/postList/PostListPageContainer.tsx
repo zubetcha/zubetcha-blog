@@ -11,34 +11,23 @@ interface Props {
 	posts: Array<Post>;
 	hasMore: boolean;
 	pageNo: number;
-	categories: Array<string>;
+	title: string;
+	children?: JSX.Element[] | JSX.Element;
 }
 
 export const PostListPageContainer = ({
 	posts,
 	hasMore,
 	pageNo,
-	categories,
+	title,
+	children,
 }: Props) => {
 	const router = useRouter();
 
-	const onChangeCategory = (selected: string) => {
-		const selectedCategory = categories[parseInt(selected)];
-		selectedCategory === 'all'
-			? router.push('/')
-			: router.push(`/category/${selectedCategory}/1`);
-	};
-
 	return (
 		<div>
-			<ContentLayout title='All Posts'>
-				<div>
-					<Select defaultLabel='Category' onChange={onChangeCategory}>
-						{categories.map((category, i) => (
-							<Select.Option id={String(i)} label={category} />
-						))}
-					</Select>
-				</div>
+			<ContentLayout title={title}>
+				<div>{children}</div>
 				<div className={classes.cards_wrapper}>
 					{posts.map((post: Post) => (
 						<PostCard post={post} key={post.fields.slug} />

@@ -1,5 +1,10 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
-import { getAllPosts, getAllCategories, getPageInfo } from '@utils/index';
+import {
+	getAllPosts,
+	getAllCategories,
+	getPageInfo,
+	getUpperCategory,
+} from '@utils/index';
 import { PostListPageContainer } from '@container/index';
 
 import { NUMBER_OF_POSTS } from '@constants/post';
@@ -10,12 +15,12 @@ interface Props {
 	posts: Array<Post>;
 	hasMore: boolean;
 	pageNo: number;
-	categories: string;
+	category: string;
 }
 
-export default function CategoryPage(props: Props) {
-	console.log(props);
-	return <div> CategoryPage</div>;
+export default function CategoryPage({ category, ...props }: Props) {
+	const title = getUpperCategory(category);
+	return <PostListPageContainer {...props} title={title} />;
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -61,7 +66,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 			category,
 			hasMore,
 			pageNo,
-			params,
 		},
 	};
 };

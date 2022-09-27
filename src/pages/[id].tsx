@@ -1,7 +1,10 @@
+import { useRouter } from 'next/router';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
-import { getAllPosts } from '@utils/post';
-import { getPageInfo } from '@utils/page';
+import { getAllPosts, getPageInfo, getUpperCategory } from '@utils/index';
+
 import { PostListPageContainer } from '@container/index';
+import { Select } from '@components/index';
+
 import { NUMBER_OF_POSTS } from '@constants/post';
 import { Post } from 'src/type/post';
 import { ParsedUrlQuery } from 'querystring';
@@ -13,8 +16,28 @@ interface Props {
 	categories: Array<string>;
 }
 
-export default function PostListPage(props: Props) {
-	return <PostListPageContainer {...props} />;
+export default function PostListPage({ categories, ...props }: Props) {
+	const router = useRouter();
+
+	const upperCategories = categories.map((category) =>
+		getUpperCategory(category),
+	);
+
+	const onChangeCategory = (selected: string) => {
+		const selectedCategory = categories[parseInt(selected)];
+		selectedCategory === 'all'
+			? router.push('/')
+			: router.push(`/category/${selectedCategory}/1`);
+	};
+	return (
+		<PostListPageContainer {...props} title='All Posts'>
+			<Select defaultLabel='Category' onChange={onChangeCategory}>
+				{upperCategories.map((category, i) => (
+					<Select.Option id={String(i)} label={category} />
+				))}
+			</Select>
+		</PostListPageContainer>
+	);
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {

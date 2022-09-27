@@ -1,6 +1,6 @@
 ---
 title: '과연 잘 될까요?'
-category: 'javascript'
+category: 'graphQL'
 tags:
   - blog
   - test

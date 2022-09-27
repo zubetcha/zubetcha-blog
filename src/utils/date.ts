@@ -7,9 +7,12 @@
 export const formatDate = (date: string) => {
 	const dateObj = new Date(date);
 	const year = dateObj.getFullYear();
-	const month = dateObj.getMonth() + 1;
-	const _month = month > 9 ? month : `0${month}`;
-	const _date = dateObj.getDate();
+	const month = get(dateObj.getMonth() + 1);
+	const _date = get(dateObj.getDate());
 
-	return `${year}-${_month}-${_date}`;
+	return `${year}-${month}-${_date}`;
+};
+
+const get = (number: number) => {
+	return number > 9 ? number : `0${number}`;
 };
