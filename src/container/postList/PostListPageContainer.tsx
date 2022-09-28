@@ -1,8 +1,9 @@
 import { useEffect, useRef, MouseEvent, ReactElement } from 'react';
 import { useRouter } from 'next/router';
 import classes from './postList.module.scss';
+import { getUpperCategory } from '@utils/category';
 
-import { ContentLayout, PostCard, Icon } from '@components/index';
+import { ContentLayout, PostCard, Icon, Select } from '@components/index';
 
 import { NUMBER_OF_POSTS } from '../../constants/post';
 import { Post } from 'src/type/post';
@@ -12,7 +13,7 @@ interface Props {
 	hasMore: boolean;
 	pageNo: number;
 	title: string;
-	children?: JSX.Element[] | JSX.Element;
+	categories: Array<string>;
 }
 
 export const PostListPageContainer = ({
@@ -20,7 +21,7 @@ export const PostListPageContainer = ({
 	hasMore,
 	pageNo,
 	title,
-	children,
+	categories,
 }: Props) => {
 	const router = useRouter();
 	const ref = useRef<null | HTMLDivElement>(null);
@@ -35,15 +36,39 @@ export const PostListPageContainer = ({
 		router.replace(`/${pageNo + 1}`);
 	};
 
+	const upperCategories = categories.map((category) =>
+		getUpperCategory(category),
+	);
+
+	const onChangeCategory = (selected: string) => {
+		const selectedCategory = categories[parseInt(selected)];
+		selectedCategory === 'all'
+			? router.push('/')
+			: router.push(`/category/${selectedCategory}/1`);
+	};
+
 	useEffect(() => {
 		if (ref.current) {
 			ref.current.scrollIntoView({ behavior: 'smooth' });
 		}
 	}, [pageNo]);
 
+	console.log(router);
+
 	return (
 		<ContentLayout title={title} ref={ref}>
-			<>{children}</>
+			<Select
+				defaultLabel={
+					router.asPath.split('/').includes('category')
+						? getUpperCategory(router.query.category as string)
+						: 'Category'
+				}
+				onChange={onChangeCategory}
+			>
+				{upperCategories.map((category, i) => (
+					<Select.Option id={String(i)} label={category} />
+				))}
+			</Select>
 			<div className={classes['cards-wrapper']}>
 				{posts.map((post: Post) => (
 					<PostCard post={post} key={post.fields.slug} />

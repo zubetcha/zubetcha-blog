@@ -17,28 +17,8 @@ interface Props {
 	categories: Array<string>;
 }
 
-export default function PostListPage({ categories, ...props }: Props) {
-	const router = useRouter();
-
-	const upperCategories = categories.map((category) =>
-		getUpperCategory(category),
-	);
-
-	const onChangeCategory = (selected: string) => {
-		const selectedCategory = categories[parseInt(selected)];
-		selectedCategory === 'all'
-			? router.push('/')
-			: router.push(`/category/${selectedCategory}/1`);
-	};
-	return (
-		<PostListPageContainer {...props} title='All Posts'>
-			<Select defaultLabel='Category' onChange={onChangeCategory}>
-				{upperCategories.map((category, i) => (
-					<Select.Option id={String(i)} label={category} />
-				))}
-			</Select>
-		</PostListPageContainer>
-	);
+export default function PostListPage(props: Props) {
+	return <PostListPageContainer {...props} title='All Posts' />;
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
