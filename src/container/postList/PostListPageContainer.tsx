@@ -53,8 +53,6 @@ export const PostListPageContainer = ({
 		}
 	}, [pageNo]);
 
-	console.log(router);
-
 	return (
 		<ContentLayout title={title} ref={ref}>
 			<Select
