@@ -1,14 +1,15 @@
-import { IconRoleUnionType } from '../components/Elements/Icon/Icon.types';
+import { IconRoleUnionType } from '@type/element';
 
 const navList = [
-	{ name: 'About', isPost: false },
-	{ name: 'HTML', isPost: true },
-	{ name: 'CSS', isPost: true },
+	// { name: 'HTML', isPost: true },
+	// { name: 'CSS', isPost: true },
 	{ name: 'Javascript', isPost: true },
 	{ name: 'Typescript', isPost: true },
 	{ name: 'React', isPost: true },
 	{ name: 'GraphQL', isPost: true },
-	{ name: 'Tags', isPost: false },
+	{ name: 'Web', isPost: true },
+	// { name: 'Tags', isPost: false },
+	{ name: 'About', isPost: false },
 ];
 
 export const navItems = navList.map((navItem, i) => {

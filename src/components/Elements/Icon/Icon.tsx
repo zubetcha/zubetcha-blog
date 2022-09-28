@@ -27,6 +27,7 @@ import {
 	SiCss3,
 	SiHtml5,
 } from 'react-icons/si';
+import { GoBrowser } from 'react-icons/go';
 
 interface Props {
 	role: IconRoleUnionType;
@@ -56,6 +57,7 @@ export const Icon = ({ role, size, onClick }: Props) => {
 		dropdown: <IoMdArrowDropdown {...props} />,
 		forward: <IoMdArrowForward {...props} />,
 		backward: <IoMdArrowBack {...props} />,
+		web: <GoBrowser {...props} />,
 	};
 
 	return icons[role];

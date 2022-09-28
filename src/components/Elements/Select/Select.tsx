@@ -23,6 +23,7 @@ export const Select = ({ children, onChange, defaultLabel }: Props) => {
 	useEffect(() => {
 		if (selected) {
 			onChange(selected);
+			toggle(false);
 		}
 	}, [selected]);
 

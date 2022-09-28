@@ -16,6 +16,7 @@ interface Props {
 	hasMore: boolean;
 	pageNo: number;
 	category: string;
+	categories: Array<string>;
 }
 
 export default function CategoryPage({ category, ...props }: Props) {
@@ -55,6 +56,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 		id,
 		posts: filteredPosts,
 	});
+	const { categories } = getPageInfo({ id, posts });
 
 	if (!params || !pageNo || isNaN(pageNo) || pageNo > maximumPageNo) {
 		return { notFound: true };
@@ -63,6 +65,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 	return {
 		props: {
 			posts: slicedPosts,
+			categories,
 			category,
 			hasMore,
 			pageNo,
