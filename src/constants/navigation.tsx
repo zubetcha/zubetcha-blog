@@ -23,7 +23,7 @@ export const navItems = navList.map((navItem, i) => {
 	};
 });
 
-export const contactList = {
+export const contactList: { [key: string]: string } = {
 	github: 'https://github.com/zubetcha',
 	twitter: 'https://twitter.com/zubetcha_',
 	linkedIn: 'https://www.linkedin.com/in/juhye-jeong-0994a0234/',
