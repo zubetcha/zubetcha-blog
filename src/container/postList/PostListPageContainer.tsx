@@ -36,10 +36,7 @@ export const PostListPageContainer = ({
 		router.replace(`/${pageNo + 1}`);
 	};
 
-	const upperCategories = categories.map((category) =>
-		getUpperCategory(category),
-	);
-
+	console.log(posts);
 	const onChangeCategory = (selected: string) => {
 		const selectedCategory = categories[parseInt(selected)];
 		selectedCategory === 'all'
@@ -63,8 +60,12 @@ export const PostListPageContainer = ({
 				}
 				onChange={onChangeCategory}
 			>
-				{upperCategories.map((category, i) => (
-					<Select.Option id={String(i)} label={category} />
+				{categories.map((category, i) => (
+					<Select.Option
+						key={category}
+						id={String(i)}
+						label={getUpperCategory(category)}
+					/>
 				))}
 			</Select>
 			<div className={classes['cards-wrapper']}>
