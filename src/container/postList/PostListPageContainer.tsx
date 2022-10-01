@@ -1,11 +1,10 @@
-import { useEffect, useRef, MouseEvent, ReactElement } from 'react';
+import { useEffect, useRef, MouseEvent } from 'react';
 import { useRouter } from 'next/router';
 import classes from './postList.module.scss';
 import { getUpperCategory } from '@utils/category';
 
 import { ContentLayout, PostCard, Icon, Select } from '@components/index';
 
-import { NUMBER_OF_POSTS } from '../../constants/post';
 import { Post } from 'src/type/post';
 
 interface Props {
@@ -24,34 +23,34 @@ export const PostListPageContainer = ({
 	categories,
 }: Props) => {
 	const router = useRouter();
-	const ref = useRef<null | HTMLDivElement>(null);
+	const container = useRef<null | HTMLDivElement>(null);
 
 	const onClickPrev = (e: MouseEvent<HTMLButtonElement>) => {
 		e.preventDefault();
-		router.replace(`/${pageNo - 1}`);
+		router.replace(`/page/${pageNo - 1}`);
 	};
 
 	const onClickNext = (e: MouseEvent<HTMLButtonElement>) => {
 		e.preventDefault();
-		router.replace(`/${pageNo + 1}`);
+		router.replace(`/page/${pageNo + 1}`);
 	};
 
 	console.log(posts);
 	const onChangeCategory = (selected: string) => {
 		const selectedCategory = categories[parseInt(selected)];
 		selectedCategory === 'all'
-			? router.push('/')
+			? router.push('/page/1')
 			: router.push(`/category/${selectedCategory}/1`);
 	};
 
 	useEffect(() => {
-		if (ref.current) {
-			ref.current.scrollIntoView({ behavior: 'smooth' });
+		if (container.current) {
+			container.current.scrollIntoView({ behavior: 'smooth' });
 		}
 	}, [pageNo]);
 
 	return (
-		<ContentLayout title={title} ref={ref}>
+		<ContentLayout title={title} ref={container}>
 			<Select
 				defaultLabel={
 					router.asPath.split('/').includes('category')
@@ -70,7 +69,11 @@ export const PostListPageContainer = ({
 			</Select>
 			<div className={classes['cards-wrapper']}>
 				{posts.map((post: Post) => (
-					<PostCard post={post} key={post.fields.slug} />
+					<PostCard
+						post={post}
+						key={post.fields.slug}
+						onClick={() => router.push(`/${post.fields.slug}`)}
+					/>
 				))}
 			</div>
 			<div className={classes['button-wrapper']}>
