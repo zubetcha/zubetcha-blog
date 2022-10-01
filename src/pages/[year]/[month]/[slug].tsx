@@ -1,26 +1,23 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { ParsedUrlQuery } from 'querystring';
-import { NUMBER_OF_POSTS } from '@constants/post';
-import { getAllCategories, getAllPosts, getPageInfo } from '@utils/index';
+import { Post } from '@type/post';
+import { getAllPosts } from '@utils/index';
 
-export const PostPage = () => {
+interface Props {
+	post: Post;
+}
+export default function PostPage(props: Props) {
+	console.log(props);
 	return <div>[slug]</div>;
-};
+}
 
 export const getStaticPaths: GetStaticPaths = async () => {
 	const posts = await getAllPosts();
 
-	const paths = getAllCategories(posts)
-		.map((category, i) => {
-			const filteredPosts = posts.filter(
-				(post) => post.frontMatter.category === category,
-			);
-
-			return [
-				...new Array(Math.round(filteredPosts.length / NUMBER_OF_POSTS)).keys(),
-			].map((i) => ({ params: { category, id: `${i + 1}` } }));
-		})
-		.reduce((acc, val) => acc.concat(val), []);
+	const paths = posts.map(({ fields }) => {
+		const [year, month, slug] = fields.slug.split('/');
+		return { params: { year, month, slug } };
+	});
 
 	return {
 		paths,
@@ -29,29 +26,20 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-	const { category, id } = params as ParsedUrlQuery;
+	const { year, month, slug } = params as ParsedUrlQuery;
 
 	const posts = await getAllPosts();
-	const filteredPosts = posts.filter(
-		(post) => post.frontMatter.category === category,
+	const post = posts.find(
+		({ fields }) => fields.slug === [year, month, slug].join('/'),
 	);
-	const { pageNo, maximumPageNo, slicedPosts, hasMore } = getPageInfo({
-		id,
-		posts: filteredPosts,
-	});
-	const { categories } = getPageInfo({ id, posts });
 
-	if (!params || !pageNo || isNaN(pageNo) || pageNo > maximumPageNo) {
+	if (!params || !post) {
 		return { notFound: true };
 	}
 
 	return {
 		props: {
-			posts: slicedPosts,
-			categories,
-			category,
-			hasMore,
-			pageNo,
+			post,
 		},
 	};
 };

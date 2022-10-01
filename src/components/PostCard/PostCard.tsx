@@ -5,13 +5,14 @@ import { formatDate } from '@utils/date';
 
 interface Props {
 	post: Post;
+	onClick: () => void;
 }
-export const PostCard = ({ post }: Props) => {
+export const PostCard = ({ post, onClick }: Props) => {
 	const { frontMatter, fields } = post;
 	const { tags, title, description, date } = frontMatter;
 
 	return (
-		<div className={classes.container}>
+		<div className={classes.container} onClick={onClick}>
 			<div className={classes.contents_wrapper}>
 				<div className={classes.tags_wrapper}>
 					{tags.map((tag) => (
