@@ -66,7 +66,7 @@ ol {
   min-width: 100%; /* 2 */
   padding: toRem(16);
   border-radius: 8px;
-  background-color: var(--color-bg-navbar);
+  background-color: var(--color-bg-code-snipet);
   margin: toRem(16) 0 toRem(24);
 }
 
@@ -77,8 +77,8 @@ ol {
   padding-right: 16px;
   margin-left: -16px;
   margin-right: -16px;
-  border-left-width: 4px;
-  border-left-color: rgba(52, 98, 163, 0); /* Set code block color */
+  // border-left-width: 4px;
+  // border-left-color: rgba(52, 98, 163, 0); /* Set code block color */
 }
 
 .code-line.inserted {
@@ -98,22 +98,21 @@ ol {
 }
 
 .code-line {
-  .keyword { color: red }
-  .string { color: orange }
-  .punctuation { color: yellow }
-  .class-name { color: green } /* first letter only uppercase */
-  .operator { color: blue }
-  .constant { color: yellowgreen } /* all letter uppercase */
-  .function { color: aqua }
-  .control-flow { color:rgba(239, 68, 68, 0.2) } /* return */
-  .console { color: burlywood }
-  .parameter { color: coral }
-  /* imports: imported module name */
-  /* maybe-class-name: Uppercase first letter only */
-  .imports, .maybe-class-name { color:rgba(16, 185, 129, 0.2) };
-  .module { color:rgb(59, 130, 246) } /* keword related module ex.import, export */
-  .function-variable .maybe-class-name { color: cadetblue } /*  component Name */
-  .property { color: darkkhaki }
+  .keyword { color: var(--color-text-color-white) }
+  .string { color: var(--color-text-color-white) }
+  .punctuation { color: var(--color-text-code-white) }
+  .class-name { color: var(--color-text-code-white) } /* first letter only uppercase */
+  .operator { color: var(--color-text-code-white) }
+  .constant { color: var(--color-text-code-white) } /* all letter uppercase */
+  .function { color: var(--color-text-code-white) }
+  .control-flow { color:var(--color-text-code-white) } /* return */
+  .console { color: var(--color-text-code-white) }
+  .parameter { color: var(--color-text-code-white) }
+  .imports { color: var(--color-text-code-white) } /* imports: imported module name */
+  .imports > .maybe-class-name { color: var(--color-text-code-white) }; /* maybe-class-name: Uppercase first letter only */
+  .module { color:var(--color-text-code-white) } /* keword related module ex.import, export */
+  .function-variable .maybe-class-name { color: var(--color-text-code-white) } /*  component Name */
+  .property { color: var(--color-text-code-white) }
 }
 
 .line-number::before {
@@ -130,7 +129,7 @@ blockquote {
   padding: toRem(24) toRem(16);
   margin: toRem(16) 0 toRem(24);
   background-color: var(--color-bg-navbar); /* Set highlight bg color */
-  border-left: 6px solid var(--color-text-primary);
+  border-left: 4px solid var(--color-text-primary);
   border-radius: 0 8px 8px 0;
   p {
     margin: 0 !important;

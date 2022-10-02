@@ -13,6 +13,19 @@ html[data-theme='dark'] {
 	--color-bg-tag: #{$teal900};
 	--color-bg-tag-hover: #{$teal800};
 	--color-bg-postcard: #{$gray900};
+
+	--color-bg-code-snipet: #{$gray900};
+	--color-text-code-white: #{$gray100};
+	--color-text-code-red: #{$redA200};
+	--color-text-code-orange: red;
+	--color-text-code-yellow: red;
+	--color-text-code-lime: red;
+	--color-text-code-green: red;
+	--color-text-code-teal: red;
+	--color-text-code-blue: red;
+	--color-text-code-indigo: red;
+	--color-text-code-pink: red;
+	--color-text-code-purple: red;
 }
 
 html[data-theme='light'] {
