@@ -1,0 +1,45 @@
+@import '../../styles/colors';
+@import '../../styles/mixins';
+@import '../../styles/sizes';
+
+.container {
+	width: $desktop;
+	margin: $margin-top auto 0;
+
+	header {
+		@include flex-direction(column, 24);
+		@include flex-box(start, center);
+		border-bottom: 1px solid var(--color-text-contents);
+		padding: 0 0 toRem(24);
+		.tags-wrapper {
+			@include flex-direction(row, 12);
+		}
+		h1 {
+			@include display-medium(800);
+		}
+		time {
+			@include label-large();
+		}
+	}
+
+	.content {
+		display: grid;
+		h2 {
+			@include display-small(700);
+			color: var(--color-text-primary);
+			margin: toRem(48) 0 toRem(24);
+			code {
+				color: var(--color-text-primary);
+			}
+		}
+		h3 {
+			@include headline-small(700);
+			margin: toRem(32) 0 toRem(16);
+		}
+		p {
+			@include body-large();
+			color: var(--color-text-contents);
+			margin: 0 0 toRem(16);
+		}
+	}
+}

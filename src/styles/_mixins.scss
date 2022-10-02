@@ -1,5 +1,30 @@
 @use 'sass:map';
 
+// DESCRIBE 브라우저 크기별 반응형 분기점 mixins
+@mixin mobile {
+	@media (max-width: $mobile) {
+		@content;
+	}
+}
+
+@mixin tablet-vert {
+	@media (min-width: ($mobile+1)) and (max-width: $tablet) {
+		@content;
+	}
+}
+
+@mixin tablet-hori {
+	@media (min-width: ($tablet+1)) and (max-width: $tablet-hori) {
+		@content;
+	}
+}
+
+@mixin desktop {
+	@media (min-width: $desktop) {
+		@content;
+	}
+}
+
 // DESCRIBE: Position
 
 @mixin pos-center-x($type: absolute) {
@@ -56,6 +81,8 @@
 	line-height: $display-large-line;
 	letter-spacing: $display-large-letter;
 	font-weight: $weight;
+	word-break: keep-all;
+	overflow-wrap: break-word;
 }
 
 @mixin display-medium($weight: 400) {
@@ -63,6 +90,8 @@
 	line-height: $display-medium-line;
 	letter-spacing: $display-medium-letter;
 	font-weight: $weight;
+	word-break: keep-all;
+	overflow-wrap: break-word;
 }
 
 @mixin display-small($weight: 400) {
@@ -70,6 +99,8 @@
 	line-height: $display-small-line;
 	letter-spacing: $display-small-letter;
 	font-weight: $weight;
+	word-break: keep-all;
+	overflow-wrap: break-word;
 }
 
 @mixin headline-large($weight: 400) {
@@ -77,6 +108,8 @@
 	line-height: $headline-large-line;
 	letter-spacing: $headline-large-letter;
 	font-weight: $weight;
+	word-break: keep-all;
+	overflow-wrap: break-word;
 }
 
 @mixin headline-medium($weight: 400) {
@@ -84,6 +117,8 @@
 	line-height: $headline-medium-line;
 	letter-spacing: $headline-medium-letter;
 	font-weight: $weight;
+	word-break: keep-all;
+	overflow-wrap: break-word;
 }
 
 @mixin headline-small($weight: 400) {
@@ -91,6 +126,8 @@
 	line-height: $headline-small-line;
 	letter-spacing: $headline-small-letter;
 	font-weight: $weight;
+	word-break: keep-all;
+	overflow-wrap: break-word;
 }
 
 @mixin title-large($weight: 400) {
@@ -98,6 +135,8 @@
 	line-height: $title-large-line;
 	letter-spacing: $title-large-letter;
 	font-weight: $weight;
+	word-break: keep-all;
+	overflow-wrap: break-word;
 }
 
 @mixin title-medium($weight: 400) {
@@ -105,6 +144,8 @@
 	line-height: $title-medium-line;
 	letter-spacing: $title-medium-letter;
 	font-weight: $weight;
+	word-break: keep-all;
+	overflow-wrap: break-word;
 }
 
 @mixin title-small($weight: 400) {
@@ -112,6 +153,8 @@
 	line-height: $title-small-line;
 	letter-spacing: $title-small-letter;
 	font-weight: $weight;
+	word-break: keep-all;
+	overflow-wrap: break-word;
 }
 
 @mixin label-large($weight: 400) {
@@ -119,6 +162,8 @@
 	line-height: $label-large-line;
 	letter-spacing: $label-large-letter;
 	font-weight: $weight;
+	word-break: keep-all;
+	overflow-wrap: break-word;
 }
 
 @mixin label-medium($weight: 400) {
@@ -126,6 +171,8 @@
 	line-height: $label-medium-line;
 	letter-spacing: $label-medium-letter;
 	font-weight: $weight;
+	word-break: keep-all;
+	overflow-wrap: break-word;
 }
 
 @mixin label-small($weight: 400) {
@@ -133,6 +180,8 @@
 	line-height: $label-small-line;
 	letter-spacing: $label-small-letter;
 	font-weight: $weight;
+	word-break: keep-all;
+	overflow-wrap: break-word;
 }
 
 @mixin body-large($weight: 400) {
@@ -140,6 +189,8 @@
 	line-height: $body-large-line;
 	letter-spacing: $body-large-letter;
 	font-weight: $weight;
+	word-break: keep-all;
+	overflow-wrap: break-word;
 }
 
 @mixin body-medium($weight: 400) {
@@ -147,6 +198,8 @@
 	line-height: $body-medium-line;
 	letter-spacing: $body-medium-letter;
 	font-weight: $weight;
+	word-break: keep-all;
+	overflow-wrap: break-word;
 }
 
 @mixin body-small($weight: 400) {
@@ -154,6 +207,8 @@
 	line-height: $body-small-line;
 	letter-spacing: $body-small-letter;
 	font-weight: $weight;
+	word-break: keep-all;
+	overflow-wrap: break-word;
 }
 
 // DESCRIBE: Utils

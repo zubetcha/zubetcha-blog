@@ -14,21 +14,32 @@
 		background-color: var(--color-text-secondary);
 	}
 
-	.contents_wrapper {
+	.contents-wrapper {
 		width: 100%;
 		padding: toRem(32);
 		@include flex-direction(column, 24);
 
-		.tags_wrapper {
+		.tags-wrapper {
 			@include flex-direction(row, 12);
 		}
 
-		.typos_wrapper {
+		.above-wrapper {
 			@include flex-direction(column, 8);
+			.title {
+				@include headline-small(700);
+			}
+			.description {
+				@include body-medium();
+			}
 		}
 
-		.date_wrapper {
+		.below-wrapper {
 			@include flex-box(between, center);
+			.readmore {
+				@include body-small();
+			}
+			.createdAt {
+				@include body-small();			}
 		}
 	}
 }

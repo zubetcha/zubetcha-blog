@@ -7,12 +7,17 @@
 export const formatDate = (date: string) => {
 	const dateObj = new Date(date);
 	const year = dateObj.getFullYear();
-	const month = get(dateObj.getMonth() + 1);
-	const _date = get(dateObj.getDate());
+	const month = formatNumber(dateObj.getMonth() + 1);
+	const _date = formatNumber(dateObj.getDate());
 
 	return `${year}-${month}-${_date}`;
 };
 
-const get = (number: number) => {
+const formatNumber = (number: number) => {
 	return number > 9 ? number : `0${number}`;
+};
+
+export const formatDateInKorean = (date: string) => {
+	const [year, month, _date] = date.split('-');
+	return `${year}년 ${month}월 ${_date}일`;
 };

@@ -13,27 +13,23 @@ export const PostCard = ({ post, onClick }: Props) => {
 
 	return (
 		<div className={classes.container} onClick={onClick}>
-			<div className={classes.contents_wrapper}>
-				<div className={classes.tags_wrapper}>
+			<div className={classes['contents-wrapper']}>
+				<div className={classes['tags-wrapper']}>
 					{tags.map((tag) => (
 						<Tag tag={tag} key={tag} />
 					))}
 				</div>
 
-				<div className={classes.typos_wrapper}>
-					<Typo role='headline-small' style={{ fontWeight: '700' }}>
-						{title}
-					</Typo>
-					<Typo role='body-large'>{description}</Typo>
+				<div className={classes['above-wrapper']}>
+					<h1 className={classes.title}>{title}</h1>
+					<p className={classes.description}>{description}</p>
 				</div>
 
-				<div className={classes.date_wrapper}>
+				<div className={classes['below-wrapper']}>
 					<div>
-						<Typo role='body-medium'>read more</Typo>
+						<p className={classes['readmore']}>read more</p>
 					</div>
-					<Typo role='body-small' style={{ fontStyle: 'selif' }}>
-						{formatDate(date)}
-					</Typo>
+					<time className={classes.createdAt}>{formatDate(date)}</time>
 				</div>
 			</div>
 		</div>
