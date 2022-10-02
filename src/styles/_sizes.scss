@@ -1,10 +1,10 @@
 @import './mixins';
 
 // DESCRIBE 반응형 화면 크기
-$mobile: 767px;
-$tablet: 0px;
-$laptop: 1440px;
-$desktop: 0px;
+$mobile: 479px;
+$tablet: 767px;
+$tablet-hori: 1023px;
+$desktop: 1024px;
 
 // DESCRIBE: font-size
 $display-large-font: toRem(57);
@@ -55,16 +55,16 @@ $label-small-font: toRem(11);
 $label-small-line: toRem(16);
 $label-small-letter: toRem(0);
 
-$body-large-font: toRem(16);
-$body-large-line: toRem(24);
+$body-large-font: toRem(18);
+$body-large-line: toRem(27);
 $body-large-letter: toRem(0);
 
-$body-medium-font: toRem(14);
-$body-medium-line: toRem(20);
+$body-medium-font: toRem(16);
+$body-medium-line: toRem(24);
 $body-medium-letter: toRem(0);
 
-$body-small-font: toRem(12);
-$body-small-line: toRem(16);
+$body-small-font: toRem(14);
+$body-small-line: toRem(21);
 $body-small-letter: toRem(0);
 
 // DESCRIBE: Border-radius

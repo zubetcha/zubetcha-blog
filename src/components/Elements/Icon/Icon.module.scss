@@ -1,16 +1,16 @@
 @import '../../../styles/colors';
-@import '../../../styles/mixins';
+// @import '../../../styles/mixins';
 @import '../../../styles/sizes';
 
 .large {
-  width: toRem(24);
-  height: toRem(24);
+	width: toRem(24);
+	height: toRem(24);
 }
 .medium {
-  width: toRem(20);
-  height: toRem(20);
+	width: toRem(20);
+	height: toRem(20);
 }
 .small {
-  width: toRem(16);
-  height: toRem(16);
+	width: toRem(16);
+	height: toRem(16);
 }

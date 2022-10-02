@@ -1,6 +1,6 @@
 import { useEffect, useRef, MouseEvent } from 'react';
 import { useRouter } from 'next/router';
-import classes from './postList.module.scss';
+import classes from './PostList.module.scss';
 import { getUpperCategory } from '@utils/category';
 
 import { ContentLayout, PostCard, Icon, Select } from '@components/index';

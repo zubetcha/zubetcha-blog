@@ -1,1 +1,1 @@
-export * from './postList/PostListPageContainer';
+export * from './PostList/PostListContainer';

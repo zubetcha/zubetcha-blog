@@ -1,14 +1,22 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import { Post } from '@type/post';
-import { getAllPosts } from '@utils/index';
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
+import { getAllPosts, parseMdx } from '@utils/index';
+import { PostContainer } from '@container/Post/PostContainer';
 
 interface Props {
 	post: Post;
+	mdx: MDXRemoteSerializeResult;
 }
-export default function PostPage(props: Props) {
-	console.log(props);
-	return <div>[slug]</div>;
+export default function PostPage({ post, mdx }: Props) {
+	return (
+		<>
+			<PostContainer frontMatter={post.frontMatter} slug={post.fields.slug}>
+				<MDXRemote {...mdx} />
+			</PostContainer>
+		</>
+	);
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -36,10 +44,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 	if (!params || !post) {
 		return { notFound: true };
 	}
+	const mdx = await parseMdx(post.content);
 
 	return {
 		props: {
 			post,
+			mdx,
 		},
 	};
 };
