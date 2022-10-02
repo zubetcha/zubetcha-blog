@@ -24,7 +24,6 @@
 
 	.content {
 		display: grid;
-
 		h2 {
 			@include display-small(700);
 			margin: toRem(48) 0 toRem(24);

@@ -64,10 +64,10 @@ ol {
 .code-highlight {
   float: left; /* 1 */
   min-width: 100%; /* 2 */
-  padding: 16px;
+  padding: toRem(16);
   border-radius: 8px;
   background-color: var(--color-bg-navbar);
-  margin: toRem(32) 0;
+  margin: toRem(16) 0 toRem(24);
 }
 
 .code-line {
@@ -101,20 +101,19 @@ ol {
   .keyword { color: red }
   .string { color: orange }
   .punctuation { color: yellow }
-  // first-letter Uppercase
-  .class-name { color: green }
+  .class-name { color: green } /* first letter only uppercase */
   .operator { color: blue }
-  // all UpperCase
-  .constant { color: yellowgreen }
+  .constant { color: yellowgreen } /* all letter uppercase */
   .function { color: aqua }
-  // return
-  .control-flow { color:rgba(239, 68, 68, 0.2) }
+  .control-flow { color:rgba(239, 68, 68, 0.2) } /* return */
   .console { color: burlywood }
   .parameter { color: coral }
-  // imported module name
+  /* imports: imported module name */
+  /* maybe-class-name: Uppercase first letter only */
   .imports, .maybe-class-name { color:rgba(16, 185, 129, 0.2) };
-  // keword releated module
-  .module { color:rgb(59, 130, 246) }
+  .module { color:rgb(59, 130, 246) } /* keword related module ex.import, export */
+  .function-variable .maybe-class-name { color: cadetblue } /*  component Name */
+  .property { color: darkkhaki }
 }
 
 .line-number::before {
@@ -125,4 +124,15 @@ ol {
   margin-left: -8px;
   color: rgb(156, 163, 175); /* Line number color */
   content: attr(line);
+}
+
+blockquote {
+  padding: toRem(24) toRem(16);
+  margin: toRem(16) 0 toRem(24);
+  background-color: var(--color-bg-navbar); /* Set highlight bg color */
+  border-left: 6px solid var(--color-text-primary);
+  border-radius: 0 8px 8px 0;
+  p {
+    margin: 0 !important;
+  }
 }
