@@ -26,26 +26,28 @@
 		display: grid;
 		h2 {
 			@include display-small(700);
-			color: var(--color-text-primary);
 			margin: toRem(48) 0 toRem(24);
+			color: var(--color-text-primary);
 		}
+
 		h3 {
 			@include headline-small(700);
 			margin: toRem(32) 0 toRem(16);
 		}
+
 		p {
 			@include body-large();
 			color: var(--color-text-contents);
 			margin: 0 0 toRem(16);
 			code {
-				@include body-medium();
+				@include body-medium(600);
 				border-radius: 4px;
-				color: $teal300;
+				color: var(--color-text-white);
 				background-color: $gray700;
 				padding: toRem(4) toRem(6);
 			}
 			a {
-				color: rgb(39, 161, 255);
+				color: #58a6ff;
 				&:hover {
 					text-decoration: underline;
 				}

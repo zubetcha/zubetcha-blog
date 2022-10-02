@@ -24,7 +24,7 @@ export const PostContainer = ({ children, frontMatter }: Props) => {
 					<h1>{title}</h1>
 					<div>
 						<time dateTime={formatDate(date)} className={classes.createdAt}>
-							{formatDateInKorean(formatDate(date))}
+							{formatDate(date)}
 						</time>
 						<p>zubetcha</p>
 					</div>
