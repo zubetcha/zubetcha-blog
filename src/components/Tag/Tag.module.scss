@@ -10,8 +10,5 @@
 	box-shadow: #{var(--color-text-secondary)} 0px 0px 6px;
 	border-radius: toRem(24);
 	cursor: pointer;
-
-	p {
-		cursor: pointer;
-	}
+	@include label-medium(300);
 }

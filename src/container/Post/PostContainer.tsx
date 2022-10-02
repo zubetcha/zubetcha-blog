@@ -22,9 +22,12 @@ export const PostContainer = ({ children, frontMatter }: Props) => {
 						))}
 					</div>
 					<h1>{title}</h1>
-					<time dateTime={formatDate(date)} className={classes.createdAt}>
-						{formatDateInKorean(formatDate(date))}
-					</time>
+					<div>
+						<time dateTime={formatDate(date)} className={classes.createdAt}>
+							{formatDateInKorean(formatDate(date))}
+						</time>
+						<p>zubetcha</p>
+					</div>
 				</header>
 				<div className={classes.content}>{children}</div>
 			</div>

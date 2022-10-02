@@ -56,7 +56,9 @@ export const NavBar = () => {
 				</div>
 				<div className={classes.profile_info_wrapper}>
 					<Typo role='title-small'>zubetcha</Typo>
-					<Typo role='body-small'>Web Frontend Developer</Typo>
+					<Typo role='body-small' style={{ fontWeight: '300' }}>
+						Web Frontend Developer
+					</Typo>
 				</div>
 				<div className={classes.profile_contacts_wrapper}>
 					{Object.keys(contactList).map((contact) => {
