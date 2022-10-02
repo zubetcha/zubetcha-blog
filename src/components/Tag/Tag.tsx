@@ -9,7 +9,7 @@ interface Props {
 export const Tag = ({ tag, onClick }: Props) => {
 	return (
 		<div className={classes.container} onClick={onClick}>
-			<Typo role='label-small'>{tag}</Typo>
+			{tag}
 		</div>
 	);
 };

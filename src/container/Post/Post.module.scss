@@ -4,7 +4,7 @@
 
 .container {
 	width: $desktop;
-	margin: $margin-top auto 0;
+	margin: $margin-top auto;
 
 	header {
 		@include flex-direction(column, 24);
@@ -28,9 +28,6 @@
 			@include display-small(700);
 			color: var(--color-text-primary);
 			margin: toRem(48) 0 toRem(24);
-			code {
-				color: var(--color-text-primary);
-			}
 		}
 		h3 {
 			@include headline-small(700);
@@ -40,6 +37,19 @@
 			@include body-large();
 			color: var(--color-text-contents);
 			margin: 0 0 toRem(16);
+			code {
+				@include body-medium();
+				border-radius: 4px;
+				color: $teal300;
+				background-color: $gray700;
+				padding: toRem(4) toRem(6);
+			}
+			a {
+				color: rgb(39, 161, 255);
+				&:hover {
+					text-decoration: underline;
+				}
+			}
 		}
 	}
 }
