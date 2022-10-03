@@ -11,7 +11,12 @@ interface Props {
 
 export const PostContainer = ({ children, frontMatter }: Props) => {
 	const { title, date, tags, category } = frontMatter;
-	console.log(frontMatter);
+  const b = false;
+  const a = `add: ${tags}`
+	console.log(frontMatter.category);
+  const c = {
+    key: 5,
+  }
 	return (
 		<article>
 			<div className={classes.container}>

@@ -28,11 +28,25 @@
 			@include display-small(700);
 			margin: toRem(48) 0 toRem(24);
 			color: var(--color-text-primary);
+			code {
+				border-radius: 4px;
+				color: var(--color-text-white);
+				background-color: $gray700;
+				padding: toRem(2) toRem(4);
+				margin-right: toRem(2);
+			}
 		}
 
 		h3 {
 			@include headline-small(700);
 			margin: toRem(32) 0 toRem(16);
+			code {
+				border-radius: 4px;
+				color: var(--color-text-white);
+				background-color: $gray700;
+				padding: toRem(2) toRem(4);
+				margin-right: toRem(2);
+			}
 		}
 
 		p {
@@ -40,13 +54,20 @@
 			color: var(--color-text-contents);
 			margin: 0 0 toRem(16);
 			code {
-				@include body-medium(600);
+				@include body-medium(500);
 				border-radius: 4px;
 				color: var(--color-text-white);
 				background-color: $gray700;
-				padding: toRem(4) toRem(6);
+				padding: toRem(2) toRem(4);
+				margin-right: toRem(2);
 			}
-			a {
+		}
+		a {
+			color: #58a6ff;
+			&:hover {
+				text-decoration: underline;
+			}
+			code {
 				color: #58a6ff;
 				&:hover {
 					text-decoration: underline;
