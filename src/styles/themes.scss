@@ -46,14 +46,16 @@ html[data-theme='light'] {
 
 	--color-bg-code-snipet: #{$gray900};
 	--color-text-code-white: #{$gray100};
-	--color-text-code-red: #{$redA200};
-	--color-text-code-orange: #{$orangeA200};
-	--color-text-code-yellow: #{$yellow300};
+	--color-text-code-red: #d73a4a;
+	--color-text-code-orange: #cf8c50;
+	--color-text-code-yellow: #f4db95;
 	--color-text-code-lime: #{$limeA400};
-	--color-text-code-green: #{$greenA400};
+	--color-text-code-green: #{$green200};
 	--color-text-code-teal: #{$tealA400};
-	--color-text-code-blue: #{$blueA200};
+	--color-text-code-blue: #558ffb;
 	--color-text-code-indigo: #{$indigoA200};
-	--color-text-code-pink: #{$pinkA200};
-	--color-text-code-purple: #{$purpleA200};
+	--color-text-code-pink: #d2a8ff;
+	--color-text-code-purple: #7057ff;
+	--color-text-code-lightblue: #9ee7ff;
+	--color-text-code-cyan: #{$cyanA400};
 }

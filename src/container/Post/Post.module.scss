@@ -52,7 +52,7 @@
 		p {
 			@include body-large();
 			color: var(--color-text-contents);
-			margin: 0 0 toRem(16);
+			margin: 0 0 toRem(24);
 			code {
 				@include body-medium(500);
 				border-radius: 4px;
@@ -73,6 +73,47 @@
 					text-decoration: underline;
 				}
 			}
+		}
+
+		table {
+			border-collapse: collapse;
+			thead {
+				tr {
+					@include body-large(500);
+					th {
+						padding: toRem(8) toRem(12);
+						text-align: left;
+					}
+				}
+			}
+
+			tbody {
+				border-top: 1px solid var(--color-text-contents);
+				tr {
+					@include body-large(300);
+					border-bottom: 1px solid var(--color-text-contents);
+					td {
+						padding: toRem(8) toRem(12);
+						border-right: 1px solid var(--color-text-contents);
+					}
+					td:nth-last-child(1) {
+						border-right: transparent;
+					}
+				}
+			}
+		}
+
+		ul > li {
+			@include body-large();
+			padding-left: toRem(16);
+			position: relative;
+		}
+		ul > li::before {
+			position: absolute;
+			content: '•';
+			left: 0;
+			display: inline-block;
+			color: var(--color-text-contents);
 		}
 	}
 }
