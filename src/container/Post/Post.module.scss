@@ -52,7 +52,7 @@
 		p {
 			@include body-large();
 			color: var(--color-text-contents);
-			margin: 0 0 toRem(16);
+			margin: 0 0 toRem(24);
 			code {
 				@include body-medium(500);
 				border-radius: 4px;
@@ -113,7 +113,7 @@
 			content: '•';
 			left: 0;
 			display: inline-block;
-			color: var(--color-text-primary);
+			color: var(--color-text-contents);
 		}
 	}
 }
