@@ -115,5 +115,11 @@
 			display: inline-block;
 			color: var(--color-text-contents);
 		}
+
+		ol > li {
+			@include body-large();
+			margin-left: toRem(16);
+			padding-left: toRem(4);
+		}
 	}
 }
