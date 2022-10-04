@@ -10,6 +10,7 @@ interface Props {
 export const PostCard = ({ post, onClick }: Props) => {
 	const { frontMatter, fields } = post;
 	const { tags, title, description, date } = frontMatter;
+  const a = /'/g;
 
 	return (
 		<div className={classes.container} onClick={onClick}>

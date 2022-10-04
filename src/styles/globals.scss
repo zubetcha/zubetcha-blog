@@ -65,7 +65,7 @@ ol {
 .code-highlight {
   float: left; /* 1 */
   min-width: 100%; /* 2 */
-  padding: toRem(16);
+  padding: toRem(16) toRem(20);
   border-radius: 8px;
   background-color: var(--color-bg-code-snipet);
   margin: toRem(24) 0 toRem(32);
@@ -125,6 +125,7 @@ ol {
   .comment { color: $gray500 }
   .attr-name { color: var(--color-text-code-lightblue) }
   .attr-value {
+    color: var(--color-text-code-white);
     .attr-equals { color: var(--color-text-code-white) !important }
   }
   .number { color: var(--color-text-code-green) }
@@ -138,6 +139,11 @@ ol {
   }
   .literal-property { color: var(--color-text-code-lightblue) }
   .property { color: var(--color-text-code-lightblue) }
+  .builtin { color: var(--color-text-code-teal) }
+  .regex > .regex-delimiter { color: var(--color-text-code-red) }
+  .regex > .regex-source { color: var(--color-text-code-red) }
+  .regex > .regex-flags { color: var(--color-text-code-blue) }
+
 }
 
 .line-number::before {

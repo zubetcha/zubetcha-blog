@@ -15,7 +15,7 @@ description: '블로그 만들 수 있겠지....!'
 
 `이거는 강조`
 
-```javascript
+```JSX
 import classes from './Post.module.scss';
 import { formatDate, formatDateInKorean } from '@utils/date';
 import { Tag } from '@components/index';

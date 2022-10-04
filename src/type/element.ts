@@ -34,4 +34,4 @@ export type TypoRoleUnionType =
 	| 'label-small'
 	| 'body-large'
 	| 'body-medium'
-	| 'body-small';
+	| 'body-small'
