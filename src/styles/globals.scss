@@ -22,13 +22,13 @@ time, mark, audio, video {
 	border: 0;
 	font: inherit;
 	vertical-align: baseline;
-  color: var(--color-text-contents);
+  color: var(--color-page-text); // done
 	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
 	Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 html, body {
-	background-color: var(--color-bg-page);
+	background-color: var(--color-page-bg); // done
 }
 
 a {
@@ -40,22 +40,14 @@ a {
 	box-sizing: border-box;
 }
 
-p {
-	margin: 0;
-}
-
 button {
 	border: none;
-	padding: 0;
-	margin: 0;
 }
 
-ul,
-ol {
+ul {
 	list-style: none;
-	margin: 0;
-	padding: 0;
 }
+
 
 /**
  * Inspired by gatsby remark prism - https://www.gatsbyjs.com/plugins/gatsby-remark-prismjs/
@@ -67,8 +59,8 @@ ol {
   min-width: 100%; /* 2 */
   padding: toRem(16) toRem(20);
   border-radius: 8px;
-  background-color: var(--color-bg-code-snipet);
-  margin: toRem(24) 0 toRem(32);
+  background-color: var(--color-codesnipet-bg); // done
+  margin: toRem(24) 0;
 }
 
 .code-line {
@@ -99,50 +91,50 @@ ol {
 }
 
 .code-line {
-  color: var(--color-text-code-cyan);
-  .keyword { color: var(--color-text-code-blue) }
-  .string { color: var(--color-text-code-orange) }
-  .punctuation { color: var(--color-text-code-white) }
-  .maybe-class-name { color: var(--color-text-code-teal) } /* first letter only uppercase */
-  .class-name { color: var(--color-text-code-teal) } /* first letter only uppercase */
-  .operator { color: var(--color-text-code-white) }
-  .constant { color: var(--color-text-code-teal) } /* all letter uppercase */
-  .method { color: var(--color-text-code-yellow) !important }
-  .function { color: var(--color-text-code-yellow) }
-  .control-flow { color:var(--color-text-code-pink) } /* return */
-  .console { color: var(--color-text-code-lightblue) }
-  .parameter { color: var(--color-text-code-lightblue) }
-  .imports { color: var(--color-text-code-lightblue) } /* imports: imported module name */
-  .imports > .maybe-class-name { color: var(--color-text-code-lightblue) }; /* maybe-class-name: Uppercase first letter only */
-  .module { color:var(--color-text-code-pink) } /* keword related module ex.import, export */
-  .function-variable .maybe-class-name { color: var(--color-text-code-yellow) } /*  component Name */
-  .function .maybe-class-name { color: var(--color-text-code-yellow) } /*  component Name */
-  .property { color: var(--color-text-code-white) }
-  .interpolation { color: var(--color-text-code-purple) }
-  .interpolaion-puntuation { color: var(--color-text-code-purple) }
-  .tag { color: var(--color-text-code-blue) }
-  .tag > .punctuation { color: $gray500 }
-  .comment { color: $gray500 }
-  .attr-name { color: var(--color-text-code-lightblue) }
+  color: var(--color-code-cyan-text);
+  .keyword { color: var(--color-code-blue-text) }
+  .string { color: var(--color-code-orange-text) }
+  .punctuation { color: var(--color-code-white-text) }
+  .maybe-class-name { color: var(--color-code-teal-text) } /* first letter only uppercase */
+  .class-name { color: var(--color-code-teal-text) } /* first letter only uppercase */
+  .operator { color: var(--color-code-white-text) }
+  .constant { color: var(--color-code-teal-text) } /* all letter uppercase */
+  .method { color: var(--color-code-yellow-text) !important }
+  .function { color: var(--color-code-yellow-text) }
+  .control-flow { color:var(--color-code-pink-text) } /* return */
+  .console { color: var(--color-code-lightblue-text) }
+  .parameter { color: var(--color-code-lightblue-text) }
+  .imports { color: var(--color-code-lightblue-text) } /* imports: imported module name */
+  .imports > .maybe-class-name { color: var(--color-code-lightblue-text) }; /* maybe-class-name: Uppercase first letter only */
+  .module { color:var(--color-code-pink-text) } /* keword related module ex.import, export */
+  .function-variable .maybe-class-name { color: var(--color-code-yellow-text) } /*  component Name */
+  .function .maybe-class-name { color: var(--color-code-yellow-text) } /*  component Name */
+  .property { color: var(--color-code-white-text) }
+  .interpolation { color: var(--color-code-purple-text) }
+  .interpolaion-puntuation { color: var(--color-code-purple-text) }
+  .tag { color: var(--color-code-blue-text) }
+  .tag > .punctuation { color: var(--color-code-gray-text) }
+  .comment { color: var(--color-code-gray-text) }
+  .attr-name { color: var(--color-code-lightblue-text) }
   .attr-value {
-    color: var(--color-text-code-white);
-    .attr-equals { color: var(--color-text-code-white) !important }
+    color: var(--color-code-white-text);
+    .attr-equals { color: var(--color-code-white-text) !important }
   }
-  .number { color: var(--color-text-code-green) }
-  .property-access { color: var(--color-text-code-lightblue) }
-  .boolean { color: var(--color-text-code-blue) }
-  .arrow { color: var(--color-text-code-blue) }
+  .number { color: var(--color-code-green-text) }
+  .property-access { color: var(--color-code-lightblue-text) }
+  .boolean { color: var(--color-code-blue-text) }
+  .arrow { color: var(--color-code-blue-text) }
   .script {
-    color: var(--color-text-code-cyan);
-    .script-punctuation { color: var(--color-text-code-white) !important }
-    .punctuation { color: var(--color-text-code-white) }
+    color: var(--color-code-cyan-text);
+    .script-punctuation { color: var(--color-code-white-text) !important }
+    .punctuation { color: var(--color-code-white-text) }
   }
-  .literal-property { color: var(--color-text-code-lightblue) }
-  .property { color: var(--color-text-code-lightblue) }
-  .builtin { color: var(--color-text-code-teal) }
-  .regex > .regex-delimiter { color: var(--color-text-code-red) }
-  .regex > .regex-source { color: var(--color-text-code-red) }
-  .regex > .regex-flags { color: var(--color-text-code-blue) }
+  .literal-property { color: var(--color-code-lightblue-text) }
+  .property { color: var(--color-code-lightblue-text) }
+  .builtin { color: var(--color-code-teal-text) }
+  .regex > .regex-delimiter { color: var(--color-code-red-text) }
+  .regex > .regex-source { color: var(--color-code-red-text) }
+  .regex > .regex-flags { color: var(--color-code-blue-text) }
 
 }
 
@@ -158,8 +150,8 @@ ol {
 
 blockquote {
   padding: toRem(24) toRem(16);
-  margin: toRem(24) 0 toRem(32);
-  background-color: var(--color-bg-navbar); /* Set highlight bg color */
+  margin: toRem(24) 0;
+  background-color: var(--color-codesnipet-bg); /* Set highlight bg color */
   border-left: 4px solid var(--color-text-primary);
   border-radius: 0 8px 8px 0;
   p {

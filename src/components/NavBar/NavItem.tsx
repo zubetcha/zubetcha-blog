@@ -15,13 +15,11 @@ export const NavItem = ({ name, icon, path, isFocused }: Props) => {
 	const router = useRouter();
 	return (
 		<div
-			className={classes.navItem_container}
+			className={classes['navitem-container']}
 			onClick={() => router.replace(path)}
 		>
 			<Icon role={icon} />
-			<Typo role='body-large' style={{ cursor: 'pointer' }}>
-				{name}
-			</Typo>
+			<p className={classes.name}>{name}</p>
 		</div>
 	);
 };

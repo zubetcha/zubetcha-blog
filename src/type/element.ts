@@ -17,7 +17,8 @@ export type IconRoleUnionType =
 	| 'home'
 	| 'dropdown'
 	| 'forward'
-	| 'backward';
+	| 'backward'
+	| 'chevron-right';
 
 export type TypoRoleUnionType =
 	| 'display-large'
@@ -34,4 +35,4 @@ export type TypoRoleUnionType =
 	| 'label-small'
 	| 'body-large'
 	| 'body-medium'
-	| 'body-small'
+	| 'body-small';
