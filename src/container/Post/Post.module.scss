@@ -9,7 +9,8 @@
 	header {
 		@include flex-direction(column, 24);
 		@include flex-box(start, center);
-		border-bottom: 1px solid var(--color-text-contents);
+		border-bottom: 1px solid var(--color-post-divider);
+		color: var(--color-post-main-text);
 		padding: 0 0 toRem(24);
 		.tags-wrapper {
 			@include flex-direction(row, 12);
@@ -19,6 +20,7 @@
 		}
 		time {
 			@include label-large();
+			color: var(--color-post-sub-text);
 		}
 	}
 
@@ -27,12 +29,12 @@
 		h2 {
 			@include display-small(700);
 			margin: toRem(48) 0 toRem(24);
-			color: var(--color-text-primary);
+			color: var(--color-post-h2-text);
 			code {
 				border-radius: 4px;
-				color: var(--color-text-white);
-				background-color: $gray700;
-				padding: toRem(2) toRem(4);
+				background-color: var(--color-post-strong-bg);
+				color: var(--color-post-h2-text);
+				padding: toRem(4) toRem(8);
 				margin-right: toRem(2);
 			}
 		}
@@ -40,10 +42,11 @@
 		h3 {
 			@include headline-small(700);
 			margin: toRem(32) 0 toRem(16);
+			color: var(--color-post-main-text);
+
 			code {
 				border-radius: 4px;
-				color: var(--color-text-white);
-				background-color: $gray700;
+				background-color: var(--color-post-strong-bg);
 				padding: toRem(2) toRem(4);
 				margin-right: toRem(2);
 			}
@@ -51,24 +54,24 @@
 
 		p {
 			@include body-large();
-			color: var(--color-text-contents);
-			margin: 0 0 toRem(24);
+			color: var(--color-post-main-text);
+			margin: toRem(12) 0;
 			code {
 				@include body-medium(500);
 				border-radius: 4px;
-				color: var(--color-text-white);
-				background-color: $gray700;
+				color: var(--color-post-main-text);
+				background-color: var(--color-post-strong-bg);
 				padding: toRem(2) toRem(4);
 				margin-right: toRem(2);
 			}
 		}
 		a {
-			color: #58a6ff;
+			color: var(--color-post-anchor-text);
 			&:hover {
 				text-decoration: underline;
 			}
 			code {
-				color: #58a6ff;
+				color: var(--color-post-anchor-text);
 				&:hover {
 					text-decoration: underline;
 				}
@@ -77,24 +80,26 @@
 
 		table {
 			border-collapse: collapse;
+			margin: toRem(24) 0;
 			thead {
 				tr {
 					@include body-large(500);
 					th {
 						padding: toRem(8) toRem(12);
+						color: var(--color-post-sub-text);
 						text-align: left;
 					}
 				}
 			}
 
 			tbody {
-				border-top: 1px solid var(--color-text-contents);
+				border-top: 1px solid var(--color-post-divider);
 				tr {
 					@include body-large(300);
-					border-bottom: 1px solid var(--color-text-contents);
+					border-bottom: 1px solid var(--color-post-divider);
 					td {
 						padding: toRem(8) toRem(12);
-						border-right: 1px solid var(--color-text-contents);
+						border-right: 1px solid var(--color-post-divider);
 					}
 					td:nth-last-child(1) {
 						border-right: transparent;
@@ -106,6 +111,7 @@
 		ul > li {
 			@include body-large();
 			padding-left: toRem(16);
+			margin-left: toRem(4);
 			position: relative;
 		}
 		ul > li::before {
@@ -113,7 +119,7 @@
 			content: '•';
 			left: 0;
 			display: inline-block;
-			color: var(--color-text-contents);
+			color: var(--color-post-main-text);
 		}
 
 		ol > li {

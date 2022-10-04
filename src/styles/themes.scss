@@ -14,20 +14,48 @@ html[data-theme='dark'] {
 	--color-bg-tag-hover: #{$teal800};
 	--color-bg-postcard: #{$gray900};
 
-	--color-bg-code-snipet: #{$gray900};
-	--color-text-code-white: #{$gray100};
-	--color-text-code-red: #d73a4a;
-	--color-text-code-orange: #cf8c50;
-	--color-text-code-yellow: #f4db95;
-	--color-text-code-lime: #{$limeA400};
-	--color-text-code-green: #{$green200};
-	--color-text-code-teal: #{$tealA400};
-	--color-text-code-blue: #3d75de;
-	--color-text-code-indigo: #{$indigoA200};
-	--color-text-code-pink: #d2a8ff;
-	--color-text-code-purple: #7057ff;
-	--color-text-code-lightblue: #9ee7ff;
-	--color-text-code-cyan: #{$cyanA400};
+	/**************************************/
+
+	--color-page-bg: #{$gray850};
+	--color-page-text: #{$gray100};
+
+	--color-navbar-bg: #{$gray900};
+	--color-navbar-main-text: #{$gray100};
+	--color-navbar-sub-text: #{$gray400};
+	--color-navbar-divider: #{$gray600};
+	--color-navitem-hover-bg: #{$gray800};
+	--color-navitem-active-bg: #{$gray800};
+
+	--color-postcard-bg: #{$gray900};
+	--color-postcard-main-text: #{$gray100};
+	--color-postcard-sub-text: #{$gray400};
+
+	--color-post-main-text: #{$gray100};
+	--color-post-sub-text: #{$gray400};
+	--color-post-h2-text: var(--color-text-primary);
+	--color-post-h3-text: #{$gray100};
+	--color-post-anchor-text: #58a6ff; // 고정
+	--color-post-divider: #{$gray600};
+	--color-post-strong-bg: #{$gray700};
+
+	// code snipet 고정
+	--color-codesnipet-bg: #{$gray900};
+	--color-code-gray-text: #5f6871;
+	--color-code-white-text: #{$gray100};
+	--color-code-red-text: #d73a4a;
+	--color-code-orange-text: #cf8c50;
+	--color-code-yellow-text: #f4db95;
+	--color-code-lime-text: #{$limeA400};
+	--color-code-green-text: #{$green200};
+	--color-code-teal-text: #{$tealA400};
+	--color-code-blue-text: #3d75de;
+	--color-code-indigo-text: #{$indigoA200};
+	--color-code-pink-text: #d2a8ff;
+	--color-code-purple-text: #7057ff;
+	--color-code-lightblue-text: #9ee7ff;
+	--color-code-cyan-text: #{$cyanA400};
+
+	--color-btn-bg: #{$gray900};
 }
 
 html[data-theme='light'] {

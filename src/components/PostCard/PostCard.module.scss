@@ -4,17 +4,11 @@
 
 .container {
 	border-radius: $border-radius;
-	background-color: var(--color-bg-postcard);
+	background-color: var(--color-postcard-bg); // done
 	// width: toRem(600);
 	@include flex-box(row, 0);
 
-	.image_wrapper {
-		border-radius: $border-radius;
-		width: toRem(320);
-		background-color: var(--color-text-secondary);
-	}
-
-	.contents-wrapper {
+	.wrapper {
 		width: 100%;
 		padding: toRem(32);
 		@include flex-direction(column, 24);
@@ -23,23 +17,55 @@
 			@include flex-direction(row, 12);
 		}
 
-		.above-wrapper {
-			@include flex-direction(column, 8);
+		.contents-wrapper {
+			@include flex-box(between, start);
+			@include flex-direction(column, 16);
+			height: 100%;
 			.title {
 				@include headline-small(700);
+				color: var(--color-postcard-main-text);
 			}
-			.description {
-				@include body-medium();
-			}
-		}
 
-		.below-wrapper {
-			@include flex-box(between, center);
-			.readmore {
-				@include body-small();
+			.above-wrapper {
+				width: 100%;
+				@include flex-box(between, start);
+				@include flex-direction(column, 16);
+				.description {
+					@include body-medium();
+					color: var(--color-postcard-sub-text);
+				}
 			}
-			.createdAt {
-				@include body-small();
+
+			.below-wrapper {
+				@include flex-box(between, center);
+				width: 100%;
+
+				.readmore-wrapper {
+					@include flex-box(center, center);
+					@include flex-direction(row, 4);
+					cursor: pointer;
+
+					.readmore {
+						@include body-medium();
+						color: var(--color-postcard-sub-text);
+					}
+					svg {
+						fill: var(--color-postcard-sub-text);
+					}
+					&:hover {
+						.readmore {
+							color: var(--color-postcard-main-text);
+						}
+						svg {
+							fill: var(--color-postcard-main-text);
+						}
+					}
+				}
+
+				.createdAt {
+					@include body-small();
+					color: var(--color-postcard-sub-text);
+				}
 			}
 		}
 	}

@@ -12,7 +12,7 @@ import {
 	IoMdArrowBack,
 } from 'react-icons/io';
 
-import { MdOutlineEmail } from 'react-icons/md';
+import { MdOutlineEmail, MdChevronRight } from 'react-icons/md';
 import {
 	RiMenuFoldLine,
 	RiMenuUnfoldLine,
@@ -58,6 +58,7 @@ export const Icon = ({ role, size, onClick }: Props) => {
 		forward: <IoMdArrowForward {...props} />,
 		backward: <IoMdArrowBack {...props} />,
 		web: <GoBrowser {...props} />,
+		'chevron-right': <MdChevronRight {...props} />,
 	};
 
 	return icons[role];

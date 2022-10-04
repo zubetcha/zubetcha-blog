@@ -54,13 +54,11 @@ export const NavBar = () => {
 						<span className={classes.highlight}></span>
 					</div>
 				</div>
-				<div className={classes.profile_info_wrapper}>
-					<Typo role='title-small'>zubetcha</Typo>
-					<Typo role='body-small' style={{ fontWeight: '300' }}>
-						Web Frontend Developer
-					</Typo>
+				<div className={classes['profile-info-wrapper']}>
+					<p className={classes.nickname}>zubetcha</p>
+					<p className={classes.description}>Web Frontend Developer</p>
 				</div>
-				<div className={classes.profile_contacts_wrapper}>
+				<div className={classes['profile-contacts-wrapper']}>
 					{Object.keys(contactList).map((contact) => {
 						return (
 							<Icon
@@ -88,9 +86,9 @@ export const NavBar = () => {
 				})}
 			</div>
 
-			<div className={classes.footer_container}>
-				<Typo role='body-small'>© 2022 zubetcha.</Typo>
-				<Typo role='body-small'>All Rights Reserved.</Typo>
+			<div className={classes['footer-container']}>
+				<p className={classes['footer-info']}>© 2022 zubetcha.</p>
+				<p className={classes['footer-info']}>All Rights Reserved.</p>
 			</div>
 		</div>
 	);

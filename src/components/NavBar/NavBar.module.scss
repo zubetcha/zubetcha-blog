@@ -5,7 +5,7 @@
 .container {
 	min-width: toRem(320);
 	height: calc(100vh - toRem(64));
-	background-color: var(--color-bg-navbar);
+	background-color: var(--color-navbar-bg); // done
 	padding: toRem(24);
 	margin: toRem(32) 0 toRem(32) toRem(32);
 	border-radius: $border-radius;
@@ -25,7 +25,7 @@
 
 		.profile_image_wrapper {
 			@include circle(144);
-			border: 1px solid var(--color-bg-navitem-hover);
+			border: 1px solid var(--color-navbar-divider); // done
 			padding: toRem(16);
 			position: relative;
 			cursor: pointer;
@@ -51,12 +51,20 @@
 			}
 		}
 
-		.profile_info_wrapper {
+		.profile-info-wrapper {
 			@include flex-box(center, center);
 			@include flex-direction(column, 8);
+			.nickname {
+				@include title-small();
+				color: var(--color-navbar-main-text); // done
+			}
+			.description {
+				@include body-small();
+				color: var(--color-navbar-sub-text); // done
+			}
 		}
 
-		.profile_contacts_wrapper {
+		.profile-contacts-wrapper {
 			@include flex-direction(row, 16);
 			svg {
 				cursor: pointer;
@@ -74,7 +82,7 @@
 		.divider {
 			width: 100%;
 			height: 1px;
-			background-color: var(--color-bg-navitem-hover);
+			background-color: var(--color-navbar-divider); // done
 			margin: 0 0 toRem(16);
 		}
 	}
@@ -112,7 +120,7 @@
 	}
 }
 
-.navItem_container {
+.navitem-container {
 	@include flex-direction(row, 16);
 	@include flex-box(start, center);
 
@@ -121,8 +129,14 @@
 	cursor: pointer;
 	border-radius: 12px;
 
+	.name {
+		@include body-large();
+		cursor: pointer;
+		color: var(--color-navbar-main-text); // done
+	}
+
 	&:hover {
-		background-color: var(--color-bg-navitem-hover);
+		background-color: var(--color-navitem-hover-bg); // done
 		svg {
 			fill: var(--color-text-primary);
 		}
@@ -133,8 +147,12 @@
 	}
 }
 
-.footer_container {
+.footer-container {
 	height: 100%;
 	@include flex-box(end, center);
 	@include flex-direction(column, 4);
+	.footer-info {
+		@include body-small(300);
+		color: var(--color-navbar-sub-text); // done
+	}
 }
