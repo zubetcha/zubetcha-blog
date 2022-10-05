@@ -9,7 +9,7 @@ import { IconRoleUnionType } from 'src/type/element';
 import { contactList, navItems } from '@constants/navigation';
 
 import Image from 'next/image';
-import { Icon, Typo, NavItem } from '@components/index';
+import { Icon, NavItem } from '@components/index';
 
 export const NavBar = () => {
 	const router = useRouter();

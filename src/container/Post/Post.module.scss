@@ -55,7 +55,7 @@
 		p {
 			@include body-large();
 			color: var(--color-post-main-text);
-			margin: toRem(12) 0;
+			margin: toRem(12) 0 toRem(16);
 			code {
 				@include body-medium(500);
 				border-radius: 4px;

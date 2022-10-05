@@ -23,5 +23,9 @@
 		margin: $margin-top auto toRem(32);
 		width: fit-content;
 		@include flex-direction(column, 24);
+
+		.title {
+			@include display-medium(700);
+		}
 	}
 }

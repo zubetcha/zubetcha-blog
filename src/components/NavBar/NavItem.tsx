@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import classes from './NavBar.module.scss';
 import { IconRoleUnionType } from 'src/type/element';
 
-import { Icon, Typo } from '@components/index';
+import { Icon } from '@components/index';
 
 interface Props {
 	name: string;

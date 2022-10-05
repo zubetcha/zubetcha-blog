@@ -5,6 +5,7 @@
 .container {
 	border-radius: $border-radius;
 	background-color: var(--color-postcard-bg); // done
+  transition: background-color 0.3s ease-in-out;
 	// width: toRem(600);
 	@include flex-box(row, 0);
 

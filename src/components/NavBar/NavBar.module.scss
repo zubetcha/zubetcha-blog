@@ -46,7 +46,7 @@
 					position: absolute;
 					right: toRem(15);
 					bottom: toRem(15);
-					background-color: var(--color-text-primary);
+					background-color: var(--color-navbar-highlight-bg);
 				}
 			}
 		}
@@ -71,7 +71,7 @@
 				transition: fill 0.2s ease-out;
 
 				&:hover {
-					fill: var(--color-text-primary);
+					fill: var(--color-navbar-highlight-bg);
 				}
 			}
 		}
@@ -138,7 +138,7 @@
 	&:hover {
 		background-color: var(--color-navitem-hover-bg); // done
 		svg {
-			fill: var(--color-text-primary);
+			fill: var(--color-navbar-highlight-bg);
 		}
 	}
 

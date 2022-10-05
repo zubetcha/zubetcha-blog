@@ -9,9 +9,9 @@
 	.trigger-button {
 		width: fit-content;
 		border-radius: 48px;
-		background-color: var(--color-bg-navbar);
+		background-color: var(--color-select-bg);
 		padding: toRem(12) toRem(16) toRem(12) toRem(20);
-		color: var(--color-text-contents);
+		color: var(--color-select-main-text);
 		cursor: pointer;
 		transition: all 0.5s ease-in-out;
 
@@ -22,9 +22,9 @@
 
 	.options-wrapper {
 		position: absolute;
-		top: toRem(48);
+		top: toRem(56);
 		border-radius: 12px;
-		background-color: var(--color-bg-navbar);
+		background-color: var(--color-select-bg);
 		@include flex-direction(column, 0);
 		transition: all 0.3s ease-in-out;
 		max-height: 0;
@@ -40,11 +40,11 @@
 			padding: toRem(12) toRem(16);
 			min-width: toRem(144);
 			@include label-large();
-			color: var(--color-text-contents);
+			color: var(--color-select-main-text);
 			cursor: pointer;
 			transition: background-color 0.2s ease-in-out;
 			&:hover {
-				background-color: var(--color-bg-navitem-hover);
+				background-color: var(--color-select-option-hover-bg);
 			}
 		}
 	}
