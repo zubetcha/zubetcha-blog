@@ -1,6 +1,7 @@
 import classes from './Post.module.scss';
-import { formatDate, formatDateInKorean } from '@utils/date';
-import { Tag } from '@components/index';
+import { formatDate } from '@utils/date';
+import { getBlogJSONLD } from '@utils/page';
+import { Tag, PostSEO } from '@components/index';
 import { FrontMatter } from '@type/post';
 
 interface Props {
@@ -9,33 +10,37 @@ interface Props {
 	slug: string;
 }
 
-export const PostContainer = ({ children, frontMatter }: Props) => {
-	const { title, date, tags, category } = frontMatter;
-	const b = false;
-	const a = `add: ${tags}`;
-	console.log(frontMatter.category);
-	const c = {
-		key: 5,
-	};
+export const PostContainer = ({ children, frontMatter, slug }: Props) => {
+	const { title, date, tags, category, description } = frontMatter;
+	const formattedDate = formatDate(date);
+
 	return (
-		<article>
-			<div className={classes.container}>
-				<header>
-					<div className={classes['tags-wrapper']}>
-						{tags.map((tag) => (
-							<Tag tag={tag} />
-						))}
-					</div>
-					<h1>{title}</h1>
-					<div className={classes['']}>
-						<time dateTime={formatDate(date)} className={classes.createdAt}>
-							{formatDate(date)}
-						</time>
-						{/* <p>zubetcha</p> */}
-					</div>
-				</header>
-				<div className={classes.content}>{children}</div>
-			</div>
-		</article>
+		<>
+			<PostSEO
+				title={title}
+				description={description}
+				path={slug}
+				date={formattedDate}
+			/>
+			<article>
+				<div className={classes.container}>
+					<header>
+						<div className={classes['tags-wrapper']}>
+							{tags.map((tag) => (
+								<Tag tag={tag} />
+							))}
+						</div>
+						<h1>{title}</h1>
+						<div className={classes['']}>
+							<time dateTime={formattedDate} className={classes.createdAt}>
+								{formattedDate}
+							</time>
+							{/* <p>zubetcha</p> */}
+						</div>
+					</header>
+					<div className={classes.content}>{children}</div>
+				</div>
+			</article>
+		</>
 	);
 };

@@ -1,5 +1,6 @@
 import { getAllCategories } from './category';
 import { NUMBER_OF_POSTS } from '@constants/post';
+import { BLOG_INFO } from '@constants/blogInfo';
 import { Post } from '@type/post';
 
 export const getPageInfo = ({
@@ -27,3 +28,30 @@ export const getPageInfo = ({
 		categories,
 	};
 };
+
+export const getBlogJSONLD = ({
+	path,
+	title,
+	description,
+	datePublished,
+}: {
+	path: string;
+	title: string;
+	description: string;
+	datePublished: string;
+}) => ({
+	'@context': 'https://schema.org',
+	'@type': 'BlogPosting',
+	headline: title,
+	image: BLOG_INFO.image,
+	editor: BLOG_INFO.author,
+	url: BLOG_INFO.baseUrl + path,
+	datePublished,
+	dateCreated: datePublished,
+	dateModified: datePublished,
+	description: description,
+	author: {
+		'@type': 'Person',
+		name: BLOG_INFO.author,
+	},
+});
