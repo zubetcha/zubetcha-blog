@@ -8,3 +8,5 @@ export * from './PostCard/PostCard';
 export * from './SearchBar/SearchBar';
 export * from './Tag/Tag';
 export * from './Toggle/Toggle';
+export * from './SEO/PostSEO';
+export * from './SEO/PageSEO';
