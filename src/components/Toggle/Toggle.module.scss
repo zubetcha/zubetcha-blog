@@ -6,7 +6,7 @@
 	width: 80px;
 	height: toRem(48);
 	border-radius: 48px;
-	background-color: var(--color-bg-navbar);
+	background-color: var(--color-toggle-bg);
 	position: fixed;
 	right: toRem(32);
 	top: toRem(32);
@@ -18,14 +18,14 @@
 		height: 16px;
 		border-radius: 16px;
 		background-color: transparent;
-		border: 1px solid var(--color-text-contents);
+		border: 1px solid var(--color-toggle-bar-border);
 		position: relative;
 
 		.handler {
 			width: 24px;
 			height: 24px;
 			border-radius: 50%;
-			background-color: var(--color-text-primary);
+			background-color: var(--color-toggle-handle-bg);
 			-webkit-transition: transform 0.3s ease-in-out;
 			-moz-transition: transform 0.3s ease-in-out;
 			-o-transition: transform 0.3s ease-in-out;

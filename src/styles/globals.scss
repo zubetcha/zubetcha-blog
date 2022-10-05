@@ -29,6 +29,7 @@ time, mark, audio, video {
 
 html, body {
 	background-color: var(--color-page-bg); // done
+  transition: background-color 0.3s ease-in-out;
 }
 
 a {
@@ -151,8 +152,8 @@ ul {
 blockquote {
   padding: toRem(24) toRem(16);
   margin: toRem(24) 0;
-  background-color: var(--color-codesnipet-bg); /* Set highlight bg color */
-  border-left: 4px solid var(--color-text-primary);
+  background-color: var(--color-post-blockquote-bg); /* Set highlight bg color */
+  border-left: 4px solid var(--color-primary);
   border-radius: 0 8px 8px 0;
   p {
     margin: 0 !important;

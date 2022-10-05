@@ -14,9 +14,9 @@
 	.next-page-button {
 		width: fit-content;
 		border-radius: 48px;
-		background-color: var(--color-bg-navbar);
+		background-color: var(--color-btn-bg);
 		padding: toRem(12) toRem(16) toRem(12) toRem(20);
-		color: var(--color-text-contents);
+		color: var(--color-btn-main-text);
 		cursor: pointer;
 		transition: all 0.5s ease-in-out;
 		@include label-large();
@@ -28,9 +28,9 @@
 .prev-page-button {
 	width: fit-content;
 	border-radius: 48px;
-	background-color: var(--color-bg-navbar);
+	background-color: var(--color-btn-bg);
 	padding: toRem(12) toRem(20) toRem(12) toRem(16);
-	color: var(--color-text-contents);
+	color: var(--color-btn-main-text);
 	cursor: pointer;
 	transition: all 0.5s ease-in-out;
 	@include label-large();

@@ -1,20 +1,8 @@
 @use './colors' as *;
 
 html[data-theme='dark'] {
-	--color-text-title: #{$gray050};
-	--color-text-contents: #{$gray200};
-	--color-text-primary: #{$lime400};
-	--color-text-secondary: #{$teal400};
-
-	--color-bg-page: #{$black};
-	--color-bg-navbar: #{$gray900};
-	--color-bg-navitem: #{$gray900};
-	--color-bg-navitem-hover: #{$gray800};
-	--color-bg-tag: #{$teal900};
-	--color-bg-tag-hover: #{$teal800};
-	--color-bg-postcard: #{$gray900};
-
-	/**************************************/
+	--color-primary: #{$lime400};
+	--color-secondary: #{$tealA700};
 
 	--color-page-bg: #{$gray850};
 	--color-page-text: #{$gray100};
@@ -23,6 +11,7 @@ html[data-theme='dark'] {
 	--color-navbar-main-text: #{$gray100};
 	--color-navbar-sub-text: #{$gray400};
 	--color-navbar-divider: #{$gray600};
+	--color-navbar-highlight-bg: var(--color-primary);
 	--color-navitem-hover-bg: #{$gray800};
 	--color-navitem-active-bg: #{$gray800};
 
@@ -32,15 +21,16 @@ html[data-theme='dark'] {
 
 	--color-post-main-text: #{$gray100};
 	--color-post-sub-text: #{$gray400};
-	--color-post-h2-text: var(--color-text-primary);
+	--color-post-h2-text: var(--color-primary);
 	--color-post-h3-text: #{$gray100};
 	--color-post-anchor-text: #58a6ff; // 고정
 	--color-post-divider: #{$gray600};
 	--color-post-strong-bg: #{$gray700};
+	--color-post-blockquote-bg: #{$gray900};
 
 	// code snipet 고정
 	--color-codesnipet-bg: #{$gray900};
-	--color-code-gray-text: #5f6871;
+	--color-code-gray-text: #{$gray500};
 	--color-code-white-text: #{$gray100};
 	--color-code-red-text: #d73a4a;
 	--color-code-orange-text: #cf8c50;
@@ -55,35 +45,71 @@ html[data-theme='dark'] {
 	--color-code-lightblue-text: #9ee7ff;
 	--color-code-cyan-text: #{$cyanA400};
 
+	--color-toggle-bg: #{$gray900};
+	--color-toggle-bar-border: #{$gray100};
+	--color-toggle-handle-bg: var(--color-primary);
+
+	--color-select-bg: #{$gray900};
+	--color-select-main-text: #{$gray100};
+	--color-select-option-hover-bg: #{$gray800};
+
 	--color-btn-bg: #{$gray900};
+	--color-btn-main-text: #{$gray100};
 }
 
 html[data-theme='light'] {
-	--color-text-title: #{$black};
-	--color-text-contents: #{$gray900};
-	--color-text-primary: #{$indigo700};
-	--color-text-secondary: #{$teal700};
+	--color-primary: #{$indigo700};
+	--color-secondary: #{$teal700};
 
-	--color-bg-page: #{$white};
-	--color-bg-navbar: #{$gray100};
-	--color-bg-navitem: #{$gray100};
-	--color-bg-navitem-hover: #{$gray200};
-	--color-bg-tag: #{$teal900};
-	--color-bg-tag-hover: #{$teal800};
-	--color-bg-postcard: #{$gray100};
+	--color-page-bg: #{$gray050};
+	--color-page-text: #{$gray900};
 
-	--color-bg-code-snipet: #{$gray900};
-	--color-text-code-white: #{$gray100};
-	--color-text-code-red: #d73a4a;
-	--color-text-code-orange: #cf8c50;
-	--color-text-code-yellow: #f4db95;
-	--color-text-code-lime: #{$limeA400};
-	--color-text-code-green: #{$green200};
-	--color-text-code-teal: #{$tealA400};
-	--color-text-code-blue: #558ffb;
-	--color-text-code-indigo: #{$indigoA200};
-	--color-text-code-pink: #d2a8ff;
-	--color-text-code-purple: #7057ff;
-	--color-text-code-lightblue: #9ee7ff;
-	--color-text-code-cyan: #{$cyanA400};
+	--color-navbar-bg: #{$gray100};
+	--color-navbar-main-text: #{$gray900};
+	--color-navbar-sub-text: #{$gray600};
+	--color-navbar-divider: #{$gray400};
+	--color-navbar-highlight-bg: var(--color-primary);
+	--color-navitem-hover-bg: #{$gray050};
+	--color-navitem-active-bg: #{$gray050};
+
+	--color-postcard-bg: #{$gray100};
+	--color-postcard-main-text: #{$gray900};
+	--color-postcard-sub-text: #{$gray600};
+
+	--color-post-main-text: #{$gray900};
+	--color-post-sub-text: #{$gray600};
+	--color-post-h2-text: var(--color-primary);
+	--color-post-h3-text: #{$gray900};
+	--color-post-anchor-text: #58a6ff; // 고정
+	--color-post-divider: #{$gray400};
+	--color-post-strong-bg: #{$gray300};
+	--color-post-blockquote-bg: #{$gray100};
+
+	// code snipet 고정
+	--color-codesnipet-bg: #{$gray900};
+	--color-code-gray-text: #{$gray500};
+	--color-code-white-text: #{$gray100};
+	--color-code-red-text: #d73a4a;
+	--color-code-orange-text: #cf8c50;
+	--color-code-yellow-text: #f4db95;
+	--color-code-lime-text: #{$limeA400};
+	--color-code-green-text: #{$green200};
+	--color-code-teal-text: #{$tealA400};
+	--color-code-blue-text: #3d75de;
+	--color-code-indigo-text: #{$indigoA200};
+	--color-code-pink-text: #d2a8ff;
+	--color-code-purple-text: #7057ff;
+	--color-code-lightblue-text: #9ee7ff;
+	--color-code-cyan-text: #{$cyanA400};
+
+	--color-toggle-bg: #{$gray100};
+	--color-toggle-bar-border: #{$gray800};
+	--color-toggle-handle-bg: var(--color-primary);
+
+	--color-select-bg: #{$gray100};
+	--color-select-main-text: #{$gray900};
+	--color-select-option-hover-bg: #{$gray200};
+
+	--color-btn-bg: #{$gray100};
+	--color-btn-main-text: #{$gray900};
 }
