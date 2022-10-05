@@ -19,7 +19,7 @@ export const PostContainer = ({ children, frontMatter, slug }: Props) => {
 			<PostSEO
 				title={title}
 				description={description}
-				path={slug}
+				path={`/${slug}`}
 				date={formattedDate}
 			/>
 			<article>
