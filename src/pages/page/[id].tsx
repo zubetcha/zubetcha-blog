@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { getAllPosts, getPageInfo, getUpperCategory } from '@utils/index';
 
-import { PostListPageContainer } from '@container/index';
+import { PostListContainer } from '@container/index';
 import { Select } from '@components/index';
 
 import { NUMBER_OF_POSTS } from '@constants/post';
@@ -18,7 +18,7 @@ interface Props {
 }
 
 export default function PostListPage(props: Props) {
-	return <PostListPageContainer {...props} title='All Posts' />;
+	return <PostListContainer {...props} title='All Posts' />;
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
