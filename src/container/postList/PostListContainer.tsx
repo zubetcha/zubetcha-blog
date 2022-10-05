@@ -15,7 +15,7 @@ interface Props {
 	categories: Array<string>;
 }
 
-export const PostListPageContainer = ({
+export const PostListContainer = ({
 	posts,
 	hasMore,
 	pageNo,
