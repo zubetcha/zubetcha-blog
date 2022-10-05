@@ -5,7 +5,7 @@ import {
 	getPageInfo,
 	getUpperCategory,
 } from '@utils/index';
-import { PostListPageContainer } from '@container/index';
+import { PostListContainer } from '@container/index';
 
 import { NUMBER_OF_POSTS } from '@constants/post';
 import { Post } from '@type/post';
@@ -21,7 +21,7 @@ interface Props {
 
 export default function CategoryPage({ category, ...props }: Props) {
 	const title = getUpperCategory(category);
-	return <PostListPageContainer {...props} title={title} />;
+	return <PostListContainer {...props} title={title} />;
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
