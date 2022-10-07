@@ -11,29 +11,29 @@
 
 .button-wrapper {
 	@include flex-box(between, center);
-	.next-page-button {
+
+	.page-button {
 		width: fit-content;
 		border-radius: 48px;
 		background-color: var(--color-btn-bg);
-		padding: toRem(12) toRem(16) toRem(12) toRem(20);
+		border: 1px solid var(--color-btn-bg);
 		color: var(--color-btn-main-text);
 		cursor: pointer;
-		transition: all 0.5s ease-in-out;
+		transition: border-color 0.2s ease-in-out;
 		@include label-large();
 		@include flex-box(between, center);
 		@include flex-direction(row, 8);
-	}
-}
 
-.prev-page-button {
-	width: fit-content;
-	border-radius: 48px;
-	background-color: var(--color-btn-bg);
-	padding: toRem(12) toRem(20) toRem(12) toRem(16);
-	color: var(--color-btn-main-text);
-	cursor: pointer;
-	transition: all 0.5s ease-in-out;
-	@include label-large();
-	@include flex-box(between, center);
-	@include flex-direction(row, 8);
+		&:hover {
+			border-color: var(--color-btn-hover-border);
+		}
+
+		&.prev {
+			padding: toRem(12) toRem(20) toRem(12) toRem(16);
+		}
+
+		&.next {
+			padding: toRem(12) toRem(16) toRem(12) toRem(20);
+		}
+	}
 }

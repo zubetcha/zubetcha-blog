@@ -1,5 +1,6 @@
 import { useEffect, useRef, MouseEvent } from 'react';
 import { useRouter } from 'next/router';
+import classNames from 'classnames';
 import classes from './PostList.module.scss';
 import { getUpperCategory } from '@utils/category';
 
@@ -92,7 +93,7 @@ export const PostListContainer = ({
 					<div>
 						{pageNo > 1 ? (
 							<button
-								className={classes['prev-page-button']}
+								className={classNames(classes['page-button'], classes.prev)}
 								onClick={(e) => onClickPrev(e)}
 							>
 								<Icon role='backward' />
@@ -105,7 +106,7 @@ export const PostListContainer = ({
 					<div>
 						{hasMore ? (
 							<button
-								className={classes['next-page-button']}
+								className={classNames(classes['page-button'], classes.next)}
 								onClick={(e) => onClickNext(e)}
 							>
 								Next
