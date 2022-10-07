@@ -104,17 +104,17 @@
 			}
 		}
 
-		.navItem_container {
+		.navitem-container {
 			@include flex-box(center, center);
 			padding: 0;
 			width: toRem(48);
 			height: toRem(48);
 
-			p {
+			.name {
 				display: none;
 			}
 		}
-		.footer_container {
+		.footer-container {
 			display: none;
 		}
 	}
