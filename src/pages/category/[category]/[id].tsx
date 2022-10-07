@@ -5,7 +5,7 @@ import {
 	getPageInfo,
 	getUpperCategory,
 } from '@utils/index';
-import { PostListContainer } from '@container/index';
+import { PostListContainer } from '@container/PostList/PostListContainer';
 
 import { NUMBER_OF_POSTS } from '@constants/post';
 import { Post } from '@type/post';
