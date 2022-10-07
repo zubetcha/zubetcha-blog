@@ -32,7 +32,10 @@ export const Select = ({ children, onChange, defaultLabel }: Props) => {
 			<div className={classes.container}>
 				<button
 					onClick={(e) => onClickButton(e)}
-					className={classes['trigger-button']}
+					className={classNames(
+						classes['trigger-button'],
+						classes[open ? 'open' : ''],
+					)}
 				>
 					{defaultLabel}
 					<Icon role='dropdown' />

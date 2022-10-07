@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import { useSpring } from 'react-spring';
 import { useExpanded } from '@context/expanded';
 import classNames from 'classnames';
 import classes from './NavBar.module.scss';
@@ -14,6 +15,10 @@ import { Icon, NavItem } from '@components/index';
 export const NavBar = () => {
 	const router = useRouter();
 	const { expanded, setExpanded } = useExpanded();
+	const [style, api] = useSpring(() => ({
+		width: '72px',
+    
+	}));
 	const newExpanded = expanded ? false : true;
 
 	const onClickContact = (e: React.MouseEvent<SVGElement>) => {

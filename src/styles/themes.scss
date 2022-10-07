@@ -12,7 +12,7 @@ html[data-theme='dark'] {
 	--color-navbar-sub-text: #{$gray400};
 	--color-navbar-divider: #{$gray600};
 	--color-navbar-highlight-bg: var(--color-primary);
-	--color-navitem-hover-bg: #{$gray800};
+	--color-navitem-hover-bg: #{$gray850};
 	--color-navitem-active-bg: #{$gray800};
 
 	--color-postcard-bg: #{$gray900};
@@ -50,11 +50,13 @@ html[data-theme='dark'] {
 	--color-toggle-handle-bg: var(--color-primary);
 
 	--color-select-bg: #{$gray900};
+	--color-select-hover-border: var(--color-primary);
 	--color-select-main-text: #{$gray100};
-	--color-select-option-hover-bg: #{$gray800};
+	--color-select-option-hover-bg: #{$gray850};
 
 	--color-btn-bg: #{$gray900};
 	--color-btn-main-text: #{$gray100};
+	--color-btn-hover-border: var(--color-primary);
 }
 
 html[data-theme='light'] {

@@ -3,7 +3,7 @@
 @import '../../styles/sizes';
 
 .container {
-	min-width: toRem(320);
+	width: toRem(320);
 	height: calc(100vh - toRem(64));
 	background-color: var(--color-navbar-bg); // done
 	padding: toRem(24);
@@ -89,7 +89,7 @@
 
 	&.isFolded {
 		@include flex-box(start, center);
-		min-width: toRem(72);
+		width: toRem(72);
 		padding: toRem(16);
 
 		.profile_wrapper {
@@ -104,17 +104,17 @@
 			}
 		}
 
-		.navItem_container {
+		.navitem-container {
 			@include flex-box(center, center);
 			padding: 0;
 			width: toRem(48);
 			height: toRem(48);
 
-			p {
+			.name {
 				display: none;
 			}
 		}
-		.footer_container {
+		.footer-container {
 			display: none;
 		}
 	}

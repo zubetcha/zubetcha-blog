@@ -10,10 +10,16 @@
 		width: fit-content;
 		border-radius: 48px;
 		background-color: var(--color-select-bg);
+		border: 1px solid var(--color-select-bg);
 		padding: toRem(12) toRem(16) toRem(12) toRem(20);
 		color: var(--color-select-main-text);
 		cursor: pointer;
-		transition: all 0.5s ease-in-out;
+		transition: border-color 0.2s ease-in-out;
+
+		&:hover,
+		&.open {
+			border-color: var(--color-select-hover-border);
+		}
 
 		@include flex-box(between, center);
 		@include flex-direction(row, 8);
@@ -22,8 +28,8 @@
 
 	.options-wrapper {
 		position: absolute;
-		top: toRem(56);
-		border-radius: 12px;
+		top: toRem(52);
+		border-radius: 24px;
 		background-color: var(--color-select-bg);
 		@include flex-direction(column, 0);
 		transition: all 0.3s ease-in-out;
@@ -33,7 +39,9 @@
 		&.open {
 			transition: all 0.3s ease-in-out;
 			max-height: toRem(600);
-			padding: toRem(8) 0;
+			padding: toRem(12) 0;
+			box-shadow: 0px 6px 10px 4px rgba(0, 0, 0, 0.15),
+				0px 2px 3px rgba(0, 0, 0, 0.3);
 		}
 
 		.option {
