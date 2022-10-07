@@ -29,7 +29,6 @@ export const PostListContainer = ({
 	title,
 	categories,
 }: Props) => {
-	console.log(posts);
 	const router = useRouter();
 	const container = useRef<null | HTMLDivElement>(null);
 
