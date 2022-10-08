@@ -9,7 +9,7 @@
 					"@assets": "./src/assets",
 					"@components": "./src/components",
 					"@constants": "./src/constants",
-					"@layouts": "./src/layouts",
+					"@containers": "./src/containers",
 					"@context": "./src/context",
 					"@hooks": "./src/hooks",
 					"@styles": "./src/styles",
