@@ -3,7 +3,7 @@ import { ParsedUrlQuery } from 'querystring';
 import { Post } from '@type/post';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { getAllPosts, parseMdx } from '@utils/index';
-import { PostContainer } from '@container/Post/PostContainer';
+import { PostContainer } from '@containers/Post/PostContainer';
 
 interface Props {
 	post: Post;
