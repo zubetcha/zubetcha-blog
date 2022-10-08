@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { getAllPosts, getPageInfo, getUpperCategory } from '@utils/index';
 
-import { PostListContainer } from '@container/PostList/PostListContainer';
+import { PostListContainer } from '@container/postList/PostListContainer';
 import { Select } from '@components/index';
 
 import { NUMBER_OF_POSTS } from '@constants/post';
