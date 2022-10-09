@@ -177,7 +177,7 @@ html {
 	}
 
 	@include mobile() {
-		font-size: 14px;
+		font-size: 12px;
 	}
 }
 
@@ -203,6 +203,9 @@ ul {
  * 1. Make the element just wide enough to fit its content.
  * 2. Always fill the visible space in .code-highlight.
  */
+pre {
+	white-space: pre-wrap;
+}
 .code-highlight {
 	float: left; /* 1 */
 	min-width: 100%; /* 2 */

@@ -7,6 +7,13 @@
 	margin: $margin-top auto;
 	padding: 0 toRem(32);
 
+	@include mobile() {
+		margin: toRem(104) auto toRem(24);
+	}
+	@include tablet() {
+		margin: toRem(104) auto toRem(24);
+	}
+
 	header {
 		@include flex-direction(column, 24);
 		@include flex-box(start, center);
