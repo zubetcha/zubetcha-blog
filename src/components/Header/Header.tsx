@@ -26,7 +26,11 @@ export const Header = () => {
 		return (
 			<>
 				<div className={classes['header-container']}>
-					<Avartar size='small' />
+					<Avartar
+						size='small'
+						onClick={() => router.push('/page/1')}
+						style={{ cursor: 'pointer' }}
+					/>
 					<div className={classes['left']}>
 						<ul className={classes['nav-wrapper']}>
 							{navList.map(({ name, path }) => (

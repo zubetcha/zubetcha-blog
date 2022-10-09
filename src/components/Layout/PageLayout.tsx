@@ -4,7 +4,7 @@ import { useExpanded } from '@context/expanded';
 import classNames from 'classnames';
 import classes from './Layout.module.scss';
 
-import { Header, NavBar } from '..';
+import { Header, NavBar, Footer } from '..';
 
 interface Props {
 	children: JSX.Element[] | JSX.Element;
@@ -34,6 +34,7 @@ export const PageLayout = ({ children }: Props) => {
 			>
 				<Header />
 				{children}
+				<Footer />
 			</div>
 		</div>
 	);

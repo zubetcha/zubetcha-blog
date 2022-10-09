@@ -1,8 +1,11 @@
 import classes from './about.module.scss';
+import { BLOG_INFO } from '@constants/blogInfo';
 
 import Head from 'next/head';
 import Image from 'next/image';
-import { Typo } from '../../components/Elements/Typo/Typo';
+
+import { ContentLayout } from '@components/index';
+import { Typo } from '@components/Elements/Typo/Typo';
 
 import Zubetcha from '../../assets/images/zubetcha.jpeg';
 
@@ -10,34 +13,22 @@ const AboutPage = () => {
 	return (
 		<>
 			<Head>
-				<title>about</title>
-				<meta name='description' content='about zubetcha' />
-				<link rel='icon' href='/favicon.ico' />
+				<title>{BLOG_INFO.author}</title>
+				<meta name='description' content={BLOG_INFO.title} />
 			</Head>
-
-			<div className={classes.container}>
-				<Typo role='display-medium' style={{ fontWeight: '700' }}>
-					About
-				</Typo>
-				<div className={classes.contents_wrapper}>
-					<div className={classes.profile_image_wrapper}>
-						<Image src={Zubetcha} className={classes.profile_image} />
+			<ContentLayout title='About'>
+				<div className={classes.container}>
+					<div className={classes['profile-image-wrapper']}>
+						<Image src={Zubetcha} className={classes['profile-image']} />
 					</div>
-					<div className={classes.intro_wrapper}>
-						<Typo role='title-small' style={{ fontWeight: '700' }}>
-							안녕하세요, <br />
-							프론트엔드 개발자 zubetcha 입니다.
-						</Typo>
-						<Typo>
-							동물과 초록색,
-							<br /> 산,
-							<br /> 떡볶이,
-							<br />집
-							<br />을 좋아합니다.
-						</Typo>
+					<div className={classes['intro-wrapper']}>
+						<p className={classes.intro}>
+							I'm zubetcha,
+							<br />a web frontend developer.
+						</p>
 					</div>
 				</div>
-			</div>
+			</ContentLayout>
 		</>
 	);
 };
