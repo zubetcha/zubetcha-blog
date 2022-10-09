@@ -78,7 +78,7 @@ export const NavBar = () => {
 			<div className={classes.navItems_wrapper}>
 				{!expanded && (
 					<div
-						className={classes.navItem_container}
+						className={classes['navitem-container']}
 						onClick={() => router.push('/')}
 					>
 						<Icon role='home' />
