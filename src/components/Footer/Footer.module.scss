@@ -1,3 +1,39 @@
 @import '../../styles/colors';
 @import '../../styles/mixins';
 @import '../../styles/sizes';
+
+.container {
+	@include flex-direction(column, 24);
+	@include flex-box(start, center);
+	width: 100%;
+	height: fit-content;
+	padding: toRem(24) 0 toRem(32);
+
+	@include tablet-hori() {
+		display: none;
+	}
+	@include desktop() {
+		display: none;
+	}
+	@include large-desktop() {
+		display: none;
+	}
+
+	.contacts-wrapper {
+		@include flex-direction(row, 24);
+		svg {
+			cursor: pointer;
+			transition: fill 0.2s ease-out;
+
+			&:hover {
+				fill: var(--color-navbar-highlight-bg);
+			}
+		}
+	}
+
+	.footer-info {
+		text-align: center;
+		@include body-medium(300);
+		color: var(--color-navbar-sub-text); // done
+	}
+}

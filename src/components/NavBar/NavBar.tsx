@@ -5,11 +5,9 @@ import { useExpanded } from '@context/expanded';
 import classNames from 'classnames';
 import classes from './NavBar.module.scss';
 
-import Zubetcha from '../../assets/images/zubetcha.jpeg';
 import { IconRoleUnionType } from 'src/type/element';
 import { contactList, navItems } from '@constants/navigation';
 
-import Image from 'next/image';
 import { Icon, NavItem, Avartar } from '@components/index';
 
 export const NavBar = () => {
@@ -91,8 +89,11 @@ export const NavBar = () => {
 			</div>
 
 			<div className={classes['footer-container']}>
-				<p className={classes['footer-info']}>© 2022 zubetcha.</p>
-				<p className={classes['footer-info']}>All Rights Reserved.</p>
+				<p className={classes['footer-info']}>
+					© 2022 zubetcha.
+					<br />
+					All Rights Reserved.
+				</p>
 			</div>
 		</div>
 	);

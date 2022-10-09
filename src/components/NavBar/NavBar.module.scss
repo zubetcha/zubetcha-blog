@@ -3,7 +3,7 @@
 @import '../../styles/sizes';
 
 .container {
-	width: toRem(320);
+	min-width: toRem(320);
 	height: calc(100vh - toRem(64));
 	background-color: var(--color-navbar-bg); // done
 	padding: toRem(24);
@@ -99,7 +99,7 @@
 
 	&.isFolded {
 		@include flex-box(start, center);
-		width: toRem(72);
+		min-width: toRem(72);
 		padding: toRem(16);
 
 		@include mobile() {
@@ -169,6 +169,7 @@
 	@include flex-box(end, center);
 	@include flex-direction(column, 4);
 	.footer-info {
+		text-align: center;
 		@include body-small(300);
 		color: var(--color-navbar-sub-text); // done
 	}

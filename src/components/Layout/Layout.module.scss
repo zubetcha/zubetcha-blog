@@ -18,6 +18,7 @@
 
 .content-container {
 	padding: toRem(32) toRem(32) 0;
+	margin-bottom: auto;
 
 	@include mobile() {
 		padding: toRem(104) toRem(32) 0;
