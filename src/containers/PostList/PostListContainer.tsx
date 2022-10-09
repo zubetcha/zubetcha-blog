@@ -18,41 +18,43 @@ interface Props {
 	posts: Array<Post>;
 	hasMore: boolean;
 	pageNo: number;
-	title: string;
+	// title: string;
 	categories: Array<string>;
+	category: string;
 }
 
 export const PostListContainer = ({
 	posts,
 	hasMore,
 	pageNo,
-	title,
+	// title,
 	categories,
+	category,
 }: Props) => {
 	const router = useRouter();
 	const container = useRef<null | HTMLDivElement>(null);
-	const currentCategory = title.toLowerCase();
-	const isAll = currentCategory.includes('all');
+	const isAll = category.toLowerCase().includes('all');
+	const title = getUpperCategory(category);
 
 	const onClickPrev = (e: MouseEvent<HTMLButtonElement>) => {
 		e.preventDefault();
 		isAll
 			? router.push(`/page/${pageNo - 1}`)
-			: router.push(`/category/${currentCategory}/${pageNo - 1}`);
+			: router.push(`/category/${category.toLowerCase()}/${pageNo - 1}`);
 	};
 
 	const onClickNext = (e: MouseEvent<HTMLButtonElement>) => {
 		e.preventDefault();
 		isAll
 			? router.push(`/page/${pageNo + 1}`)
-			: router.push(`/category/${currentCategory}/${pageNo + 1}`);
+			: router.push(`/category/${category.toLowerCase()}/${pageNo + 1}`);
 	};
 
 	const onChangeCategory = (selected: string) => {
 		const selectedCategory = categories[parseInt(selected)];
 		selectedCategory === 'all'
 			? router.push('/page/1')
-			: router.push(`/category/${selectedCategory}/1`);
+			: router.push(`/category/${selectedCategory.toLowerCase()}/1`);
 	};
 
 	useEffect(() => {

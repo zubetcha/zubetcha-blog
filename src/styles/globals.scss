@@ -3,33 +3,182 @@
 @import './mixins';
 @import './colors';
 
+@font-face {
+	font-family: 'SUIT';
+	font-weight: 100;
+	src: url('../assets/font/SUIT-Thin.woff2') format('woff2'),
+		url('../assets/font/SUIT-Thin.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'SUIT';
+	font-weight: 200;
+	src: url('../assets/font/SUIT-ExtraLight.woff2') format('woff2'),
+		url('../assets/font/SUIT-ExtraLight.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'SUIT';
+	font-weight: 300;
+	src: url('../assets/font/SUIT-Light.woff2') format('woff2'),
+		url('../assets/font/SUIT-Light.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'SUIT';
+	font-weight: 400;
+	src: url('../assets/font/SUIT-Regular.woff2') format('woff2'),
+		url('../assets/font/SUIT-Regular.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'SUIT';
+	font-weight: 500;
+	src: url('../assets/font/SUIT-Medium.woff2') format('woff2'),
+		url('../assets/font/SUIT-Medium.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'SUIT';
+	font-weight: 600;
+	src: url('../assets/font/SUIT-SemiBold.woff2') format('woff2'),
+		url('../assets/font/SUIT-SemiBold.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'SUIT';
+	font-weight: 700;
+	src: url('../assets/font/SUIT-Bold.woff2') format('woff2'),
+		url('../assets/font/SUIT-Bold.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'SUIT';
+	font-weight: 800;
+	src: url('../assets/font/SUIT-ExtraBold.woff2') format('woff2'),
+		url('../assets/font/SUIT-ExtraBold.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'SUIT';
+	font-weight: 900;
+	src: url('../assets/font/SUIT-Heavy.woff2') format('woff2'),
+		url('../assets/font/SUIT-Heavy.ttf') format('truetype');
+}
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
 	margin: 0;
 	padding: 0;
 	border: 0;
 	font: inherit;
 	vertical-align: baseline;
-  color: var(--color-page-text); // done
-	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-	Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+	color: var(--color-page-text); // done
+	font-family: SUIT, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+		Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
-html, body {
+html,
+body {
 	background-color: var(--color-page-bg); // done
-  transition: background-color 0.3s ease-in-out;
+	transition: background-color 0.3s ease-in-out;
+}
+
+body {
+	overflow: hidden;
+}
+
+html {
+	@include large-desktop() {
+		font-size: 16px;
+	}
+
+	@include desktop() {
+		font-size: 16px;
+	}
+
+	@include tablet-hori() {
+		font-size: 14px;
+	}
+
+	@include tablet() {
+		font-size: 14px;
+	}
+
+	@include mobile() {
+		font-size: 14px;
+	}
 }
 
 a {
@@ -49,113 +198,187 @@ ul {
 	list-style: none;
 }
 
-
 /**
  * Inspired by gatsby remark prism - https://www.gatsbyjs.com/plugins/gatsby-remark-prismjs/
  * 1. Make the element just wide enough to fit its content.
  * 2. Always fill the visible space in .code-highlight.
  */
 .code-highlight {
-  float: left; /* 1 */
-  min-width: 100%; /* 2 */
-  padding: toRem(16) toRem(20);
-  border-radius: 8px;
-  background-color: var(--color-codesnipet-bg); // done
-  margin: toRem(24) 0;
+	float: left; /* 1 */
+	min-width: 100%; /* 2 */
+	padding: toRem(16) toRem(20);
+	border-radius: 8px;
+	background-color: var(--color-codesnipet-bg); // done
+	margin: toRem(24) 0;
 }
 
 .code-line {
-  @include body-large(300);
-  display: block;
-  padding-left: 16px;
-  padding-right: 16px;
-  margin-left: -16px;
-  margin-right: -16px;
-  // border-left-width: 4px;
-  // border-left-color: rgba(52, 98, 163, 0); /* Set code block color */
+	@include body-large(300);
+	display: block;
+	padding-left: 16px;
+	padding-right: 16px;
+	margin-left: -16px;
+	margin-right: -16px;
+	// border-left-width: 4px;
+	// border-left-color: rgba(52, 98, 163, 0); /* Set code block color */
 }
 
 .code-line.inserted {
-  background-color: rgba(16, 185, 129, 0.2); /* Set inserted line (+) color */
+	background-color: rgba(16, 185, 129, 0.2); /* Set inserted line (+) color */
 }
 
 .code-line.deleted {
-  background-color: rgba(239, 68, 68, 0.2); /* Set deleted line (-) color */
+	background-color: rgba(239, 68, 68, 0.2); /* Set deleted line (-) color */
 }
 
 .highlight-line {
-  margin-left: -16px;
-  margin-right: -16px;
-  background-color: rgba(55, 65, 81, 0.5); /* Set highlight bg color */
-  border-left-width: 4px;
-  border-left-color: rgb(59, 130, 246); /* Set highlight accent border color */
+	margin-left: -16px;
+	margin-right: -16px;
+	background-color: rgba(55, 65, 81, 0.5); /* Set highlight bg color */
+	border-left-width: 4px;
+	border-left-color: rgb(59, 130, 246); /* Set highlight accent border color */
 }
 
 .code-line {
-  color: var(--color-code-cyan-text);
-  .keyword { color: var(--color-code-blue-text) }
-  .string { color: var(--color-code-orange-text) }
-  .punctuation { color: var(--color-code-white-text) }
-  .maybe-class-name { color: var(--color-code-teal-text) } /* first letter only uppercase */
-  .class-name { color: var(--color-code-teal-text) } /* first letter only uppercase */
-  .operator { color: var(--color-code-white-text) }
-  .constant { color: var(--color-code-teal-text) } /* all letter uppercase */
-  .method { color: var(--color-code-yellow-text) !important }
-  .function { color: var(--color-code-yellow-text) }
-  .control-flow { color:var(--color-code-pink-text) } /* return */
-  .console { color: var(--color-code-lightblue-text) }
-  .parameter { color: var(--color-code-lightblue-text) }
-  .imports { color: var(--color-code-lightblue-text) } /* imports: imported module name */
-  .imports > .maybe-class-name { color: var(--color-code-lightblue-text) }; /* maybe-class-name: Uppercase first letter only */
-  .module { color:var(--color-code-pink-text) } /* keword related module ex.import, export */
-  .function-variable .maybe-class-name { color: var(--color-code-yellow-text) } /*  component Name */
-  .function .maybe-class-name { color: var(--color-code-yellow-text) } /*  component Name */
-  .property { color: var(--color-code-white-text) }
-  .interpolation { color: var(--color-code-purple-text) }
-  .interpolaion-puntuation { color: var(--color-code-purple-text) }
-  .tag { color: var(--color-code-blue-text) }
-  .tag > .punctuation { color: var(--color-code-gray-text) }
-  .comment { color: var(--color-code-gray-text) }
-  .attr-name { color: var(--color-code-lightblue-text) }
-  .attr-value {
-    color: var(--color-code-white-text);
-    .attr-equals { color: var(--color-code-white-text) !important }
-  }
-  .number { color: var(--color-code-green-text) }
-  .property-access { color: var(--color-code-lightblue-text) }
-  .boolean { color: var(--color-code-blue-text) }
-  .arrow { color: var(--color-code-blue-text) }
-  .script {
-    color: var(--color-code-cyan-text);
-    .script-punctuation { color: var(--color-code-white-text) !important }
-    .punctuation { color: var(--color-code-white-text) }
-  }
-  .literal-property { color: var(--color-code-lightblue-text) }
-  .property { color: var(--color-code-lightblue-text) }
-  .builtin { color: var(--color-code-teal-text) }
-  .regex > .regex-delimiter { color: var(--color-code-red-text) }
-  .regex > .regex-source { color: var(--color-code-red-text) }
-  .regex > .regex-flags { color: var(--color-code-blue-text) }
-
+	color: var(--color-code-cyan-text);
+	.keyword {
+		color: var(--color-code-blue-text);
+	}
+	.string {
+		color: var(--color-code-orange-text);
+	}
+	.punctuation {
+		color: var(--color-code-white-text);
+	}
+	.maybe-class-name {
+		color: var(--color-code-teal-text);
+	} /* first letter only uppercase */
+	.class-name {
+		color: var(--color-code-teal-text);
+	} /* first letter only uppercase */
+	.operator {
+		color: var(--color-code-white-text);
+	}
+	.constant {
+		color: var(--color-code-teal-text);
+	} /* all letter uppercase */
+	.method {
+		color: var(--color-code-yellow-text) !important;
+	}
+	.function {
+		color: var(--color-code-yellow-text);
+	}
+	.control-flow {
+		color: var(--color-code-pink-text);
+	} /* return */
+	.console {
+		color: var(--color-code-lightblue-text);
+	}
+	.parameter {
+		color: var(--color-code-lightblue-text);
+	}
+	.imports {
+		color: var(--color-code-lightblue-text);
+	} /* imports: imported module name */
+	.imports > .maybe-class-name {
+		color: var(--color-code-lightblue-text);
+	} /* maybe-class-name: Uppercase first letter only */
+	.module {
+		color: var(--color-code-pink-text);
+	} /* keword related module ex.import, export */
+	.function-variable .maybe-class-name {
+		color: var(--color-code-yellow-text);
+	} /*  component Name */
+	.function .maybe-class-name {
+		color: var(--color-code-yellow-text);
+	} /*  component Name */
+	.property {
+		color: var(--color-code-white-text);
+	}
+	.interpolation {
+		color: var(--color-code-purple-text);
+	}
+	.interpolaion-puntuation {
+		color: var(--color-code-purple-text);
+	}
+	.tag {
+		color: var(--color-code-blue-text);
+	}
+	.tag > .punctuation {
+		color: var(--color-code-gray-text);
+	}
+	.comment {
+		color: var(--color-code-gray-text);
+	}
+	.attr-name {
+		color: var(--color-code-lightblue-text);
+	}
+	.attr-value {
+		color: var(--color-code-white-text);
+		.attr-equals {
+			color: var(--color-code-white-text) !important;
+		}
+	}
+	.number {
+		color: var(--color-code-green-text);
+	}
+	.property-access {
+		color: var(--color-code-lightblue-text);
+	}
+	.boolean {
+		color: var(--color-code-blue-text);
+	}
+	.arrow {
+		color: var(--color-code-blue-text);
+	}
+	.script {
+		color: var(--color-code-cyan-text);
+		.script-punctuation {
+			color: var(--color-code-white-text) !important;
+		}
+		.punctuation {
+			color: var(--color-code-white-text);
+		}
+	}
+	.literal-property {
+		color: var(--color-code-lightblue-text);
+	}
+	.property {
+		color: var(--color-code-lightblue-text);
+	}
+	.builtin {
+		color: var(--color-code-teal-text);
+	}
+	.regex > .regex-delimiter {
+		color: var(--color-code-red-text);
+	}
+	.regex > .regex-source {
+		color: var(--color-code-red-text);
+	}
+	.regex > .regex-flags {
+		color: var(--color-code-blue-text);
+	}
 }
 
 .line-number::before {
-  display: inline-block;
-  width: 1rem;
-  text-align: right;
-  margin-right: 16px;
-  margin-left: -8px;
-  color: rgb(156, 163, 175); /* Line number color */
-  content: attr(line);
+	display: inline-block;
+	width: 1rem;
+	text-align: right;
+	margin-right: 16px;
+	margin-left: -8px;
+	color: rgb(156, 163, 175); /* Line number color */
+	content: attr(line);
 }
 
 blockquote {
-  padding: toRem(24) toRem(16);
-  margin: toRem(24) 0;
-  background-color: var(--color-post-blockquote-bg); /* Set highlight bg color */
-  border-left: 4px solid var(--color-primary);
-  border-radius: 0 8px 8px 0;
-  p {
-    margin: 0 !important;
-  }
+	padding: toRem(24) toRem(16);
+	margin: toRem(24) 0;
+	background-color: var(
+		--color-post-blockquote-bg
+	); /* Set highlight bg color */
+	border-left: 4px solid var(--color-primary);
+	border-radius: 0 8px 8px 0;
+	p {
+		margin: 0 !important;
+	}
 }

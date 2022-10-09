@@ -3,8 +3,9 @@
 @import '../../styles/sizes';
 
 .container {
-	width: $desktop;
+	max-width: 1200px;
 	margin: $margin-top auto;
+	padding: 0 toRem(32);
 
 	header {
 		@include flex-direction(column, 24);
@@ -30,12 +31,9 @@
 			@include display-small(700);
 			margin: toRem(48) 0 toRem(24);
 			color: var(--color-post-h2-text);
+
 			code {
-				border-radius: 4px;
-				background-color: var(--color-post-strong-bg);
 				color: var(--color-post-h2-text);
-				padding: toRem(4) toRem(8);
-				margin-right: toRem(2);
 			}
 		}
 
@@ -45,10 +43,7 @@
 			color: var(--color-post-main-text);
 
 			code {
-				border-radius: 4px;
-				background-color: var(--color-post-strong-bg);
-				padding: toRem(2) toRem(4);
-				margin-right: toRem(2);
+				color: var(--color-post-main-text);
 			}
 		}
 
@@ -56,25 +51,29 @@
 			@include body-large();
 			color: var(--color-post-main-text);
 			margin: toRem(12) 0 toRem(16);
-			code {
-				@include body-medium(500);
-				border-radius: 4px;
-				color: var(--color-post-main-text);
-				background-color: var(--color-post-strong-bg);
-				padding: toRem(2) toRem(4);
-				margin-right: toRem(2);
-			}
 		}
+
+		p > code {
+			@include body-medium();
+			border-radius: 4px;
+			color: var(--color-post-main-text);
+			background-color: var(--color-post-strong-bg);
+			padding: toRem(2) toRem(4);
+			margin-right: toRem(2);
+		}
+
 		a {
 			color: var(--color-post-anchor-text);
 			&:hover {
 				text-decoration: underline;
 			}
-			code {
-				color: var(--color-post-anchor-text);
-				&:hover {
-					text-decoration: underline;
-				}
+		}
+
+		a > code {
+			color: var(--color-post-anchor-text);
+			background-color: transparent;
+			&:hover {
+				text-decoration: underline;
 			}
 		}
 
@@ -86,7 +85,8 @@
 					@include body-large(500);
 					th {
 						padding: toRem(8) toRem(12);
-						color: var(--color-post-sub-text);
+						// color: var(--color-post-sub-text);
+						color: var(--color-post-h2-text);
 						text-align: left;
 					}
 				}
@@ -126,6 +126,10 @@
 			@include body-large();
 			margin-left: toRem(16);
 			padding-left: toRem(4);
+		}
+
+		li > p {
+			margin: 0;
 		}
 	}
 }

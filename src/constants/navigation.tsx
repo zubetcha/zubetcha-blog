@@ -6,7 +6,7 @@ const navList = [
 	{ name: 'Javascript', isPost: true },
 	{ name: 'Typescript', isPost: true },
 	{ name: 'React', isPost: true },
-	{ name: 'GraphQL', isPost: true },
+	// { name: 'GraphQL', isPost: true },
 	{ name: 'Web', isPost: true },
 	// { name: 'Tags', isPost: false },
 	{ name: 'About', isPost: false },

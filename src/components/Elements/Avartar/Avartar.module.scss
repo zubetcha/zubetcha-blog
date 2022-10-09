@@ -1,0 +1,22 @@
+@import '../../../styles/colors';
+@import '../../../styles/mixins';
+@import '../../../styles/sizes';
+
+.container {
+	@include flex-box(center, center);
+	.avartar {
+		border-radius: 50%;
+	}
+
+	&.small {
+		@include circle(40);
+	}
+
+	&.medium {
+		@include circle(110);
+	}
+
+	&.large {
+		@include circle(240);
+	}
+}

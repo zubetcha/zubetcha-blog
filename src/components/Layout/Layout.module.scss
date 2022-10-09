@@ -3,29 +3,42 @@
 @import '../../styles/sizes';
 
 .page_container {
-	@include flex-direction(row, 48);
+	@include flex-direction(row, 0);
+	height: 100vh;
 
 	.body {
 		width: 100%;
 		overflow: hidden auto;
-		height: 100vh;
-		// padding: toRem(32) 0 0 0;
+		height: 100%;
 		padding: 0;
 		@include flex-direction(column, 32);
-
 		@include scroll-bar();
 	}
 }
 
 .content-container {
-	padding: toRem(32) 0 0 0;
+	padding: toRem(32) toRem(32) 0;
+
+	@include mobile() {
+		padding: toRem(104) toRem(32) 0;
+	}
+	@include tablet() {
+		padding: toRem(104) toRem(32) 0;
+	}
+
 	.content-wrapper {
 		margin: $margin-top auto toRem(32);
 		width: fit-content;
 		@include flex-direction(column, 24);
+		@include mobile() {
+			margin: 0 auto toRem(32);
+		}
+		@include tablet() {
+			margin: 0 auto toRem(32);
+		}
 
 		.title {
-			@include display-medium(700);
+			@include display-medium(900);
 		}
 	}
 }

@@ -2,28 +2,51 @@
 @import '../../styles/mixins';
 @import '../../styles/sizes';
 
-.container {
-	width: 80px;
-	height: toRem(48);
-	border-radius: 48px;
-	background-color: var(--color-toggle-bg);
+@mixin desktopPosition {
 	position: fixed;
 	right: toRem(32);
 	top: toRem(32);
+}
+
+.container {
+	width: toRem(80);
+	height: toRem(48);
+	border-radius: 48px;
+	background-color: var(--color-toggle-bg);
 	cursor: pointer;
 	@include flex-box(center, center);
 
+	@include mobile() {
+		background-color: transparent;
+		width: toRem(48);
+	}
+
+	@include tablet() {
+		background-color: transparent;
+		width: toRem(48);
+	}
+
+	@include tablet-hori() {
+		@include desktopPosition();
+	}
+	@include desktop() {
+		@include desktopPosition();
+	}
+	@include large-desktop() {
+		@include desktopPosition();
+	}
+
 	.toggle_bar {
-		width: 40px;
-		height: 16px;
-		border-radius: 16px;
+		width: toRem(40);
+		height: toRem(16);
+		border-radius: toRem(40);
 		background-color: transparent;
 		border: 1px solid var(--color-toggle-bar-border);
 		position: relative;
 
 		.handler {
-			width: 24px;
-			height: 24px;
+			width: toRem(24);
+			height: toRem(24);
 			border-radius: 50%;
 			background-color: var(--color-toggle-handle-bg);
 			-webkit-transition: transform 0.3s ease-in-out;

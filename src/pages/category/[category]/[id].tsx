@@ -19,8 +19,20 @@ interface Props {
 	categories: Array<string>;
 }
 
-export default function CategoryPage({ category, ...props }: Props) {
-	return <PostListContainer {...props} title={getUpperCategory(category)} />;
+export default function CategoryPage({
+	category: lowerCategory,
+	...props
+}: Props) {
+	const category = props.categories.find(
+		(category) => category.toLowerCase() === lowerCategory,
+	) as string;
+	return (
+		<PostListContainer
+			{...props}
+			// title={getUpperCategory(category)}
+			category={category}
+		/>
+	);
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -28,13 +40,16 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 	const paths = getAllCategories(posts)
 		.map((category, i) => {
+			const lowerCategory = category.toLowerCase();
 			const filteredPosts = posts.filter(
-				(post) => post.frontMatter.category === category,
+				(post) => post.frontMatter.category.toLowerCase() === lowerCategory,
 			);
 
 			return [
 				...new Array(Math.round(filteredPosts.length / NUMBER_OF_POSTS)).keys(),
-			].map((i) => ({ params: { category, id: `${i + 1}` } }));
+			].map((i) => ({
+				params: { category: lowerCategory, id: `${i + 1}` },
+			}));
 		})
 		.reduce((acc, val) => acc.concat(val), []);
 
@@ -49,7 +64,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 	const posts = await getAllPosts();
 	const filteredPosts = posts.filter(
-		(post) => post.frontMatter.category === category,
+		(post) => post.frontMatter.category.toLowerCase() === category,
 	);
 	const { pageNo, maximumPageNo, slicedPosts, hasMore } = getPageInfo({
 		id,

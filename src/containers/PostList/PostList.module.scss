@@ -5,8 +5,12 @@
 .cards-wrapper {
 	width: fit-content;
 	display: grid;
-	grid-template-columns: repeat(2, toRem(600));
+	grid-template-columns: repeat(1, minmax(toRem(360), toRem(800)));
 	gap: toRem(24);
+
+	@include large-desktop() {
+		grid-template-columns: repeat(2, minmax(toRem(480), toRem(600)));
+	}
 }
 
 .button-wrapper {

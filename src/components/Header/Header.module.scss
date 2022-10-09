@@ -4,5 +4,31 @@
 
 .container {
 	@include flex-box(between, center);
+}
+
+.header-container {
+	@include flex-box(between, center);
+	width: 100%;
+	height: toRem(72);
+	background-color: var(--color-header-bg);
+	padding: 0 toRem(32);
 	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+
+	.left {
+		@include flex-direction(row, 24);
+		@include flex-box(start, center);
+
+		.nav-wrapper {
+			@include flex-direction(row, 24);
+			@include flex-box(start, center);
+
+			li {
+				@include title-medium();
+				cursor: pointer;
+			}
+		}
+	}
 }

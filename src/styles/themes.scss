@@ -33,12 +33,12 @@ html[data-theme='dark'] {
 	--color-code-gray-text: #{$gray500};
 	--color-code-white-text: #{$gray100};
 	--color-code-red-text: #d73a4a;
-	--color-code-orange-text: #cf8c50;
+	--color-code-orange-text: #d19159;
 	--color-code-yellow-text: #f4db95;
 	--color-code-lime-text: #{$limeA400};
 	--color-code-green-text: #{$green200};
-	--color-code-teal-text: #{$tealA400};
-	--color-code-blue-text: #3d75de;
+	--color-code-teal-text: #{$teal300};
+	--color-code-blue-text: #4c85ed;
 	--color-code-indigo-text: #{$indigoA200};
 	--color-code-pink-text: #d2a8ff;
 	--color-code-purple-text: #7057ff;
@@ -57,6 +57,10 @@ html[data-theme='dark'] {
 	--color-btn-bg: #{$gray900};
 	--color-btn-main-text: #{$gray100};
 	--color-btn-hover-border: var(--color-primary);
+
+	--color-header-bg: #{$gray900}BF;
+
+	--color-sidebar-bg: #{$gray900};
 }
 
 html[data-theme='light'] {
@@ -92,12 +96,12 @@ html[data-theme='light'] {
 	--color-code-gray-text: #{$gray500};
 	--color-code-white-text: #{$gray100};
 	--color-code-red-text: #d73a4a;
-	--color-code-orange-text: #cf8c50;
+	--color-code-orange-text: #d19159;
 	--color-code-yellow-text: #f4db95;
 	--color-code-lime-text: #{$limeA400};
 	--color-code-green-text: #{$green200};
-	--color-code-teal-text: #{$tealA400};
-	--color-code-blue-text: #3d75de;
+	--color-code-teal-text: #{$teal300};
+	--color-code-blue-text: #4c85ed;
 	--color-code-indigo-text: #{$indigoA200};
 	--color-code-pink-text: #d2a8ff;
 	--color-code-purple-text: #7057ff;
@@ -109,9 +113,13 @@ html[data-theme='light'] {
 	--color-toggle-handle-bg: var(--color-primary);
 
 	--color-select-bg: #{$gray100};
+	--color-select-hover-border: var(--color-primary);
 	--color-select-main-text: #{$gray900};
 	--color-select-option-hover-bg: #{$gray200};
 
 	--color-btn-bg: #{$gray100};
 	--color-btn-main-text: #{$gray900};
+	--color-btn-hover-border: var(--color-primary);
+
+	--color-header-bg: #{$gray100}BF;
 }

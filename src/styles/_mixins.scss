@@ -7,20 +7,26 @@
 	}
 }
 
-@mixin tablet-vert {
-	@media (min-width: ($mobile+1)) and (max-width: $tablet) {
+@mixin tablet {
+	@media (min-width: ($mobile + 1)) and (max-width: $tablet) {
 		@content;
 	}
 }
 
 @mixin tablet-hori {
-	@media (min-width: ($tablet+1)) and (max-width: $tablet-hori) {
+	@media (min-width: ($tablet + 1)) and (max-width: $tablet-hori) {
 		@content;
 	}
 }
 
 @mixin desktop {
-	@media (min-width: $desktop) {
+	@media (min-width: ($tablet-hori + 1)) and (max-width: $desktop) {
+		@content;
+	}
+}
+
+@mixin large-desktop {
+	@media (min-width: $large-desktop) {
 		@content;
 	}
 }

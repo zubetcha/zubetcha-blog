@@ -1,16 +1,17 @@
-/**
- * Date 객체를 YYYY-MM-DD 형태로 포매팅
- *
- * @param {Date} date
- * @return {string} YYYY-MM-DD
- */
-export const formatDate = (date: string) => {
+export const formatDate = (date: string, format?: string) => {
 	const dateObj = new Date(date);
 	const year = dateObj.getFullYear();
 	const month = formatNumber(dateObj.getMonth() + 1);
 	const _date = formatNumber(dateObj.getDate());
 
-	return `${year}-${month}-${_date}`;
+	switch (format) {
+		case 'YYYY-MM-DD':
+			return `${year}-${month}-${_date}`;
+
+		default:
+			const [m, d, y] = date.substring(4, 15).split(' ');
+			return [m, d + ',', y].join(' ');
+	}
 };
 
 const formatNumber = (number: number) => {
