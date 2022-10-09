@@ -19,22 +19,8 @@ interface Props {
 	categories: Array<string>;
 }
 
-export default function CategoryPage({
-	posts,
-	hasMore,
-	pageNo,
-	category,
-	categories,
-}: Props) {
-	return (
-		<PostListContainer
-			posts={posts}
-			hasMore
-			pageNo={pageNo}
-			categories={categories}
-			title={getUpperCategory(category)}
-		/>
-	);
+export default function CategoryPage({ category, ...props }: Props) {
+	return <PostListContainer {...props} title={getUpperCategory(category)} />;
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {

@@ -31,15 +31,21 @@ export const PostListContainer = ({
 }: Props) => {
 	const router = useRouter();
 	const container = useRef<null | HTMLDivElement>(null);
+	const currentCategory = title.toLowerCase();
+	const isAll = currentCategory.includes('all');
 
 	const onClickPrev = (e: MouseEvent<HTMLButtonElement>) => {
 		e.preventDefault();
-		router.replace(`/page/${pageNo - 1}`);
+		isAll
+			? router.push(`/page/${pageNo - 1}`)
+			: router.push(`/category/${currentCategory}/${pageNo - 1}`);
 	};
 
 	const onClickNext = (e: MouseEvent<HTMLButtonElement>) => {
 		e.preventDefault();
-		router.replace(`/page/${pageNo + 1}`);
+		isAll
+			? router.push(`/page/${pageNo + 1}`)
+			: router.push(`/category/${currentCategory}/${pageNo + 1}`);
 	};
 
 	const onChangeCategory = (selected: string) => {
