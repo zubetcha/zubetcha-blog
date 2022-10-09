@@ -1,5 +1,18 @@
 import Image from 'next/image';
-
-export const Avartar = () => {
-	return <div>Avartar</div>;
+import classNames from 'classnames';
+import classes from './Avartar.module.scss';
+import Zubetcha from '@assets/images/zubetcha.jpeg';
+interface Props {
+	size: 'small' | 'medium' | 'large';
+	onClick?: () => void;
+}
+export const Avartar = ({ size, onClick }: Props) => {
+	return (
+		<div
+			className={classNames(classes.container, classes[size])}
+			onClick={onClick}
+		>
+			<Image src={Zubetcha} className={classes.avartar} alt='avartar' />
+		</div>
+	);
 };

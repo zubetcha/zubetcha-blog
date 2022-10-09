@@ -10,7 +10,17 @@
 	margin: toRem(32) 0 toRem(32) toRem(32);
 	border-radius: $border-radius;
 	transition: all 0.3s ease-in-out;
+	position: sticky;
+	top: toRem(32);
+	left: toRem(32);
 	@include flex-direction(column, 60);
+
+	@include mobile() {
+		display: none;
+	}
+	@include tablet() {
+		display: none;
+	}
 
 	.menuIcon_wrapper {
 		@include flex-box(end, center);
@@ -91,6 +101,13 @@
 		@include flex-box(start, center);
 		width: toRem(72);
 		padding: toRem(16);
+
+		@include mobile() {
+			display: none;
+		}
+		@include tablet() {
+			display: none;
+		}
 
 		.profile_wrapper {
 			display: none;

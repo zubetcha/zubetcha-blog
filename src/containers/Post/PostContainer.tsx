@@ -20,7 +20,7 @@ export const PostContainer = ({ children, frontMatter, slug }: Props) => {
 				title={title}
 				description={description}
 				path={`/${slug}`}
-				date={formattedDate}
+				date={date}
 			/>
 			<article>
 				<div className={classes.container}>
@@ -32,7 +32,7 @@ export const PostContainer = ({ children, frontMatter, slug }: Props) => {
 						</div>
 						<h1>{title}</h1>
 						<div className={classes['']}>
-							<time dateTime={formattedDate} className={classes.createdAt}>
+							<time dateTime={date} className={classes.createdAt}>
 								{formattedDate}
 							</time>
 							{/* <p>zubetcha</p> */}

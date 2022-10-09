@@ -10,14 +10,13 @@ import { IconRoleUnionType } from 'src/type/element';
 import { contactList, navItems } from '@constants/navigation';
 
 import Image from 'next/image';
-import { Icon, NavItem } from '@components/index';
+import { Icon, NavItem, Avartar } from '@components/index';
 
 export const NavBar = () => {
 	const router = useRouter();
 	const { expanded, setExpanded } = useExpanded();
 	const [style, api] = useSpring(() => ({
 		width: '72px',
-    
 	}));
 	const newExpanded = expanded ? false : true;
 
@@ -54,7 +53,7 @@ export const NavBar = () => {
 					className={classes.profile_image_wrapper}
 					onClick={() => router.push('/')}
 				>
-					<Image src={Zubetcha} className={classes.profile_image} />
+					<Avartar size='medium' />
 					<div className={classes.highlight_wrapper}>
 						<span className={classes.highlight}></span>
 					</div>
@@ -79,7 +78,7 @@ export const NavBar = () => {
 			<div className={classes.navItems_wrapper}>
 				{!expanded && (
 					<div
-						className={classes.navItem_container}
+						className={classes['navitem-container']}
 						onClick={() => router.push('/')}
 					>
 						<Icon role='home' />

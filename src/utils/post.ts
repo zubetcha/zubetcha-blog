@@ -25,29 +25,22 @@ export const getAllPosts = async () => {
 		.reduce<Post[]>((prev, path) => {
 			const file = fs.readFileSync(path, { encoding: 'utf-8' });
 			const { data, content } = matter(file);
-			const {
-				title,
-				description,
-				date,
-				updated,
-				published,
-				tags: fmTags,
-				category,
-			} = data as FrontMatter;
 
 			const slug = path
 				.slice(path.indexOf(DIR_REPLACE_STRING) + DIR_REPLACE_STRING.length + 1)
 				.replace('.mdx', '')
 				.replace('.md', '');
 
-			if (published) {
-				const tags: string[] = (fmTags || []).map((tag: string) => tag.trim());
+			if (data.published) {
+				const tags: string[] = (data.tags || []).map((tag: string) =>
+					tag.trim(),
+				);
 
 				const result: Post = {
 					frontMatter: {
 						...(data as FrontMatter),
 						tags,
-						date: new Date(date).toISOString().substring(0, 19),
+						date: new Date(data.date).toString(),
 					},
 					content,
 					fields: {
