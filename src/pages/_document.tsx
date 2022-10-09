@@ -7,6 +7,7 @@ export default function Document() {
 				<meta charSet='utf-8'></meta>
 				<meta property='og:type' content='blog' />
 				<meta property='og:locale' content='ko_KR' />
+				<link rel='shortcut icon' href='/favicon.ico' />
 				<link
 					rel='apple-touch-icon'
 					sizes='57x57'
