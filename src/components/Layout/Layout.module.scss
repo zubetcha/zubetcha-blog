@@ -11,7 +11,7 @@
 		overflow: hidden auto;
 		height: 100%;
 		padding: 0;
-		@include flex-direction(column, 32);
+		// @include flex-direction(column, 32);
 		@include scroll-bar();
 	}
 }
@@ -28,7 +28,7 @@
 	}
 
 	.content-wrapper {
-		margin: $margin-top auto toRem(32);
+		margin: $margin-top auto toRem(64);
 		width: fit-content;
 		@include flex-direction(column, 24);
 		@include mobile() {

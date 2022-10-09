@@ -5,7 +5,6 @@ import Head from 'next/head';
 import Image from 'next/image';
 
 import { ContentLayout } from '@components/index';
-import { Typo } from '@components/Elements/Typo/Typo';
 
 import Zubetcha from '../../assets/images/zubetcha.jpeg';
 
