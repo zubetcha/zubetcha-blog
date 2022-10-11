@@ -25,7 +25,7 @@ html[data-theme='dark'] {
 	--color-post-h3-text: #{$gray100};
 	--color-post-anchor-text: #58a6ff; // 고정
 	--color-post-divider: #{$gray600};
-	--color-post-strong-bg: #{$gray700};
+	--color-post-strong-bg: #{$gray600}99;
 	--color-post-blockquote-bg: #{$gray900};
 
 	// code snipet 고정
@@ -86,9 +86,9 @@ html[data-theme='light'] {
 	--color-post-sub-text: #{$gray600};
 	--color-post-h2-text: var(--color-primary);
 	--color-post-h3-text: #{$gray900};
-	--color-post-anchor-text: #58a6ff; // 고정
+	--color-post-anchor-text: #1d85fd; // 고정
 	--color-post-divider: #{$gray400};
-	--color-post-strong-bg: #{$gray300};
+	--color-post-strong-bg: #{$gray300}99;
 	--color-post-blockquote-bg: #{$gray100};
 
 	// code snipet 고정
