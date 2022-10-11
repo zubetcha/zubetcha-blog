@@ -13,6 +13,14 @@
 		padding: 0;
 		// @include flex-direction(column, 32);
 		@include scroll-bar();
+		@include mobile() {
+			@include flex-direction(column, 0);
+			@include flex-direction(between, start);
+		}
+		@include tablet() {
+			@include flex-direction(column, 0);
+			@include flex-direction(between, start);
+		}
 	}
 }
 
