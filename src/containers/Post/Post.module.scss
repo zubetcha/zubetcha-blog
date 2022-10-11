@@ -3,8 +3,8 @@
 @import '../../styles/sizes';
 
 .container {
-	max-width: 1200px;
-	margin: $margin-top auto;
+	max-width: 1024px;
+	margin: $margin-top auto toRem(120);
 	padding: 0 toRem(32);
 
 	@include mobile() {
@@ -33,9 +33,21 @@
 	}
 
 	.content {
-		display: grid;
+		// display: grid;
+		@include flex-direction(column, 0);
+
+		div {
+			margin: toRem(16) 0 toRem(24);
+		}
+		div > p {
+			@include flex-box(center, start);
+			img {
+				width: 100%;
+			}
+		}
+
 		h2 {
-			@include display-small(700);
+			@include headline-large(800);
 			margin: toRem(48) 0 toRem(24);
 			color: var(--color-post-h2-text);
 
@@ -45,7 +57,7 @@
 		}
 
 		h3 {
-			@include headline-small(700);
+			@include headline-small(800);
 			margin: toRem(32) 0 toRem(16);
 			color: var(--color-post-main-text);
 
@@ -61,9 +73,10 @@
 		}
 
 		p > code {
-			@include body-medium();
+			@include body-medium(500);
 			border-radius: 4px;
-			color: var(--color-post-main-text);
+			// color: var(--color-post-main-text);
+			color: var(--color-primary);
 			background-color: var(--color-post-strong-bg);
 			padding: toRem(2) toRem(4);
 			margin-right: toRem(2);
@@ -133,6 +146,10 @@
 			@include body-large();
 			margin-left: toRem(16);
 			padding-left: toRem(4);
+		}
+
+		strong {
+			font-weight: 700;
 		}
 
 		li > p {
