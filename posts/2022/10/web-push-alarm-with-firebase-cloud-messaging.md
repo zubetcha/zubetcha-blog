@@ -3,8 +3,8 @@
 title: Nextj에서 Firbase Cloud Messaging 으로 웹 푸시 알림 구현하기
 category: Next
 date: 2022-10-14
-description: 혹시 next-pwa 사용하시나요..?
-published: true
+description: 내 눈물 모아....💧 푸시 알림 구현기
+published: false
 slug: web-push-alarm-with-firebase-cloud-messaging
 tags: 
   - FCM
@@ -16,6 +16,10 @@ tags:
 
 ## Table of Contents
 
+## 들어가면서
+
+> 이 포스트는 웹 푸시 알람 구현에 필요한 프론트엔드 로직만 포함하고 있습니다!
+
 회사에는 4개의 회의실이 있는데 회의실 예약을 할때 구글의 스프레드 시트를 이용해야 해서 불편한 점이 많았습니다. 9월 한 달 동안 일이 많이 바쁘지 않아서 이러한 불편함을 해소하고자 개발자들끼리 회의실 예약을 관리해주는 백오피스 서비스를 만드는 사이드 프로젝트를 시작했습니다.
 
 회의에 초대되었거나, 회의 시작 전에 알림을 받고, 모바일에서도 확인할 수 있으면 좋을 것 같아 PWA를 적용하고, Firebase Cloud Messaging 서비스를 이용해 푸시 알림 기능도 구현하기로 하였습니다.
@@ -24,11 +28,11 @@ tags:
 
 firebase에서 앱을 등록하고 FCM을 사용하기 위해 Project settings 페이지의 Cloud Messging 탭에서 웹 푸시 인증서의 키페어를 발급 받습니다.
 
-![Screen Shot 2022-09-30 at 16.25.48.png](Nextj%E1%84%8B%E1%85%A6%E1%84%89%E1%85%A5%20Firbase%20Cloud%20Messaging%20%E1%84%8B%E1%85%B3%E1%84%85%E1%85%A9%20%E1%84%8B%E1%85%B0%E1%86%B8%20%E1%84%91%E1%85%AE%E1%84%89%E1%85%B5%20%E1%84%8B%E1%85%A1%2048c3f1ba9dad4721930a5e9072382d24/Screen_Shot_2022-09-30_at_16.25.48.png)
+![firebase project setting](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/4a7a21ab-9ee1-4457-8fa8-1320718a6e2e/Screen_Shot_2022-09-30_at_16.25.48.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221015%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221015T092530Z&X-Amz-Expires=86400&X-Amz-Signature=26e353d6f7608722d89e5e66c42750bc035215467f97a547f8c0135aca877ede&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Screen%2520Shot%25202022-09-30%2520at%252016.25.48.png%22&x-id=GetObject)
 
 이후 General 탭으로 이동하면 firebase를 사용하기 위해 필요한 환경설정 구성값들을 확인할 수 있습니다.
 
-![Screen Shot 2022-09-30 at 16.36.07.png](Nextj%E1%84%8B%E1%85%A6%E1%84%89%E1%85%A5%20Firbase%20Cloud%20Messaging%20%E1%84%8B%E1%85%B3%E1%84%85%E1%85%A9%20%E1%84%8B%E1%85%B0%E1%86%B8%20%E1%84%91%E1%85%AE%E1%84%89%E1%85%B5%20%E1%84%8B%E1%85%A1%2048c3f1ba9dad4721930a5e9072382d24/Screen_Shot_2022-09-30_at_16.36.07.png)
+![firebase app config](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/d850877e-c131-4052-a873-c920fb86eb5e/Screen_Shot_2022-09-30_at_16.36.07.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221015%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221015T092651Z&X-Amz-Expires=86400&X-Amz-Signature=911f5b88fc83c1cca003229a6ac375c172140ce12e5c23b7037fed8801efd3f6&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Screen%2520Shot%25202022-09-30%2520at%252016.36.07.png%22&x-id=GetObject)
 
 ## SDK 설치 및 firebase 초기화
 
@@ -81,11 +85,11 @@ useEffect(() => {
 
 ## FCM 토큰 발급
 
-FCM의 푸시 알림 서비스를 이용하기 위해서는 FCM 토큰을 발급받아야 하며, FCM 토큰을 발급 받기 위해서는 메시징 인스턴스와 firebase console에서 발급 받은 vapid key가 필요합니다.
+FCM의 푸시 알림 서비스를 이용하기 위해서는 `FCM 토큰`을 발급받아야 하며, FCM 토큰을 발급 받기 위해서는 `메시징 인스턴스`와 firebase console에서 발급 받은 `vapid key`가 필요합니다.
 
 우선 FCM 토큰을 발급 받는 함수를 만듭니다.
 
-getToken의 첫 번째 인자에는 `메시징 인스턴스`를, 두 번째 인자에는 `vapidKey` 키를 가지고 있는 객체를 전달해주면 비동기로 FCM 토큰을 발급 받을 수 있습니다. 저는 이 함수를 또 다른 함수에서 외부 스토리지에 저장되어 있는 FCM 토큰이 없는 경우에만 실행시킬 예정이므로 메시징 인스턴스는 별도로 만들지 않고 파라미터로 받을 수 있도록 하였습니다.
+getToken의 첫 번째 인자에는 `메시징 인스턴스`를, 두 번째 인자에는 `vapidKey` 키를 가지고 있는 객체를 전달해주면 비동기로 FCM 토큰을 발급 받을 수 있습니다. 저는 이 함수를 또 다른 함수에서 외부 스토리지에 저장되어 있는 FCM 토큰이 없는 경우에만 실행시킬 예정이므로 메시징 인스턴스를 함수 안에서 만들지 않고 파라미터로 받을 수 있도록 하였습니다.
 
 ```jsx
 // utils/firebase.ts
@@ -107,9 +111,11 @@ const deriveFcmToken = async (messaging: any) => {
 }
 ```
 
-상황에 따른 FCM 토큰 값을 반환해주는 함수를 만듭니다. 이 함수에서 위에서 만든 deriveFcmToken을 사용합니다.
+상황에 따라 유효하거나 혹은 유효하지 않은 FCM 토큰 값을 반환해주는 함수를 만듭니다. 이 함수에서 위에서 만든 `deriveFcmToken`함수를 사용합니다.
 
 getFcmToken 함수는 아래와 같이 동작하도록 작성하였습니다.
+
+<br/>
 
 1. 외부 스토리지에 저장되어 있는 FCM 토큰이 있는 경우 해당 값을 반환합니다.
 2. 유저가 접속한 브라우저의 window 객체에 Notification 객체가 없는 경우 `undefined`를 반환합니다.
@@ -118,7 +124,9 @@ getFcmToken 함수는 아래와 같이 동작하도록 작성하였습니다.
    1. 알림을 허용한 경우 3번과 동일하게 실행되어 firebase로부터 발급 받은 FCM 토큰을 반환합니다.
    2. 알림을 거부한 경우 `undefined`를 반환합니다.
 
-즉, 외부 스토리지에 저장되어 있는 FCM 토큰이 있거나 알림을 허용한 경우에는 유효한 FCM 토큰을 반환하고, window에 Notification 객체 자체가 없거나 알림을 거부한 경우에는 undefined를 반환하도록 작성하였습니다.
+<br/>
+
+즉, 외부 스토리지에 저장되어 있는 FCM 토큰이 있거나 알림을 허용한 경우에는 `유효한 FCM 토큰`을 반환하고, window에 Notification 객체 자체가 없거나 알림을 거부한 경우에는 `undefined`를 반환하도록 작성하였습니다.
 
 ```jsx
 // utils/firebase.ts
@@ -163,9 +171,9 @@ export const getFcmToken = async () => {
 }
 ```
 
-참고로 noticeStorage는 localforage라는 라이브러리로 생성한 외부 스토리지 인스턴스입니다.
+참고로 noticeStorage는 `localforage`라는 라이브러리로 생성한 외부 스토리지 인스턴스입니다.
 
-localforage는 외부 스토리지와 어플리케이션 내의 상태를 동기화하려고 할 때 비동기적으로 동작하도록 하는 것을 쉽게 도와주는 라이브러리입니다. localforage가 지원하는 외부 스토리지로는 indexedDB, localStorage, WebSQL이 있는데, FCM 토큰뿐만 아니라 SSE로 받는 메시지들도 저장할 예정이라 용량의 제한이 적은 indexedDB를 선택했습니다.
+localforage는 외부 스토리지와 어플리케이션 내의 상태를 동기화하려고 할 때 `비동기적으로` 동작하도록 하는 것을 쉽게 도와주는 라이브러리입니다. localforage가 지원하는 외부 스토리지로는 `indexedDB`, `localStorage`, `WebSQL`이 있는데, FCM 토큰뿐만 아니라 SSE로 받는 메시지들도 저장할 예정이라 용량의 제한이 적은 indexedDB를 선택했습니다.
 
 인스턴스를 새로 생성하지 않아도 바로 사용할 수 있지만, Next를 사용하고 있고 SSR 중에는 외부 스토리지와의 동기화가 불가능하므로 예외처리를 하기 위해 localforage의 createInstance 메서드를 사용하여 별도로 인스턴스를 생성하여 사용하였습니다.
 
@@ -288,27 +296,22 @@ useEffect(() => {
 
 ## 백그라운드와 포그라운드 메시지
 
-푸시 알림은 앱(화면)에 포커스하고 있는 상태일 때 받는 포그라운드와 앱(화면)을 떠나있거나(?) 종료했을 때 받을 수 있는 백그라운드 두 가지 종류가 있습니다. 포그라운드 상태일 때 때에는 firebase 라이브러리가 제공해주는 함수로 메시지를 받을 수 있지만 백그라운드 상태일 때는 브라우저에 firebase cloud messaging용 service worker를 등록해야 메시지를 받을 수 있습니다.
+푸시 알림 메시지에는 앱(화면)에 포커스하고 있는 상태일 때 받는 `포그라운드`와 앱(화면)을 떠나있거나(?) 종료했을 때 받을 수 있는 `백그라운드` 두 가지 종류가 있습니다. 두 메시지 모두 브라우저에 firebase cloud messaging용 service worker를 등록해서 Notification 객체를 사용해야 메시지를 받을 수 있습니다..
 
-### 백그라운드 메시지 수신을 위한 서비스워커 등록하기
+### 서비스워커 등록하기
 
-FCM용 서비스워커의 파일 이름은 firebase에서 지정한 이름인 firebase-messaging-sw.js로 생성해야 합니다. 서비스워커 파일은 public 폴더에 생성해줍니다.
+FCM용 서비스워커의 파일 이름은 firebase에서 지정한 이름인 `firebase-messaging-sw.js`로 생성해야 합니다. 서비스워커 파일은 public 폴더에 생성해줍니다.
 
 ```jsx
 // firebase-messaging-sw.js
 
 "use strict";
 
-// To disable all workbox logging during development, you can set self.__WB_DISABLE_DEV_LOGS to true
-// https://developers.google.com/web/tools/workbox/guides/configure-workbox#disable_logging
 self.__WB_DISABLE_DEV_LOGS = true
 
 importScripts("https://www.gstatic.com/firebasejs/9.5.0/firebase-app-compat.js");
 importScripts("https://www.gstatic.com/firebasejs/9.5.0/firebase-messaging-compat.js");
 
-// Initialize the Firebase app in the service worker by passing in
-// your app's Firebase config object.
-// https://firebase.google.com/docs/web/setup#config-object
 const firebaseApp = firebase.initializeApp({
   apiKey: "...",
   authDomain: "...",
@@ -333,9 +336,31 @@ if (isSupported) {
 }
 ```
 
-그다음 ServiceWorker API를 이용하여 어플리케이션이 실행되면 브라우저에 서비스워커가 등록되도록 코드를 작성해줍니다.
+서비스 워커는 앱을 실행시키는 Javascript와는 **다른 스레드**에서 동작하고, DOM에도 접근할 수 없기 때문에 최상위 컴포넌트에서 firebase 앱을 초기화했더라도 서비스워커에서 별도로 다시 한번 firebase 앱을 초기화하는 작업이 필요합니다.
 
-![스크린샷 2022-09-14 09.17.42.png](Nextj%E1%84%8B%E1%85%A6%E1%84%89%E1%85%A5%20Firbase%20Cloud%20Messaging%20%E1%84%8B%E1%85%B3%E1%84%85%E1%85%A9%20%E1%84%8B%E1%85%B0%E1%86%B8%20%E1%84%91%E1%85%AE%E1%84%89%E1%85%B5%20%E1%84%8B%E1%85%A1%2048c3f1ba9dad4721930a5e9072382d24/%25E1%2584%2589%25E1%2585%25B3%25E1%2584%258F%25E1%2585%25B3%25E1%2584%2585%25E1%2585%25B5%25E1%2586%25AB%25E1%2584%2589%25E1%2585%25A3%25E1%2586%25BA_2022-09-14_09.17.42.png)
+그다음 ServiceWorker API를 이용하여 어플리케이션이 실행되면 브라우저에 서비스워커가 등록될 수 있도록 최상위 컴포넌트에서 서비스 워커 등록 코드를 작성해줍니다. 만약 next-pwa 라이브러리를 사용하고 있다면 next-pwa에서 서비스워커를 자동으로 등록해주기 때문에 이 과정은 생략해도 됩니다.
+
+```javascript
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/firebase-messaging-sw.js')
+  .then(function(registration) {
+		// ...
+  })
+  .catch(function(error) {
+    console.log('Service worker registration failed:', error);
+  });
+} else {
+  console.log('Service workers are not supported.');
+}
+```
+
+firebase-messaging-sw 서비스워커가 브라우저에 잘 등록되었다면 `개발자도구 → 어플리케이션 → 서비스워커` 탭에서 도메인에 등록되어 있는 서비스워커 및 활성화 상태를 확인할 수 있습니다.
+
+![devtools service workers](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/237241bd-973d-44cd-8ca0-3e5897377a7d/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-10-15_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_9.07.08.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221015%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221015T142933Z&X-Amz-Expires=86400&X-Amz-Signature=04c18ef049524be3cc2962bd5a82a95488b628a5bf3440ee7ae5fdcb48e39099&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22%25E1%2584%2589%25E1%2585%25B3%25E1%2584%258F%25E1%2585%25B3%25E1%2584%2585%25E1%2585%25B5%25E1%2586%25AB%25E1%2584%2589%25E1%2585%25A3%25E1%2586%25BA%25202022-10-15%2520%25E1%2584%258B%25E1%2585%25A9%25E1%2584%2592%25E1%2585%25AE%25209.07.08.png%22&x-id=GetObject)
+
+서비스워커 등록까지 잘 마쳤다면 firebase console 에서 메시지 테스트를 해봅니다. 백그라운드 상태에서 약 5분 정도 기다리면 아래의 화면과 같이 푸시 알림이 오는 것을 확인할 수 있습니다.
+
+![web push background message](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/d821df35-56c5-4c07-b96e-bb40e8bf9e55/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-09-14_09.17.42.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221015%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221015T092728Z&X-Amz-Expires=86400&X-Amz-Signature=4a8b6d5a52df723bf71b60c1789e3f324673b07f19a9f58331b946a2e6acbea4&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22%25E1%2584%2589%25E1%2585%25B3%25E1%2584%258F%25E1%2585%25B3%25E1%2584%2585%25E1%2585%25B5%25E1%2586%25AB%25E1%2584%2589%25E1%2585%25A3%25E1%2586%25BA%25202022-09-14%252009.17.42.png%22&x-id=GetObject)
 
 > 백그라운드 상태에서도 푸시 알림을 받을 수 있는 이유는 ServiceWorker API의 특성상 브라우저에 서비스 워커가 한번 등록되면 등록된 서비스 워커의 수명은 어플리케이션이 종료되어도 보존되기 때문입니다.
 
@@ -347,4 +372,4 @@ if (isSupported) {
 
 ```
 
-## 트러블슈팅 1 - 서비스워커 등록 외않되..
+## 트러블슈팅 1. 서비스워커 등록 외않되..
