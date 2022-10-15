@@ -5,7 +5,6 @@ category: Javascript
 description: 보다 더 촘촘한 예외처리를 위해 ✊🏻
 date: 2022-02-24
 published: true
-slug: javascript-nullish-coalescing-operator
 tags:
   - nullish coalescing operator
 

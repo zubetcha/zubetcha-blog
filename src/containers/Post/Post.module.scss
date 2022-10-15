@@ -135,7 +135,7 @@
 		ul > li {
 			@include body-large();
 			padding-left: toRem(16);
-			margin-left: toRem(4);
+			margin: toRem(8) 0 toRem(8) toRem(4);
 			position: relative;
 		}
 		ul > li::before {
@@ -148,7 +148,7 @@
 
 		ol > li {
 			@include body-large();
-			margin-left: toRem(16);
+			margin: toRem(8) 0 toRem(8) toRem(16);
 			padding-left: toRem(4);
 		}
 

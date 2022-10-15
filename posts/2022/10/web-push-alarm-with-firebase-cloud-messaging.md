@@ -1,10 +1,11 @@
 ---
 
-title: 'Nextj에서 Firbase Cloud Messaging 으로 웹 푸시 알림 구현하기'
-category: 'Next'
-date: 2022-09-23 00:21:56
-description: '혹시 next-pwa 사용하시나요..?'
-published: false
+title: Nextj에서 Firbase Cloud Messaging 으로 웹 푸시 알림 구현하기
+category: Next
+date: 2022-10-14
+description: 혹시 next-pwa 사용하시나요..?
+published: true
+slug: web-push-alarm-with-firebase-cloud-messaging
 tags: 
   - FCM
   - PWA
@@ -27,7 +28,7 @@ firebase에서 앱을 등록하고 FCM을 사용하기 위해 Project settings �
 
 이후 General 탭으로 이동하면 firebase를 사용하기 위해 필요한 환경설정 구성값들을 확인할 수 있습니다.
 
-[https://www.notion.so](https://www.notion.so)
+![Screen Shot 2022-09-30 at 16.36.07.png](Nextj%E1%84%8B%E1%85%A6%E1%84%89%E1%85%A5%20Firbase%20Cloud%20Messaging%20%E1%84%8B%E1%85%B3%E1%84%85%E1%85%A9%20%E1%84%8B%E1%85%B0%E1%86%B8%20%E1%84%91%E1%85%AE%E1%84%89%E1%85%B5%20%E1%84%8B%E1%85%A1%2048c3f1ba9dad4721930a5e9072382d24/Screen_Shot_2022-09-30_at_16.36.07.png)
 
 ## SDK 설치 및 firebase 초기화
 
@@ -162,6 +163,101 @@ export const getFcmToken = async () => {
 }
 ```
 
+참고로 noticeStorage는 localforage라는 라이브러리로 생성한 외부 스토리지 인스턴스입니다.
+
+localforage는 외부 스토리지와 어플리케이션 내의 상태를 동기화하려고 할 때 비동기적으로 동작하도록 하는 것을 쉽게 도와주는 라이브러리입니다. localforage가 지원하는 외부 스토리지로는 indexedDB, localStorage, WebSQL이 있는데, FCM 토큰뿐만 아니라 SSE로 받는 메시지들도 저장할 예정이라 용량의 제한이 적은 indexedDB를 선택했습니다.
+
+인스턴스를 새로 생성하지 않아도 바로 사용할 수 있지만, Next를 사용하고 있고 SSR 중에는 외부 스토리지와의 동기화가 불가능하므로 예외처리를 하기 위해 localforage의 createInstance 메서드를 사용하여 별도로 인스턴스를 생성하여 사용하였습니다.
+
+```jsx
+// noticeStorage.ts
+
+import localforage from "localforage";
+import * as memoryDriver from 'localforage-driver-memory';
+
+const getDefaultConfig = () => ({
+  name: 'meetmeet',
+  driver: [localforage.INDEXEDDB]
+})
+
+export default class Storage {
+  storage: any;
+  constructor(storage: any, config: { [key: string]: any }) {
+    this.storage = storage
+    this.config(config)
+  }
+
+  setItem(key: string, value: unknown) {
+    try {
+      return this.storage.setItem(key, value)
+    } catch (e) {
+      console.log('setItem - Executing on SSR')
+    }
+  }
+
+  getItem(key: string) {
+    try {
+      return this.storage.getItem(key)
+    } catch (e) {
+      console.log('getItem - Executing on SSR')
+    }
+  }
+
+  removeItem(key: string) {
+    try {
+      return this.storage.removeItem(key)
+    } catch (e) {
+      console.log('removeItem - Executing on SSR')
+    }
+  }
+
+  length() {
+    try {
+      return this.storage.length()
+    } catch (e) {
+      console.log('length - Executing on SSR')
+    }
+  }
+
+  async config({ ...restConfig }) {
+    const { driver, ...localForageConfig }: any = {
+      ...getDefaultConfig(),
+      ...restConfig
+    }
+
+    this.storage.config(localForageConfig)
+
+    if (driver !== undefined) {
+      try {
+        await this.storage.ready()
+        this.storage.defineDriver(memoryDriver);
+        this.storage.setDriver([localforage.INDEXEDDB, localforage.LOCALSTORAGE, localforage.WEBSQL, memoryDriver._driver]);
+      } catch (e) {
+        console.log('Storage on SSR Mode')
+      }
+    }
+  }
+
+  keys() {
+    try {
+      return this.storage.keys()
+    } catch (e) {
+      console.log('Keys - Executing on SSR')
+    }
+  }
+
+  clean() {
+    try {
+      return this.storage.clean()
+    } catch (e) {
+      console.log('Clean - Executing on SSR')
+    }
+  }
+}
+
+export const noticeStorage = new Storage(localforage.createInstance(getDefaultConfig()), getDefaultConfig())
+```
+
 ## 서버로 FCM 토큰 전달
 
 클라이언트로 보내야 하는 알림 내용과 언제 알림을 보내야 하는 지는 서버에서 처리해주기 때문에 서버에서 알림을 보내야 하는 유저를 식별할 수 있도록 로그인에 성공하면 FCM 토큰을 서버로 전달해주는 API를 호출해줍니다.
@@ -192,13 +288,15 @@ useEffect(() => {
 
 ## 백그라운드와 포그라운드 메시지
 
-푸시 알림은 앱(화면)에 포커스하고 있는 상태일 때 받는 포그라운드와 앱(화면)을 떠나있거나(?) 종료했을 때 받을 수 있는 백그라운드 두 가지 종류가 있습니다. 포그라운드 상태일 때 때에는 firebase 라이브러리가 제공해주는 함수로 메시지를 받을 수 있지만 백그라운드 상태일 때는 firebase cloud messaging용 service worker를 등록해야 메시지를 받을 수 있습니다.
+푸시 알림은 앱(화면)에 포커스하고 있는 상태일 때 받는 포그라운드와 앱(화면)을 떠나있거나(?) 종료했을 때 받을 수 있는 백그라운드 두 가지 종류가 있습니다. 포그라운드 상태일 때 때에는 firebase 라이브러리가 제공해주는 함수로 메시지를 받을 수 있지만 백그라운드 상태일 때는 브라우저에 firebase cloud messaging용 service worker를 등록해야 메시지를 받을 수 있습니다.
 
 ### 백그라운드 메시지 수신을 위한 서비스워커 등록하기
 
-FCM용 서비스워커의 파일 이름은 firebase 지정한 이름인 firebase-messaging-sw.js로 생성해야 합니다.
+FCM용 서비스워커의 파일 이름은 firebase에서 지정한 이름인 firebase-messaging-sw.js로 생성해야 합니다. 서비스워커 파일은 public 폴더에 생성해줍니다.
 
 ```jsx
+// firebase-messaging-sw.js
+
 "use strict";
 
 // To disable all workbox logging during development, you can set self.__WB_DISABLE_DEV_LOGS to true
@@ -212,13 +310,13 @@ importScripts("https://www.gstatic.com/firebasejs/9.5.0/firebase-messaging-compa
 // your app's Firebase config object.
 // https://firebase.google.com/docs/web/setup#config-object
 const firebaseApp = firebase.initializeApp({
-  apiKey: "AIzaSyB5MsSaVHen868J6lRWD1R4bQX0jH5K7qE",
-  authDomain: "meetmeet-a49ad.firebaseapp.com",
-  projectId: "meetmeet-a49ad",
-  storageBucket: "meetmeet-a49ad.appspot.com",
-  messagingSenderId: "831729942382",
-  appId: "1:831729942382:web:4aa84d00b6d73b28ad4b7f",
-  measurementId: "G-41K21FTLLR"
+  apiKey: "...",
+  authDomain: "...",
+  projectId: "...",
+  storageBucket: "...",
+  messagingSenderId: "...",
+  appId: "...",
+  measurementId: "..."
 });
 
 // Retrieve an instance of Firebase Messaging so that it can handle background messages.
@@ -235,9 +333,15 @@ if (isSupported) {
 }
 ```
 
+그다음 ServiceWorker API를 이용하여 어플리케이션이 실행되면 브라우저에 서비스워커가 등록되도록 코드를 작성해줍니다.
+
+![스크린샷 2022-09-14 09.17.42.png](Nextj%E1%84%8B%E1%85%A6%E1%84%89%E1%85%A5%20Firbase%20Cloud%20Messaging%20%E1%84%8B%E1%85%B3%E1%84%85%E1%85%A9%20%E1%84%8B%E1%85%B0%E1%86%B8%20%E1%84%91%E1%85%AE%E1%84%89%E1%85%B5%20%E1%84%8B%E1%85%A1%2048c3f1ba9dad4721930a5e9072382d24/%25E1%2584%2589%25E1%2585%25B3%25E1%2584%258F%25E1%2585%25B3%25E1%2584%2585%25E1%2585%25B5%25E1%2586%25AB%25E1%2584%2589%25E1%2585%25A3%25E1%2586%25BA_2022-09-14_09.17.42.png)
+
+> 백그라운드 상태에서도 푸시 알림을 받을 수 있는 이유는 ServiceWorker API의 특성상 브라우저에 서비스 워커가 한번 등록되면 등록된 서비스 워커의 수명은 어플리케이션이 종료되어도 보존되기 때문입니다.
+
 ### 포그라운드 메시지 수신하기
 
-포그라운드 상태는 즉 유저가
+포그라운드는 유저가 화면에 포커스하고 있는 상태를 말합니다.
 
 ```jsx
 
