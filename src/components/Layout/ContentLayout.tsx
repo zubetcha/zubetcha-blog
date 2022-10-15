@@ -6,15 +6,13 @@ interface Props {
 	title: string;
 }
 
-export const ContentLayout = forwardRef(
-	({ children, title }: Props, ref: any) => {
-		return (
-			<div ref={ref} className={classes['content-container']}>
-				<div className={classes['content-wrapper']}>
-					<p className={classes.title}>{title}</p>
-					{children}
-				</div>
+export const ContentLayout = ({ children, title }: Props) => {
+	return (
+		<div className={classes['content-container']}>
+			<div className={classes['content-wrapper']}>
+				<p className={classes.title}>{title}</p>
+				{children}
 			</div>
-		);
-	},
-);
+		</div>
+	);
+};

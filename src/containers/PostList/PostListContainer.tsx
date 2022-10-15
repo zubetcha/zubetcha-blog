@@ -1,4 +1,4 @@
-import { useEffect, useRef, MouseEvent } from 'react';
+import { MouseEvent } from 'react';
 import { useRouter } from 'next/router';
 import classNames from 'classnames';
 import classes from './PostList.module.scss';
@@ -18,7 +18,6 @@ interface Props {
 	posts: Array<Post>;
 	hasMore: boolean;
 	pageNo: number;
-	// title: string;
 	categories: Array<string>;
 	category: string;
 }
@@ -27,12 +26,10 @@ export const PostListContainer = ({
 	posts,
 	hasMore,
 	pageNo,
-	// title,
 	categories,
 	category,
 }: Props) => {
 	const router = useRouter();
-	const container = useRef<null | HTMLDivElement>(null);
 	const isAll = category.toLowerCase().includes('all');
 	const title = getUpperCategory(category);
 
@@ -57,12 +54,6 @@ export const PostListContainer = ({
 			: router.push(`/category/${selectedCategory.toLowerCase()}/1`);
 	};
 
-	useEffect(() => {
-		if (container.current) {
-			container.current.scrollIntoView({ behavior: 'smooth' });
-		}
-	}, [pageNo]);
-
 	return (
 		<>
 			<PageSEO
@@ -70,7 +61,7 @@ export const PostListContainer = ({
 				description={title}
 				path={router.asPath}
 			/>
-			<ContentLayout title={title} ref={container}>
+			<ContentLayout title={title}>
 				<Select
 					defaultLabel={
 						router.asPath.split('/').includes('category')
