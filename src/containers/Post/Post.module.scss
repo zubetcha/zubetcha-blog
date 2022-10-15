@@ -47,17 +47,18 @@
 		}
 
 		h2 {
-			@include headline-large(800);
+			@include headline-large(700);
 			margin: toRem(48) 0 toRem(24);
 			color: var(--color-post-h2-text);
 
-			code {
+			code,
+			strong {
 				color: var(--color-post-h2-text);
 			}
 		}
 
 		h3 {
-			@include headline-small(800);
+			@include headline-small(700);
 			margin: toRem(32) 0 toRem(16);
 			color: var(--color-post-main-text);
 
@@ -84,6 +85,9 @@
 
 		a {
 			color: var(--color-post-anchor-text);
+			strong {
+				color: var(--color-post-anchor-text);
+			}
 			&:hover {
 				text-decoration: underline;
 			}
@@ -163,6 +167,10 @@
 			border-left: none;
 			border-right: none;
 			margin: toRem(32) 0 toRem(24);
+		}
+
+		img {
+			width: 100%;
 		}
 	}
 }

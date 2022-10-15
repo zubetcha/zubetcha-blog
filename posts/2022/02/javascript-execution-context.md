@@ -2,8 +2,8 @@
 
 title: '실행 컨텍스트, 스코프 체인과 호이스팅'
 category: Javascript
-date: 2022/02/14
-description: 함수 실행 파헤치기!
+date: 2022-02-14
+description: 자바스크립트 함수 실행 파헤치기!
 published: true
 tags: 
   - execution context

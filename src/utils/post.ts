@@ -53,13 +53,10 @@ export const getAllPosts = async () => {
 			return prev;
 		}, [])
 		.sort((a, b) => {
-			if (a.frontMatter.date < b.frontMatter.date) {
-				return 1;
-			}
-			if (a.frontMatter.date > b.frontMatter.date) {
-				return -1;
-			}
-			return 0;
+			return (
+				new Date(b.frontMatter.date).getTime() -
+				new Date(a.frontMatter.date).getTime()
+			);
 		});
 
 	return posts;
