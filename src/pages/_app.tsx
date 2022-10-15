@@ -11,8 +11,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 		<>
 			<Head>
 				<meta name='viewport' content='initial-scale=1.0, width=device-width' />
-				<link rel='shortcut icon' href='./favicon.ico' type='image/x-icon' />
-				<link rel='manifest' href='./manifest.json' />
 			</Head>
 			<ThemeProvider>
 				<ExpandedProvider>
