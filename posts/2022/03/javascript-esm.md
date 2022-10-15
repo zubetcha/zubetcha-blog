@@ -4,7 +4,7 @@ title: ES Module
 description: ESM이란 뭘까...?
 category: Javascript
 date: 2022-03-10
-published: true
+published: false
 tags:
   - ESM
 
