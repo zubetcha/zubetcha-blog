@@ -5,6 +5,15 @@ export default function Document() {
 		<Html>
 			<Head>
 				<meta charSet='utf-8'></meta>
+				<meta name='mobile-web-app-capable' content='yes'></meta>
+				<meta name='apple-mobile-web-app-title' content='MeetMeet'></meta>
+				<meta name='apple-mobile-web-app-capable' content='yes'></meta>
+				<meta
+					name='apple-mobile-web-app-status-bar-style'
+					content='black-translucent'
+				></meta>
+				<link rel='shortcut icon' href='/favicon.ico'></link>
+				<link rel='manifest' href='/manifest.json'></link>
 				<meta property='og:type' content='blog' />
 				<meta property='og:locale' content='ko_KR' />
 				<link
