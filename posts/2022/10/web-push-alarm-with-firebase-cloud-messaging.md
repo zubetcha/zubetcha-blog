@@ -7,10 +7,9 @@ description: 내 눈물 모아....💧 푸시 알림 구현기
 published: true
 slug: web-push-alarm-with-firebase-cloud-messaging
 tags: 
+  - next
   - FCM
-  - PWA
-  - next-pwa
-  - v9
+  - web push alarm
 
 ---
 
