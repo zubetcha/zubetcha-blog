@@ -4,7 +4,7 @@ title: Nextj에서 Firbase Cloud Messaging 으로 웹 푸시 알림 구현하기
 category: Next
 date: 2022-10-14
 description: 내 눈물 모아....💧 푸시 알림 구현기
-published: false
+published: true
 slug: web-push-alarm-with-firebase-cloud-messaging
 tags: 
   - FCM
@@ -296,7 +296,7 @@ useEffect(() => {
 
 ## 백그라운드와 포그라운드 메시지
 
-푸시 알림 메시지에는 앱(화면)에 포커스하고 있는 상태일 때 받는 `포그라운드`와 앱(화면)을 떠나있거나(?) 종료했을 때 받을 수 있는 `백그라운드` 두 가지 종류가 있습니다. 두 메시지 모두 브라우저에 firebase cloud messaging용 service worker를 등록해서 Notification 객체를 사용해야 메시지를 받을 수 있습니다..
+푸시 알림 메시지에는 앱(화면)에 포커스하고 있는 상태일 때 받는 `포그라운드`와 앱(화면)을 떠나있거나(?) 종료했을 때 받을 수 있는 `백그라운드` 두 가지 종류가 있습니다. 두 메시지 모두 브라우저에 firebase cloud messaging용 service worker를 등록해서 메시지 이벤트를 통해 받을 수 있습니다.
 
 ### 서비스워커 등록하기
 
@@ -368,8 +368,37 @@ firebase-messaging-sw 서비스워커가 브라우저에 잘 등록되었다면 
 
 포그라운드는 유저가 화면에 포커스하고 있는 상태를 말합니다.
 
-```jsx
+포그라운드 메시지는 위에서 살펴 봤던 백그라운드 메시지와 동일하게 등록한 서비스 워커의 showNotification 메서드를 사용해서 받을 수 있습니다. 다만 백그라운드 메시지를 받을 때 firebase의 onBackgroundMessage 메서드를 사용했던 것과 달리 포그라운드 메시지를 받을 때는 onMessage 메서드를 사용합니다.
 
+푸시 알림 메시지를 받아서 브라우저에 띄워주는 목적으로 전역에서 사용할 `PushNotificationLayout` 이라는 컴포넌트를 생성하였습니다.
+
+```javascript
+// PushNotificationLayout.tsx
+import { useEffect } from 'react';
+import { getMessaging, onMessage } from "firebase/messaging";
+import { getFcmToken } from "@utils/firebase";
+
+export const PushNotificationLayout = ({ children }: Props) => {
+  useEffect(() => {
+    getFcmToken().then(fcmToken => {
+      if (fcmToken) {
+        const messaging = getMessaging(); // 메시지 인스턴스 가져오기
+
+        onMessage(messaging, (payload) => { // 메시지 이벤트 발생 시
+          if (payload.notification) {
+            const { title, body } = payload.notification;
+
+            navigator.serviceWorker.ready.then(registration => {
+              registration.showNotification(title as string, { body }); // 푸시 알림 노출
+            })
+          }
+        });
+      }
+    })
+  }, [])
+
+  return <>{children}</>
+}
 ```
 
-## 트러블슈팅 1. 서비스워커 등록 외않되..
+## 트러블슈팅 - 서비스워커 등록 외않되..
