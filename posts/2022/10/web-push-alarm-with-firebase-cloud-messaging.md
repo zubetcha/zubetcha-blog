@@ -1,15 +1,15 @@
 ---
 
 title: Nextj에서 Firbase Cloud Messaging 으로 웹 푸시 알림 구현하기
-category: Next
-date: 2022-10-14
+category: PWA
+date: 2022-10-16
 description: 내 눈물 모아....💧 푸시 알림 구현기
 published: true
 slug: web-push-alarm-with-firebase-cloud-messaging
 tags: 
+  - PWA
   - next
   - FCM
-  - web push alarm
 
 ---
 
