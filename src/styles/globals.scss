@@ -169,7 +169,7 @@ html {
 	}
 
 	@include tablet-hori() {
-		font-size: 16px;
+		font-size: 15px;
 	}
 
 	@include tablet() {
@@ -360,6 +360,9 @@ pre {
 	}
 	.regex > .regex-flags {
 		color: var(--color-code-blue-text);
+	}
+	.dom {
+		color: var(--color-code-lightblue-text);
 	}
 }
 
