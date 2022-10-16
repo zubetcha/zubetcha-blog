@@ -4,7 +4,7 @@
 
 .container {
 	min-width: toRem(320);
-	height: calc(100vh - toRem(64));
+	height: calc(var(--vh, 1vh) * 100 - toRem(64));
 	background-color: var(--color-navbar-bg); // done
 	padding: toRem(24);
 	margin: toRem(32) 0 toRem(32) toRem(32);
