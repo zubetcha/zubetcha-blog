@@ -6,6 +6,7 @@ date: 2022-02-14
 description: 자바스크립트 함수 실행 파헤치기!
 published: true
 tags: 
+  - javascript
   - execution context
   - hoisting
   - scope chain

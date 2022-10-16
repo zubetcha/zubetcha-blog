@@ -4,7 +4,7 @@
 
 .page_container {
 	@include flex-direction(row, 0);
-	height: 100vh;
+	height: calc(var(--vh, 1vh) * 100);
 
 	.body {
 		width: 100%;
@@ -29,10 +29,10 @@
 	margin-bottom: auto;
 
 	@include mobile() {
-		padding: toRem(104) toRem(32) 0;
+		padding: toRem(96) toRem(16) 0;
 	}
 	@include tablet() {
-		padding: toRem(104) toRem(32) 0;
+		padding: toRem(96) toRem(16) 0;
 	}
 
 	.content-wrapper {

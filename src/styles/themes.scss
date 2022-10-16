@@ -19,7 +19,9 @@ html[data-theme='dark'] {
 	--color-postcard-main-text: #{$gray100};
 	--color-postcard-sub-text: #{$gray400};
 
-	--color-post-main-text: #{$gray100};
+	--color-post-main-text: #{$gray200};
+	--color-post-strong-text: #{$gray100};
+	--color-post-em-text: #{$gray500};
 	--color-post-sub-text: #{$gray400};
 	--color-post-h2-text: var(--color-primary);
 	--color-post-h3-text: #{$gray100};
@@ -82,13 +84,15 @@ html[data-theme='light'] {
 	--color-postcard-main-text: #{$gray900};
 	--color-postcard-sub-text: #{$gray600};
 
-	--color-post-main-text: #{$gray900};
+	--color-post-main-text: #{$gray800};
+	--color-post-strong-text: #{$gray900};
+	--color-post-em-text: #{$gray500};
 	--color-post-sub-text: #{$gray600};
 	--color-post-h2-text: var(--color-primary);
 	--color-post-h3-text: #{$gray900};
 	--color-post-anchor-text: #1d85fd; // 고정
 	--color-post-divider: #{$gray400};
-	--color-post-strong-bg: #{$gray300}99;
+	--color-post-strong-bg: #{$gray300}80;
 	--color-post-blockquote-bg: #{$gray100};
 
 	// code snipet 고정

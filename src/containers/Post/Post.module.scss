@@ -73,6 +73,14 @@
 			margin: toRem(12) 0 toRem(16);
 		}
 
+		p > strong {
+			color: var(--color-post-strong-text);
+		}
+
+		p > em {
+			color: var(--color-post-em-text);
+		}
+
 		p > code,
 		li > code {
 			@include body-medium(500);
@@ -151,6 +159,10 @@
 			@include body-large();
 			margin: toRem(8) 0 toRem(8) toRem(16);
 			padding-left: toRem(4);
+		}
+
+		li {
+			color: var(--color-post-main-text);
 		}
 
 		strong {

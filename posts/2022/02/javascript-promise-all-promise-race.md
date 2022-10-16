@@ -6,6 +6,7 @@ date: 2022-02-18
 description: Promise all과 Promise race는 언제 사용할까? 🤔
 published: true
 tags:
+  - javascript
   - promise
 
 ---
