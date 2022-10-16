@@ -27,11 +27,11 @@ tags:
 
 firebase에서 앱을 등록하고 FCM을 사용하기 위해 Project settings 페이지의 Cloud Messging 탭에서 웹 푸시 인증서의 키페어를 발급 받습니다.
 
-![firebase project setting](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/4a7a21ab-9ee1-4457-8fa8-1320718a6e2e/Screen_Shot_2022-09-30_at_16.25.48.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221015%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221015T092530Z&X-Amz-Expires=86400&X-Amz-Signature=26e353d6f7608722d89e5e66c42750bc035215467f97a547f8c0135aca877ede&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Screen%2520Shot%25202022-09-30%2520at%252016.25.48.png%22&x-id=GetObject)
+![firebase project setting](https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/10/fcm-firebase-project-setting.png)
 
 이후 General 탭으로 이동하면 firebase를 사용하기 위해 필요한 환경설정 구성값들을 확인할 수 있습니다.
 
-![firebase app config](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/d850877e-c131-4052-a873-c920fb86eb5e/Screen_Shot_2022-09-30_at_16.36.07.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221015%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221015T092651Z&X-Amz-Expires=86400&X-Amz-Signature=911f5b88fc83c1cca003229a6ac375c172140ce12e5c23b7037fed8801efd3f6&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Screen%2520Shot%25202022-09-30%2520at%252016.36.07.png%22&x-id=GetObject)
+![firebase app config](https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/10/fcm-firebase-config.png)
 
 ## SDK 설치 및 firebase 초기화
 
@@ -354,11 +354,11 @@ if ('serviceWorker' in navigator) {
 
 firebase-messaging-sw 서비스워커가 브라우저에 잘 등록되었다면 `개발자도구 → 어플리케이션 → 서비스워커` 탭에서 도메인에 등록되어 있는 서비스워커 및 활성화 상태를 확인할 수 있습니다.
 
-![devtools service workers](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/237241bd-973d-44cd-8ca0-3e5897377a7d/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-10-15_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_9.07.08.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221015%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221015T142933Z&X-Amz-Expires=86400&X-Amz-Signature=04c18ef049524be3cc2962bd5a82a95488b628a5bf3440ee7ae5fdcb48e39099&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22%25E1%2584%2589%25E1%2585%25B3%25E1%2584%258F%25E1%2585%25B3%25E1%2584%2585%25E1%2585%25B5%25E1%2586%25AB%25E1%2584%2589%25E1%2585%25A3%25E1%2586%25BA%25202022-10-15%2520%25E1%2584%258B%25E1%2585%25A9%25E1%2584%2592%25E1%2585%25AE%25209.07.08.png%22&x-id=GetObject)
+![devtools service workers](https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/10/fcm-service-worker-registration.png)
 
 서비스워커 등록까지 잘 마쳤다면 firebase console 에서 메시지 테스트를 해봅니다. 백그라운드 상태에서 약 5분 정도 기다리면 아래의 화면과 같이 푸시 알림이 오는 것을 확인할 수 있습니다.
 
-![web push background message](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/d821df35-56c5-4c07-b96e-bb40e8bf9e55/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-09-14_09.17.42.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221016%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221016T123713Z&X-Amz-Expires=86400&X-Amz-Signature=33ca3e32485464ec112be11ca109e6633389b00fbc7551fe1ed15cf194678805&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22%25E1%2584%2589%25E1%2585%25B3%25E1%2584%258F%25E1%2585%25B3%25E1%2584%2585%25E1%2585%25B5%25E1%2586%25AB%25E1%2584%2589%25E1%2585%25A3%25E1%2586%25BA%25202022-09-14%252009.17.42.png%22&x-id=GetObject)
+![web push background message](https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/10/fcm-background-message.png)
 
 > 백그라운드 상태에서도 푸시 알림을 받을 수 있는 이유는 ServiceWorker API의 특성상 브라우저에 서비스 워커가 한번 등록되면 등록된 서비스 워커의 수명은 어플리케이션이 종료되어도 보존되기 때문입니다.
 
@@ -483,7 +483,7 @@ export const PushNotificationLayout = ({ children }: Props) => {
 따란..✨
 라이브러리의 도움을 받아 제법 깔끔한 토스트 팝업이 완성되었습니다!
 
-![toast popup](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/ff221b97-15e3-44cb-81c5-4a3bfdb8a90a/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-10-16_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_9.23.25.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221016%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221016T122432Z&X-Amz-Expires=86400&X-Amz-Signature=d6f1ed444d07fd5b251ee9df60f1cb0b308cb3c0ed0e17e20e7333306a146d2d&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22%25E1%2584%2589%25E1%2585%25B3%25E1%2584%258F%25E1%2585%25B3%25E1%2584%2585%25E1%2585%25B5%25E1%2586%25AB%25E1%2584%2589%25E1%2585%25A3%25E1%2586%25BA%25202022-10-16%2520%25E1%2584%258B%25E1%2585%25A9%25E1%2584%2592%25E1%2585%25AE%25209.23.25.png%22&x-id=GetObject)
+![toast popup](https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/10/fcm-forground-message.png)
 
 ## 트러블슈팅
 
@@ -493,7 +493,7 @@ FCM과 서비스 워커로 푸시 알림을 구현하는 것 자체는 firebase 
 
 분명 public 폴더에 `firebase-messaging-sw.js` 라는 이름으로 파일을 생성하고 서비스 워커 내용을 정의했는데도 브라우저에 서비스 워커를 등록할 수 없다는 문구와 함께 **401 에러**가 발생했습니다.
 
-![service worker registration error](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/6065bd0c-e413-4ef4-aed2-b5c15741d2dc/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-09-14_01.05.52.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221016%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221016T125046Z&X-Amz-Expires=86400&X-Amz-Signature=fdbf200a289a681c87b077238ddd29c9d5d02f8095db8c32692ea701e2b24f51&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22%25E1%2584%2589%25E1%2585%25B3%25E1%2584%258F%25E1%2585%25B3%25E1%2584%2585%25E1%2585%25B5%25E1%2586%25AB%25E1%2584%2589%25E1%2585%25A3%25E1%2586%25BA%25202022-09-14%252001.05.52.png%22&x-id=GetObject)
+![service worker registration error](https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/10/fcm-service-worker-registration-error.png)
 
 401 에러는 인증 에러라서 확인해보니 유효하지 않은 JWT가 서버로 전달되었을 때 받는 response가 오고 있었습니다.
 
@@ -536,9 +536,9 @@ module.exports = withPlugins(
 
 next-pwa 옵션을 다시 찾아보았고 sw와 customWorkerDir 키워드를 찾았습니다.
 
-![next-pwa sw](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/7843f711-7331-43c9-b120-b2e2f5565d2f/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-10-16_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11.10.46.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221016%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221016T141305Z&X-Amz-Expires=86400&X-Amz-Signature=635daafa184aed7c1539aa9e4d9e7c1430eeb957b22cb594b970e367c0a3312a&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22%25E1%2584%2589%25E1%2585%25B3%25E1%2584%258F%25E1%2585%25B3%25E1%2584%2585%25E1%2585%25B5%25E1%2586%25AB%25E1%2584%2589%25E1%2585%25A3%25E1%2586%25BA%25202022-10-16%2520%25E1%2584%258B%25E1%2585%25A9%25E1%2584%2592%25E1%2585%25AE%252011.10.46.png%22&x-id=GetObject)
+![next-pwa sw](https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/10/fcm-next-pwa-sw.png)
 
-![next-pwa customWorkerDir](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/a978050f-76f2-4f18-a4d9-9281e5d73f84/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-10-16_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11.10.57.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221016%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221016T141330Z&X-Amz-Expires=86400&X-Amz-Signature=c0ac0af2ca920f7e5730c7b6d3c92dff14e04f3233f6a95bf4d2fad3b0ef1fa1&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22%25E1%2584%2589%25E1%2585%25B3%25E1%2584%258F%25E1%2585%25B3%25E1%2584%2585%25E1%2585%25B5%25E1%2586%25AB%25E1%2584%2589%25E1%2585%25A3%25E1%2586%25BA%25202022-10-16%2520%25E1%2584%258B%25E1%2585%25A9%25E1%2584%2592%25E1%2585%25AE%252011.10.57.png%22&x-id=GetObject)
+![next-pwa customWorkerDir](https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/10/fcm-next-pwa-customWorkerDir.png)
 
 <br/>
 
@@ -610,7 +610,7 @@ module.exports = withPlugins(
 
 그리고 다시 확인해보니 빌드 시에 public 폴더에 firebase-messaging-sw.js 파일이 자동으로 생성되고, 브라우저에 서비스 워커도 잘 등록되어 있는 것을 확인할 수 있었습니다.
 
-![service worker](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/110a50f5-0e34-401c-b3ca-7c53b9714db2/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-09-14_02.05.35.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221016%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221016T142902Z&X-Amz-Expires=86400&X-Amz-Signature=a30481cd0538defa5952460d1e9f1b1f6acb03da33d5bf0b3dd64f25860e3df8&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22%25E1%2584%2589%25E1%2585%25B3%25E1%2584%258F%25E1%2585%25B3%25E1%2584%2585%25E1%2585%25B5%25E1%2586%25AB%25E1%2584%2589%25E1%2585%25A3%25E1%2586%25BA%25202022-09-14%252002.05.35.png%22&x-id=GetObject)
+![service worker](https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/10/fcm-service-worker-registration-local.png)
 
 ### 2. 알림이 안 와요 🥲
 
