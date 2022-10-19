@@ -27,13 +27,25 @@ React에서 사용하던 것처럼 **nextjs에서 svg 파일을 컴포넌트처�
 > yarn add --dev @svgr/webpack
 > npm install @svgr/webpack -D
 
-[##*Image|kage@b3MaqC/btrIYChIK1v/QZHIpjBBqTK23PmsDZhNY1/img.png|CDM|1.3|{"originWidth":1124,"originHeight":384,"style":"alignCenter"}*##]
-
 ### 2. next.config.js 설정
 
 파일의 포맷이 svg인지 확인하여 svg일 경우에만 @svgr/webpack 라이브러리를 사용하도록 룰을 설정하기 위해 아래의 코드를 next.config.js에 추가합니다.
 
-[##*Image|kage@Wc9f8/btrI1WNYS5g/5cOHxS13vF8TBNrzwul9Sk/img.png|CDM|1.3|{"originWidth":1058,"originHeight":642,"style":"alignCenter"}*##]
+```javascript
+// next.config.js
+
+const config = {
+  // ...
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ["@svgr/webpack"],
+    });
+
+    return config;
+  },
+}
+```
 
 ## 2️⃣ babel plugin
 
@@ -44,19 +56,28 @@ webpack을 설정하고 싶지 않다면 babel plugin을 사용하는 방법도 
 > yarn add --dev babel-plugin-inline-react-svg
 > npm install babel-plugin-inline-react-svg -D
 
-[##*Image|kage@eAruFP/btrJItjkksp/05drHEN4BynXaT2pCE0XrK/img.png|CDM|1.3|{"originWidth":1072,"originHeight":420,"style":"alignCenter","filename":"code-snapshot.png"}*##]
-
 ### 2 .babelrc 수정
 
 .babelrc 파일이 없다면 프로젝트의 루트 레벨에 .babelrc 파일을 추가합니다.
 
 .babelrc는 아래와 같이 presets와 plugins 두 개의 키를 가지고 있도록 설정하고, presets는 **next/babel**을, plugins에는 **inline-react-svg**를 추가합니다.
 
-[##*Image|kage@LVxHp/btrJB3GGMQT/MhyvD5ZkkZKd0PcCXtBiG1/img.png|CDM|1.3|{"originWidth":1068,"originHeight":672,"style":"alignCenter","filename":"code-snapshot.png"}*##]
+```javascript
+// .babelrc
+
+{
+  "presets": [
+    "next/babel"
+  ],
+  "plugins": [
+    "inline-react-svg"
+  ]
+}
+```
 
 위의 두 방법 중 선호하는 방식으로 .svg에서 바로 파일을 import하여 ReactComponent처럼 사용할 수 있습니다.
 
-[##*Image|kage@boNApj/btrJC5KNz1c/9HOcKEDVlndEtFuYmUqNgk/img.png|CDM|1.3|{"originWidth":1876,"originHeight":1008,"style":"alignCenter","filename":"code-snapshot.png"}*##]
+![svg component use-case](https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/08/2022-08-next-svg-use-case.png)
 
 ## 3️⃣ .tsx 로 컴포넌트화
 
@@ -64,11 +85,11 @@ webpack을 설정하고 싶지 않다면 babel plugin을 사용하는 방법도 
 
 아이콘의 크기 및 컬러 관련한 속성들을 동적으로 변경해 줄 수 있도록 props를 설정해줍니다.
 
-[##*Image|kage@xldwF/btrJIrTnmJg/PNRcPrXTK1GOKfgqEnOyv1/img.png|CDM|1.3|{"originWidth":2136,"originHeight":714,"style":"alignCenter","filename":"code-snapshot.png"}*##]
+![svg componentify example](https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/08/2022-08-next-svg-component-example.png)
 
 아이콘 컴포넌트를 import 하는 방식은 다른 컴포넌트를 import하는 방식과 동일합니다.
 
-[##*Image|kage@cAabkE/btrJD4dQKwk/yIfUDOy9eHEJTLyNxttKGk/img.png|CDM|1.3|{"originWidth":2116,"originHeight":882,"style":"alignCenter","filename":"code-snapshot.png"}*##]
+![svg componentify use-case](https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/08/2022-08-next-svg-component-use-case.png)
 
 ## 4️⃣ 스토리북에서 사용할 때
 
@@ -76,7 +97,30 @@ nextjs 환경에서 스토리북으로 .svg 파일의 아이콘의 UI 테스트�
 
 ### main.js
 
-[##*Image|kage@cVsSaR/btrJAQ1FnhJ/o92im2psjXB9yRBXD0hMR1/img.png|CDM|1.3|{"originWidth":1758,"originHeight":1176,"style":"alignCenter","filename":"code-snapshot.png"}*##]
+```javascript
+// main.js
+
+module.exports = {
+  babel: async (options) => ({
+    "presets": [
+      "next/babel"
+    ],
+    "plugins": [
+      "inline-react-svg"
+    ],
+    ...options
+  })
+  // or
+  webpackFinal: (config) => {
+    rules.push({
+      test: /\.svg$/,
+      use: ["@svgr/webpack"],
+    });
+
+    return config;
+  }
+}
+```
 
 ## 정리
 
