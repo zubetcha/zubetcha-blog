@@ -3,7 +3,7 @@
 title: 트리쉐이킹으로 ECharts 번들 사이즈 최적화하기
 category: Optimization
 date: 2022-08-14
-published: false
+published: true
 slug: bundle-optimization-with-tree-shaking
 tags:
   - optimization
@@ -89,9 +89,9 @@ analyzer가 측정하는 어플리케이션의 크기는 `stats`, `parsed`, `gzi
 
 패키지별 사이즈는 아래와 같았습니다.
 
-[##_Image|kage@dAB5Ac/btrLOmw3z1g/u6HMs23LBppOaTs9vKwcR1/img.png|CDM|1.3|{"originWidth":1054,"originHeight":982,"style":"alignCenter","width":467,"height":435,"caption":"패키지별 사이즈","filename":"스크린샷 2022-09-12 오후 5.37.21.png"}_##]
+![bundle size top10](https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/08/2022-08-bundle-optimization-top10.png)
 
-[##*image|kage@cqglcc/btrjaqn6p2i/402tq1kl0fwdvpkifmnnq1/img.png|cdm|1.3|{"originwidth":2086,"originheight":1592,"style":"aligncenter","caption":"ㄴㅔ....??? echarts 사이즈가 1mb 라구요..??","filename":"스크린샷 2022-08-14 오후 6.43.43.png"}*##]
+![echarts size before](https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/08/2022-08-bundle-optimization-before.png)
 
 결과는 무척이나 놀라웠읍니다....
 
@@ -160,7 +160,7 @@ echarts.use([LineChart, CanvasRenderer, GridComponent, TooltipComponent, DataZoo
 
 결과적으로는 echarts 번들 사이즈를 약 `46%`를 줄일 수 있었습니다.
 
-[##*Image|kage@dJqefr/btrJKskcVcJ/JlDLEjrhCFn9b9MCdXo7Jk/img.png|CDM|1.3|{"originWidth":2176,"originHeight":1592,"style":"alignCenter","filename":"스크린샷 2022-08-14 오후 6.46.22.png"}*##]
+![echarts size after](https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/08/2022-08-bundle-optimization-after.png)
 
 ### 트리쉐이킹 할 때 참고하면 좋을 것들
 

@@ -160,8 +160,7 @@ export default NextImage
 
 next.js는 이미지 컴포넌트를 사용하면 `CLS`를 아예 막을 수 있다고 설명하고 있다. 어떻게 막는 건지 살펴보자!
 
-> **CLS란?**
-> **Cumulative Layout Shift**의 약자로,  사용자가 예상하지 못한 **레이아웃 이동**을 경험하는 빈도를 수치화하여 시각적인 안정성을 측정할 때 사용하는 **사용자 중심 메트릭**이다. CLS는 **낮을수록 좋다!**
+> **CLS란?** > **Cumulative Layout Shift**의 약자로,  사용자가 예상하지 못한 **레이아웃 이동**을 경험하는 빈도를 수치화하여 시각적인 안정성을 측정할 때 사용하는 **사용자 중심 메트릭**이다. CLS는 **낮을수록 좋다!**
 
 ![CLS](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2Fbdl3Ed%2FbtrzNCKhf1b%2FWx7NXYUhdxuLHLxSSr9mO0%2Fimg.jpg)
 
