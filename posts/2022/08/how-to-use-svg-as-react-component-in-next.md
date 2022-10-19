@@ -4,7 +4,7 @@ title: Next에서 svg를 React의 컴포넌트처럼 사용하는 방법
 category: Next
 description: 🤔
 date: 2022-08-05
-published: true
+published: false
 slug: how-to-use-svg-as-react-component-in-next
 tags:
   - next

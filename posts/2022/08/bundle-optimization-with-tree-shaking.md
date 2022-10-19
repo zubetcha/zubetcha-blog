@@ -3,7 +3,7 @@
 title: 트리쉐이킹으로 ECharts 번들 사이즈 최적화하기
 category: Optimization
 date: 2022-08-14
-published: true
+published: false
 slug: bundle-optimization-with-tree-shaking
 tags:
   - optimization
