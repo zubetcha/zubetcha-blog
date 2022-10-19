@@ -4,8 +4,7 @@ title: Next에서 svg를 React의 컴포넌트처럼 사용하는 방법
 category: Next
 description: 🤔
 date: 2022-08-05
-published: false
-slug: how-to-use-svg-as-react-component-in-next
+published: true
 tags:
   - next
   - react
@@ -131,8 +130,8 @@ module.exports = {
 - babel-plugin-inline-react-svg
 - .tsx로 컴포넌트화
 - 컴포넌트로 사용할 필요가 없다면
-- <svg> 태그로 바로 삽입
-- <Image> 컴포넌트의 src에 .svg의 경로 설정
+- `svg` 태그로 바로 삽입
+- Next의 `Image` 컴포넌트의 src에 .svg의 경로 설정
 
 <br/>
 

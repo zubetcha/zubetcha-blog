@@ -4,11 +4,10 @@ title: React-query useQuery와 Promise.all을 활용한 리렌더링 최적화
 category: React
 description: 리렌더링 최적화 그거 어떻게 하는건데…
 date: 2022-07-13
-published: false
-slug: rerendering-optimization-with-react-query-and-promise-all
+published: true
 tags:
-  - optimization
   - react
+  - optimization
   - react-query
 
 ---
@@ -25,13 +24,13 @@ tags:
 
 아래와 같이 되어 있는 페이지를 상상해보자.
 
-[##*Image|kage@qTtCt/btrG87qaBkT/bYCOntICvs1zSctagee16K/img.png|CDM|1.3|{"originWidth":3960,"originHeight":2160,"style":"alignCenter"}*##]
+![api module before](https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/07/2022-07-rerender-optimization-before.png)
 
 한 페이지를 완성하기 위해 A, B, C, D, E 총 5개의 각기 다른 성격의 데이터가 필요하다고 할 때, 기존에는 5개의 다른 데이터를 모두 하나의 API에 담았기 때문에 한 번의 호출만 필요했다.
 
 하지만 API 모듈화를 진행하게 되면 각기 다른 성격의 데이터마다 다른 API에 실어서 보내야 하기 때문에 같은 페이지를 구성한다고 할 때 총 5번의 API 호출이 필요하게 된다.
 
-[##*Image|kage@ViPcV/btrHwkikxsA/DbRwV6vko3b0NV3XtKKR61/img.png|CDM|1.3|{"originWidth":3960,"originHeight":2160,"style":"alignCenter"}*##]
+![api module after](https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/07/2022-07-rerender-optimization-after.png)
 
 페이지 렌더링에 필요한 API 호출 횟수가 1회에서 5회로 증가하면서 내가 신경써야 하는 것들이 아래와 같이 생겨났다. (달리 말하면 충족해야 하는 조건이라고도 할 수 있다...🥲)
 
@@ -106,11 +105,11 @@ return (
 
 이렇게 코드를 작성하고 우선 공식문서에서 설명하고 있는 것처럼 useQuery를 여러 번 실행했을 때 API들이 병렬로 호출되는지 확인하기 위해 네트워크 탭을 열었고 5개의 useQuery가 모두 병렬로 실행되고 있음을 확인할 수 있었다!
 
-[##_Image|kage@rBdge/btrIjLUfpbE/k22hHFPDKN0zZ9j6W2UFgK/img.png|CDM|1.3|{"originWidth":1504,"originHeight":892,"style":"alignCenter","filename":"스크린샷 2022-07-27 오후 2.19.21.png"}_##]
+![react-query parallel queries](https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/07/2022-07-rerender-optimization-react-query-parallel-queries.png)
 
-[##*image|kage@izuca/btridxurytk/p7osz6wfky4xnhj0uj01mk/img.png|cdm|1.3|{"originwidth":2132,"originheight":220,"style":"aligncenter","filename":"스크린샷 2022-07-25 오후 2.35.08.png"}*##]
+![react-query parallel queries network](https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/07/2022-07-rerender-optimization-parallel-network.png)
 
-[##*Image|kage@ok4li/btrIcIbsJbK/l020ClBD7u6vVLRRk75dRk/img.png|CDM|1.3|{"originWidth":1362,"originHeight":400,"style":"alignCenter","filename":"스크린샷 2022-07-25 오후 2.27.36.png"}*##]
+![react-query parallel queries console.log](https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/07/2022-07-rerender-optimization-parallel-log.png)
 
 그 다음 리렌더링 횟수를 확인하기 위해 콘솔 탭을 열었고, useQuery 실행 횟수만큼 리렌더링이 발생하고 있다는 걸 확인할 수 있었다. 🥲
 
@@ -131,7 +130,7 @@ return (
 
 useQueries는 react-query에서 제공하는 API 중 하나로, 여러 개의 useQuery를 병렬로 실행해주는 훅이다. 만약 useQueries로 API를 호출했을 때 호출하는 모든 API의 성공을 보장할 수 있다면 위에 적은 조건들은 모두 충족하는 것이다.
 
-[##*Image|kage@bU4TU2/btrHULs64gl/l2uJhlu6r717aKVogumfkK/img.png|CDM|1.3|{"originWidth":1826,"originHeight":974,"style":"alignCenter","filename":"스크린샷 2022-07-21 오전 12.39.37.png"}*##]
+![react-query useQueries](https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/07/2022-07-rerender-optimization-react-query-useQueries.png)
 
 위에 작성한 useQuery 5번 실행하는 코드를 useQueries를 사용한 코드로 바꾼 후 화면을 다시 새로고침 해보았다.. (나는 아직 react-query를 tanstack/react-query로 업그레이드하지 않았기 때문에 공식 문서에 나와 있는 사용 방법과는 조금 다르다.)
 
@@ -155,9 +154,9 @@ useQueries(queryKey.map(key => {
 }))
 ```
 
-[##*Image|kage@bsQ0tI/btrH6HkF3GK/IszOuCsPVLVsoIDqUCEEkK/img.png|CDM|1.3|{"originWidth":2136,"originHeight":220,"style":"alignCenter","filename":"스크린샷 2022-07-25 오후 2.53.03.png"}*##]
+![react-query useQueries network](https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/07/2022-07-rerender-optimization-useQueries-network.png)
 
-[##*Image|kage@dkntJQ/btrIdwVZ4r9/K9FevJOHNmvZMhphdX3IkK/img.png|CDM|1.3|{"originWidth":1352,"originHeight":430,"style":"alignCenter","filename":"스크린샷 2022-07-25 오후 2.51.46.png"}*##]
+![react-query useQueries console.log](https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/07/2022-07-rerender-optimization-useQueries-log.png)
 
 ..?
 
@@ -192,11 +191,11 @@ useEffect(() => {
 }, [])
 ```
 
-[##*Image|kage@uTNlZ/btrIlwvyydE/82bXBMKwjIjvF3iAkJs4y0/img.png|CDM|1.3|{"originWidth":2062,"originHeight":218,"style":"alignCenter","filename":"스크린샷 2022-07-27 오후 3.17.51.png"}*##]
+![promise.all network](https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/07/2022-07-rerender-optimization-promise-all-network.png)
 
-[##*Image|kage@bOOHyL/btrIfusg0D7/6ySMGEy4p0iYfoR36vBOD1/img.png|CDM|1.3|{"originWidth":1484,"originHeight":246,"style":"alignCenter","filename":"스크린샷 2022-07-27 오후 3.17.19.png"}*##]
+![promise.all console.log](https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/07/2022-07-rerender-optimization-promise-all-log.png)
 
-## 🥹
+🥹
 
 콘솔에서 확인해보니 예상했던 대로(??) 리렌더링이 한 번밖에 발생하지 않았다..! react-query를 사용해야 하는 조건이 남긴 했지만 query Function을 Promise.all로 쪼물딱쪼물딱 만들면 되겠다는 생각이 들었다.
 
@@ -236,15 +235,15 @@ console.log(queryResult);
 
 그리고 브라우저에서 확인해보니..!
 
-[##*Image|kage@bbWjxE/btrIkpDBdog/nqVW4Rq1mKfifKe0gKJxLK/img.png|CDM|1.3|{"originWidth":2058,"originHeight":222,"style":"alignCenter","filename":"스크린샷 2022-07-27 오후 4.59.27.png"}*##]
+![promise.all+useQuery network](https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/07/2022-07-rerender-optimization-promise-useQuery-network.png)
 
-[##*Image|kage@bjG5BC/btrIlwJdakD/9P47M9YQ6j2Fv1Aj2Plav1/img.png|CDM|1.3|{"originWidth":2658,"originHeight":1582,"style":"alignCenter","filename":"스크린샷 2022-07-27 오후 5.00.49.png"}*##]
+![promise.all+useQuery console.log](https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/07/2022-07-rerender-optimization-promise-useQuery-log.png)
 
 API들도 너무 이쁘게 병렬로 호출되고~~모든 API의 성공도 보장하고~~
 
 또한 useQuery를 한 번밖에 실행하지 않았으니 리렌더링도 한 번밖에 발생하지 않았다! 이로써 모든 조건들을 충족할 수 있게 되었다.
 
-[##*Image|kage@t4H26/btrIoBQi8FK/XfeRUjhNXngbnU1MHEfK0K/img.gif|CDM|1.3|{"originWidth":350,"originHeight":345,"style":"alignCenter"}*##]
+![lulu](https://blog.kakaocdn.net/dn/t4H26/btrIoBQi8FK/XfeRUjhNXngbnU1MHEfK0K/img.gif)
 
 ---
 
@@ -318,7 +317,7 @@ export const useQueries = (
 
 request할 때 정보를 함께 전달해야 하는 케이스도 확인하기 위해 포스트맨으로 mock api를 한 개 더 만들고 export하는 API도 수정했다.
 
-[##*Image|kage@40uyO/btrInJIcSpZ/XRKZUOsNImK3MZNMkU847K/img.png|CDM|1.3|{"originWidth":1420,"originHeight":878,"style":"alignCenter","filename":"스크린샷 2022-07-27 오후 6.26.13.png"}*##]
+![postman](https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/07/2022-07-rerender-optimization-postman.png)
 
 ```jsx
 // api.tsx
@@ -356,9 +355,9 @@ console.log(result)
 
 브라우저에서 확인해보면..!
 
-[##*Image|kage@ctho56/btrImdpfbLf/i2WHAFoWz6jFwVXAkmcCHk/img.png|CDM|1.3|{"originWidth":1760,"originHeight":212,"style":"alignCenter","filename":"스크린샷 2022-07-27 오후 6.38.12.png"}*##]
+![useQuery customHook network](https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/07/2022-07-rerender-optimization-custom-hook-network.png)
 
-[##*Image|kage@KTl3c/btrIh5lHmHm/N5eeKt5mnTRZPvHKo3RGf1/img.png|CDM|1.3|{"originWidth":2400,"originHeight":1312,"style":"alignCenter","filename":"스크린샷 2022-07-27 오후 6.39.21.png"}*##]
+![useQuery customHook network](https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/07/2022-07-rerender-optimization-custom-hook-log.png)
 
 useQuery가 반환해주는 data가 파라미터로 넘긴 apis의 key이름으로 이쁘게 잘 정리까지 되어 있는 걸 볼 수 있다!
 
@@ -366,7 +365,9 @@ useQuery가 반환해주는 data가 파라미터로 넘긴 apis의 key이름으�
 
 프로젝트를 하면서 항상 최적화 해야지~해야지~ 입으로는 말하면서도 뭐부터, 어떻게 해야 할지 감이 안 왔었는데 처음부터 고민하면서 시도하고, 마침내 내가 원하는 바를 이룰 수 있어서 뿌듯하고 뜻깊었다. 앞으로도 다양한 방면으로 최적화를 해내고 싶다는 욕심도 생겼다. 아좌좌..~!
 
-[##*Image|kage@b6ZF5g/btrIiLtZ40i/PyNoa5t4Pzgv0tj6u1tAC1/img.jpg|CDM|1.3|{"originWidth":500,"originHeight":343,"style":"alignCenter"}*##]
+<p align="center">
+  <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fb6ZF5g%2FbtrIiLtZ40i%2FPyNoa5t4Pzgv0tj6u1tAC1%2Fimg.jpg" alt="azaza" width="600" />
+</p>
 
 ---
 

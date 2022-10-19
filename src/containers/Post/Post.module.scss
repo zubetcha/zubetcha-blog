@@ -205,8 +205,19 @@
 			margin: toRem(32) 0 toRem(24);
 		}
 
-		img {
+		p > img {
 			width: 100%;
+		}
+
+		@include mobile() {
+			img {
+				width: 100%;
+			}
+		}
+		@include tablet() {
+			img {
+				width: 100%;
+			}
 		}
 	}
 }
