@@ -16,7 +16,7 @@ tags:
 
 ## 들어가면서
 
-> 본 게시글의 내용은 React v17까지만 해당합니다. React v18부터는 Promise에도 automatic batching을 지원하기 때문에 2개 이상의 API를 동시 호출해야 할 떼 useQuery 여러번 또는 useQueries를 사용해도 리렌더링이 한 번밖에 되지 않습니다.  🥲
+> 본 게시글의 내용은 React `v17`까지만 해당합니다. React v18부터는 Promise에도 automatic batching을 지원하기 때문에 2개 이상의 API를 동시 호출해야 할 떼 useQuery 여러번 또는 useQueries를 사용해도 리렌더링이 한 번밖에 되지 않습니다.  🥲
 
 회사에 들어온 지도 4개월이 다 되어간다.
 
@@ -26,9 +26,9 @@ tags:
 
 ![api module before](https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/07/2022-07-rerender-optimization-before.png)
 
-한 페이지를 완성하기 위해 A, B, C, D, E 총 5개의 각기 다른 성격의 데이터가 필요하다고 할 때, 기존에는 5개의 다른 데이터를 모두 하나의 API에 담았기 때문에 한 번의 호출만 필요했다.
+한 페이지를 완성하기 위해 A, B, C, D, E 총 5개의 각기 다른 성격의 데이터가 필요하다고 할 때, 기존에는 5개의 다른 데이터를 모두 하나의 API에 담았기 때문에 **한 번의 호출**만 필요했다.
 
-하지만 API 모듈화를 진행하게 되면 각기 다른 성격의 데이터마다 다른 API에 실어서 보내야 하기 때문에 같은 페이지를 구성한다고 할 때 총 5번의 API 호출이 필요하게 된다.
+하지만 API 모듈화를 진행하게 되면 각기 다른 성격의 데이터마다 다른 API에 실어서 보내야 하기 때문에 같은 페이지를 구성한다고 할 때 총 **5번의 API 호출**이 필요하게 된다.
 
 ![api module after](https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/07/2022-07-rerender-optimization-after.png)
 
@@ -63,7 +63,7 @@ export const MockAPI = () => {
 
 ## useQuery로 5번 호출해보기
 
-우선 API를 호출할 때 useQuery를 5번 호출하면 리렌더링이 몇 번 발생하는지를 확인해보았다. 리렌더링 횟수를 카운팅하기 위해 useQuery의 option에 API 호출이 성공하면 count + 1을 해주는 코드를 추가했다.
+우선 API를 호출할 때 `useQuery`를 `5번` 호출하면 리렌더링이 몇 번 발생하는지를 확인해보았다. 리렌더링 횟수를 카운팅하기 위해 useQuery의 option에 API 호출이 성공하면 count + 1을 해주는 코드를 추가했다.
 
 ```jsx
 const [count, setCount] = useState(0)
@@ -128,7 +128,7 @@ return (
 
 ## useQueries
 
-useQueries는 react-query에서 제공하는 API 중 하나로, 여러 개의 useQuery를 병렬로 실행해주는 훅이다. 만약 useQueries로 API를 호출했을 때 호출하는 모든 API의 성공을 보장할 수 있다면 위에 적은 조건들은 모두 충족하는 것이다.
+`useQueries`는 react-query에서 제공하는 API 중 하나로, 여러 개의 useQuery를 병렬로 실행해주는 훅이다. 만약 useQueries로 API를 호출했을 때 호출하는 모든 API의 성공을 보장할 수 있다면 위에 적은 조건들은 모두 충족하는 것이다.
 
 ![react-query useQueries](https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/07/2022-07-rerender-optimization-react-query-useQueries.png)
 
@@ -160,7 +160,7 @@ useQueries(queryKey.map(key => {
 
 ..?
 
-리렌더링 횟수는 오히려 배가 됐다. 훅의 이름 그대로 useQuery를 여러 개 실행시켜줄 뿐이고, 문서에 나와 있는 것처럼 실행해야 하는 useQuery의 갯수를 미리 알 수 없을 때 (동적으로 실행해야 할 때)를 위한 훅인 듯 하다. 따라서 충족하는 조건도 useQuery를 5번 실행했을 때와 동일하다!
+리렌더링 횟수는 오히려 배가 됐다. 훅의 이름 그대로 useQuery를 여러 개 실행시켜줄 뿐이고, 문서에 나와 있는 것처럼 실행해야 하는 useQuery의 갯수를 미리 알 수 없을 때*(동적으로 실행해야 할 때)*를 위한 훅인 듯 하다. 따라서 충족하는 조건도 useQuery를 5번 실행했을 때와 동일하다!
 
 ---
 
@@ -175,7 +175,7 @@ useQueries(queryKey.map(key => {
 
 ## Promise.all
 
-사실 마지막 세 번째 조건인 react-query를 사용해야 한다는 조건만 빼면 나머지 **1) 병렬 호출**과 **2) 모든 API의 성공 보장**은 자바스크립트의 프로미스 메소드를 사용하면 해결된다. Promise.all()은 만약 파라미터로 주어진 객체가 모두 프로미스일 때 하나의 프로미스라도 거부되면 Promise.all() 자체도 거부되기 때문에 모든 API의 성공을 보장할 수 있다.
+사실 마지막 세 번째 조건인 react-query를 사용해야 한다는 조건만 빼면 나머지 **1) 병렬 호출**과 **2) 모든 API의 성공 보장**은 자바스크립트의 `Promise`를 사용하면 해결된다. `Promise.all()`은 만약 파라미터로 주어진 객체가 모두 프로미스일 때 하나의 프로미스라도 거부되면 Promise.all() 자체도 거부되기 때문에 모든 API의 성공을 보장할 수 있다.
 
 또한 파라미터로 주어진 프로미스들을 모두 처리한 후 한 번에 결과를 주기 때문에 리렌더링도 한 번만 되지 않을까..?하는 기대를 해보았다.
 
@@ -197,7 +197,7 @@ useEffect(() => {
 
 🥹
 
-콘솔에서 확인해보니 예상했던 대로(??) 리렌더링이 한 번밖에 발생하지 않았다..! react-query를 사용해야 하는 조건이 남긴 했지만 query Function을 Promise.all로 쪼물딱쪼물딱 만들면 되겠다는 생각이 들었다.
+콘솔에서 확인해보니 예상했던 대로(??) 리렌더링이 **한 번**밖에 발생하지 않았다..! react-query를 사용해야 하는 조건이 남긴 했지만 query Function을 Promise.all로 쪼물딱쪼물딱 만들면 되겠다는 생각이 들었다.
 
 ---
 
@@ -239,7 +239,7 @@ console.log(queryResult);
 
 ![promise.all+useQuery console.log](https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/07/2022-07-rerender-optimization-promise-useQuery-log.png)
 
-API들도 너무 이쁘게 병렬로 호출되고~~모든 API의 성공도 보장하고~~
+API들도 너무 병렬로 잘 호출되고~~모든 API의 성공도 보장할 수 있게 되었다!
 
 또한 useQuery를 한 번밖에 실행하지 않았으니 리렌더링도 한 번밖에 발생하지 않았다! 이로써 모든 조건들을 충족할 수 있게 되었다.
 
@@ -297,21 +297,12 @@ export const useQueries = (
 }
 ```
 
-**queryKey**
+파라미터에 대해서 설명을 덧붙여보자면,
 
-: useQuery의 queryKey로 사용한다.
-
-**apis**
-
-: 데이터 fetch API들을 key-value의 형태로 묶은 오브젝트이다. useQuery가 반환해주는 data에서 key 이름으로 각 API의 response data에 접근할 수 있게 하기 위해 (한마디로 데이터를 이쁘게 정리하기 위해) 무조건 오브젝트의 형태로만 넘길 수 있도록 했다.
-
-**queryOptions (optional)**
-
-: useQuery의 option으로 사용한다.
-
-**params (optional)**
-
-: hoxy나 데이터를 fetch할 때 request url의 쿼리스트링이나 request body로 제공해야 하는 정보가 있는 경우에만 사용한다.
+- **queryKey**: useQuery의 queryKey로 사용한다.
+- **apis**: 데이터 fetch API들을 key-value의 형태로 묶은 오브젝트이다. useQuery가 반환해주는 data에서 key 이름으로 각 API의 response data에 접근할 수 있게 하기 위해 (한마디로 데이터를 이쁘게 정리하기 위해) 무조건 오브젝트의 형태로만 넘길 수 있도록 했다.
+- **queryOptions (optional)**: useQuery의 option으로 사용한다.
+- **params (optional)**: hoxy나 데이터를 fetch할 때 request url의 쿼리스트링이나 request body로 제공해야 하는 정보가 있는 경우에만 사용한다.
 
 우리팀은 특정할 수 있는 원인으로 인해 request 오류가 발생한 경우에는 서버에서 커스텀 에러 코드를 함께 보내주는데, 프론트엔드에서는 500번대 에러를 제외한 그 외의 나머지 에러들은 모두 resolve가 되도록 처리해놨기 때문에 try문에서 예외처리를 하고 커스텀훅이 커스텀 에러코드의 상태도 함께 반환하도록 하였다.
 
