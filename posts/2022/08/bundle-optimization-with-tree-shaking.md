@@ -88,9 +88,13 @@ analyzer가 측정하는 어플리케이션의 크기는 `stats`, `parsed`, `gzi
 
 패키지별 사이즈는 아래와 같았습니다.
 
-![bundle size top10](https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/08/2022-08-bundle-optimization-top10.png)
+<p align="center">
+  <img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/08/2022-08-bundle-optimization-top10.png" alt="bundle size top10" width="70%" />
+</p>
 
-![echarts size before](https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/08/2022-08-bundle-optimization-before.png)
+<img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/08/2022-08-bundle-optimization-before.png" alt="echarts size before" width="100%" />
+
+<br/>
 
 결과는 무척이나 놀라웠읍니다....
 
@@ -159,7 +163,7 @@ echarts.use([LineChart, CanvasRenderer, GridComponent, TooltipComponent, DataZoo
 
 결과적으로는 echarts 번들 사이즈를 약 `46%`를 줄일 수 있었습니다.
 
-![echarts size after](https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/08/2022-08-bundle-optimization-after.png)
+<img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/08/2022-08-bundle-optimization-after.png" alt="echarts size after" width="100%" />
 
 ### 트리쉐이킹 할 때 참고하면 좋을 것들
 

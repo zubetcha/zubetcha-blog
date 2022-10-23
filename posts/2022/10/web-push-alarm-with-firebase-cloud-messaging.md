@@ -27,11 +27,11 @@ tags:
 
 firebase에서 앱을 등록하고 FCM을 사용하기 위해 Project settings 페이지의 Cloud Messging 탭에서 웹 푸시 인증서의 키페어를 발급 받습니다.
 
-![firebase project setting](https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/10/fcm-firebase-project-setting.png)
+<img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/10/fcm-firebase-project-setting.png" alt="firebase project setting" width="100%" />
 
 이후 General 탭으로 이동하면 firebase를 사용하기 위해 필요한 환경설정 구성값들을 확인할 수 있습니다.
 
-![firebase app config](https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/10/fcm-firebase-config.png)
+<img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/10/fcm-firebase-config.png" alt="firebase app config" width="100%" />
 
 ## SDK 설치 및 firebase 초기화
 
@@ -354,11 +354,11 @@ if ('serviceWorker' in navigator) {
 
 firebase-messaging-sw 서비스워커가 브라우저에 잘 등록되었다면 `개발자도구 → 어플리케이션 → 서비스워커` 탭에서 도메인에 등록되어 있는 서비스워커 및 활성화 상태를 확인할 수 있습니다.
 
-![devtools service workers](https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/10/fcm-service-worker-registration.png)
+<img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/10/fcm-service-worker-registration.png" alt="inspect service workers" width="100%" />
 
 서비스워커 등록까지 잘 마쳤다면 firebase console 에서 메시지 테스트를 해봅니다. 백그라운드 상태에서 약 5분 정도 기다리면 아래의 화면과 같이 푸시 알림이 오는 것을 확인할 수 있습니다.
 
-![web push background message](https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/10/fcm-background-message.png)
+<img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/10/fcm-background-message.png" alt="web push background message" width="100%" />
 
 > 백그라운드 상태에서도 푸시 알림을 받을 수 있는 이유는 ServiceWorker API의 특성상 브라우저에 서비스 워커가 한번 등록되면 등록된 서비스 워커의 수명은 어플리케이션이 종료되어도 보존되기 때문입니다.
 
@@ -483,7 +483,7 @@ export const PushNotificationLayout = ({ children }: Props) => {
 따란..✨
 라이브러리의 도움을 받아 제법 깔끔한 토스트 팝업이 완성되었습니다!
 
-![toast popup](https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/10/fcm-forground-message.png)
+<img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/10/fcm-forground-message.png" alt="web push toast ui" width="100%" />
 
 ## 트러블슈팅
 
@@ -493,7 +493,7 @@ FCM과 서비스 워커로 푸시 알림을 구현하는 것 자체는 firebase 
 
 분명 public 폴더에 `firebase-messaging-sw.js` 라는 이름으로 파일을 생성하고 서비스 워커 내용을 정의했는데도 브라우저에 서비스 워커를 등록할 수 없다는 문구와 함께 **401 에러**가 발생했습니다.
 
-![service worker registration error](https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/10/fcm-service-worker-registration-error.png)
+<img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/10/fcm-service-worker-registration-error.png" alt="service worker registration error" width="100%" />
 
 401 에러는 인증 에러라서 확인해보니 유효하지 않은 JWT가 서버로 전달되었을 때 받는 response가 오고 있었습니다.
 
@@ -536,9 +536,13 @@ module.exports = withPlugins(
 
 next-pwa 옵션을 다시 찾아보았고 sw와 customWorkerDir 키워드를 찾았습니다.
 
-![next-pwa sw](https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/10/fcm-next-pwa-sw.png)
+<p align="center">
+  <img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/10/fcm-next-pwa-sw.png" alt="next-pwa sw" width="80%" />
+</p>
 
-![next-pwa customWorkerDir](https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/10/fcm-next-pwa-customWorkerDir.png)
+<p align="center">
+  <img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/10/fcm-next-pwa-customWorkerDir.png" alt="next-pwa customWorkerDir" width="80%" />
+</p>
 
 <br/>
 
@@ -610,7 +614,7 @@ module.exports = withPlugins(
 
 그리고 다시 확인해보니 빌드 시에 public 폴더에 firebase-messaging-sw.js 파일이 자동으로 생성되고, 브라우저에 서비스 워커도 잘 등록되어 있는 것을 확인할 수 있었습니다.
 
-![service worker](https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/10/fcm-service-worker-registration-local.png)
+<img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/10/fcm-service-worker-registration-local.png" alt="service worker" width="100%" />
 
 ### 2. 알림이 안 와요 🥲
 

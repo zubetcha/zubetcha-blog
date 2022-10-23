@@ -70,7 +70,7 @@ export default NextImage
 
 브라우저 화면을 보면 public 폴더에 저장되어 있는 이미지들이 잘 로드되고 있는 걸 볼 수 있다.
 
-![image component example](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FbgEinN%2FbtrzkyIKZId%2F2tmXCeKczaTGzjn6xVJZjk%2Fimg.png)
+<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FbgEinN%2FbtrzkyIKZId%2F2tmXCeKczaTGzjn6xVJZjk%2Fimg.png" alt="image component example" width="100%" />
 
 ## img 태그와 비교해보자!
 
@@ -104,7 +104,7 @@ const NextImage = () => {
 export default NextImage
 ```
 
-![img tag example](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FbTJim7%2FbtrzhrdlWHl%2F1aNeMCAyICK1wTQwke1380%2Fimg.png)
+<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FbTJim7%2FbtrzhrdlWHl%2F1aNeMCAyICK1wTQwke1380%2Fimg.png" alt="img tag example" width="100%" />
 
 유의해서 봐야할 건 다운로드하는 이미지의 `갯수`, `유형`, `크기` 및 `시간`이다.
 
@@ -145,7 +145,7 @@ const NextImage = () => {
 export default NextImage
 ```
 
-![Image component example](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2F3Xpha%2Fbtrzj0FxmPh%2FB0jksFcpb7g6aFx7xKiDDk%2Fimg.png)
+<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2F3Xpha%2Fbtrzj0FxmPh%2FB0jksFcpb7g6aFx7xKiDDk%2Fimg.png" alt="Image component example" width="100%" />
 
 <br/>
 
@@ -162,13 +162,13 @@ next.js는 이미지 컴포넌트를 사용하면 `CLS`를 아예 막을 수 있
 
 > **CLS란?** > **Cumulative Layout Shift**의 약자로,  사용자가 예상하지 못한 **레이아웃 이동**을 경험하는 빈도를 수치화하여 시각적인 안정성을 측정할 때 사용하는 **사용자 중심 메트릭**이다. CLS는 **낮을수록 좋다!**
 
-![CLS](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2Fbdl3Ed%2FbtrzNCKhf1b%2FWx7NXYUhdxuLHLxSSr9mO0%2Fimg.jpg)
+<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2Fbdl3Ed%2FbtrzNCKhf1b%2FWx7NXYUhdxuLHLxSSr9mO0%2Fimg.jpg" alt="CLS" width="100%" />
 
 만약 컴포넌트 안에 이미지를 불러올 때 `dynamic import`가 아닌 `static import`를 사용한다면 next.js는 **프로젝트가 빌드될 때 자동으로 이미지의 넓이와 높이를 특정**할 수 있게 된다. 따라서 브라우저에서 이미지가 완전히 로드되기 전이라도 이미지의 크기를 미리 알 수 있기 때문에 로드 시점에 따라 이미지의 위치가 변경되지 않을 수 있게 된다. next.js는 이러한 방법으로 CLS를 막고 있다!
 
 네트워크 속도를 Slow 3G로 설정해놓고 보면, 두 번째 강아지 이미지의 크기가 가장 작기 때문에 가장 빨리 로드되지만 **원래 있어야 할 위치에서** 바로 로드되는 걸 확인할 수 있다. 즉, 비교적으로 로드 속도가 느린 첫 번째 이미지가 로드되기 전에 두 번째 이미지가 첫 번째 이미지의 위치에서 로드되고, 후에 첫 번째 이미지가 로드되면 두 번째 위치로 변경되는 게 아니라는 의미이다.
 
-![CLS example](https://k.kakaocdn.net/dn/8YM1b/btrzKczwvPT/KotaJVm30hSbQsC4k6EOr1/img.gif)
+<img src="https://k.kakaocdn.net/dn/8YM1b/btrzKczwvPT/KotaJVm30hSbQsC4k6EOr1/img.gif" alt="CLS example" width="100%" />
 
 > Next 이미지 컴포넌트의 특징을 간단히 살펴보았다. 내가 생각하는 Next가 제공해주는 이미지 컴포넌트를 사용해야 하는 이유는..안 쓸 이유가 없기 때문인 것 같다. 😬
 

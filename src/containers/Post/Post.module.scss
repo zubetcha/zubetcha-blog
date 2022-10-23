@@ -205,9 +205,9 @@
 			margin: toRem(32) 0 toRem(24);
 		}
 
-		p > img {
-			width: 100%;
-		}
+		// p > img {
+		// 	width: 100%;
+		// }
 
 		@include mobile() {
 			img {
