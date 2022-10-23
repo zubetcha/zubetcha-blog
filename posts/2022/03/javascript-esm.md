@@ -17,7 +17,7 @@ tags:
 
 정재남님의 무근본 무계획 쇼핑몰 프로젝트 만드는 걸 따라하면서 새로운 것 투성이라 신기했다. 하나하나 차근차근 찾아보려고 우선 Vite의 공식문서부터 열고 가이드의 가장 첫 번째 섹션인 Vite를 사용해야 하는 이유부터 보는데 첫 문장부터 이해가 잘 되지 않았다...!
 
-![vite](https://t1.daumcdn.net/tistory_admin/static/images/no-image-v1.png)
+<img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/03/2022-03-javascript-esm-why-vite.png" alt="vite" width="100%" />
 
 생각해보니 프로젝트 하면서 너무나 당연하게 `export` 와 `import` 를 사용했고, 이게 ES6 부터 지원하는 모듈이라는 건 알고 있었는데 자세히 알아본 적이 없어서 단어들이 생소하게 느껴진 거였다.
 
@@ -35,7 +35,9 @@ ES Module은 ES6부터 도입된 모듈 시스템이다. export 및 import문을
 
 ES Module이 등장하기 이전에는 각각의 script 파일을 `전역 스코프`처럼 사용했다. HTML 파일에서 보다 위에 있는 script 파일은 전역 스코프처럼 하위의 script 태그에서의 접근 또는 변경이 가능했는데, 이 때문에 jQuery script를 최상단에 두고 순서를 올바르게 구성하는 게 중요했다.
 
-![global script](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FvaUPc%2FbtrvE5cd0sN%2FifXmwJpIqPKa5lg6rh4ufK%2Fimg.png)
+<p align="center">
+  <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FvaUPc%2FbtrvE5cd0sN%2FifXmwJpIqPKa5lg6rh4ufK%2Fimg.png" alt="global script" width="70%" />
+</p>
 
 이러한 구조는 문제점을 가지고 있다.
 
@@ -48,7 +50,9 @@ ES Module이 등장하기 이전에는 각각의 script 파일을 `전역 스코
 
 <br/>
 
-![global script problem](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2Fbqj4PS%2FbtrvAbdXMGl%2Fwa5kGTqfHMaIAJ8QQ5fVJ0%2Fimg.png)
+<p align="center">
+  <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2Fbqj4PS%2FbtrvAbdXMGl%2Fwa5kGTqfHMaIAJ8QQ5fVJ0%2Fimg.png" alt="global script problem" width="70%" />
+</p>
 
 ### 해결책 - 모듈화
 
@@ -66,23 +70,27 @@ ES Module이 등장하기 이전에는 각각의 script 파일을 `전역 스코
 
 기존에는 위와 같은 라이브러리에 의존해야 했던 모듈 기능을 `ECMAScript 6`부터 네이티브 자바스크립트에서도 지원하기 시작했으며 여러 브라우저에서도 모듈 로딩을 최적화할 수 있도록 모듈 기능을 지원하고 있다. 브라우저별 export와 import문의 호환성은 아래와 같다. _(IE에서는 무슨 일이 일어나고 있는 걸까..?)_
 
-![export compati](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FlBVVL%2FbtrvDjPn1VZ%2FsGEgkrYgnkQBsSJn7IkO11%2Fimg.png)
+<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FlBVVL%2FbtrvDjPn1VZ%2FsGEgkrYgnkQBsSJn7IkO11%2Fimg.png" alt="export compati" width="100%" />
 
-![import compati](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FwCTg0%2FbtrvylgYMYG%2FDxb9oBdvwXKEMWCJJYVtkK%2Fimg.png)
+<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FwCTg0%2FbtrvylgYMYG%2FDxb9oBdvwXKEMWCJJYVtkK%2Fimg.png" alt="import compati" width="100%" />
 
 ## ES Module의 동작 방식
 
 의존성 간의 연결은 `import` 문이 작성된 코드에서 발생한다. import 문은 브라우저 또는 node가 어떤 코드를 불러와야 하는지 인식하는 데 사용되며, import 문에서 지정한 파일(일반적으로 url)이 의존성 그래프의 `진입점` (entry point)이 되고 연결되어 있는 import 문을 따라가면서 의존성 그래프가 그려진다.
 
-![dependency graph](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FpKWFU%2FbtrvF98nr3g%2FglDWFt3C45h6P3m9UbL03k%2Fimg.png)
+<p align="center">
+  <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FpKWFU%2FbtrvF98nr3g%2FglDWFt3C45h6P3m9UbL03k%2Fimg.png" alt="dependency graph" width="70%" />
+</p>
 
 ES Module이 동작하기 위해서는 브라우저가 사용할 수 있도록 `모듈 레코드(Module Record)` 라고 하는 데이터 구조로 변환 작업 필요한데,
 
-![module record](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FLDIzR%2FbtrvF91Cgfe%2FDhxYzo5dK8FqBwKDkd3Dak%2Fimg.png)
+<p align="center">
+  <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FLDIzR%2FbtrvF91Cgfe%2FDhxYzo5dK8FqBwKDkd3Dak%2Fimg.png" alt="module record" width="70%" />
+</p>
 
 이러한 모듈화 작업 과정은 `구성 → 인스턴스화 → 평가`의 세 단계를 거친다.
 
-![modulization](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2Fcc6uFO%2FbtrvLgkf6ze%2FtAqUb2fa4GAnEaKekbFTV0%2Fimg.png)
+<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2Fcc6uFO%2FbtrvLgkf6ze%2FtAqUb2fa4GAnEaKekbFTV0%2Fimg.png" alt="modulization" width="100%" />
 
 ### 1. 구성 (Construction)
 
@@ -90,7 +98,7 @@ ES Module이 동작하기 위해서는 브라우저가 사용할 수 있도록 `
 
 이 때 파일을 불러오는 역할을 하는 것이 `로더(loader)`인데, 사용 중인 플랫폼에 따라 다른 로더를 가질 수도 있지만 브라우저의 경우 **HTML 명세를 따른다.** 로더는 스크립트 태그에서 진입점 파일을 찾을 수 있는 단서를 얻고 import문의 `모듈 지정자(module specifier)`를 통해 다음 모듈의 의존성을 파악한다. 또한 모듈 맵을 이용하여 각 모듈의 캐시를 관리하기도 한다.
 
-![module specifier](https://t1.daumcdn.net/tistory_admin/static/images/no-image-v1.png)
+<img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/03/2022-03-javascript-esm-module-specifier.png" alt="module specifier" width="70%" />
 
 ### 2. 인스턴스화 (Instantiation)
 
@@ -100,13 +108,13 @@ ES Module이 동작하기 위해서는 브라우저가 사용할 수 있도록 `
 
 node.js의 CommonJS는 export-import에서 라이브 바인딩이 아닌 **객체 복사**를 이용하기 때문에 나중에 export하는 모듈에서 값을 변경하더라도 **import하는 모듈에서는 변경사항을 파악할 수 없다.** 이 점이 ES Module과 CommonJS의 다른 점이다.
 
-![commonjs](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FctCEGE%2FbtrvKp9SVVO%2FrCFUQhnr5Dh9oWEnjsFEX1%2Fimg.png)
+<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FctCEGE%2FbtrvKp9SVVO%2FrCFUQhnr5Dh9oWEnjsFEX1%2Fimg.png" alt="commonjs" width="100%" />
 
 ### 3. 평가 (Evaluation)
 
 평가 단계에서는 코드를 실행하여 메모리 공간에 실제 값을 채운다. 자바스크립트 엔진은 함수 외부 코드인 최상위 레벨 코드를 실행하여 이를 수행한다. 평가는 수행한 횟수에 따라 다른 결과를 가질 수 있기 때문에 **한 번만 평가하도록 설계되어 있다.**
 
-![evaluation](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FW8yfQ%2FbtrvI4lcfo4%2FoB3bNJDdEeC0KCBwk5W3XK%2Fimg.png)
+<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FW8yfQ%2FbtrvI4lcfo4%2FoB3bNJDdEeC0KCBwk5W3XK%2Fimg.png" alt="evaluation" width="100%" />
 
 ## ES Module 사용 방법
 

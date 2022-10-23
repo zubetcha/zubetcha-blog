@@ -76,7 +76,7 @@ webpack을 설정하는 방법 외에도 babel plugin을 사용하는 방법이 
 
 위의 두 방법 중 선호하는 방식으로 svg에서 바로 파일을 import하여 바로 `컴포넌트`처럼 사용할 수 있습니다.
 
-![svg component use-case](https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/08/2022-08-next-svg-use-case.png)
+<img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/08/2022-08-next-svg-use-case.png" alt="svg component use-case" width="100%" />
 
 ## tsx 로 컴포넌트화
 
@@ -84,11 +84,11 @@ webpack을 설정하는 방법 외에도 babel plugin을 사용하는 방법이 
 
 아이콘의 크기 및 컬러 관련한 속성들을 동적으로 변경해 줄 수 있도록 props를 설정해줍니다.
 
-![svg componentify example](https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/08/2022-08-next-svg-component-example.png)
+<img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/08/2022-08-next-svg-component-example.png" alt="svg componentify example" width="100%" />
 
 아이콘 컴포넌트를 import 하는 방식은 다른 컴포넌트를 import하는 방식과 동일합니다.
 
-![svg componentify use-case](https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/08/2022-08-next-svg-component-use-case.png)
+<img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/08/2022-08-next-svg-component-use-case.png" alt="svg componentify use-case" width="100%" />
 
 ## 스토리북에서 사용할 때
 

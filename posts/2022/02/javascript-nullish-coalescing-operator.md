@@ -39,7 +39,9 @@ console.log(firstName ?? lastName ?? nickName ?? 'anonymous') // 'zubetcha'
 console.log(lastName ?? firstName ?? 'anonymous' ?? nickName) // 'anonymous'
 ```
 
-![nullish example](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fljb5R%2Fbtruex9FIQ5%2FkWFq5AOGBsUHUpg09MHoOK%2Fimg.png)
+<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fljb5R%2Fbtruex9FIQ5%2FkWFq5AOGBsUHUpg09MHoOK%2Fimg.png" alt="nullish example" width="100%" />
+
+<br/>
 
 첫 번째 console.log
 
@@ -68,7 +70,9 @@ console.log(firstName || lastName || nickName || 'anonymous') // 'zubetcha'
 console.log(lastName || firstName || 'anonymous' || nickName) // 'anonymous'
 ```
 
-![nullish example](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FnStcO%2Fbtruk4yWxbX%2FNJx61STODWjPsQGncqztn0%2Fimg.png)
+<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FnStcO%2Fbtruk4yWxbX%2FNJx61STODWjPsQGncqztn0%2Fimg.png" alt="nullish example" width="100%" />
+
+<br/>
 
 ## ||(or 연산자) 와의 차이
 
@@ -85,7 +89,9 @@ console.log(0 || NaN) // NaN
 console.log('' || 0) // 0
 ```
 
-![nullish example](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FuOHfG%2FbtruefvbROU%2FkyYwhL20JyDd4Xmqa5qDOK%2Fimg.png)
+<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FuOHfG%2FbtruefvbROU%2FkyYwhL20JyDd4Xmqa5qDOK%2Fimg.png" alt="nullish example" width="100%" />
+
+<br/>
 
 변수에 **falsy한 값**을 할당한 후 각 연산자 `||` 와 `??` 가 반환하는 값을 비교해보자.
 
@@ -98,7 +104,9 @@ console.log(z || 100) // 100
 console.log(z ?? 100) // 0
 ```
 
-![nullish 0 example](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F3Bvd8%2Fbtruh7pyZjx%2FVhmCZxa6gS5tn2OH7YfMJk%2Fimg.png)
+<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F3Bvd8%2Fbtruh7pyZjx%2FVhmCZxa6gS5tn2OH7YfMJk%2Fimg.png" alt="nullish 0 example" width="100%" />
+
+<br/>
 
 💡 `빈 문자열 ''` 을 할당한 경우
 
@@ -109,7 +117,9 @@ console.log(z || 100) // 100
 console.log(z ?? 100) //
 ```
 
-![nullish empty string example](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FciLPHe%2Fbtruc57uLM5%2FoqmSWo6W93bE9Y1oq8R4MK%2Fimg.png)
+<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FciLPHe%2Fbtruc57uLM5%2FoqmSWo6W93bE9Y1oq8R4MK%2Fimg.png" alt="nullish empty string example" width="100%" />
+
+<br/>
 
 💡 `NaN` 을 할당한 경우
 
@@ -120,7 +130,9 @@ console.log(z || 100) // 100
 console.log(z ?? 100) // NaN
 ```
 
-![nullish NaN example](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbbnD7T%2FbtrueeC2zIt%2FTkxXKORUG0n183akEBUc3k%2Fimg.png)
+<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbbnD7T%2FbtrueeC2zIt%2FTkxXKORUG0n183akEBUc3k%2Fimg.png" alt="nullish NaN example" width="100%" />
+
+<br/>
 
 💡 `null` 을 할당한 경우
 
@@ -131,7 +143,9 @@ console.log(z || 100) // 100
 console.log(z ?? 100) // 100
 ```
 
-![nullish null example](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FyuEFD%2Fbtruk4eFs6J%2FcYw60Hb4YH7x04RUAfpdHK%2Fimg.png)
+<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FyuEFD%2Fbtruk4eFs6J%2FcYw60Hb4YH7x04RUAfpdHK%2Fimg.png" alt="nullish null example" width="100%" />
+
+<br/>
 
 💡 `undefined` 를 할당한 경우
 
@@ -142,7 +156,9 @@ console.log(z || 100) // 100
 console.log(z ?? 100) // 100
 ```
 
-![nullish undefined example](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fb6lAsJ%2Fbtruk308X3b%2F8FAus2mnK5HeGxguKeFO01%2Fimg.png)
+<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fb6lAsJ%2Fbtruk308X3b%2F8FAus2mnK5HeGxguKeFO01%2Fimg.png" alt="nullish undefined example" width="100%" />
+
+<br/>
 
 각 연산자가 반환하는 값에서 알 수 있듯이, or 연산자 `||` 은 변수 z에 할당한 값이 **falsy한 값인지, truthy한 값인지**를 확인하여 falsy한 값이면 **무조건 || 뒤에 위치한 값을 반환**하고 있다. nullish 병합 연산자`??` 는 변수 z에 할당한 값이 `null` 또는 `undefined`인지, 아닌지를 확인하여 `??` 앞에 위치한 값이 `null` 또는 `undefined`인 경우에만 **?? 뒤에 있는 값을 반환**하고 있다.
 
@@ -153,7 +169,9 @@ console.log(null ?? undefined) // undefined
 console.log(undefined ?? null) // null
 ```
 
-![nullish example](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbzkyvJ%2FbtrunOWIwXh%2F5CZq1AnuxkI33uShJioUMK%2Fimg.png)
+<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbzkyvJ%2FbtrunOWIwXh%2F5CZq1AnuxkI33uShJioUMK%2Fimg.png" alt="nullish example" width="100%" />
+
+<br/>
 
 ---
 

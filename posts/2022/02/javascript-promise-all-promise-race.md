@@ -15,7 +15,7 @@ tags:
 
 ## Promise.all
 
-![Promise.all](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbrAHwE%2FbtrtJCRmHUE%2FbUylqkmqvh9SONVmjYsWcK%2Fimg.png)
+<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbrAHwE%2FbtrtJCRmHUE%2FbUylqkmqvh9SONVmjYsWcK%2Fimg.png" alt="Promise.all" width="100%" />
 
 `Promise.all`은 파라미터로 주어진 `Iterable 객체`(보통은 배열의 형태가 많음)의 **모든 프로미스를 이행**한 후 새로운 프로미스를 반환한다. 이 때 반환되는 프로미스는 파라미터로 받은 배열 안의 프로미스의 결과값을 담은 새로운 배열을 result로 가지게 된다. 새로운 프로미스의 result 배열의 요소 순서는 Promise 이행 완료의 순서와는 상관 없이 **Promise.all의 파라미터 배열의 요소 순서와 상응**한다.
 
@@ -50,7 +50,7 @@ Promise.all([timer(2000), timer(1000), timer(3000)]).then(function (result) {
 
 ```
 
-![promise.all resolved result](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FHMQ81%2FbtrtEx4pGjJ%2FPnrF5bkVHZdqQEtuBm1iz0%2Fimg.png)
+<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FHMQ81%2FbtrtEx4pGjJ%2FPnrF5bkVHZdqQEtuBm1iz0%2Fimg.png" alt="promise.all resolved result" width="100%" />
 
 📌 파라미터로 받은 프로미스 중 한 개라도 거부되면 (실패하면) Promise.all() 전체도 즉시 거부된다.
 
@@ -63,7 +63,7 @@ setTimeout(() => {
 
 ```
 
-![promise all rejected result](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FYdZO2%2FbtrtHDjoW4E%2FOMKSEYythTpATGoPjpfp8k%2Fimg.png)
+<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FYdZO2%2FbtrtHDjoW4E%2FOMKSEYythTpATGoPjpfp8k%2Fimg.png" alt="promise all rejected result" width="100%" />
 
 📌 순회 가능한 객체가 비어 있는 경우 동기적으로 즉시 이행하며, 즉시 이행한 프로미스를 반환한다.
 
@@ -73,7 +73,7 @@ console.log(p)
 
 ```
 
-![promise.all](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fz7r3n%2FbtrtG7K4O9X%2FhhIHDifAnVcn2f6g0YtZS1%2Fimg.png)
+<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fz7r3n%2FbtrtG7K4O9X%2FhhIHDifAnVcn2f6g0YtZS1%2Fimg.png" alt="promise.all" width="100%" />
 
 📌 순회 가능한 객체에 프로미스가 아닌 값이 있으면 해당 값은 무시되지만 비동기적으로 이행되며 결과 배열에도 포함된다.
 
@@ -87,7 +87,7 @@ setTimeout(() => {
 
 ```
 
-![promise.all](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FdPEy5j%2FbtrtMJIY5os%2F4vXwIrP7ZIjQIxTJKkLIc0%2Fimg.png)
+<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FdPEy5j%2FbtrtMJIY5os%2F4vXwIrP7ZIjQIxTJKkLIc0%2Fimg.png" alt="promise.all" width="100%" />
 
 ```javascript
 // 프로미스 객체도 포함되어 있는 경우
@@ -99,11 +99,11 @@ setTimeout(() => {
 
 ```
 
-![promise.all](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbHeNFW%2FbtrtH2b9f2l%2Fy3RLxmRI7trEkjS9ODKO5K%2Fimg.png)
+<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbHeNFW%2FbtrtH2b9f2l%2Fy3RLxmRI7trEkjS9ODKO5K%2Fimg.png" alt="promise.all" width="100%" />
 
 ## Promise.race
 
-![promise.race](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbPSY3c%2FbtrtO9f3dH7%2FpHOqWKOSFeGBQJ2WtH1DKK%2Fimg.png)
+<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbPSY3c%2FbtrtO9f3dH7%2FpHOqWKOSFeGBQJ2WtH1DKK%2Fimg.png" alt="promise.race" width="100%" />
 
 `Promise.race`는 Promise.all과 동일하게 파라미터로 `Iterable 객체`(순회 가능한 객체)를 받는다. 따라서 Promise.race의 구문은 Promise.all과 동일하다. 다만 차이는 이행 결과에 있다. Promise.race는 파라미터로 받은 프로미스들 중 **가장 먼저 완료되는 프로미스** 한 개의 이행 또는 거부의 결과값만을 반환한다.
 
@@ -128,7 +128,7 @@ Promise.race([timer(2000), timer(1000), timer(3000)]).then(function (result) {
 
 ```
 
-![promise.race result](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fdy923c%2FbtrtLzGB26C%2F5MlHssknKMrn8vdTsy9zWk%2Fimg.png)
+<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fdy923c%2FbtrtLzGB26C%2F5MlHssknKMrn8vdTsy9zWk%2Fimg.png" alt="promise.race result" width="100%" />
 
 📌 파라미터로 비어 있는 Iterable을 전달할 경우 영원히 대기 상태(pending)가 된다.
 
@@ -141,7 +141,7 @@ setTimeout(() => {
 
 ```
 
-![promise.race result](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FvuWYQ%2FbtrtO8nYGe4%2F0RWnmr20yfsng2hNcKmxY0%2Fimg.png)
+<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FvuWYQ%2FbtrtO8nYGe4%2F0RWnmr20yfsng2hNcKmxY0%2Fimg.png" alt="promise.race result" width="100%" />
 
 📌 파라미터로 프로미스가 아닌 값 또는 이미 이행이 완료된 프로미스가 포함되어 있는 경우 이러한 요소 중 가장 첫 번째의 결과값을 반환한다.
 
@@ -163,7 +163,7 @@ setTimeout(() => {
 
 ```
 
-![promise.race result](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F1wPPy%2FbtrtG8J400c%2FwjBXOQntiIo4kUkVfziyJk%2Fimg.png)
+<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F1wPPy%2FbtrtG8J400c%2FwjBXOQntiIo4kUkVfziyJk%2Fimg.png" alt="promise.race result" width="100%" />
 
 > 이 외에도 한 프로미스가 거절되어도 나머지 프로미스는 이행하여 결과를 기다려주고 후속 조치에 사용할 수 있도록 해주는 `Promise.allSettled`, 지금은 잘 사용하지 않지만 결과 값을 사용해 이행 상태의 프로미스를 만들어주는 `Promise.resolve`,  에러를 사용해 거부 상태의 프로미스를 만들어주는 `Promise.reject`도 Promise의 메서드들이다.
 

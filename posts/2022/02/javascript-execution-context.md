@@ -63,9 +63,7 @@ console.log(a); // 4번 console.log
 
 위의 순서를 보면 **전역 컨텍스트 → outer 컨텍스트 → inner 컨텍스트** 순서로 **실행 컨텍스트가 생성**되지만, **컨텍스트의 종료**는 반대로 **inner 컨텍스트 → outer 컨텍스트 → 전역 컨텍스트**의 순서로 진행된다. 이처럼 가장 먼저 들어온 게 가장 마지막에 빠지고, 가장 마지막에 들어온 게 가장 먼저 빠지는 개념을 `스택(Stack)`이라고 한다. `콜 스택(Call Stack)`은 현재 어떤 함수가 실행 중인지, 다음에 어떤 함수가 호출될 예정인지를 제어하는 자료구조이다.
 
-<div>
-![Call Stack](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcGZnto%2FbtrtlTruYT2%2FmDeSHtxnUR5PFH0RuOGss1%2Fimg.png)
-</div>
+<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcGZnto%2FbtrtlTruYT2%2FmDeSHtxnUR5PFH0RuOGss1%2Fimg.png" alt="Call Stack" width="100%" />
 
 ## Variable Environment / Lexical Environment / This Binding
 
@@ -99,9 +97,7 @@ outer의 실행 컨텍스트에는 inner에 대해서 수집해 놓은 정보가
 
 <br/>
 
-<div>
-![Scope Chain](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fde7pum%2Fbtrtb0SS2tw%2FHUHCgNz7yR85TMlBgTTSU1%2Fimg.png)
-</div>
+<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fde7pum%2Fbtrtb0SS2tw%2FHUHCgNz7yR85TMlBgTTSU1%2Fimg.png" alt="Scope Chain" width="100%" />
 
 만약 inner 내부에서 어떤 변수를 찾으라고 했을 때, 자기 자신의 environmentRecord에 해당 변수가 있는지 찾는다. 만약 inner 컨텍스트의 environmentRecord에 해당 변수가 없는 경우 outerEnvironmentReference를 타고 outer 컨텍스트의 environmentRecord에서 해당 변수가 있는지 찾는다. outer 컨텍스트의 environmentRecord에서 해당 변수가 없다면 다시 outer 컨텍스트의 outerEnvironmentReference를 타고 전역 컨텍스트로 가서 전역 컨텍스트의 environmentRecord에 해당 변수가 있는지 찾는다. 이것이 스코프 체인이다.
 
