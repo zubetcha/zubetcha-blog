@@ -67,13 +67,64 @@ tags:
 
 ### State
 
-- expanded (boolean)
-- isInDom (boolean)
-- scrollable (boolean)
-- container (node)
-- content (node)
+- expanded (boolean): 완전히 펼친 상태인지 아닌지를 관리하는 상태
+- isInDom (boolean): open 상태에 따라 DOM에 컴포넌트 마운트할지 언마운트할지를 관리하는 상태
+- scrollable (boolean): 바텀 시트를 처음 열었을 때 container의 clientHeight가 viewport height의 절반보다 같거나 큰지 혹은 작은지를 확인하는 상태로, scrollable의 상태에 따라 handle bar를 보여주거나, 위의 방향으로 touchmove를 할 수 있는지를 관제합니다.
+- container (dom): DOM의 변화를 알기 위해 useRef 대신 useCallback으로 설정한 dom ref로, 바텀 시트의 컨테이너를 참조합니다.
+- content (dom): DOM의 변화를 알기 위해 useRef 대신 useCallback으로 설정한 dom ref로, 바텀 시트의 컨텐츠 영역을 참조합니다.
+
+```jsx
+const [expanded, setExpanded] = useState(false);
+const [scrollable, setScrollable] = useState(false);
+const [isInDOM, setIsInDOM] = useState(false);
+const [container, setContainer] = useState<HTMLDivElement | null>(null);
+const [content, setContent] = useState<HTMLDivElement | null>(null);
+
+const containerRef = useCallback((node) => {
+  if (node !== null) {
+    setContainer(node);
+  }
+}, []);
+
+const contentRef = useCallback((node) => {
+  if (node !== null) {
+    setContent(node);
+  }
+}, []);
+```
 
 ### Props
 
-- open
-- setOpen
+- open: 바텀 시트를 열 때 사용하는 useState의 state
+- setOpen: 바텀 시트의 상태를 업데이트하는 useState의 setState
+
+### Constant
+
+- OFFSET_CONDITION (number): snap 인터랙션을 관제하는 touchmove 거리 조건
+
+```jsx
+const OFFSET_CONDITION = 70;
+```
+
+### Ref
+
+- firstClientHeight (number): 바텀 시트를 터치 이벤트로 움직였지만 OFFSET_CONDITION 보다 이동 거리가 작아 snap되지 않고 다시 원래 높이로 되어야 할 때 사용합니다.
+- halfVh (number): 50vh를 px로 변환한 숫자
+- metrics (object): 터치 이벤트에 사용할 매트릭
+
+```jsx
+const firstClientHeight = useRef(0);
+const halfVh = useRef(0);
+const metrics = useRef<BottomSheetMetrics>({
+  touchStart: {
+    containerHeight: 0,
+    touchY: 0,
+  },
+  touchMove: {
+    prevTouchY: undefined,
+    movingDirection: 'none',
+    touchOffset: 0,
+  },
+  isContentAreaTouched: false,
+});
+```
