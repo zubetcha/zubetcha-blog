@@ -16,8 +16,21 @@ interface Props {
 	categories: Array<string>;
 }
 
-export default function PostListPage(props: Props) {
-	return <PostListContainer {...props} category='All Posts' />;
+export default function PostListPage({
+	posts,
+	hasMore,
+	pageNo,
+	categories,
+}: Props) {
+	return (
+		<PostListContainer
+			posts={posts}
+			hasMore={hasMore}
+			pageNo={pageNo}
+			categories={categories}
+			category='All Posts'
+		/>
+	);
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {

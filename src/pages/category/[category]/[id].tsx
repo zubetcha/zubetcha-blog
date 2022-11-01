@@ -20,16 +20,21 @@ interface Props {
 }
 
 export default function CategoryPage({
-	category: lowerCategory,
-	...props
+	category: _category,
+	posts,
+	hasMore,
+	pageNo,
+	categories,
 }: Props) {
-	const category = props.categories.find(
-		(category) => category.toLowerCase() === lowerCategory,
+	const category = categories.find(
+		(category) => category.toLowerCase() === _category,
 	) as string;
 	return (
 		<PostListContainer
-			{...props}
-			// title={getUpperCategory(category)}
+			posts={posts}
+			hasMore={hasMore}
+			pageNo={pageNo}
+			categories={categories}
 			category={category}
 		/>
 	);
