@@ -128,3 +128,22 @@ const metrics = useRef<BottomSheetMetrics>({
   isContentAreaTouched: false,
 });
 ```
+
+## 만들어보자..!
+
+### react-spring
+
+처음 바텀 시트가 열리거나 완전히 내려가는 경우에는 react-spring이라는 라이브러리의 도움을 받았습니다.
+
+```jsx
+import { useSpring } from 'react-spring';
+
+const [springProps, api] = useSpring(() => ({
+  y: '100%',
+  onRest: {
+    y: (y) => {},
+  },
+}));
+```
+
+useSpring 함수의 파라미터에는 객체와 객체를 반환하는 함수가 들어갈 수 있습니다.
