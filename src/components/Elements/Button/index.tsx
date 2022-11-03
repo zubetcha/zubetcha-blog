@@ -1,19 +1,36 @@
 import classes from './Button.module.scss';
+import classNames from 'classnames';
 import { Icon } from '../Icon/Icon';
 import { IconRoleUnionType } from '@type/element';
 
 interface Props {
-	onClick: () => void;
-	leftIcon?: IconRoleUnionType;
-	rightIcon?: IconRoleUnionType;
-	children: JSX.Element;
+	onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+	iconLeft?: IconRoleUnionType;
+	iconRight?: IconRoleUnionType;
+	status?: 'disabled' | 'focused';
+	label: string;
 }
-export const Button = ({ onClick, children, leftIcon, rightIcon }: Props) => {
+
+export const Button = ({
+	onClick,
+	label,
+	iconLeft,
+	iconRight,
+	status,
+}: Props) => {
 	return (
-		<button className={classes.button} onClick={onClick}>
-			{leftIcon && <Icon role={leftIcon} />}
-			{children}
-			{rightIcon && <Icon role={rightIcon} />}
+		<button
+			className={classNames(
+				classes.button,
+				iconLeft && classes.left,
+				iconRight && classes.right,
+				status === 'focused' && classes.focused,
+			)}
+			onClick={(e) => onClick(e)}
+		>
+			{iconLeft && <Icon role={iconLeft} />}
+			{label}
+			{iconRight && <Icon role={iconRight} />}
 		</button>
 	);
 };

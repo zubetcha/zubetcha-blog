@@ -10,6 +10,7 @@ import {
 	Icon,
 	Select,
 	PageSEO,
+	Button,
 } from '@components/index';
 
 import { Post } from 'src/type/post';
@@ -90,29 +91,13 @@ export const PostListContainer = ({
 				<div className={classes['button-wrapper']}>
 					<div>
 						{pageNo > 1 ? (
-							<button
-								className={classNames(classes['page-button'], classes.prev)}
-								onClick={(e) => onClickPrev(e)}
-							>
-								<Icon role='backward' />
-								Prev
-							</button>
-						) : (
-							<></>
-						)}
+							<Button label='Prev' onClick={onClickPrev} iconLeft='backward' />
+						) : null}
 					</div>
 					<div>
 						{hasMore ? (
-							<button
-								className={classNames(classes['page-button'], classes.next)}
-								onClick={(e) => onClickNext(e)}
-							>
-								Next
-								<Icon role='forward' />
-							</button>
-						) : (
-							<></>
-						)}
+							<Button label='Next' onClick={onClickNext} iconRight='forward' />
+						) : null}
 					</div>
 				</div>
 			</ContentLayout>

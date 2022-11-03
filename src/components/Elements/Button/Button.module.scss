@@ -1,3 +1,29 @@
 @import '../../../styles/colors';
-// @import '../../../styles/mixins';
+@import '../../../styles/mixins';
 @import '../../../styles/sizes';
+
+.button {
+	width: fit-content;
+	border-radius: 48px;
+	background-color: var(--color-btn-bg);
+	border: 1px solid var(--color-btn-bg);
+	color: var(--color-btn-main-text);
+	cursor: pointer;
+	transition: border-color 0.2s ease-in-out;
+	@include label-large();
+	@include flex-box(between, center);
+	@include flex-direction(row, 8);
+
+	&:hover,
+	&.focused {
+		border-color: var(--color-btn-hover-border);
+	}
+
+	&.left {
+		padding: toRem(12) toRem(20) toRem(12) toRem(16);
+	}
+
+	&.right {
+		padding: toRem(12) toRem(16) toRem(12) toRem(20);
+	}
+}
