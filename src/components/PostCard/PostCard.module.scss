@@ -5,9 +5,19 @@
 .container {
 	border-radius: $border-radius;
 	background-color: var(--color-postcard-bg); // done
-  transition: background-color 0.3s ease-in-out;
+	transition: background-color, box-shadow 0.2s ease-in-out;
 	// width: toRem(600);
 	@include flex-box(row, 0);
+
+	&:hover {
+		box-shadow: var(--box-shadow-3);
+		.readmore {
+			color: var(--color-postcard-main-text) !important;
+		}
+		svg {
+			fill: var(--color-postcard-main-text) !important;
+		}
+	}
 
 	.wrapper {
 		width: 100%;
@@ -49,9 +59,11 @@
 					.readmore {
 						@include body-medium();
 						color: var(--color-postcard-sub-text);
+						transition: color 0.2s ease-in-out;
 					}
 					svg {
 						fill: var(--color-postcard-sub-text);
+						transition: fill 0.2s ease-in-out;
 					}
 					&:hover {
 						.readmore {

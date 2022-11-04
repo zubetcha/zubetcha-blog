@@ -1,13 +1,10 @@
-import { MouseEvent } from 'react';
 import { useRouter } from 'next/router';
-import classNames from 'classnames';
 import classes from './PostList.module.scss';
 import { getUpperCategory } from '@utils/category';
 
 import {
 	ContentLayout,
 	PostCard,
-	Icon,
 	Select,
 	PageSEO,
 	Button,
@@ -34,25 +31,44 @@ export const PostListContainer = ({
 	const isAll = category.toLowerCase().includes('all');
 	const title = getUpperCategory(category);
 
-	const onClickPrev = (e: MouseEvent<HTMLButtonElement>) => {
-		e.preventDefault();
-		isAll
-			? router.push(`/page/${pageNo - 1}`)
-			: router.push(`/category/${category.toLowerCase()}/${pageNo - 1}`);
+	const routeToNextPath = ({
+		destination,
+		isAll,
+		category,
+	}: {
+		destination: 'prev' | 'next' | 'categoryChange';
+		isAll: boolean;
+		category: string;
+	}) => {
+		const page: { [x: string]: number } = {
+			prev: pageNo - 1,
+			next: pageNo + 1,
+			categoryChange: 1,
+		};
+
+		const nextPath = isAll
+			? `/page/${page[destination]}`
+			: `/category/${category.toLowerCase()}/${page[destination]}`;
+
+		return router.push(nextPath);
 	};
 
-	const onClickNext = (e: MouseEvent<HTMLButtonElement>) => {
+	const onClickButton = (
+		e: React.MouseEvent<HTMLButtonElement>,
+		destination: 'prev' | 'next',
+	) => {
 		e.preventDefault();
-		isAll
-			? router.push(`/page/${pageNo + 1}`)
-			: router.push(`/category/${category.toLowerCase()}/${pageNo + 1}`);
+		routeToNextPath({ destination, isAll, category });
 	};
 
 	const onChangeCategory = (selected: string) => {
 		const selectedCategory = categories[parseInt(selected)];
-		selectedCategory === 'all'
-			? router.push('/page/1')
-			: router.push(`/category/${selectedCategory.toLowerCase()}/1`);
+
+		routeToNextPath({
+			destination: 'categoryChange',
+			isAll: selectedCategory === 'all',
+			category: selectedCategory,
+		});
 	};
 
 	return (
@@ -91,12 +107,20 @@ export const PostListContainer = ({
 				<div className={classes['button-wrapper']}>
 					<div>
 						{pageNo > 1 ? (
-							<Button label='Prev' onClick={onClickPrev} iconLeft='backward' />
+							<Button
+								label='Prev'
+								onClick={(e) => onClickButton(e, 'prev')}
+								iconLeft='backward'
+							/>
 						) : null}
 					</div>
 					<div>
 						{hasMore ? (
-							<Button label='Next' onClick={onClickNext} iconRight='forward' />
+							<Button
+								label='Next'
+								onClick={(e) => onClickButton(e, 'next')}
+								iconRight='forward'
+							/>
 						) : null}
 					</div>
 				</div>

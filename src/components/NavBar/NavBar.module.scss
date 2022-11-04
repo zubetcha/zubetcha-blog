@@ -3,7 +3,7 @@
 @import '../../styles/sizes';
 
 .container {
-	min-width: toRem(320);
+	min-width: toRem(280);
 	height: calc(var(--vh, 1vh) * 100 - toRem(64));
 	background-color: var(--color-navbar-bg); // done
 	padding: toRem(24);
@@ -13,7 +13,7 @@
 	position: sticky;
 	top: toRem(32);
 	left: toRem(32);
-	@include flex-direction(column, 60);
+	@include flex-direction(column, 40);
 
 	@include mobile() {
 		display: none;
@@ -31,7 +31,7 @@
 
 	.profile_wrapper {
 		@include flex-box(center, center);
-		@include flex-direction(column, 32);
+		@include flex-direction(column, 24);
 
 		.profile_image_wrapper {
 			@include circle(144);
@@ -142,7 +142,7 @@
 	@include flex-box(start, center);
 
 	width: 100%;
-	padding: 16px;
+	padding: 12px 16px;
 	cursor: pointer;
 	border-radius: 12px;
 

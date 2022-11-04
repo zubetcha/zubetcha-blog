@@ -12,7 +12,7 @@ export const PostCard = ({ post, onClick }: Props) => {
 	const { tags, title, description, date } = frontMatter;
 
 	return (
-		<div className={classes.container}>
+		<div className={classes.container} onClick={onClick}>
 			<div className={classes.wrapper}>
 				<div className={classes['tags-wrapper']}>
 					{tags.map((tag) => (
@@ -28,9 +28,7 @@ export const PostCard = ({ post, onClick }: Props) => {
 
 					<div className={classes['below-wrapper']}>
 						<div className={classes['readmore-wrapper']}>
-							<p className={classes['readmore']} onClick={onClick}>
-								read more
-							</p>
+							<p className={classes['readmore']}>read more</p>
 							<Icon role='chevron-right' />
 						</div>
 						<time className={classes.createdAt}>{formatDate(date)}</time>

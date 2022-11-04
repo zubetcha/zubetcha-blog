@@ -26,7 +26,7 @@
 			@include flex-direction(row, 12);
 		}
 		h1 {
-			@include display-medium(800);
+			@include display-small(800);
 			@include mobile() {
 				@include headline-large(800);
 			}
@@ -47,6 +47,10 @@
 		// display: grid;
 		@include flex-direction(column, 0);
 
+		img {
+			border-radius: 8px;
+			box-shadow: var(--box-shadow-2);
+		}
 		div {
 			margin: toRem(16) 0 toRem(24);
 		}
@@ -175,7 +179,7 @@
 			content: '•';
 			left: 0;
 			display: inline-block;
-			color: var(--color-post-main-text);
+			color: var(--color-post-em-text);
 		}
 
 		ol > li {
