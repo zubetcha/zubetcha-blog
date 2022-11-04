@@ -1,15 +1,13 @@
-import { MouseEvent } from 'react';
 import { useRouter } from 'next/router';
-import classNames from 'classnames';
 import classes from './PostList.module.scss';
 import { getUpperCategory } from '@utils/category';
 
 import {
 	ContentLayout,
 	PostCard,
-	Icon,
 	Select,
 	PageSEO,
+	Button,
 } from '@components/index';
 
 import { Post } from 'src/type/post';
@@ -33,25 +31,44 @@ export const PostListContainer = ({
 	const isAll = category.toLowerCase().includes('all');
 	const title = getUpperCategory(category);
 
-	const onClickPrev = (e: MouseEvent<HTMLButtonElement>) => {
-		e.preventDefault();
-		isAll
-			? router.push(`/page/${pageNo - 1}`)
-			: router.push(`/category/${category.toLowerCase()}/${pageNo - 1}`);
+	const routeToNextPath = ({
+		destination,
+		isAll,
+		category,
+	}: {
+		destination: 'prev' | 'next' | 'categoryChange';
+		isAll: boolean;
+		category: string;
+	}) => {
+		const page: { [x: string]: number } = {
+			prev: pageNo - 1,
+			next: pageNo + 1,
+			categoryChange: 1,
+		};
+
+		const nextPath = isAll
+			? `/page/${page[destination]}`
+			: `/category/${category.toLowerCase()}/${page[destination]}`;
+
+		return router.push(nextPath);
 	};
 
-	const onClickNext = (e: MouseEvent<HTMLButtonElement>) => {
+	const onClickButton = (
+		e: React.MouseEvent<HTMLButtonElement>,
+		destination: 'prev' | 'next',
+	) => {
 		e.preventDefault();
-		isAll
-			? router.push(`/page/${pageNo + 1}`)
-			: router.push(`/category/${category.toLowerCase()}/${pageNo + 1}`);
+		routeToNextPath({ destination, isAll, category });
 	};
 
 	const onChangeCategory = (selected: string) => {
 		const selectedCategory = categories[parseInt(selected)];
-		selectedCategory === 'all'
-			? router.push('/page/1')
-			: router.push(`/category/${selectedCategory.toLowerCase()}/1`);
+
+		routeToNextPath({
+			destination: 'categoryChange',
+			isAll: selectedCategory === 'all',
+			category: selectedCategory,
+		});
 	};
 
 	return (
@@ -90,29 +107,21 @@ export const PostListContainer = ({
 				<div className={classes['button-wrapper']}>
 					<div>
 						{pageNo > 1 ? (
-							<button
-								className={classNames(classes['page-button'], classes.prev)}
-								onClick={(e) => onClickPrev(e)}
-							>
-								<Icon role='backward' />
-								Prev
-							</button>
-						) : (
-							<></>
-						)}
+							<Button
+								label='Prev'
+								onClick={(e) => onClickButton(e, 'prev')}
+								iconLeft='backward'
+							/>
+						) : null}
 					</div>
 					<div>
 						{hasMore ? (
-							<button
-								className={classNames(classes['page-button'], classes.next)}
-								onClick={(e) => onClickNext(e)}
-							>
-								Next
-								<Icon role='forward' />
-							</button>
-						) : (
-							<></>
-						)}
+							<Button
+								label='Next'
+								onClick={(e) => onClickButton(e, 'next')}
+								iconRight='forward'
+							/>
+						) : null}
 					</div>
 				</div>
 			</ContentLayout>

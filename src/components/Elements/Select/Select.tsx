@@ -3,8 +3,8 @@ import classNames from 'classnames';
 import classes from './Select.module.scss';
 import { SelectContext } from '@context/select';
 
+import { Button } from '../Button';
 import { Icon } from '../Icon/Icon';
-
 interface Props {
 	children: JSX.Element | JSX.Element[];
 	onChange: (selected: string) => void;
@@ -30,16 +30,12 @@ export const Select = ({ children, onChange, defaultLabel }: Props) => {
 	return (
 		<SelectContext.Provider value={{ open, toggle, selected, setSelected }}>
 			<div className={classes.container}>
-				<button
-					onClick={(e) => onClickButton(e)}
-					className={classNames(
-						classes['trigger-button'],
-						classes[open ? 'open' : ''],
-					)}
-				>
-					{defaultLabel}
-					<Icon role='dropdown' />
-				</button>
+				<Button
+					label={defaultLabel}
+					onClick={onClickButton}
+					status={open ? 'focused' : undefined}
+					iconRight='dropdown'
+				/>
 				<ul
 					className={classNames(classes['options-wrapper'], {
 						[classes.open]: open,
