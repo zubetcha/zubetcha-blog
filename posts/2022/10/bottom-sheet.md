@@ -16,16 +16,16 @@ tags:
 
 ## 들어가면서
 
-여름에 개발했던 PoC를 고객사뿐만 아니라 현장에서 일하시는 타 팀도 고객사 페이지 및 관리자 페이지를 모두 사용하고 있는데, 현장에서는 노트북을 사용하기 어려워 모바일용 화면을 만들어 줄 수 있냐는 요청이 들어왔습니다. 마침 10월에 여유가 생겨서 약 2주의 동안 모바일 화면을 추가로 개발하기로 하였고, 그중에서 저는 데스크탑 화면에서의 모달을 대체할 바텀 팝업 시트를 만들기로 했습니다.
+이전에 개발했던 웹 솔루션에 대해서 모바일 화면을 적용할 기회가 생겼습니다. 그중에서 저는 데스크탑 화면에서의 모달을 대체할 바텀 팝업 시트 컴포넌트로 만들기로 했습니다.
 
 ## 인터랙션 요구사항
 
-우선 감사하게도 디자이너가 바텀시트 컴포넌트 디자인을 빠르게 만들어주셨습니다. 그리고 모바일용인 만큼 신경써야 하는 인터랙션이 굉장히 많았습니다! 우선 개발하기에 앞서 필요사항들을 정리해 보았습니다.
+우선 감사하게도 디자이너가 바텀시트 컴포넌트 디자인을 빠르게 만들어주셨습니다. 그리고 모바일용인 만큼 신경써야 하는 인터랙션이 굉장히 많았습니다! 우선 개발하기에 앞서 고려해야 하는 사항들을 정리해 보았습니다.
 
 ### 공통
 
 - expanded가 false일 때 바텀 시트의 dimmed 영역을 클릭하면 바텀 시트가 언마운트됩니다.
-- 바텀 시트를 아래 방향으로 snap 조건 이상 터치하여 움직이면 바텀 시트가 언마운트됩니다.
+- 바텀 시트를 아래 방향으로 `snap 조건` 이상 터치하여 움직이면 바텀 시트가 언마운트됩니다.
 
 ### expanded가 false이고 헤더 + 컨텐츠 + 버튼 높이가 50vh 이하인 경우
 
@@ -41,7 +41,7 @@ tags:
 ### expanded가 false이고 헤더 + 컨텐츠 + 버튼 높이가 50vh를 초과하는 경우
 
 - UI
-  - 바텀 시트의 컨테이너 높이는 50vh이어야 하고 50vh만큼 올라옵니다.
+  - 바텀 시트의 컨테이너의 최대 높이는 `50vh`이어야 하고 50vh만큼 올라옵니다.
   - 헤더에 핸들바가 보입니다.
   - 컨텐츠 영역에 스크롤바가 보입니다.
   - 컨텐츠 영역의 하단에 스크롤 힌트가 보입니다.
@@ -52,7 +52,7 @@ tags:
 ### expanded가 true일 때
 
 - UI
-  - 바텀 시트의 컨테이너 높이가 100vh가 되고 전체 viewport를 채웁니다.
+  - 바텀 시트의 컨테이너 높이가 `100vh`가 되고 전체 viewport를 채웁니다.
   - 헤더에 핸들바, 타이틀, close 아이콘이 보입니다.
   - 만약 컨텐츠의 높이가 컨텐츠 영역의 높이를 초과하는 경우 스크롤바와 스크롤 힌트가 보입니다.
   - 컨텐츠 영역의 스크롤이 최상단에 있는 경우 상단의 스크롤 힌트가 보이지 않습니다.
@@ -68,7 +68,7 @@ tags:
 ### State
 
 - expanded (boolean): 완전히 펼친 상태인지 아닌지를 관리하는 상태
-- isInDom (boolean): open 상태에 따라 DOM에 컴포넌트 마운트할지 언마운트할지를 관리하는 상태
+- isInDom (boolean): open 상태에 따라 DOM에 컴포넌트를 마운트할지 언마운트할지를 관리하는 상태
 - scrollable (boolean): 바텀 시트를 처음 열었을 때 container의 clientHeight가 viewport height의 절반보다 같거나 큰지 혹은 작은지를 확인하는 상태로, scrollable의 상태에 따라 handle bar를 보여주거나, 위의 방향으로 touchmove를 할 수 있는지를 관제합니다.
 - container (dom): DOM의 변화를 알기 위해 useRef 대신 useCallback으로 설정한 dom ref로, 바텀 시트의 컨테이너를 참조합니다.
 - content (dom): DOM의 변화를 알기 위해 useRef 대신 useCallback으로 설정한 dom ref로, 바텀 시트의 컨텐츠 영역을 참조합니다.
@@ -135,7 +135,7 @@ BottomSheet에만 사용될 거긴 하지만 인터랙션 관련 로직을 뷰�
 
 ### react-spring
 
-처음 바텀 시트가 열리거나 완전히 내려가는 경우에는 react-spring이라는 라이브러리의 도움을 받았습니다. useSpring은 react-spring이 제공해주는 훅 중 하나로, 매개변수에는 객체와 객체를 반환하는 함수가 들어갈 수 있습니다.
+처음 바텀 시트가 열리거나 완전히 내려가는 경우에는 `react-spring`이라는 라이브러리의 도움을 받았습니다. useSpring은 react-spring이 제공해주는 훅 중 하나로, 매개변수에는 객체와 객체를 반환하는 함수가 들어갈 수 있습니다.
 
 ```javascript
 const styles = useSpring({ opacity: toggle ? 1 : 0 }) // 객체 전달
@@ -148,9 +148,9 @@ api.stop()
 return <animated.div style={styles}>i will fade</animated.div>
 ```
 
-객체를 바로 전달하면 컴포넌트가 리렌더링 될 때 애니메이션이 발생하도록 할 수 있고, 함수를 전달하면 반환해주는 api를 사용해서 리렌더링 시점이 아닌 내가 원하는 시점에 styles를 업데이트 시킬 수도 있습니다.
+객체를 바로 전달하면 컴포넌트가 리렌더링 될 때 애니메이션이 발생하도록 할 수 있고, 함수를 전달하면 반환해주는 `api`를 사용해서 리렌더링 시점이 아닌 내가 원하는 시점에 styles를 업데이트 시킬 수도 있습니다.
 
-바텀 시트를 처음 열었다면 viewport 아래에서 DOM에 잡히고 위로 올라오도록 하기 위해 translateY의 초기값을 100%로 설정하고 DOM에 잡히면 api를 사용해 translateY를 0으로 업데이트합니다. 바텀 시트를 DOM에서 제거할 때도 마찬가지로 다시 바텀 시트의 translateY를 100%로 업데이트한 후 DOM에서 제거합니다.
+바텀 시트를 처음 열었다면 viewport 아래에서 DOM에 잡히고 위로 올라오도록 하기 위해 translateY의 초기값을 `100%`로 설정하고 DOM에 잡히면 api를 사용해 translateY를 `0`으로 업데이트합니다. 바텀 시트를 DOM에서 제거할 때도 마찬가지로 다시 바텀 시트의 translateY를 `100%`로 업데이트한 후 DOM에서 제거합니다.
 
 ```jsx
 import { useSpring } from 'react-spring';
@@ -259,7 +259,7 @@ useEffect(() => {
 
 BottomSheet는 모바일 화면에서만 사용되기 때문에 핸들을 잡고 내리거나 올리는 등의 인터랙션을 위해 터치 이벤트가 필요합니다. 터치 이벤트를 개발한 경험이 전무후무했기 때문에 콴다 팀블로그를 정말정말 많이 참고했습니다! _감사합니다. 🙇🏻‍♀️_
 
-터치 이벤트는 touchstart, touchmove, touchend 세 개가 필요합니다.
+터치 이벤트는 `touchstart`, `touchmove`, `touchend` 세 개가 필요합니다.
 
 - touchstart: BottomSheet를 처음 터치했을 때의 터치 포인트 위치와 BottomSheet의 clientHeight를 기록합니다.
 - touchmove: BottomSheet를 터치하여 움직인 거리만큼 BottomSheet의 clientHeight 높이를 변경하고 위로 움직였는지, 아래로 움직였는지의 방향을 기록합니다.
@@ -365,7 +365,7 @@ const handleTouchEnd = (e: TouchEvent) => {
 };
 ```
 
-handleTouchMove에 있는 availableToMoveBottomSheet 함수는 유저가 BottomSheet를 터치했을 때 BottomSheet를 움직여도 될지를 결정하는 함수입니다. 아래와 같은 경우 BottomSheet를 움직여도 된다고 판단하여 true를 반환합니다.
+`handleTouchMove`에 있는 `availableToMoveBottomSheet` 함수는 유저가 BottomSheet를 터치했을 때 BottomSheet를 움직여도 될지를 결정하는 함수입니다. 아래와 같은 경우 BottomSheet를 움직여도 된다고 판단하여 true를 반환합니다.
 
 - expanded가 false일 때
 - metrics의 isContentAreaTouched가 false일 때 (= content 영역을 터치하고 있지 않은 경우)
@@ -388,7 +388,7 @@ useEffect(() => {
 }, [content])
 ```
 
-그리고 container에도 위에서 만든 handleTouchStart, handleTouchMove, handleTouchEnd를 각각 등록해줍니다.
+그리고 container에도 위에서 만든 `handleTouchStart`, `handleTouchMove`, `handleTouchEnd`를 각각 등록해줍니다.
 
 ```jsx
 useEffect(() => {
@@ -432,7 +432,7 @@ const useBottomSheet = ({ open, setOpen }: Params) => {
 
 ## BottomSheet 컴포넌트 만들기
 
-컴포넌트는 필요한 부분만 사용할 수 있도록 하기 위해 Compound 패턴으로 만들었습니다. 구성은 아래와 같습니다.
+컴포넌트는 필요한 부분만 사용할 수 있도록 하기 위해 `Compound` 패턴으로 만들었습니다. 구성은 아래와 같습니다.
 
 - BottomSheet: 메인 컴포넌트
 - BottomSheetContent: 서브 컴포넌트
@@ -441,7 +441,7 @@ const useBottomSheet = ({ open, setOpen }: Params) => {
 
 ### 메인 컴포넌트
 
-메인 컴포넌트인 BottomSheet에서는 Portal로 BottomSheet의 컨테이너를 렌더링합니다.
+메인 컴포넌트인 BottomSheet에서는 `Portal`로 BottomSheet의 컨테이너를 렌더링합니다.
 
 컨테이너용 div는 react-spring의 useSpring을 사용하기 위해 react-spring의 animated를 사용했습니다. animated.div에는 useSpring이 반환한 springProps와 DOM을 참조하기 위해 만들었던 containerRef를 props로 전달합니다.
 
@@ -521,9 +521,9 @@ export const BottomSheet = ({ open, setOpen, title, children }: Props) => {
 
 서브 컴포넌트 중 BottomSheetButtons와 BottomSheetButton은 단순히 Button의 위치를 잡아주고 보여주는 역할만 담당하므로 생략하고, BottomSheetContent만 다루겠습니다.
 
-BottomSheetContent는 부모 컴포넌트인 BottomSheet에서 ref로 contentRef를 내려받고 있기 때문에 forwardRef를 사용하여 content 영역의 가장 바깥 div를 참조하기 위해 ref를 전달합니다.
+BottomSheetContent는 부모 컴포넌트인 BottomSheet에서 ref로 contentRef를 내려받고 있기 때문에 `forwardRef`를 사용하여 ref를 전달합니다.
 
-그리고 expanded가 true일 때 스크롤이 있다면 스크롤 위치에 따라 스크롤 힌트도 보여줘야 하기 때문에 IntersectionObserver API를 사용했습니다. 스크롤 힌트는 expanded가 true일 때만 보여주면 되기 때문에 expanded가 false일 때는 스크롤 위치를 관찰하지 않도록 하였습니다.
+그리고 expanded가 true일 때에는 스크롤이 있다면 스크롤 위치에 따라 스크롤 힌트도 보여줘야 하기 때문에 `IntersectionObserver API`를 사용했습니다. 스크롤 힌트는 expanded가 true일 때만 보여주면 되기 때문에 expanded가 false일 때는 스크롤 위치를 관찰하지 않도록 하였습니다.
 
 ```jsx
 import { forwardRef, useRef, useEffect, useState } from "react";
@@ -585,7 +585,7 @@ BottomSheetContent.displayName = "BottomSheetContent";
 
 ### 컴포넌트 내보내기
 
-Compound 패턴으로 컴포넌트를 만들면 모든 구성 요소들을 import할 필요 없이 메인 컴포넌트만 import해서 서브 컴포넌트 key에 접근하여 사용할 수 있다는 장점이 있습니다.
+`Compound` 패턴으로 컴포넌트를 만들면 모든 구성 요소들을 import할 필요 없이 메인 컴포넌트만 import해서 서브 컴포넌트 key에 접근하여 사용할 수 있다는 장점이 있습니다.
 
 ```jsx
 import { BottomSheet as BottomSheetMain } from "./BottomSheet";
@@ -655,5 +655,20 @@ export default function BottomSheetTest() {
 
 ## 크로스 플랫폼 이슈
 
+BottomSheet 컴포넌트를 만든 후 테스트를 해보던 중 크로스 플랫폼 이슈가 발생했습니다.
+
+BottomSheet에는 TextField가 많이 들어가는데, 안드로이드 환경에서 BottomSheet Content 안에 있는 TextField를 클릭하여 input이 focus되면 소프트 키보드가 올라오면서 BottomSheetContent 영역이 줄어들고 빈 공백이 생기는 이슈였습니다.
+
+### 개발자 도구로 확인하는 방법
+
+### 해결
+
 ## 마치며
 
+회사에 들어온 이래로 개발했던 컴포넌트 중 가장 복잡했던 컴포넌트였는데, 기한 안에 잘 마무리할 수 있어서 다행이었습니다. 이벤트를 등록하고 해제하는 걸 많이 해보지 못했는데 덕분에 이벤트에 대해서도 보다 더 이해할 수 있었습니다.
+
+그리고 크로스 플랫폼에 대한 중요성도 체감할 수 있었던 동시에 모바일 화면에서의 디버깅의 어려움도 정말 많이 느낄 수 있었습니다. 원인을 알아야 해결할 수 있는데 원인을 알기까지 오래 걸렸습니다..🥲 그래도 안드로이드와 iOS 환경에서 어떻게 개발자 도구로 확인할 수 있는지 알 수 있게 되어서 정말 좋은 경험이었다고 생각합니다!
+
+---
+
+읽어주셔서 감사합니다. 혹시 잘못된 정보가 있다면 메일로 신고 부탁드립니다. 🙇🏻‍♀️
