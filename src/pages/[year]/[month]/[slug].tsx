@@ -1,4 +1,6 @@
+import { useEffect } from 'react';
 import { GetStaticPaths, GetStaticProps } from 'next';
+import { renderToString } from 'react-dom/server';
 import { ParsedUrlQuery } from 'querystring';
 import { Post } from '@type/post';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
@@ -10,6 +12,35 @@ interface Props {
 	mdx: MDXRemoteSerializeResult;
 }
 export default function PostPage({ post, mdx }: Props) {
+	const AnchorList = post.content
+		.split('\n')
+		.filter((el) => el.includes('#') && el.startsWith('#'));
+
+	console.log(AnchorList);
+
+	const getHeadings = (source) => {
+		const regex = /<h2>(.*?)<\/h2>/g;
+
+		if (source.match(regex)) {
+			return source.match(regex).map((heading) => {
+				const headingText = heading.replace('<h2>', '').replace('</h2>', '');
+
+				const link = '#' + headingText.replace(/ /g, '_').toLowerCase();
+
+				return {
+					text: headingText,
+					link,
+				};
+			});
+		}
+
+		return [];
+	};
+
+	const headings = getHeadings(post.content);
+
+	console.log(headings);
+
 	return (
 		<>
 			<PostContainer frontMatter={post.frontMatter} slug={post.fields.slug}>
