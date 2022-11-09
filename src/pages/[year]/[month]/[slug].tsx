@@ -12,34 +12,20 @@ interface Props {
 	mdx: MDXRemoteSerializeResult;
 }
 export default function PostPage({ post, mdx }: Props) {
-	const AnchorList = post.content
+	const headingList = post.content
 		.split('\n')
-		.filter((el) => el.includes('#') && el.startsWith('#'));
+		.filter((el) => el.includes('#') && el.startsWith('#'))
+		.map((heading) => {
+			const text = heading.replace(/#/g, '').trim();
+			const link = '#' + text.replace(/ /g, '_').toLowerCase();
 
-	console.log(AnchorList);
+			return {
+				text,
+				link,
+			};
+		});
 
-	const getHeadings = (source) => {
-		const regex = /<h2>(.*?)<\/h2>/g;
-
-		if (source.match(regex)) {
-			return source.match(regex).map((heading) => {
-				const headingText = heading.replace('<h2>', '').replace('</h2>', '');
-
-				const link = '#' + headingText.replace(/ /g, '_').toLowerCase();
-
-				return {
-					text: headingText,
-					link,
-				};
-			});
-		}
-
-		return [];
-	};
-
-	const headings = getHeadings(post.content);
-
-	console.log(headings);
+	console.log(headingList);
 
 	return (
 		<>
