@@ -1,9 +1,9 @@
 ---
 
-title: 바텀 시트 컴포넌트 개발기
+title: Bottom Sheet 컴포넌트 만들기
 category: React
 date: 2022-10-23
-description: 재사용 가능한 컴포넌트 만들기
+description: 그런데 버그를 곁들인...
 published: true
 slug: react-bottom-sheet
 tags: 

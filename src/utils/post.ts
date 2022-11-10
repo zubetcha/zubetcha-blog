@@ -3,6 +3,7 @@ import path from 'path';
 import { serialize } from 'next-mdx-remote/serialize';
 import { sync } from 'glob';
 import matter from 'gray-matter';
+import { visit } from 'unist-util-visit';
 
 import remarkToc from 'remark-toc';
 import remarkGfm from 'remark-gfm';
@@ -62,12 +63,35 @@ export const getAllPosts = async () => {
 	return posts;
 };
 
+export const getLinkContent = (content: string) => {
+	return '#' + content.replace(/ /g, '_').toLowerCase();
+};
+
+const setAriaLabelToHeading = () => {
+	return (tree: Node) => {
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		visit(tree as any, 'element', (node: any) => {
+			const headingTagList = ['h1', 'h2', 'h3'];
+			const tagName = node.tagName || '';
+
+			if (headingTagList.includes(tagName)) {
+				node.properties.ariaLabel = getLinkContent(node.children[0].value);
+			}
+		});
+	};
+};
+
 export const parseMdx = async (source: string) => {
 	return serialize(source, {
 		parseFrontmatter: true,
 		mdxOptions: {
 			remarkPlugins: [remarkToc, remarkGfm, remarkBreaks, remarkMath],
-			rehypePlugins: [rehypeAutolinkHeadings, rehypeKatex, rehypePrism],
+			rehypePlugins: [
+				rehypeAutolinkHeadings,
+				rehypeKatex,
+				rehypePrism,
+				setAriaLabelToHeading,
+			],
 		},
 	});
 };
