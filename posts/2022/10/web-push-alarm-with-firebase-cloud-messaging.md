@@ -13,9 +13,7 @@ tags:
 
 ---
 
-## Table of Contents
-
-## 들어가면서
+# 들어가면서
 
 > 이 포스트는 웹 푸시 알람 구현에 필요한 `프론트엔드` 로직만 포함하고 있습니다!
 
@@ -23,7 +21,7 @@ tags:
 
 회의에 초대되었거나, 회의 시작 전에 알림을 받고, 모바일에서도 확인할 수 있으면 좋을 것 같아 PWA를 적용하고, Firebase Cloud Messaging 서비스를 이용해 푸시 알림 기능도 구현하기로 하였습니다.
 
-## firebase 앱 등록
+# firebase 앱 등록
 
 firebase에서 앱을 등록하고 FCM을 사용하기 위해 Project settings 페이지의 Cloud Messging 탭에서 웹 푸시 인증서의 키페어를 발급 받습니다.
 
@@ -33,7 +31,7 @@ firebase에서 앱을 등록하고 FCM을 사용하기 위해 Project settings �
 
 <img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/10/fcm-firebase-config.png" alt="firebase app config" width="100%" />
 
-## SDK 설치 및 firebase 초기화
+# SDK 설치 및 firebase 초기화
 
 FCM을 사용하려면 우선 firebase를 설치하고 앱을 초기화해야 합니다. 공식문서를 참고하기 위해 최신 버전인 v9로 설치하였습니다.
 
@@ -82,7 +80,7 @@ useEffect(() => {
 }, [])
 ```
 
-## FCM 토큰 발급
+# FCM 토큰 발급
 
 FCM의 푸시 알림 서비스를 이용하기 위해서는 `FCM 토큰`을 발급받아야 하며, FCM 토큰을 발급 받기 위해서는 `메시징 인스턴스`와 firebase console에서 발급 받은 `vapid key`가 필요합니다.
 
@@ -265,7 +263,7 @@ export default class Storage {
 export const noticeStorage = new Storage(localforage.createInstance(getDefaultConfig()), getDefaultConfig())
 ```
 
-## 서버로 FCM 토큰 전달
+# 서버로 FCM 토큰 전달
 
 클라이언트로 보내야 하는 알림 내용과 언제 알림을 보내야 하는 지는 서버에서 처리해주기 때문에 서버에서 알림을 보내야 하는 유저를 식별할 수 있도록 로그인에 성공하면 FCM 토큰을 서버로 전달해주는 API를 호출해줍니다.
 
@@ -293,11 +291,11 @@ useEffect(() => {
 }, [accessToken, refreshToken])
 ```
 
-## 백그라운드와 포그라운드 메시지
+# 백그라운드와 포그라운드 메시지
 
 푸시 알림 메시지에는 앱(화면)에 포커스하고 있는 상태일 때 받는 `포그라운드`와 앱(화면)을 떠나있거나(?) 종료했을 때 받을 수 있는 `백그라운드` 두 가지 종류가 있습니다. 두 메시지 모두 브라우저에 firebase cloud messaging용 service worker를 등록해야 메시지 이벤트를 통해 받을 수 있습니다.
 
-### 서비스워커 등록하기
+## 서비스워커 등록하기
 
 FCM용 서비스워커의 파일 이름은 firebase에서 지정한 이름인 `firebase-messaging-sw.js`로 생성해야 합니다. 서비스워커 파일은 public 폴더에 생성해줍니다.
 
@@ -362,7 +360,7 @@ firebase-messaging-sw 서비스워커가 브라우저에 잘 등록되었다면 
 
 > 백그라운드 상태에서도 푸시 알림을 받을 수 있는 이유는 ServiceWorker API의 특성상 브라우저에 서비스 워커가 한번 등록되면 등록된 서비스 워커의 수명은 어플리케이션이 종료되어도 보존되기 때문입니다.
 
-### 포그라운드 메시지 수신하기
+## 포그라운드 메시지 수신하기
 
 포그라운드는 유저가 화면에 포커스하고 있는 상태를 말합니다.
 
@@ -485,11 +483,11 @@ export const PushNotificationLayout = ({ children }: Props) => {
 
 <img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/10/fcm-forground-message.png" alt="web push toast ui" width="100%" />
 
-## 트러블슈팅
+# 트러블슈팅
 
 FCM과 서비스 워커로 푸시 알림을 구현하는 것 자체는 firebase 공식문서에 설명이 잘 되어 있어서 많이 어렵거나 하지는 않았습니다. 하지만 의외의(?) 곳에서 자잘한 애를 먹었습니다.
 
-### 1. 서비스 워커 등록이 안 돼요 🥲
+## 1. 서비스 워커 등록이 안 돼요 🥲
 
 분명 public 폴더에 `firebase-messaging-sw.js` 라는 이름으로 파일을 생성하고 서비스 워커 내용을 정의했는데도 브라우저에 서비스 워커를 등록할 수 없다는 문구와 함께 **401 에러**가 발생했습니다.
 
@@ -616,7 +614,7 @@ module.exports = withPlugins(
 
 <img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/10/fcm-service-worker-registration-local.png" alt="service worker" width="100%" />
 
-### 2. 알림이 안 와요 🥲
+## 2. 알림이 안 와요 🥲
 
 분명 FCM 토큰도 잘 발급 받아지고, 서비스 워커도 잘 등록되었는데 firebase console이나 포스트맨에서 아무리 테스트를 해봐도 알림이 오지 않았습니다. 백엔드 개발자분이랑 거의 이틀을 삽질했는데 생각지도 못한 방법으로 해결할 수 있었습니다. 바로.. OS에서 해당 브라우저의 알림을 켜놓는 겁니다..🥲
 
@@ -633,7 +631,7 @@ module.exports = withPlugins(
 
 저같은 경우는 시스템 환경설정에서 **크롬의 알림 자체를 꺼놨었고**, 공교롭게도 백엔드 개발자분도 크롬 알림을 꺼놔서 둘 다 알림을 받을 수 없었던 것이었습니다..🥲 크롬 브라우저의 알림을 허용해주니 푸시 알림을 잘 받을 수 있었습니다!
 
-## 마무리
+# 마무리
 
 알림 기능을 구현해 보는 건 처음이었는데 내가 자주 보던 저 알림을..! 나도 만들 수 있다니..! 하면서 만들었던 기억이 납니다. 그리고 문제가 생겼을 때 백엔드 개발자분이랑 뭐지...왜지..?! 하면서 하나씩 차근차근 해결해가는 과정도 너무 재밌었습니다. 처음 해보는 건 뭐든 재밌는 것 같습니다. 🙂
 

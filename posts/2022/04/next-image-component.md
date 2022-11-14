@@ -11,13 +11,11 @@ tags:
 
 ---
 
-## Table of Contents
-
-## 들어가면서
+# 들어가면서
 
 SPA의 서버 사이드 렌더링을 지원하는 React 기반의 Next.js는 Link, Image, Head 등 몇 가지 컴포넌트를 제공하고 있다. 그 중 Image 컴포넌트에 대해서 알아보자!
 
-## Next.js의 이미지 컴포넌트, 왜 사용할까?
+# Next.js의 이미지 컴포넌트, 왜 사용할까?
 
 답은 간단하다. `이미지 최적화`를 위해 사용한다.
 
@@ -36,7 +34,7 @@ Next.js는 위와 같이 이미지 소스와는 별도로 추가해야 했던 �
 
 <br/>
 
-## 이미지 컴포넌트 사용 방법
+# 이미지 컴포넌트 사용 방법
 
 사용 방법 또한 간단하다. next/image에서 Image 모듈을 불러온 후 컴포넌트처럼 사용한다. 주의할 점은 로컬 이미지가 아닌 경우 반드시 프로퍼티로 `width`, `heigth` 값 또는 `layout`을 설정해주어야 한다는 것이다.
 
@@ -72,9 +70,9 @@ export default NextImage
 
 <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FbgEinN%2FbtrzkyIKZId%2F2tmXCeKczaTGzjn6xVJZjk%2Fimg.png" alt="image component example" width="100%" />
 
-## img 태그와 비교해보자!
+# img 태그와 비교해보자!
 
-### img 태그를 사용하면?
+## img 태그를 사용하면?
 
 위의 코드에서 next.js의 이미지 컴포넌트 부분만 `img` 태그로 변경하고 네트워크가 빠른 3G 환경에서 어떻게 렌더링 되는지 확인해보자.
 
@@ -117,7 +115,7 @@ export default NextImage
 
 <br/>
 
-### next.js의 이미지 컴포넌트를 사용하면?
+## next.js의 이미지 컴포넌트를 사용하면?
 
 ```jsx
 // index.tsx
@@ -156,7 +154,7 @@ export default NextImage
 
 <br/>
 
-## 어떻게 CLS를 방지할까?
+# 어떻게 CLS를 방지할까?
 
 next.js는 이미지 컴포넌트를 사용하면 `CLS`를 아예 막을 수 있다고 설명하고 있다. 어떻게 막는 건지 살펴보자!
 

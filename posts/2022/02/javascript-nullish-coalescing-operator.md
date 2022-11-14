@@ -11,9 +11,7 @@ tags:
 
 ---
 
-## Table of Contents
-
-## nullish 병합 연산자
+# nullish 병합 연산자
 
 nullish 병합 연산자 (nullish coalescing operator) `??` 를 사용하면 짧은 문법으로 여러 피연산자 중 그 값이 **확정되어 있는** 변수를 찾을 수 있다.
 
@@ -74,7 +72,7 @@ console.log(lastName || firstName || 'anonymous' || nickName) // 'anonymous'
 
 <br/>
 
-## ||(or 연산자) 와의 차이
+# ||(or 연산자) 와의 차이
 
 - `||` 는 첫 번째 **truthy 값**을 반환한다.
 - `??` 는 첫 번째 **정의된(defined) 값**을 반환한다.

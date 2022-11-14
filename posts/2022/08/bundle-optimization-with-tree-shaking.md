@@ -11,9 +11,7 @@ tags:
 
 ---
 
-## Table of Contents
-
-## 들어가면서
+# 들어가면서
 
 최근 회사에서 약 3개월에 걸쳐 진행한 프로젝트가 마무리 되었습니다. 잠깐의 여유가 생겨 프로젝트 회고를 하던 중 성능 최적화에 대한 얘기가 나왔습니다. 프로젝트는 크게 **1) 고객사에서 사용하는 페이지**와 **2) 관리자 계정이 사용하는 어드민 페이지로** 나뉘어져 있는데, 고객사 페이지는 데이터를 시각화하여 대시보드의 형태로 제공하고 있는 페이지가 많아 받아오는 데이터가 크고, 실시간으로 데이터를 받아서 실시간 차트를 그려주는 페이지도 있기 때문에 `성능`이 중요했습니다.
 
@@ -26,15 +24,15 @@ tags:
 
 <br/>
 
-## 번들 사이즈 확인
+# 번들 사이즈 확인
 
-### @next/bundle-analyzer 설치
+## @next/bundle-analyzer 설치
 
 번들 사이즈를 줄이기 위해서는 먼저 `번들 사이즈`를 확인해야 합니다.
 
 저는 간편하게 확인할 수 있는 `webpack-bundle-analyzer` 툴을 사용했고, 프로젝트가 Nextjs로 되어 있어 Nextjs 프레임워크에서 사용할 수 있도록 만들어진 `@next/bundle-analyzer`를 사용했습니다.
 
-### next.config.js 설정
+## next.config.js 설정
 
 ```jsx
 // next.config.js
@@ -48,7 +46,7 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 module.exports = withBundleAnalyzer({...config});
 ```
 
-### 실행 script 추가
+## 실행 script 추가
 
 번들 사이즈 결과가 담겨 있는 html을 브라우저에 띄워주려면 분석 실행 환경에서 빌드하는 명령어를 실행해야 합니다. 번들 사이즈를 확인하려는 프로젝트가 모노레포 환경에 있기 때문에 짧은 명령어로 실행시킬 수 있도록 루트 레벨의 package.json에 실행 스크립트를 추가했습니다.
 
@@ -62,7 +60,7 @@ module.exports = withBundleAnalyzer({...config});
 }
 ```
 
-### 결과 확인하기
+## 결과 확인하기
 
 analyzer를 실행하면 자동으로 브라우저에 사이즈를 확인할 수 있는 화면이 열립니다. 만약 자동으로 열리는 걸 원하지 않는다면 next.config.js에서 withBundleAnalyzer 옵션 중 `openAnalyzer`를 false로 설정하면 됩니다.
 
@@ -102,9 +100,9 @@ analyzer가 측정하는 어플리케이션의 크기는 `stats`, `parsed`, `gzi
 
 하지만 데이터 시각화는 핵심 서비스이고, echarts를 사용하지 않을 수는 없었기에 사이즈를 줄일 수 있는 방법이 있는지 찾아보았고 echarts의 공식문서에서 `트리쉐이킹`을 적용하는 방법을 찾았습니다.
 
-## Echarts 트리쉐이킹
+# Echarts 트리쉐이킹
 
-### 트리쉐이킹이란?
+## 트리쉐이킹이란?
 
 트리쉐이킹이란 간단히 말해서 사용하지 않는 코드를 제거하는 것을 의미합니다.
 
@@ -123,7 +121,7 @@ echarts-for-react가 react에서 echarts를 컴포넌트의 형태로 렌더링�
 
 echarts는 다양한 차트 타입과 그 외에도 선택적으로 사용할 수 있는 스크롤, 툴팁 등의 다양한 컴포넌트들을 제공하고 있습니다. ReactEcharts 컴포넌트의 option 프로퍼티로 전달하는 객체에서 차트에 사용할 컴포넌트와 차트 타입 등을 설정하지만, 위와 같은 방식은 **컴포넌트에서 사용하지 않는** 차트 인스턴스나 모듈들도 import합니다.
 
-### 트리쉐이킹 적용하기
+## 트리쉐이킹 적용하기
 
 echarts에 트리쉐이킹을 적용하는 방법은 의외로 굉장히 간단했습니다. 트리쉐이킹의 의미처럼 **컴포넌트에 필요한** 차트 인스턴스와 모듈만 import하면 됩니다.
 
@@ -159,13 +157,13 @@ echarts.use([LineChart, CanvasRenderer, GridComponent, TooltipComponent, DataZoo
 
 <br/>
 
-### 트리쉐이킹 적용 결과
+## 트리쉐이킹 적용 결과
 
 결과적으로는 echarts 번들 사이즈를 약 `46%`를 줄일 수 있었습니다.
 
 <img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/08/2022-08-bundle-optimization-after.png" alt="echarts size after" width="100%" />
 
-### 트리쉐이킹 할 때 참고하면 좋을 것들
+## 트리쉐이킹 할 때 참고하면 좋을 것들
 
 <br/>
 

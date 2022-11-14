@@ -12,9 +12,7 @@ tags:
 
 ---
 
-## Table of Contents
-
-## 들어가면서
+# 들어가면서
 
 > 본 게시글의 내용은 React `v17`까지만 해당합니다. React v18부터는 Promise에도 automatic batching을 지원하기 때문에 2개 이상의 API를 동시 호출해야 할 떼 useQuery 여러번 또는 useQueries를 사용해도 리렌더링이 한 번밖에 되지 않습니다.  🥲
 
@@ -45,7 +43,7 @@ tags:
 
 react-query 문서에서 스쳐지나가 듯이 병렬로 API를 호출하는 훅을 본 기억이 있었기에 다시 parralel이라는 단어로 검색해보니 useQueries라는 훅이 있었다. 훅 이름 그대로 여러 개의 useQuery들을 병렬로 호출한다는 내용은 있는데 그 외의 별다른 내용은 없어서 일단 사용해 보기로 했다.
 
-## Mock API 만들기
+# Mock API 만들기
 
 postman으로 간단하게 mock api를 만들었다.
 
@@ -61,7 +59,7 @@ export const MockAPI = () => {
 }
 ```
 
-## useQuery로 5번 호출해보기
+# useQuery로 5번 호출해보기
 
 우선 API를 호출할 때 `useQuery`를 `5번` 호출하면 리렌더링이 몇 번 발생하는지를 확인해보았다. 리렌더링 횟수를 카운팅하기 위해 useQuery의 option에 API 호출이 성공하면 count + 1을 해주는 코드를 추가했다.
 
@@ -115,7 +113,7 @@ return (
 
 ---
 
-### useQuery 5번
+## useQuery 5번
 
 ✅ 5개의 API들은 병렬로 호출되어야 한다.
 ❌ 5개의 API 통신이 모두 성공해야만 페이지를 보여줄 수 있다. (즉, 모든 API의 성공이 보장되어야 한다.)
@@ -126,7 +124,7 @@ return (
 
 상단에 적은 조건 중 두 가지만 충족한다. 그래도 만약 useQuery를 사용해야 한다면 리렌더링을 최소화하기 위해 실행 횟수 자체를 줄여야 한다는 걸 알 수 있었다.
 
-## useQueries
+# useQueries
 
 `useQueries`는 react-query에서 제공하는 API 중 하나로, 여러 개의 useQuery를 병렬로 실행해주는 훅이다. 만약 useQueries로 API를 호출했을 때 호출하는 모든 API의 성공을 보장할 수 있다면 위에 적은 조건들은 모두 충족하는 것이다.
 
@@ -164,7 +162,7 @@ useQueries(queryKey.map(key => {
 
 ---
 
-### useQueries
+## useQueries
 
 ✅ 5개의 API들은 병렬로 호출되어야 한다.
 ❌ 5개의 API 통신이 모두 성공해야만 페이지를 보여줄 수 있다. (즉, 모든 API의 성공이 보장되어야 한다.)
@@ -173,7 +171,7 @@ useQueries(queryKey.map(key => {
 
 ---
 
-## Promise.all
+# Promise.all
 
 사실 마지막 세 번째 조건인 react-query를 사용해야 한다는 조건만 빼면 나머지 **1) 병렬 호출**과 **2) 모든 API의 성공 보장**은 자바스크립트의 `Promise`를 사용하면 해결된다. `Promise.all()`은 만약 파라미터로 주어진 객체가 모두 프로미스일 때 하나의 프로미스라도 거부되면 Promise.all() 자체도 거부되기 때문에 모든 API의 성공을 보장할 수 있다.
 
@@ -201,7 +199,7 @@ useEffect(() => {
 
 ---
 
-### Promise.all
+## Promise.all
 
 ✅ 5개의 API들은 병렬로 호출되어야 한다.
 ✅ 5개의 API 통신이 모두 성공해야만 페이지를 보여줄 수 있다. (즉, 모든 API의 성공이 보장되어야 한다.)
@@ -210,7 +208,7 @@ useEffect(() => {
 
 ---
 
-## Promise.all을 활용해 useQuery의 queryFn 만들기
+# Promise.all을 활용해 useQuery의 queryFn 만들기
 
 Promise.all의 이행이 완료되면 이행 결과가 담겨 있는 리스트를 반환하도록 fetcher 함수를 만들고, useQuery의 queryFn 위치에 해당 함수를 파라미터로 사용했다.
 
@@ -249,7 +247,7 @@ API들도 너무 병렬로 잘 호출되고~~모든 API의 성공도 보장할 �
 
 ---
 
-### useQuery + Promise.all로 만든 query function
+## useQuery + Promise.all로 만든 query function
 
 ✅ 5개의 API들은 병렬로 호출되어야 한다.
 ✅ 5개의 API 통신이 모두 성공해야만 페이지를 보여줄 수 있다. (즉, 모든 API의 성공이 보장되어야 한다.)
@@ -258,7 +256,7 @@ API들도 너무 병렬로 잘 호출되고~~모든 API의 성공도 보장할 �
 
 ---
 
-## 커스텀훅 만들기 최종*최최최종*진짜진자찐막
+# 커스텀훅 만들기 최종*최최최종*진짜진자찐막
 
 내가 담당하는 페이지들도 그렇고 대부분의 페이지에 필요한 데이터들은 모두 API 모듈화가 적용될 예정이기 때문에 페이지마다 fetcher 함수를 만들어서 쓰는 건 비효율적이라는 생각이 들어 필요한 곳에서 가져다 쓸 수 있도록 커스텀훅으로 만들어서 재사용하기로 했다.
 
@@ -354,7 +352,7 @@ console.log(result)
 
 useQuery가 반환해주는 data가 파라미터로 넘긴 apis의 key이름으로 이쁘게 잘 정리까지 되어 있는 걸 볼 수 있다!
 
-## 마치며
+# 마치며
 
 프로젝트를 하면서 항상 최적화 해야지~해야지~ 입으로는 말하면서도 뭐부터, 어떻게 해야 할지 감이 안 왔었는데 처음부터 고민하면서 시도하고, 마침내 내가 원하는 바를 이룰 수 있어서 뿌듯하고 뜻깊었다. 앞으로도 다양한 방면으로 최적화를 해내고 싶다는 욕심도 생겼다. 아좌좌..~!
 

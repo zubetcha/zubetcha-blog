@@ -45,8 +45,8 @@ export const PostContainer = ({
 						</div>
 					</header>
 					<div className={classes['content-wrapper']}>
-						{/* <ToC headingList={headingList} /> */}
 						<div className={classes.content}>{children}</div>
+						<ToC headingList={headingList} />
 					</div>
 				</div>
 			</article>

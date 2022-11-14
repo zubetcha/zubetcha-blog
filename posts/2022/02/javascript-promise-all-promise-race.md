@@ -11,9 +11,7 @@ tags:
 
 ---
 
-## Table of Contents
-
-## Promise.all
+# Promise.all
 
 <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbrAHwE%2FbtrtJCRmHUE%2FbUylqkmqvh9SONVmjYsWcK%2Fimg.png" alt="Promise.all" width="100%" />
 
@@ -21,7 +19,7 @@ tags:
 
 Promise.all은 서로 관련된 여러 프로미스의 결과를 집계할 때 유용하며, 다음 코드를 실행하기 전에 연관되어 있는 비동기 작업들이 모두 이행이 완료되어야 하는 경우에 사용된다.
 
-### Syntax
+## Syntax
 
 ```javascript
 Promise.all(iterable)
@@ -29,7 +27,7 @@ Promise.all(iterable)
 
 ```
 
-### 특징
+## 특징
 
 📌 반환되는 결과 배열의 순서는 작업 완료 순서와 관계 없이 파라미터로 받은 배열(순회 가능한 객체)의 순서와 동일하다.
 
@@ -101,13 +99,13 @@ setTimeout(() => {
 
 <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbHeNFW%2FbtrtH2b9f2l%2Fy3RLxmRI7trEkjS9ODKO5K%2Fimg.png" alt="promise.all" width="100%" />
 
-## Promise.race
+# Promise.race
 
 <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbPSY3c%2FbtrtO9f3dH7%2FpHOqWKOSFeGBQJ2WtH1DKK%2Fimg.png" alt="promise.race" width="100%" />
 
 `Promise.race`는 Promise.all과 동일하게 파라미터로 `Iterable 객체`(순회 가능한 객체)를 받는다. 따라서 Promise.race의 구문은 Promise.all과 동일하다. 다만 차이는 이행 결과에 있다. Promise.race는 파라미터로 받은 프로미스들 중 **가장 먼저 완료되는 프로미스** 한 개의 이행 또는 거부의 결과값만을 반환한다.
 
-### Syntax
+## Syntax
 
 ```javascript
 Promise.race(iterable)
@@ -115,7 +113,7 @@ Promise.race(iterable)
 
 ```
 
-### 특징
+## 특징
 
 📌 파라미터로 받은 프로미스 중 가장 먼저 처리되는 프로미스의 결과 또는 에러를 반환한다.
 

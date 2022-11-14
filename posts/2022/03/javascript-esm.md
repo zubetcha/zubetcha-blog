@@ -11,9 +11,7 @@ tags:
 
 ---
 
-## Table of Contents
-
-## 들어가면서
+# 들어가면서
 
 정재남님의 무근본 무계획 쇼핑몰 프로젝트 만드는 걸 따라하면서 새로운 것 투성이라 신기했다. 하나하나 차근차근 찾아보려고 우선 Vite의 공식문서부터 열고 가이드의 가장 첫 번째 섹션인 Vite를 사용해야 하는 이유부터 보는데 첫 문장부터 이해가 잘 되지 않았다...!
 
@@ -23,13 +21,13 @@ tags:
 
 그럼 `ES Module`에 대해서 살펴보자!
 
-## ES Module이란?
+# ES Module이란?
 
 ES Module은 ES6부터 도입된 모듈 시스템이다. export 및 import문을 사용하여 분리되어 있는 자바스크립트 파일 간의 접근을 가능하게 만들어준다.
 
-## ES Module 등장 배경
+# ES Module 등장 배경
 
-### 기존의 문제점
+## 기존의 문제점
 
 초기의 자바스크립트 프로그램은 규모가 크지 않았기 때문에 대부분의 스크립트들이 독립적인 작업을 수행했다. 시간이 흐름에 따라 jQuery가 등장하고 어플리케이션의 규모가 커지면서 script 파일을 나누기 시작하였고, 필요한 자바스크립트 프로그램만 가져올 수 있도록 해주는 `모듈 분할`에 대한 필요성이 대두되기 시작했다.
 
@@ -54,7 +52,7 @@ ES Module이 등장하기 이전에는 각각의 script 파일을 `전역 스코
   <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2Fbqj4PS%2FbtrvAbdXMGl%2Fwa5kGTqfHMaIAJ8QQ5fVJ0%2Fimg.png" alt="global script problem" width="70%" />
 </p>
 
-### 해결책 - 모듈화
+## 해결책 - 모듈화
 
 모듈은 함수와 변수를 모듈 스코프에 넣고, 각 함수는 `함수 스코프`를 가진다. 이 때, `export`문을 사용하면 해당 변수와 함수를 다른 모듈에서 `import`문을 사용하여 의존할 수 있도록 해준다. 이러한 모듈화는 아래와 같은 장점을 가진다.
 
@@ -74,7 +72,7 @@ ES Module이 등장하기 이전에는 각각의 script 파일을 `전역 스코
 
 <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FwCTg0%2FbtrvylgYMYG%2FDxb9oBdvwXKEMWCJJYVtkK%2Fimg.png" alt="import compati" width="100%" />
 
-## ES Module의 동작 방식
+# ES Module의 동작 방식
 
 의존성 간의 연결은 `import` 문이 작성된 코드에서 발생한다. import 문은 브라우저 또는 node가 어떤 코드를 불러와야 하는지 인식하는 데 사용되며, import 문에서 지정한 파일(일반적으로 url)이 의존성 그래프의 `진입점` (entry point)이 되고 연결되어 있는 import 문을 따라가면서 의존성 그래프가 그려진다.
 
@@ -92,7 +90,7 @@ ES Module이 동작하기 위해서는 브라우저가 사용할 수 있도록 `
 
 <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2Fcc6uFO%2FbtrvLgkf6ze%2FtAqUb2fa4GAnEaKekbFTV0%2Fimg.png" alt="modulization" width="100%" />
 
-### 1. 구성 (Construction)
+## 1. 구성 (Construction)
 
 구성 단계에서는 모듈이 들어 있는 파일을 어디서 다운로드 할 것인지 확인한 후 → URL을 통하거나 파일 시스템을 이용해 파일을 가져온 후 → 파일을 모듈 레코드로 구문분석한다.
 
@@ -100,7 +98,7 @@ ES Module이 동작하기 위해서는 브라우저가 사용할 수 있도록 `
 
 <img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/03/2022-03-javascript-esm-module-specifier.png" alt="module specifier" width="70%" />
 
-### 2. 인스턴스화 (Instantiation)
+## 2. 인스턴스화 (Instantiation)
 
 자바스크립트 엔진은 먼저 모듈 환경 레코드를 생성한 후 이를 통해 모듈 레코드의 변수를 관리한다. 생성된 모듈 환경 레코드는 각 export와 연관되어 있는 메모리 공간을 추적하는데, 이 때 자바스크립트 엔진은 다른 것에 의존하지 않는 **그래프의 최하단까지** 조사한 후 export를 설정하고 모든 export를 연결한다.
 
@@ -110,15 +108,15 @@ node.js의 CommonJS는 export-import에서 라이브 바인딩이 아닌 **객�
 
 <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FctCEGE%2FbtrvKp9SVVO%2FrCFUQhnr5Dh9oWEnjsFEX1%2Fimg.png" alt="commonjs" width="100%" />
 
-### 3. 평가 (Evaluation)
+## 3. 평가 (Evaluation)
 
 평가 단계에서는 코드를 실행하여 메모리 공간에 실제 값을 채운다. 자바스크립트 엔진은 함수 외부 코드인 최상위 레벨 코드를 실행하여 이를 수행한다. 평가는 수행한 횟수에 따라 다른 결과를 가질 수 있기 때문에 **한 번만 평가하도록 설계되어 있다.**
 
 <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FW8yfQ%2FbtrvI4lcfo4%2FoB3bNJDdEeC0KCBwk5W3XK%2Fimg.png" alt="evaluation" width="100%" />
 
-## ES Module 사용 방법
+# ES Module 사용 방법
 
-### 몇 가지 특징
+## 몇 가지 특징
 
 <br/>
 
@@ -129,7 +127,7 @@ node.js의 CommonJS는 export-import에서 라이브 바인딩이 아닌 **객�
 
 <br/>
 
-### 기본 사용법
+## 기본 사용법
 
 각각 내보내기
 
@@ -161,7 +159,7 @@ export { name, draw, reportArea, reportPerimeter };
 import { name, draw, reportArea, reportPerimeter } from './modules/square.js';
 ```
 
-### Renaming
+## Renaming
 
 export문과 import문의 중괄호 {} 안에 `as` 키워드를 이용하여 식별 가능한 이름으로 변경하면 **동일한 이름의 여러 함수를 하나의 모듈로 가져오려고 할 때** 발생할 수 있는 충돌과 에러를 방지할 수 있다.
 
@@ -189,7 +187,7 @@ import { function1 as newFunctionName,
          function2 as anotherNewFunctionName } from './modules/module.js';
 ```
 
-### Module Object
+## Module Object
 
 위와 같이 이름을 변경하는 것은 상황에 따라 코드가 길어지고 지저분해질 수 있다. 이런 경우에는 각 모듈의 기능을 객체로 묶어 가져옴으로써 해결할 수 있다. 아래의 구문을 사용하면 module.js 내에서 사용할 수 있는 모든 export를 가져와서 각 export들을 **Module 객체의 프로퍼티**처럼 사용할 수 있다.
 
@@ -203,7 +201,7 @@ Module.function2()
 etc.
 ```
 
-### Module 집합
+## Module 집합
 
 모듈을 모아야 할 때 여러 서브 모듈을 **하나의 부모 모듈로 결합하여** 사용할 수 있다.
 
@@ -245,7 +243,7 @@ import { Square, Circle, Triangle } from './modules/shapes.js';
 
 주의할 점은 shape.js에서 참조되고 있는 export들은 파일을 통해 리다이렉트되는 것일 뿐 실제로는 shape.js 안에 존재하는 게 아니기 때문에 같은 파일 안에서는 유용한 코드를 작성할 수 없다는 것이다.
 
-### 동적 모듈 로딩
+## 동적 모듈 로딩
 
 동적 모듈 로딩을 사용하면 모든 모듈들을 최상위에서 불러오는 것이 아닌, **필요할 때만** 모듈을 동적으로 불러올 수 있다. 아래와 같이 `import()` 를 함수로 호출하여 파라미터로 `모듈 경로`를 전달하고, 모듈 객체를 사용하여 `promise`를 반환하면 해당 모듈 객체가 가지고 있는 export에 접근할 수 있다.
 
@@ -256,7 +254,7 @@ import('/modules/myModule.js')
   });
 ```
 
-### Default export & Named export
+## Default export & Named export
 
 지금까지 본 export는 내보내지는 함수, 변수, 클래스 등의 항목이 **이름으로 참조**되는 `named export` 이다. named export는 해당 모듈들을 import 할 때에도 이 이름을 참조한다. named export 외에도 `default export` 라고 불리는 export도 존재하는데, 이는 모듈이 제공하는 기본 기능을 쉽게 만들 수 있도록 설계되었다. 또한 모듈을 기존의 CommonJS와 AMD 모듈 시스템과 함께 사용하는 데에도 도움을 준다.
 
