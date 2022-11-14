@@ -16,3 +16,9 @@ export interface Post {
 	content: string;
 	path: string;
 }
+
+export interface HeadingContent {
+	text: string;
+	link: string;
+	className: string;
+}

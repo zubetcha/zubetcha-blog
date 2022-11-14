@@ -1,16 +1,22 @@
 import classes from './Post.module.scss';
 import { formatDate } from '@utils/date';
 import { getBlogJSONLD } from '@utils/page';
-import { Tag, PostSEO } from '@components/index';
-import { FrontMatter } from '@type/post';
+import { Tag, PostSEO, ToC } from '@components/index';
+import { FrontMatter, HeadingContent } from '@type/post';
 
 interface Props {
-	children: JSX.Element;
+	children: React.ReactNode;
 	frontMatter: FrontMatter;
 	slug: string;
+	headingList: Array<HeadingContent>;
 }
 
-export const PostContainer = ({ children, frontMatter, slug }: Props) => {
+export const PostContainer = ({
+	children,
+	frontMatter,
+	slug,
+	headingList,
+}: Props) => {
 	const { title, date, tags, category, description } = frontMatter;
 	const formattedDate = formatDate(date);
 
@@ -38,7 +44,10 @@ export const PostContainer = ({ children, frontMatter, slug }: Props) => {
 							{/* <p>zubetcha</p> */}
 						</div>
 					</header>
-					<div className={classes.content}>{children}</div>
+					<div className={classes['content-wrapper']}>
+						{/* <ToC headingList={headingList} /> */}
+						<div className={classes.content}>{children}</div>
+					</div>
 				</div>
 			</article>
 		</>

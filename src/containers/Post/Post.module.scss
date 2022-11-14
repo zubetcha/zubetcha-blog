@@ -61,9 +61,26 @@
 			}
 		}
 
-		h2 {
+		h1 {
 			@include headline-large(700);
 			margin: toRem(48) 0 toRem(24);
+			color: var(--color-post-h2-text);
+			@include mobile() {
+				@include headline-medium(700);
+			}
+			@include tablet() {
+				@include headline-medium(700);
+			}
+
+			code,
+			strong {
+				color: var(--color-post-h2-text);
+			}
+		}
+
+		h2 {
+			@include headline-medium(700);
+			margin: toRem(40) 0 toRem(24);
 			color: var(--color-post-h2-text);
 			@include mobile() {
 				@include headline-small(700);
