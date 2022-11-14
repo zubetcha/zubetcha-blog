@@ -3,12 +3,20 @@
 @import '../../styles/sizes';
 
 .ToC {
-	width: toRem(280);
+	width: toRem(240);
 	flex-shrink: 0;
-	padding: toRem(16);
+	padding: toRem(40) 0 0 toRem(8);
+	height: fit-content;
 	li {
 		@include label-large();
 		padding: toRem(2) 0;
+		transition: all 0.2s ease-out;
+		cursor: pointer;
+
+		&:hover {
+			font-weight: 600;
+		}
+
 		&.h1 {
 		}
 		&.h2 {
