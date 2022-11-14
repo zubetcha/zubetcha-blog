@@ -64,7 +64,7 @@ export const getAllPosts = async () => {
 };
 
 export const getLinkContent = (content: string) => {
-	return '#' + content.replace(/ /g, '_').toLowerCase();
+	return content.replace(/ /g, '_').toLowerCase();
 };
 
 const setAriaLabelToHeading = () => {
@@ -85,12 +85,12 @@ export const parseMdx = async (source: string) => {
 	return serialize(source, {
 		parseFrontmatter: true,
 		mdxOptions: {
-			remarkPlugins: [remarkToc, remarkGfm, remarkBreaks, remarkMath],
+			remarkPlugins: [remarkGfm, remarkBreaks, remarkMath],
 			rehypePlugins: [
 				rehypeAutolinkHeadings,
 				rehypeKatex,
 				rehypePrism,
-				setAriaLabelToHeading,
+				// setAriaLabelToHeading,
 			],
 		},
 	});
