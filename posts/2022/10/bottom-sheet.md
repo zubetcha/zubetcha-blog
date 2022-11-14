@@ -12,20 +12,20 @@ tags:
 
 ---
 
-## 들어가면서
+# 들어가면서
 
 이전에 개발했던 웹 솔루션에 대해서 모바일 화면을 적용할 기회가 생겼습니다. 그중에서 저는 데스크탑 화면에서의 모달을 대체할 바텀 팝업 시트 컴포넌트로 만들기로 했습니다.
 
-## 인터랙션 요구사항
+# 인터랙션 요구사항
 
 우선 감사하게도 디자이너가 바텀시트 컴포넌트 디자인을 빠르게 만들어주셨습니다. 그리고 모바일용인 만큼 신경써야 하는 인터랙션이 굉장히 많았습니다! 우선 개발하기에 앞서 고려해야 하는 사항들을 정리해 보았습니다.
 
-### 공통
+## 공통
 
 - expanded가 false일 때 바텀 시트의 dimmed 영역을 클릭하면 바텀 시트가 언마운트됩니다.
 - 바텀 시트를 아래 방향으로 `snap 조건` 이상 터치하여 움직이면 바텀 시트가 언마운트됩니다.
 
-### expanded가 false이고 헤더 + 컨텐츠 + 버튼 높이가 50vh 이하인 경우
+## expanded가 false이고 헤더 + 컨텐츠 + 버튼 높이가 50vh 이하인 경우
 
 바텀 시트를 처음 열었을 때 expanded의 상태는 false 입니다.
 
@@ -36,7 +36,7 @@ tags:
   - 해당 높이만큼 바텀 시트가 올라오고 컨텐츠 영역을 자유롭게 사용할 수 있습니다.
   - 컨텐츠 영역을 위 방향으로 snap 조건만큼 터치하여 움직여도 expanded 상태가 변하지 않습니다.
 
-### expanded가 false이고 헤더 + 컨텐츠 + 버튼 높이가 50vh를 초과하는 경우
+## expanded가 false이고 헤더 + 컨텐츠 + 버튼 높이가 50vh를 초과하는 경우
 
 - UI
   - 바텀 시트의 컨테이너의 최대 높이는 `50vh`이어야 하고 50vh만큼 올라옵니다.
@@ -47,7 +47,7 @@ tags:
   - 컨텐츠 영역을 사용(입력, 클릭 등등..)하려면 바텀 시트가 전체 viewport에 다 차도록 열어야 합니다.
   - 컨텐츠 영역을 위 방향으로 snap 조건만큼 터치하여 움직이면 expanded의 상태가 true가 됩니다.
 
-### expanded가 true일 때
+## expanded가 true일 때
 
 - UI
   - 바텀 시트의 컨테이너 높이가 `100vh`가 되고 전체 viewport를 채웁니다.
@@ -59,11 +59,11 @@ tags:
 - 인터랙션
   - 컨텐츠 영역의 스크롤이 회상단에 있는 상태에서 위로 스크롤하면 바텀 시트가 언마운트됩니다.
 
-## State와 Props
+# State와 Props
 
 바텀 시트 컴포넌트의 내부에서 관리해야 하는 state와 외부에서 받아야 하는 props를 정리해 보았습니다.
 
-### State
+## State
 
 - expanded (boolean): 완전히 펼친 상태인지 아닌지를 관리하는 상태
 - isInDom (boolean): open 상태에 따라 DOM에 컴포넌트를 마운트할지 언마운트할지를 관리하는 상태
@@ -91,12 +91,12 @@ const contentRef = useCallback((node) => {
 }, []);
 ```
 
-### Props
+## Props
 
 - open: 바텀 시트를 열 때 사용하는 useState의 state
 - setOpen: 바텀 시트의 상태를 업데이트하는 useState의 setState
 
-### Constant
+## Constant
 
 - OFFSET_CONDITION (number): snap 인터랙션을 관제하는 touchmove 거리 조건
 
@@ -104,7 +104,7 @@ const contentRef = useCallback((node) => {
 const OFFSET_CONDITION = 70;
 ```
 
-### Ref
+## Ref
 
 - firstClientHeight (number): 바텀 시트를 터치 이벤트로 움직였지만 OFFSET_CONDITION 보다 이동 거리가 작아 snap되지 않고 다시 원래 높이로 되어야 할 때 사용합니다.
 - halfVh (number): 50vh를 px로 변환한 숫자
@@ -127,11 +127,11 @@ const metrics = useRef<BottomSheetMetrics>({
 });
 ```
 
-## useBottomSheet 만들기
+# useBottomSheet 만들기
 
 BottomSheet에만 사용될 거긴 하지만 인터랙션 관련 로직을 뷰와 분리하고 싶어 useBottomSheet라는 커스텀훅을 만들었습니다.
 
-### react-spring
+## react-spring
 
 처음 바텀 시트가 열리거나 완전히 내려가는 경우에는 `react-spring`이라는 라이브러리의 도움을 받았습니다. useSpring은 react-spring이 제공해주는 훅 중 하나로, 매개변수에는 객체와 객체를 반환하는 함수가 들어갈 수 있습니다.
 
@@ -165,7 +165,7 @@ const [springProps, api] = useSpring(() => ({
 }));
 ```
 
-### 흐름 잡기
+## 흐름 잡기
 
 개발하기에 앞서 각각의 state와 props가 변경되었을 때 어떤 흐름으로 이어지는지를 정리해 보았습니다.
 
@@ -232,7 +232,7 @@ useEffect(() => {
 }, [expanded]);
 ```
 
-### 50vh 값 저장하기
+## 50vh 값 저장하기
 
 ```jsx
 useEffect(() => {
@@ -253,7 +253,7 @@ useEffect(() => {
 }, []);
 ```
 
-### 터치 이벤트
+## 터치 이벤트
 
 BottomSheet는 모바일 화면에서만 사용되기 때문에 핸들을 잡고 내리거나 올리는 등의 인터랙션을 위해 터치 이벤트가 필요합니다. 터치 이벤트를 개발한 경험이 전무후무했기 때문에 콴다 팀블로그를 정말정말 많이 참고했습니다! _감사합니다. 🙇🏻‍♀️_
 
@@ -404,7 +404,7 @@ useEffect(() => {
 }, [container, expanded])
 ```
 
-### useBottomSheet
+## useBottomSheet
 
 최종적으로 useBottomSheet는 아래와 같은 모습이 됩니다.
 
@@ -428,7 +428,7 @@ const useBottomSheet = ({ open, setOpen }: Params) => {
 }
 ```
 
-## BottomSheet 컴포넌트 만들기
+# BottomSheet 컴포넌트 만들기
 
 컴포넌트는 필요한 부분만 사용할 수 있도록 하기 위해 `Compound` 패턴으로 만들었습니다. 구성은 아래와 같습니다.
 
@@ -437,7 +437,7 @@ const useBottomSheet = ({ open, setOpen }: Params) => {
 - BottomSheetButtons: 서브 컴포넌트
 - BottomSheetButton: 서브 컴포넌트
 
-### 메인 컴포넌트
+## 메인 컴포넌트
 
 메인 컴포넌트인 BottomSheet에서는 `Portal`로 BottomSheet의 컨테이너를 렌더링합니다.
 
@@ -515,7 +515,7 @@ export const BottomSheet = ({ open, setOpen, title, children }: Props) => {
 }
 ```
 
-### 서브 컴포넌트
+## 서브 컴포넌트
 
 서브 컴포넌트 중 BottomSheetButtons와 BottomSheetButton은 단순히 Button의 위치를 잡아주고 보여주는 역할만 담당하므로 생략하고, BottomSheetContent만 다루겠습니다.
 
@@ -581,7 +581,7 @@ export const BottomSheetContent = forwardRef(({ children, expanded, scroll }: Pr
 BottomSheetContent.displayName = "BottomSheetContent";
 ```
 
-### 컴포넌트 내보내기
+## 컴포넌트 내보내기
 
 `Compound` 패턴으로 컴포넌트를 만들면 모든 구성 요소들을 import할 필요 없이 메인 컴포넌트만 import해서 서브 컴포넌트 key에 접근하여 사용할 수 있다는 장점이 있습니다.
 
@@ -598,7 +598,7 @@ export const BottomSheet = Object.assign(BottomSheetMain, {
 })
 ```
 
-## 결과
+# 결과
 
 테스트를 해봅시당.
 
@@ -639,29 +639,29 @@ export default function BottomSheetTest() {
 }
 ```
 
-### content가 넘치지 않는 경우
+## content가 넘치지 않는 경우
 
 <p align="center">
 <img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/10/bottom-sheet-result-not-expanded.gif" alt="bottomsheet not-expanded" width="50%" />
 </p>
 
-### content가 넘치는 경우
+## content가 넘치는 경우
 
 <p align="center">
 <img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/10/bottom-sheet-result-expanded.gif" alt="bottomsheet expanded" width="50%" />
 </p>
 
-## 크로스 플랫폼 이슈
+# 크로스 플랫폼 이슈
 
 BottomSheet 컴포넌트를 만든 후 테스트를 해보던 중 크로스 플랫폼 이슈가 발생했습니다.
 
 BottomSheet에는 TextField가 많이 들어가는데, 안드로이드 환경에서 BottomSheet Content 안에 있는 TextField를 클릭하여 input이 focus되면 소프트 키보드가 올라오면서 BottomSheetContent 영역이 줄어들고 빈 공백이 생기는 이슈였습니다.
 
-### 개발자 도구로 확인하는 방법
+## 개발자 도구로 확인하는 방법
 
-### 해결
+## 해결
 
-## 마치며
+# 마치며
 
 회사에 들어온 이래로 개발했던 컴포넌트 중 가장 복잡했던 컴포넌트였는데, 기한 안에 잘 마무리할 수 있어서 다행이었습니다. 이벤트를 등록하고 해제하는 걸 많이 해보지 못했는데 덕분에 이벤트에 대해서도 보다 더 이해할 수 있었습니다.
 

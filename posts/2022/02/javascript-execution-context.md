@@ -13,9 +13,7 @@ tags:
 
 ---
 
-## Table of Contents
-
-## 실행 컨텍스트 (Execution Context)
+# 실행 컨텍스트 (Execution Context)
 
 - 실행 컨텍스트는 **코드를 실행하는 데 필요한 조건이나 환경 정보 등을 수집해 놓은 객체**를 뜻한다.
 - 실행 컨텍스트는 1) 전역 공간에서 익명 함수 실행 시, 2) eval 함수 실행 시, 3) 함수 실행 시, 4) {} 코드 블럭 사용 시 생성된다.
@@ -59,13 +57,13 @@ console.log(a); // 4번 console.log
 
 <br/>
 
-### Call Stack
+## Call Stack
 
 위의 순서를 보면 **전역 컨텍스트 → outer 컨텍스트 → inner 컨텍스트** 순서로 **실행 컨텍스트가 생성**되지만, **컨텍스트의 종료**는 반대로 **inner 컨텍스트 → outer 컨텍스트 → 전역 컨텍스트**의 순서로 진행된다. 이처럼 가장 먼저 들어온 게 가장 마지막에 빠지고, 가장 마지막에 들어온 게 가장 먼저 빠지는 개념을 `스택(Stack)`이라고 한다. `콜 스택(Call Stack)`은 현재 어떤 함수가 실행 중인지, 다음에 어떤 함수가 호출될 예정인지를 제어하는 자료구조이다.
 
 <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcGZnto%2FbtrtlTruYT2%2FmDeSHtxnUR5PFH0RuOGss1%2Fimg.png" alt="Call Stack" width="100%" />
 
-## Variable Environment / Lexical Environment / This Binding
+# Variable Environment / Lexical Environment / This Binding
 
 실행 컨텍스트에는 `Variable Environment`, `Lexical Environment`, `This Binding` 이라는 세 가지의 환경 정보가 담긴다. 이 중 Variable Environment와 Lexical Environment는 **현재의 환경과 관련된 식별자 정보**가 담긴다. 두 Environment의 차이는 변화를 추적하느냐, 추적하지 않느냐에 있다.
 
@@ -74,14 +72,14 @@ console.log(a); // 4번 console.log
 
 <br/>
 
-### Lexical Environment = environmentRecord + outerEnvironmentReference
+## Lexical Environment = environmentRecord + outerEnvironmentReference
 
 - environmentRecord → 현재 컨텍스트의 내부의 식별자 정보
 - outerEnvironmentReference → 외부 환경에 있는 것들을 참조하는 정보
 
 <br/>
 
-## 스코프 체인 (Scope Chain)
+# 스코프 체인 (Scope Chain)
 
 `outerEnvironmentReference`는 현재 컨텍스트와 관련이 있는 **외부의 식별자 정보**를 참조한다. outerEnvironmentReference가 관여하는 것이 바로 스코프 체인(Scope Chain)이다. 스코프 체인(Scope Chain)은 outerEnvironmentReference에 의해서 만들어진다.
 
@@ -103,7 +101,7 @@ outer의 실행 컨텍스트에는 inner에 대해서 수집해 놓은 정보가
 
 즉, **가장 가까운 자신에서부터 점점 멀리 있는 스코프로 찾아 나가는 것**을 뜻한다. 각각의 컨텍스트에 동일한 이름의 변수가 정의되어 있다 하더라도 **무조건 가장 가까이에 있는 값 한 개만** 참조할 수 있다.
 
-## 호이스팅 (Hoisting)
+# 호이스팅 (Hoisting)
 
 실행 컨텍스트가 최초로 실행될 때 가장 먼저 하는 일은 **현재 컨텍스트 내부에 있는 식별자 정보를 수집**해서 `Environment Record`에 담는 것이다. 이 과정을 호이스팅 이라고도 한다.
 

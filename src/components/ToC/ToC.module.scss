@@ -4,6 +4,8 @@
 
 .ToC {
 	width: toRem(280);
+	flex-shrink: 0;
+	padding: toRem(16);
 	li {
 		@include label-large();
 		padding: toRem(2) 0;

@@ -43,8 +43,13 @@
 		}
 	}
 
+	.content-wrapper {
+		@include flex-direction(row, 0);
+	}
+
 	.content {
 		// display: grid;
+		flex-grow: 1;
 		@include flex-direction(column, 0);
 
 		img {
