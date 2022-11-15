@@ -7,12 +7,11 @@ import { SearchBar, Toggle, Avartar } from '@components/index';
 
 export const Header = () => {
 	const router = useRouter();
-	const { width } = useWindowSize();
+	const { isMobile } = useWindowSize();
 	const navList = [
 		{ name: 'Posts', path: '/page/1' },
 		{ name: 'About', path: '/about' },
 	];
-	const isMobile = (width as number) < 768;
 
 	const { theme, setTheme } = useTheme();
 	const newTheme = theme === 'dark' ? 'light' : 'dark';
