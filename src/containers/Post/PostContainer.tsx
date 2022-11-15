@@ -1,3 +1,5 @@
+import { RefObject, useRef } from 'react';
+import { useWindowSize } from '@hooks/useWindowSize';
 import classes from './Post.module.scss';
 import { formatDate } from '@utils/date';
 import { getBlogJSONLD } from '@utils/page';
@@ -18,7 +20,10 @@ export const PostContainer = ({
 	headingList,
 }: Props) => {
 	const { title, date, tags, category, description } = frontMatter;
+	const { isMobile } = useWindowSize();
 	const formattedDate = formatDate(date);
+
+	const ToCRef = useRef<HTMLDivElement>(null);
 
 	return (
 		<>
@@ -46,7 +51,7 @@ export const PostContainer = ({
 					</header>
 					<div className={classes['content-wrapper']}>
 						<div className={classes.content}>{children}</div>
-						<ToC headingList={headingList} />
+						{!isMobile ? <ToC headingList={headingList} ref={ToCRef} /> : null}
 					</div>
 				</div>
 			</article>
