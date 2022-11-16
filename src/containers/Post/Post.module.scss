@@ -53,6 +53,7 @@
 		@include flex-direction(column, 0);
 
 		img {
+			margin: toRem(24) 0;
 			border-radius: 8px;
 			box-shadow: var(--box-shadow-2);
 		}
