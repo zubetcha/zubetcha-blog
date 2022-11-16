@@ -51,7 +51,7 @@ export const PostContainer = ({
 					</header>
 					<div className={classes['content-wrapper']}>
 						<div className={classes.content}>{children}</div>
-						{!isMobile ? <ToC headingList={headingList} ref={ToCRef} /> : null}
+						{!isMobile && <ToC headingList={headingList} ref={ToCRef} />}
 					</div>
 				</div>
 			</article>

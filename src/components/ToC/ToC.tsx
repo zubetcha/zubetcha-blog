@@ -1,4 +1,4 @@
-import { ForwardedRef, forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { HeadingContent } from '@type/post';
 import classes from './ToC.module.scss';
 
