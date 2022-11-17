@@ -4,7 +4,7 @@ title: 모노레포 w/ turborepo
 category: Etc
 date: 2022-11-16
 description: 구축기라고 쓰고 반성문이라고 읽는다.
-published: false
+published: true
 slug: monorepo-with-turborepo
 tags: 
   - monorepo
@@ -94,7 +94,7 @@ Turborepo는 vercel에서 운영하고 있는 자바스크립트와 타입스크
 
 위의 사진은 Turborepo가 밀고 있는(?) **세일즈 포인트**이다.
 
-1. **Incremental builds :**
+1. **Incremental builds**
 2. **Content-aware hashing**
 3. **Parallel execution**
 4. **Remote Caching**
@@ -104,49 +104,83 @@ Turborepo는 vercel에서 운영하고 있는 자바스크립트와 타입스크
 8. **Meets you where you’re at**
 9. **Profile in your browser**
 
-## **Incremental builds**
-
-Building once is painful enough, Turborepo will remember what you've built and skip the stuff that's already been computed.
-
-## **Content-aware hashing**
-
-Turborepo looks at the contents of your files, not timestamps to figure out what needs to be built.
-
-## **Parallel execution**
-
-Execute builds using every core at maximum parallelism without wasting idle CPUs.
-
-## **Remote Caching**
-
-Share a remote build cache with your teammates and CI/CD for even faster builds.
-
-## **Zero runtime overhead**
-
-Turborepo won’t interfere with your runtime code or touch your sourcemaps.
-
-## **Pruned subsets**
-
-Speed up PaaS deploys by generating a subset of your monorepo with only what's needed to build a specific target.
-
-## **Task pipelines**
-
-Define the relationships between your tasks and then let Turborepo optimize what to build and when.
-
-## **Meets you where you’re at**
-
-Using Lerna? Keep your package publishing workflow and use Turborepo to turbocharge task running.
-
-## **Profile in your browser**
-
-Generate build profiles and import them in Chrome or Edge to understand which tasks are taking the longest.
-
 그리고 이중에서도 가장 핵심은 `캐싱`일 것이다.
+
+**캐싱**
+
+<img src="https://turbo.build/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcache-miss.21d45e92.png&w=3840&q=75" alt="" width="100%" />
+
+**멀티태스킹**
+
+<img src="https://turbo.build/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fturborepo-excalidraw.8068f4b4.png&w=3840&q=75" alt="" width="100%" />
+
+_(캐싱, 멀티태스킹 내용 추가)_
 
 # 적용하기
 
 ## Turborepo 세팅 방법
 
-간단
+세팅 방법은 정말 간단하다. 이미 존재하는 프로젝트를 모노레포로 변경할 건지, 아니면 모노레포를 새로 만들 건지에 따라 아래와 같은 명령어를 실행해주면 된다. 프로젝트를 모노레포로 변경하는 경우에는 루트에 `turbo.json`을 추가하여 태스크 파이프라인을 작성해주어야 한다.
+
+```jsx
+// 이미 존재하는 프로젝트를 모노레포로 변경하는 경우
+yarn add turbo --dev
+
+// 모노레포로 프로젝트를 새로 생성하는 경우
+npx create-turbo@latest
+```
+
+```jsx
+// 이미 존재하는 프로젝트를 모노레포로 변경하는 경우
+yarn add turbo --dev
+
+// 모노레포로 프로젝트를 새로 생성하는 경우
+npx create-turbo@latest
+```
+
+간단하게 폴더 구조를 살펴보면 apps와 packages 하위의 폴더들은 아래와 같은 역할을 담당한다.
+
+- apps: 하나하나의 독립적인 어플리케이션
+- packages: 모노레포를 횡단하며 공유될 수 있는 내부 패키지
+
+```jsx
+my-monorepo
+├─ docs
+├─ apps
+│  ├─ api
+│  └─ mobile
+├─ packages
+│  ├─ tsconfig
+│  └─ shared-utils
+└─ sdk
+```
+
+**package를 만들 때**
+
+packages 폴더 하위의 공통 패키지를 만들 때 반드시 설정해주어야 하는 것은 package.json에 `패키지 이름`과 `entry point`를 명시해주는 것이다. 패키지 이름은 프로젝트의 의존성에 추가할 때 사용되는 이름이며, entry point는 import할 때 사용된다.
+
+```jsx
+// packages/my-package/package.json
+
+{
+  "name": "my-package" // 패키지 이름
+  "main": "./index.ts" // entry point
+}
+```
+
+```jsx
+// apps/my-app/package.json
+
+{
+  "depandencies": {
+    "my-package": "*"
+    }
+}
+
+// import할 때
+
+import { Button } from "my-package"
+```
 
 ## 개선 1. 환경설정 파일 관리
 
@@ -431,7 +465,7 @@ esline, prettier, @babel/core…, typescript root package.json에! 의존성 호
 
 # 마치며
 
-아직 구조적으로 개선해야 할 점들이 많이 보여..부채감에 종종 괴로워지고는 하지만
+아직 구조적으로 개선해야 할 점들도 많이 보이고, 디자인 시스템도 앞으로 버전 관리를 어떻게 해야 할지 고민 중에 있다. 이번에 구축해둔 모노레포를 다시 개선하면서 든 생각은 구축하는 것 자체는 어렵지 않지만 어떻게 활용하느냐에 따라 편리함의 정도가 달라진다는 것이다. 분명 이러한 프로젝트 관리 구조를 취하면서 이점을 누려야 하는데 지금까지는 오히려 더 불편했었던 것 같다. _(특히 새로운 프로젝트 세팅할 때..🥲)_ 기본적인 골격은 만들어 놓았으니 앞으로 차근차근 CI 파이프라인 등을 개선해 나갈 예정이다.
 
 참고
 

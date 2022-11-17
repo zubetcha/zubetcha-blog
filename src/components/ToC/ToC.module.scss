@@ -7,6 +7,8 @@
 	flex-shrink: 0;
 	padding: toRem(40) 0 0 toRem(24);
 	height: fit-content;
+	position: sticky;
+	top: 0;
 
 	li {
 		@include label-large();
