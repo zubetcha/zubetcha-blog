@@ -425,7 +425,7 @@ babel config를 불러와서 사용할 때 한 가지 주의할 점이 있다.
 
 <img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/11/monorepo-babel-syntax-error.png" alt="babel syntax error" width="100%" />
 
-node*modules나 심볼릭 링크 패키지같은 서브 모듈에까지 적용하고 싶다면 **Project-wide** config 파일 타입인 `babel.config.*`로 파일명을 변경하면 된다. \*나는 이거 때문에 몇 시간 동안 삽질했다..😇\_
+node*modules나 심볼릭 링크 패키지같은 서브 모듈에까지 적용하고 싶다면 **Project-wide** config 파일 타입인 `babel.config.*`로 파일명을 변경하면 된다. _(나는 이거 때문에 몇 시간 동안 삽질했다..😇)_
 
 config에 필요한 dependencies는 어디에?
 
