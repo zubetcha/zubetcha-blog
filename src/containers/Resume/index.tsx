@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import classNames from 'classnames';
+import { contactList } from '@constants/navigation';
 import classes from './Resume.module.scss';
 
 export const ResumeContainer = () => {
@@ -12,7 +12,7 @@ export const ResumeContainer = () => {
 			<div className={classes['flex-column-16']}>
 				<h1>안녕하세요, 정주혜입니다.</h1>
 				<div>
-					지식 공유와 기록하는 것을 좋아합니다. 안정적인 코드를 작성하고,
+					지식을 공유하고 기록하는 것을 좋아합니다. 안정적인 코드를 작성하고,
 					유연하면서도 사용하기 쉬운 컴포넌트를 설계하기 위해 노력하고 있습니다.
 				</div>
 				<div className={classes['item-wrapper']}>
@@ -20,7 +20,7 @@ export const ResumeContainer = () => {
 						<Item
 							type='Email'
 							content={
-								<a href='mailto:zuhye5@gmail.com' target='_blank'>
+								<a href={contactList.email} target='_blank'>
 									zuhye5@gmail.com
 								</a>
 							}
@@ -28,8 +28,8 @@ export const ResumeContainer = () => {
 						<Item
 							type='Github'
 							content={
-								<a href='https://github.com/zubetcha' target='_blank'>
-									https://github.com/zubetcha
+								<a href={contactList.github} target='_blank'>
+									{contactList.github}
 								</a>
 							}
 						/>
@@ -38,12 +38,12 @@ export const ResumeContainer = () => {
 						<Item
 							type='Blog'
 							content={
-								<a href='https://zubetcha.com' target='_blank'>
-									https://zubetcha.com
+								<a href={contactList.blog} target='_blank'>
+									{contactList.blog}
 								</a>
 							}
 						/>
-						<Item type='Phone' content='010-2292-6428' />
+						<Item type='Phone' content={contactList.phone} />
 					</div>
 				</div>
 			</div>

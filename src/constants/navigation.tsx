@@ -28,6 +28,8 @@ export const contactList: { [key: string]: string } = {
 	twitter: 'https://twitter.com/zubetcha_',
 	linkedIn: 'https://www.linkedin.com/in/juhye-jeong-0994a0234/',
 	email: 'mailto:zuhye5@gmail.com',
+	phone: '',
+	blog: 'https://zubetcha.com',
 };
 
 export const EXCLUSION_PATH_LIST = ['/resume'];
