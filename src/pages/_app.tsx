@@ -8,9 +8,11 @@ import * as gtag from '@utils/gtag';
 import { ThemeProvider } from '@context/theme';
 import { ExpandedProvider } from '@context/expanded';
 import { PageLayout } from '@components/index';
+import { EXCLUSION_PATH_LIST } from '@constants/navigation';
 
 function MyApp({ Component, pageProps }: AppProps) {
 	const router = useRouter();
+
 	useEffect(() => {
 		const setVhProperty = () => {
 			let vh = window.innerHeight * 0.01;
@@ -44,9 +46,13 @@ function MyApp({ Component, pageProps }: AppProps) {
 			</Head>
 			<ThemeProvider>
 				<ExpandedProvider>
-					<PageLayout>
+					{EXCLUSION_PATH_LIST.includes(router.asPath) ? (
 						<Component {...pageProps} />
-					</PageLayout>
+					) : (
+						<PageLayout>
+							<Component {...pageProps} />
+						</PageLayout>
+					)}
 				</ExpandedProvider>
 			</ThemeProvider>
 		</>

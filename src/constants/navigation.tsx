@@ -29,3 +29,5 @@ export const contactList: { [key: string]: string } = {
 	linkedIn: 'https://www.linkedin.com/in/juhye-jeong-0994a0234/',
 	email: 'mailto:zuhye5@gmail.com',
 };
+
+export const EXCLUSION_PATH_LIST = ['/resume'];

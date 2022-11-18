@@ -5,6 +5,7 @@
 .page_container {
 	@include flex-direction(row, 0);
 	height: calc(var(--vh, 1vh) * 100);
+	overflow: hidden;
 
 	.body {
 		width: 100%;

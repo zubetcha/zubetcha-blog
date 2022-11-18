@@ -2,11 +2,10 @@ import { useEffect } from 'react';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import { Post } from '@type/post';
-import { MDXComponents } from '@components/MDXComponents/MDXComponents';
+import { MDXComponents } from '@components/index';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { getAllPosts, parseMdx, getLinkContent } from '@utils/index';
-import { ToC } from '@components/ToC/ToC';
-import { PostContainer } from '@containers/Post/PostContainer';
+import { PostContainer } from '@containers/Post';
 
 interface Props {
 	post: Post;
