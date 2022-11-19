@@ -83,7 +83,7 @@
 	@include flex-direction(row, 16);
 
 	.item-type {
-		width: 88px;
+		min-width: 88px;
 		font-weight: 700;
 	}
 	.item-content {
