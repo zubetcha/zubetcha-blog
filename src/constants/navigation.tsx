@@ -29,6 +29,7 @@ export const contactList: { [key: string]: string } = {
 	linkedIn: 'https://www.linkedin.com/in/juhye-jeong-0994a0234/',
 	email: 'mailto:zuhye5@gmail.com',
 	phone: '',
+	// phone: '010-2292-6428',
 	blog: 'https://zubetcha.com',
 };
 

@@ -80,7 +80,10 @@ export const ResumeContainer = () => {
 									렌더링 최적화
 								</a>
 							</li>
-							<li>실시간 차트, 데이터 시각화 및 대시보드 개발</li>
+							<li>
+								polling 방식을 이용한 실시간 차트, 데이터 시각화 및 대시보드
+								개발
+							</li>
 							<li>
 								Echarts 라이브러리의 트리쉐이킹 적용을 통해{' '}
 								<a
@@ -150,7 +153,8 @@ export const ResumeContainer = () => {
 								완료
 							</li>
 							<li>
-								프로젝트 리드로, 일정 관리 및 유관부서와의 커뮤니케이션 주도
+								프로젝트 리드를 담당하여 일정 관리 및 유관부서와의 커뮤니케이션
+								주도
 							</li>
 						</ul>
 					</TaskSection>
