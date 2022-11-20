@@ -50,3 +50,11 @@
 		}
 	}
 }
+
+.resume {
+	color: var(--color-primary);
+	cursor: pointer;
+	&:hover {
+		text-decoration: underline;
+	}
+}

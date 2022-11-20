@@ -600,8 +600,6 @@ export const BottomSheet = Object.assign(BottomSheetMain, {
 
 # 결과
 
-테스트를 해봅시당.
-
 ```jsx
 import { useState } from "react";
 import { BottomSheet } from "ui/src/pages";
@@ -650,16 +648,6 @@ export default function BottomSheetTest() {
 <p align="center">
 <img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/10/bottom-sheet-result-expanded.gif" alt="bottomsheet expanded" width="50%" />
 </p>
-
-# 크로스 플랫폼 이슈
-
-BottomSheet 컴포넌트를 만든 후 테스트를 해보던 중 크로스 플랫폼 이슈가 발생했습니다.
-
-BottomSheet에는 TextField가 많이 들어가는데, 안드로이드 환경에서 BottomSheet Content 안에 있는 TextField를 클릭하여 input이 focus되면 소프트 키보드가 올라오면서 BottomSheetContent 영역이 줄어들고 빈 공백이 생기는 이슈였습니다.
-
-## 개발자 도구로 확인하는 방법
-
-## 해결
 
 # 마치며
 

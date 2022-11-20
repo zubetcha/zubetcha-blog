@@ -1,29 +1,23 @@
 import { IconRoleUnionType } from '@type/element';
 
-const navList = [
-	// { name: 'HTML', isPost: true },
-	// { name: 'CSS', isPost: true },
-	{ name: 'Javascript', isPost: true },
-	// { name: 'Typescript', isPost: true },
-	{ name: 'React', isPost: true },
-	// { name: 'GraphQL', isPost: true },
-	// { name: 'Web', isPost: true },
-	// { name: 'Tags', isPost: false },
-	{ name: 'About', isPost: false },
+export const NAV_LIST = [
+	{ name: 'Posts', path: '/page/1' },
+	{ name: 'About', path: '/about' },
 ];
 
-export const navItems = navList.map((navItem, i) => {
-	const { name, isPost } = navItem;
+export const NAV_ITEM_LIST = NAV_LIST.map((navItem, i) => {
+	const { name, path } = navItem;
 	const smallLetter = name.toLowerCase();
+
 	return {
 		name: name,
 		icon: smallLetter as IconRoleUnionType,
-		path: !isPost ? `/${smallLetter}` : `/category/${smallLetter}/1`,
+		path,
 		isFocused: false,
 	};
 });
 
-export const contactList: { [key: string]: string } = {
+export const CONTACT_LIST: { [key: string]: string } = {
 	github: 'https://github.com/zubetcha',
 	twitter: 'https://twitter.com/zubetcha_',
 	linkedIn: 'https://www.linkedin.com/in/juhye-jeong-0994a0234/',

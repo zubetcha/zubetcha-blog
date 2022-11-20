@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { BLOG_INFO } from '@constants/blogInfo';
+import { BLOG_INFO } from '@constants/blog';
 
 interface Props {
 	title: string;

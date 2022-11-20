@@ -18,6 +18,7 @@ import {
 	RiMenuUnfoldLine,
 	RiCodeSSlashLine,
 	RiHashtag,
+	RiFileList2Line,
 } from 'react-icons/ri';
 import {
 	SiTypescript,
@@ -59,6 +60,7 @@ export const Icon = ({ role, size, onClick }: Props) => {
 		backward: <IoMdArrowBack {...props} />,
 		web: <GoBrowser {...props} />,
 		'chevron-right': <MdChevronRight {...props} />,
+		posts: <RiFileList2Line {...props} />,
 	};
 
 	return icons[role];

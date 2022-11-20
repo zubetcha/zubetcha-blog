@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import classes from './NavBar.module.scss';
 
 import { IconRoleUnionType } from 'src/type/element';
-import { contactList, navItems } from '@constants/navigation';
+import { CONTACT_LIST, NAV_ITEM_LIST } from '@constants/navigation';
 
 import { Icon, NavItem, Avartar } from '@components/index';
 
@@ -20,7 +20,7 @@ export const NavBar = () => {
 
 	const onClickContact = (e: React.MouseEvent<SVGElement>) => {
 		const { id } = e.currentTarget;
-		window.open(contactList[id]);
+		window.open(CONTACT_LIST[id]);
 	};
 
 	const onClickMenu = () => {
@@ -57,11 +57,16 @@ export const NavBar = () => {
 					</div>
 				</div>
 				<div className={classes['profile-info-wrapper']}>
-					<p className={classes.nickname}>zubetcha</p>
+					<p
+						className={classes.nickname}
+						onClick={() => router.push('/resume')}
+					>
+						zubetcha
+					</p>
 					<p className={classes.description}>Web Frontend Developer</p>
 				</div>
 				<div className={classes['profile-contacts-wrapper']}>
-					{Object.keys(contactList).map((contact) => {
+					{Object.keys(CONTACT_LIST).map((contact, i) => {
 						return (
 							<Icon
 								key={contact}
@@ -73,7 +78,7 @@ export const NavBar = () => {
 				</div>
 			</div>
 
-			<div className={classes.navItems_wrapper}>
+			<div className={classes['nav-item-list-wrapper']}>
 				{!expanded && (
 					<div
 						className={classes['navitem-container']}
@@ -83,7 +88,7 @@ export const NavBar = () => {
 					</div>
 				)}
 				<div className={classes.divider}></div>
-				{navItems.map((navItem) => {
+				{NAV_ITEM_LIST.map((navItem) => {
 					return <NavItem key={navItem.name} {...navItem} />;
 				})}
 			</div>

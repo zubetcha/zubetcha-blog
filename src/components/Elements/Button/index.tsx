@@ -3,8 +3,8 @@ import classNames from 'classnames';
 import { Icon } from '../Icon/Icon';
 import { IconRoleUnionType } from '@type/element';
 
-interface Props {
-	onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+	// onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 	iconLeft?: IconRoleUnionType;
 	iconRight?: IconRoleUnionType;
 	status?: 'disabled' | 'focused';
@@ -17,6 +17,7 @@ export const Button = ({
 	iconLeft,
 	iconRight,
 	status,
+	...props
 }: Props) => {
 	return (
 		<button
@@ -26,7 +27,8 @@ export const Button = ({
 				iconRight && classes.right,
 				status === 'focused' && classes.focused,
 			)}
-			onClick={(e) => onClick(e)}
+			{...props}
+			// onClick={(e) => onClick(e)}
 		>
 			{iconLeft && <Icon role={iconLeft} />}
 			{label}

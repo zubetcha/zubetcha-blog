@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { contactList } from '@constants/navigation';
+import { CONTACT_LIST } from '@constants/navigation';
 import classes from './Resume.module.scss';
 
 export const ResumeContainer = () => {
@@ -21,7 +21,7 @@ export const ResumeContainer = () => {
 						<Item
 							type='Email'
 							content={
-								<a href={contactList.email} target='_blank'>
+								<a href={CONTACT_LIST.email} target='_blank'>
 									zuhye5@gmail.com
 								</a>
 							}
@@ -29,8 +29,8 @@ export const ResumeContainer = () => {
 						<Item
 							type='Github'
 							content={
-								<a href={contactList.github} target='_blank'>
-									{contactList.github}
+								<a href={CONTACT_LIST.github} target='_blank'>
+									{CONTACT_LIST.github}
 								</a>
 							}
 						/>
@@ -39,12 +39,12 @@ export const ResumeContainer = () => {
 						<Item
 							type='Blog'
 							content={
-								<a href={contactList.blog} target='_blank'>
-									{contactList.blog}
+								<a href={CONTACT_LIST.blog} target='_blank'>
+									{CONTACT_LIST.blog}
 								</a>
 							}
 						/>
-						<Item type='Phone' content={contactList.phone} />
+						<Item type='Phone' content={CONTACT_LIST.phone} />
 					</div>
 				</div>
 			</div>

@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react';
+import { SelectProvider } from './context';
 import classNames from 'classnames';
 import classes from './Select.module.scss';
-import { SelectContext } from '@context/select';
-
 import { Button } from '../Button';
-import { Icon } from '../Icon/Icon';
 interface Props {
-	children: JSX.Element | JSX.Element[];
+	children: JSX.Element[];
 	onChange: (selected: string) => void;
 	defaultLabel: string;
 }
@@ -15,10 +13,8 @@ export const Select = ({ children, onChange, defaultLabel }: Props) => {
 	const [open, toggle] = useState(false);
 	const [selected, setSelected] = useState<string | null>(null);
 
-	const onClickButton = (e: React.MouseEvent<HTMLButtonElement>) => {
-		e.preventDefault();
-		toggle(!open);
-	};
+	const onMouseOver = () => toggle(true);
+	const onMouseLeave = () => toggle(false);
 
 	useEffect(() => {
 		if (selected) {
@@ -28,11 +24,12 @@ export const Select = ({ children, onChange, defaultLabel }: Props) => {
 	}, [selected]);
 
 	return (
-		<SelectContext.Provider value={{ open, toggle, selected, setSelected }}>
+		<SelectProvider setSelected={setSelected}>
 			<div className={classes.container}>
 				<Button
 					label={defaultLabel}
-					onClick={onClickButton}
+					onMouseOver={onMouseOver}
+					onMouseLeave={onMouseLeave}
 					status={open ? 'focused' : undefined}
 					iconRight='dropdown'
 				/>
@@ -40,10 +37,12 @@ export const Select = ({ children, onChange, defaultLabel }: Props) => {
 					className={classNames(classes['options-wrapper'], {
 						[classes.open]: open,
 					})}
+					onMouseLeave={onMouseLeave}
+					onMouseOver={onMouseOver}
 				>
 					{children}
 				</ul>
 			</div>
-		</SelectContext.Provider>
+		</SelectProvider>
 	);
 };

@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import { useTheme } from '@context/theme';
 import { useWindowSize } from '@hooks/useWindowSize';
+import { NAV_LIST } from '@constants/navigation';
 import classes from './Header.module.scss';
 
 import { SearchBar, Toggle, Avartar } from '@components/index';
@@ -8,10 +9,6 @@ import { SearchBar, Toggle, Avartar } from '@components/index';
 export const Header = () => {
 	const router = useRouter();
 	const { isMobile } = useWindowSize();
-	const navList = [
-		{ name: 'Posts', path: '/page/1' },
-		{ name: 'About', path: '/about' },
-	];
 
 	const { theme, setTheme } = useTheme();
 	const newTheme = theme === 'dark' ? 'light' : 'dark';
@@ -32,7 +29,7 @@ export const Header = () => {
 					/>
 					<div className={classes['left']}>
 						<ul className={classes['nav-wrapper']}>
-							{navList.map(({ name, path }) => (
+							{NAV_LIST.map(({ name, path }) => (
 								<li key={name} onClick={() => router.push(`${path}`)}>
 									<p>{name}</p>
 								</li>

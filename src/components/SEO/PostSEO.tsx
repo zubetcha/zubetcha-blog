@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { getBlogJSONLD } from '@utils/page';
-import { BLOG_INFO } from '@constants/blogInfo';
+import { BLOG_INFO } from '@constants/blog';
 interface Props {
 	title: string;
 	description: string;

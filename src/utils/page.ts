@@ -1,6 +1,6 @@
 import { getAllCategories } from './category';
 import { NUMBER_OF_POSTS } from '@constants/post';
-import { BLOG_INFO } from '@constants/blogInfo';
+import { BLOG_INFO } from '@constants/blog';
 import { Post } from '@type/post';
 
 export const getPageInfo = ({

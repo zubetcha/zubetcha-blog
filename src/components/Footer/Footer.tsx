@@ -1,18 +1,18 @@
 import classes from './Footer.module.scss';
 import { Icon } from '..';
-import { contactList } from '@constants/navigation';
+import { CONTACT_LIST } from '@constants/navigation';
 import { IconRoleUnionType } from '@type/element';
 
 export const Footer = () => {
 	const onClickContact = (e: React.MouseEvent<SVGElement>) => {
 		const { id } = e.currentTarget;
-		window.open(contactList[id]);
+		window.open(CONTACT_LIST[id]);
 	};
 
 	return (
 		<footer className={classes.container}>
 			<div className={classes['contacts-wrapper']}>
-				{Object.keys(contactList).map((contact) => {
+				{Object.keys(CONTACT_LIST).map((contact) => {
 					return (
 						<Icon
 							key={contact}
