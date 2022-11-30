@@ -53,11 +53,7 @@ export const PostListContainer = ({
 		return router.push(nextPath);
 	};
 
-	const onClickButton = (
-		e: React.MouseEvent<HTMLButtonElement>,
-		destination: 'prev' | 'next',
-	) => {
-		e.preventDefault();
+	const onClick = (destination: 'prev' | 'next') => {
 		routeToNextPath({ destination, isAll, category });
 	};
 
@@ -106,22 +102,22 @@ export const PostListContainer = ({
 				</div>
 				<div className={classes['button-wrapper']}>
 					<div>
-						{pageNo > 1 ? (
+						{pageNo > 1 && (
 							<Button
 								label='Prev'
-								onClick={(e) => onClickButton(e, 'prev')}
+								onClick={() => onClick('prev')}
 								iconLeft='backward'
 							/>
-						) : null}
+						)}
 					</div>
 					<div>
-						{hasMore ? (
+						{hasMore && (
 							<Button
 								label='Next'
-								onClick={(e) => onClickButton(e, 'next')}
+								onClick={() => onClick('next')}
 								iconRight='forward'
 							/>
-						) : null}
+						)}
 					</div>
 				</div>
 			</ContentLayout>

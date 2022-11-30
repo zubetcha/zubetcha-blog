@@ -4,7 +4,6 @@ import { Icon } from '../Icon/Icon';
 import { IconRoleUnionType } from '@type/element';
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-	// onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 	iconLeft?: IconRoleUnionType;
 	iconRight?: IconRoleUnionType;
 	status?: 'disabled' | 'focused';
@@ -28,7 +27,7 @@ export const Button = ({
 				status === 'focused' && classes.focused,
 			)}
 			{...props}
-			// onClick={(e) => onClick(e)}
+			onClick={(e) => onClick?.(e)}
 		>
 			{iconLeft && <Icon role={iconLeft} />}
 			{label}
