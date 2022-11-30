@@ -247,3 +247,9 @@
 		}
 	}
 }
+
+.divider {
+	height: 1px;
+	background-color: var(--color-post-divider);
+	margin: toRem(24) 0 0 !important;
+}

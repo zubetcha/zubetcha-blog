@@ -1,9 +1,8 @@
-import { RefObject, useRef } from 'react';
+import { useRef } from 'react';
 import { useWindowSize } from '@hooks/useWindowSize';
 import classes from './Post.module.scss';
 import { formatDate } from '@utils/date';
-import { getBlogJSONLD } from '@utils/page';
-import { Tag, PostSEO, ToC } from '@components/index';
+import { Tag, PostSEO, ToC, Comment } from '@components/index';
 import { FrontMatter, HeadingContent } from '@type/post';
 
 interface Props {
@@ -37,8 +36,8 @@ export const PostContainer = ({
 				<div className={classes.container}>
 					<header>
 						<div className={classes['tags-wrapper']}>
-							{tags.map((tag) => (
-								<Tag tag={tag} />
+							{tags.map((tag, i) => (
+								<Tag tag={tag} key={`${tag}-${i}`} />
 							))}
 						</div>
 						<h1>{title}</h1>
@@ -46,11 +45,14 @@ export const PostContainer = ({
 							<time dateTime={date} className={classes.createdAt}>
 								{formattedDate}
 							</time>
-							{/* <p>zubetcha</p> */}
 						</div>
 					</header>
 					<div className={classes['content-wrapper']}>
-						<div className={classes.content}>{children}</div>
+						<div className={classes.content}>
+							{children}
+							<div className={classes.divider}></div>
+							<Comment />
+						</div>
 						{!isMobile && <ToC headingList={headingList} ref={ToCRef} />}
 					</div>
 				</div>

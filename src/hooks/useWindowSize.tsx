@@ -12,6 +12,9 @@ export const useWindowSize = () => {
 
 	useEffect(() => {
 		const handleResize = () => {
+			let vh = window.innerHeight * 0.01;
+			document.documentElement.style.setProperty('--vh', `${vh}px`);
+
 			setWindowSize({
 				width: window.innerWidth,
 				height: window.innerHeight,

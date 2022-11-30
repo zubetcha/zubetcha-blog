@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useEffect, useRef } from 'react';
-import { useTheme, ThemeUnionType } from '@context/theme';
-import { useExpanded } from '@context/expanded';
+import { useTheme } from '@recoil/theme';
+import { useExpandedValue } from '@recoil/expanded';
 import classNames from 'classnames';
 import classes from './Layout.module.scss';
 
@@ -13,21 +13,27 @@ interface Props {
 
 export const PageLayout = ({ children }: Props) => {
 	const { asPath } = useRouter();
-	const { theme, setTheme } = useTheme();
-	const { expanded } = useExpanded();
+	const [theme, setTheme] = useTheme();
+	const expanded = useExpandedValue();
 
 	const container = useRef<HTMLDivElement | null>(null);
 
 	useEffect(() => {
+		if (!theme) return;
+
 		document.documentElement.setAttribute('data-theme', theme);
 	}, [theme]);
 
 	useEffect(() => {
-		const newTheme = localStorage.getItem('theme');
-		if (newTheme) {
-			setTheme(newTheme as ThemeUnionType);
-		}
-		document.documentElement.setAttribute('data-theme', newTheme || theme);
+		if (!window.matchMedia || theme) return;
+
+		const preferredTheme = window.matchMedia('(prefers-color-scheme: Dark)')
+			.matches
+			? 'dark'
+			: 'light';
+
+		document.documentElement.setAttribute('data-theme', preferredTheme);
+		setTheme(preferredTheme);
 	}, []);
 
 	useEffect(() => {

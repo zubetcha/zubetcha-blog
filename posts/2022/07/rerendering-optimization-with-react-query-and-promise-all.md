@@ -359,7 +359,3 @@ useQuery가 반환해주는 data가 파라미터로 넘긴 apis의 key이름으�
 <p align="center">
   <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fb6ZF5g%2FbtrIiLtZ40i%2FPyNoa5t4Pzgv0tj6u1tAC1%2Fimg.jpg" alt="azaza" />
 </p>
-
----
-
-읽어주셔서 감사합니다. 혹시 잘못된 정보가 있다면 메일로 신고 부탁드립니다. 🙇🏻‍♀️

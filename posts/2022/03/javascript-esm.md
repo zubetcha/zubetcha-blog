@@ -294,7 +294,3 @@ import randomSquare from './modules/square.js';
 <br/>
 
 ES Module의 사용 예시는 [mdn의 js-examples 깃허브](https://github.com/mdn/js-examples/blob/master/modules/dynamic-module-imports/main.js)에 자세히 나와 있으니 참고하면 좋을 것 같다.
-
----
-
-읽어주셔서 감사합니다. 혹시 잘못된 정보가 있다면 메일로 신고 부탁드립니다. 🙇🏻‍♀️

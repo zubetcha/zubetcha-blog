@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import classes from './Toggle.module.scss';
 
 interface Props {
-	status: 'dark' | 'light';
+	status: 'on' | 'off';
 	onClick: () => void;
 }
 

@@ -171,7 +171,3 @@ echarts.use([LineChart, CanvasRenderer, GridComponent, TooltipComponent, DataZoo
 - 사실상 echarts에서는 사용하고자 하는 차트 타입과 컴포넌트들의 세부 설정을 option에서 관리합니다. 그래서 가장 좋은 방법은 차트 타입별 option을 생성해주는 함수를 만들고, 차트 컴포넌트는 1개만 사용하는 게 좋지 않을까..? 라는 생각을 요즘 하고 있습니다. 🥲
 
 <br/>
-
----
-
-읽어주셔서 감사합니다. 혹시 잘못된 정보가 있다면 메일로 신고 부탁드립니다. 🙇🏻‍♀️

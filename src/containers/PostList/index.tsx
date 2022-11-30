@@ -10,7 +10,7 @@ import {
 	Button,
 } from '@components/index';
 
-import { Post } from 'src/type/post';
+import { Post } from '@type/post';
 
 interface Props {
 	posts: Array<Post>;

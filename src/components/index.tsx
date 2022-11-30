@@ -13,3 +13,4 @@ export * from './SEO/PageSEO';
 export * from './Footer/Footer';
 export * from './MDXComponents/MDXComponents';
 export * from './ToC/ToC';
+export * from './Comment/Comment';

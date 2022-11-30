@@ -170,7 +170,3 @@ console.log(undefined ?? null) // null
 <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbzkyvJ%2FbtrunOWIwXh%2F5CZq1AnuxkI33uShJioUMK%2Fimg.png" alt="nullish example" width="100%" />
 
 <br/>
-
----
-
-읽어주셔서 감사합니다. 혹시 잘못된 정보가 있다면 메일로 신고 부탁드립니다. 🙇🏻‍♀️
