@@ -1,10 +1,5 @@
-import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
-import {
-	getAllPosts,
-	getAllCategories,
-	getPageInfo,
-	getUpperCategory,
-} from '@utils/index';
+import { GetStaticPaths, GetStaticProps } from 'next';
+import { getAllPosts, getAllCategories, getPageInfo } from '@utils/index';
 import { PostListContainer } from '@containers/PostList';
 
 import { NUMBER_OF_POSTS } from '@constants/post';
