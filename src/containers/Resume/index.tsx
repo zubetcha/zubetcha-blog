@@ -12,9 +12,12 @@ export const ResumeContainer = () => {
 			<div className={classes['flex-column-16']}>
 				<h1>안녕하세요, 정주혜입니다.</h1>
 				<div>
-					Nextjs, React-query, Recoil을 주로 사용하며 개발하고 있습니다. <br />
 					지식을 공유하고 기록하는 것을 좋아하며, 안정적인 코드를 작성하고
-					유연하면서도 사용하기 쉬운 컴포넌트를 설계하는 일에 관심이 많습니다.
+					유연하면서도 사용하기 쉬운 컴포넌트를 설계하는 일에 관심이 많은
+					프론트엔드 개발자입니다. <br />
+					가벼운 배려와 유머, 친절함 그리고 용기를 인생의 덕목으로 추구합니다.
+					<br />
+					Nextjs, React-query, Recoil을 주로 사용하며 개발하고 있습니다.
 				</div>
 				<div className={classes['item-wrapper']}>
 					<div className={classes['item-row']}>
@@ -61,11 +64,17 @@ export const ResumeContainer = () => {
 					<TaskSection title='디자인 시스템 개발'>
 						<ul>
 							<li>
+								의존도를 없애고 자유로운 커스터마이징을 위해 외부 라이브러리
+								없이 0부터 개발
+							</li>
+							<li>
 								네이밍과 유연함에 중점을 둔 공통 컴포넌트 인터페이스 설계 및
 								개발
 							</li>
 							<li>UI 테스트를 위한 Storybook 프로젝트 구성</li>
-							<li>설계 과정 및 고민했던 점들을 문서로 기록하여 공유</li>
+							<li>
+								인터페이스 설계 과정 및 고민했던 점들을 문서화하여 팀내 공유
+							</li>
 						</ul>
 					</TaskSection>
 					<TaskSection title='Factoroid 솔루션'>
@@ -216,7 +225,7 @@ export const ResumeContainer = () => {
 				</SubSection>
 			</MainSection>
 			<MainSection title='Activities'>
-				<TaskSection title='스파르타 코딩클럽 항해99 React 매니저'>
+				<TaskSection title='스파르타 코딩클럽 항해99 React 튜터'>
 					<ul>
 						<li>
 							스파르타 코딩클럽 항해99 (9기, 10기){' '}
@@ -225,6 +234,20 @@ export const ResumeContainer = () => {
 						<li>
 							스파르타 코딩클럽 X ICT 이노베이션 캠프 (서울, 동북){' '}
 							<Period>(2022.06 - 2022.09)</Period>
+						</li>
+						<li>
+							수강생 대상으로 라이브 세션 진행
+							<ul>
+								<li>
+									<a
+										href='https://us02web.zoom.us/rec/play/RO27wvBzh_3njYvdrvEECQPdDncUthgM4PPM4IJDo_ZoKAi7qtsCk0MoWM20Ctn4auE9GvYdH0P0rR2n.CxBLyMkWKfhrplGE?continueMode=true&_x_zm_rtaid=MOHddul_RKyuoF6GsP6fDg.1669773385172.f2bb08e41dae60e3395f0c4fa9e97c16&_x_zm_rhtaid=977'
+										target='_blank'
+									>
+										React와 Virtual DOM
+									</a>
+									<Period> (2022.11.29)</Period>
+								</li>
+							</ul>
 						</li>
 					</ul>
 				</TaskSection>
