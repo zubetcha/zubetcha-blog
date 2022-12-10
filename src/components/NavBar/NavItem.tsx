@@ -13,6 +13,7 @@ interface Props {
 
 export const NavItem = ({ name, icon, path, isFocused }: Props) => {
   const router = useRouter();
+
   return (
     <div
       className={classes['navitem-container']}
