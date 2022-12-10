@@ -47,6 +47,9 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
+      - name: Lint
+        run: yarn lint
+
       - name: Build
         run: yarn build
 
@@ -72,6 +75,3 @@ jobs:
               title: updated_title,
               # state: 'closed'
             })
-
-      - name: Lint
-        run: yarn lint

@@ -17,7 +17,7 @@ export const ResumePage = () => {
 					<br />
 					가벼운 배려와 유머, 친절함 그리고 용기를 인생의 덕목으로 추구합니다.
 					<br />
-					Nextjs, React-query, Recoil을 주로 사용하며 개발하고 있습니다.
+					주로 Nextjs, React-query, Recoil을 사용하며 개발하고 있습니다.
 				</div>
 				<div className={classes['item-wrapper']}>
 					<div className={classes['item-row']}>
@@ -104,9 +104,9 @@ export const ResumePage = () => {
 								(약 46% 감소)
 							</li>
 							<li>
-								다국어 페이지를 개발하며 로케일별 번역본 json 스키마 추출 및
-								자동 완성이 가능한 객체 생성 함수를 개발하여 휴먼 에러 발생
-								가능성 개선
+								다국어 지원 기능을 개발하기 위해 사용한 next-i18next
+								라이브러리에서 휴먼 에러가 발생할 수 있는 가능성을 개선하기 위해
+								자동 완성되는 오브젝트 리터럴 생성 유틸함수 개발
 							</li>
 						</ul>
 					</TaskSection>
@@ -135,6 +135,10 @@ export const ResumePage = () => {
 							<li>
 								Google Map의 지도, 마커, 팝업 등의 UI 요소 인스턴스 생성 로직,
 								옵션 설정 로직 및 지도 컴포넌트를 분리하여 재사용성 향상
+							</li>
+							<li>
+								DX 향상을 위해 MSW 라이브러리 도입을 주도하여 API 개발 전후
+								기준으로 수정해야 하는 코드량 감소
 							</li>
 						</ul>
 					</TaskSection>
