@@ -73,5 +73,5 @@ jobs:
               repo: context.repo.repo,
               pull_number: pull_number,
               title: updated_title,
-              # state: 'closed'
+              state: 'closed'
             })
