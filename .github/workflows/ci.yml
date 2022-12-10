@@ -47,6 +47,9 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
+      - name: Lint
+        run: yarn lint
+
       - name: Build
         run: yarn build
 
@@ -70,8 +73,5 @@ jobs:
               repo: context.repo.repo,
               pull_number: pull_number,
               title: updated_title,
-              # state: 'closed'
+              state: 'closed'
             })
-
-      - name: Lint
-        run: yarn lint
