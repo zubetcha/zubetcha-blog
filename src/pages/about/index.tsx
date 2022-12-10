@@ -7,35 +7,39 @@ import { ContentLayout } from '@components/index';
 import Zubetcha from '../../assets/images/zubetcha.jpeg';
 
 const AboutPage = () => {
-	const router = useRouter();
+  const router = useRouter();
 
-	return (
-		<>
-			<Head>
-				<title>{BLOG_INFO.author}</title>
-				<meta name='description' content={BLOG_INFO.title} />
-			</Head>
-			<ContentLayout title='About'>
-				<div className={classes.container}>
-					<div className={classes['profile-image-wrapper']}>
-						<Image src={Zubetcha} className={classes['profile-image']} />
-					</div>
-					<div className={classes['intro-wrapper']}>
-						<p className={classes.intro}>
-							I'm zubetcha,
-							<br />a web frontend developer.
-						</p>
-						<p
-							onClick={() => router.push('/resume')}
-							className={classes.resume}
-						>
-							view resume
-						</p>
-					</div>
-				</div>
-			</ContentLayout>
-		</>
-	);
+  return (
+    <>
+      <Head>
+        <title>{BLOG_INFO.author}</title>
+        <meta name='description' content={BLOG_INFO.title} />
+      </Head>
+      <ContentLayout title='About'>
+        <div className={classes.container}>
+          <div className={classes['profile-image-wrapper']}>
+            <Image
+              src={Zubetcha}
+              className={classes['profile-image']}
+              alt='profile-image'
+            />
+          </div>
+          <div className={classes['intro-wrapper']}>
+            <p className={classes.intro}>
+              I&apos;m zubetcha,
+              <br />a web frontend developer.
+            </p>
+            <p
+              onClick={() => router.push('/resume')}
+              className={classes.resume}
+            >
+              view resume
+            </p>
+          </div>
+        </div>
+      </ContentLayout>
+    </>
+  );
 };
 
 export default AboutPage;

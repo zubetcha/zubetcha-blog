@@ -1,13 +1,13 @@
 import { Post } from '@type/post';
 
 export const getAllCategories = (posts: Array<Post>) => {
-	const categories = posts.map((post) => post.frontMatter.category);
+  const categories = posts.map((post) => post.frontMatter.category);
 
-	return ['all', ...new Set(categories)];
+  return ['all', ...new Set(categories)];
 };
 
 export const getUpperCategory = (category: string) => {
-	const firstChar = category.substring(0, 1);
+  const firstChar = category.substring(0, 1);
 
-	return category.replace(firstChar, firstChar.toUpperCase());
+  return category.replace(firstChar, firstChar.toUpperCase());
 };
