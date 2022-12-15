@@ -14,36 +14,29 @@ tags:
 
 # 들어가며
 
-최근에 회사에서 새롭지만 새롭지만은 않은..(?) 프로젝트를 시작했다. 여러 사정으로 인해 백엔드와 프론트엔드의 개발이 동시에 이뤄지고 있어 늘 하던대로 화면에 필요한 데이터들을 하드 코딩으로 여기저기 만들어놓고 사용하려던 참에 MSW라는 라이브러리의 존재에 대해서 알게 되었고, 이것은 마치 API 개발 후 고통받을 나의 구세주라는 생각에 빠르게 사용해보았다! 😀
+최근에 회사에서 새롭지만 새롭지만은 않은..(?) 프로젝트를 시작했다. 여러 사정으로 인해 백엔드와 프론트엔드의 개발이 동시에 이뤄지고 있어 늘 하던대로 화면에 필요한 데이터들을 하드 코딩으로 여기저기 만들어놓고 사용하려던 참에 MSW라는 라이브러리의 존재에 대해서 알게 되었고, API가 개발된 후 고통받을 나의 구세주라는 생각에 빠르게 프로젝트에 사용해보았다!😇
 
-# MSW가 뭔데?
+# MSW? 🤔
 
-먼저 MSW가 무엇인지 살펴보도록 하겠다.
+먼저 MSW가 무엇인지 살펴보자!
 
 ## MSW란?
 
-MSW는 Mock Service Worker의 약자로, 이름에서도 알 수 있듯이 브라우저의 [Service Worker API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API)를 이용해서 실제로 네트워크 레벨에서 요청을 가로채고 임의의 응답을 보내주는 API Mocking 라이브러리이다.
+MSW는 Mock Service Worker의 약자로, 이름에서도 알 수 있듯이 브라우저의 [Service Worker API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API)를 이용해서 실제로 네트워크 레벨에서 요청을 가로채고 임의의 응답을 보내주는 API Mocking 라이브러리이다. MSW가 Service Worker API를 사용하는 가장 큰 이유는 실제 리소스 요청을 가로챌 수 있기 때문이다.
 
+[MSW의 공식문서](https://mswjs.io/docs/)를 살펴보면, 크게 두 가지 목적으로 사용할 수 있다. 첫 번째는 내가 사용한 이유는 클라이언트 개발에서 서버에서의 API 개발이 완료되기 전에 API Mocking을 하기 위해서, 두 번째는 nodejs 환경에서 통합 테스트를 할 때 실제로 API를 호출하는 대신 미리 만들어놓은 Request handler로 안정적인 Mock API를 호출하고 테스트를 처리할 수 있도록 하기 위함이다.
 
+위의 두 가지 사용 사례는 커다란 목적(API Mocking) 자체는 비슷하지만, 실행하는 환경이 다르다. 클라이언트 개발에서 사용하는 경우에는 실제로 호출한 HTTP Request를 가로채야 하기 때문에 반드시 Service Worker API를 사용해야 하고, Service Worker API는 브라우저 환경에서만 사용할 수 있다. 반대로 통합 테스트에 사용하는 경우 실행 환경은 nodejs가 된다. 그리고 nodejs 환경에서는 브라우저에 접근할 수 없기 때문에 Service Worker API도 사용할 수 없다.
 
-- Service Worker API를 사용하여 네트워크 호출을 가로채는 API mocking 라이브러리
-- 클라이언트의 요청에 임의로 만들어 놓은 가짜 데이터를 응답으로 보내줌
-- MSW를 활용할 수 있는 사례
-  - 백엔드의 API 개발이 완료되기 전까지 프론트엔드에서 임시로 API를 호출하기 위해
-    - Mock 데이터를 바로 컴포넌트 레벨에서 생성해서 사용하는 것에 비해 어떤 이점이 있을지?
-  - 테스트 실행 시 실제 API를 호출하는 대신 안정적으로 응답을 받아 테스트를 처리할 수 있도록 가짜 API 서버를 구축하기 위함
-
-<aside>
-💡 MSW는 왜 Service Worker API를 사용했을까?
-애플리케이션의 실제 HTTP 요청을 가로채기 위해서
-
-</aside>
+하지만 MSW의 가장 큰 장점 중 하나는 Mock API 코드를 한 번만 작성해놓으면 작성해둔 Request Handler와 Response Resolver를 클라이언트 개발과 통합 테스트 실행에 모두 재사용할 수 있다는 것이다.
 
 ## Request flow
 
 ![Untitled](MSW%20475e19b768a14328a387e8610185d1cf/Untitled.png)
 
 ## 특징
+
+MSW 외에도 Mock API를 제공하거나 Mock Server를 구축할 수 있는 여러가지 라이브러리가 있지만, 다른 라이브러리와 비교했을 때 MSW는 아래와 같은 장점을 지니고 있다.
 
 - 모킹이 네트워크 통신 레벨에서 일어나기 때문에 프론트엔드 코드를 실제로 서버와 통신하는 것처럼 작성할 수 있다는 이점
   - Mock API → Real API 교체가 간편하게 이루어짐
@@ -54,6 +47,8 @@ MSW는 Mock Service Worker의 약자로, 이름에서도 알 수 있듯이 브�
 - Web의 Service Worker API를 사용하다보니 지원하지 않는 브라우저 있을 수 있음 (ex. IE)
 
 # 사용 방법
+
+MSW에 대해서 간단하게 살펴보았으니 이제 어떻게 사용하는지도 알아보자!
 
 ## MSW 패키지 설치
 
@@ -68,7 +63,7 @@ npm install msw
 $ npx msw init public/ --save
 ```
 
-public 폴더에 mockServiceWorker.js가 자동으로 생성됨
+public 폴더에 `mockServiceWorker.js`가 자동으로 생성되는 것을 확인할 수 있다.
 
 ![Screen Shot 2022-12-02 at 09.00.16.png](MSW%20475e19b768a14328a387e8610185d1cf/Screen_Shot_2022-12-02_at_09.00.16.png)
 
