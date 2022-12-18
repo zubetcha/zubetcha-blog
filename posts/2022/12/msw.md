@@ -32,38 +32,43 @@ MSW는 Mock Service Worker의 약자로, 이름에서도 알 수 있듯이 브�
 
 ## Request flow
 
+MSW를 브라우저 환경에서 사용하는 경우 아래의 그림과 같이 요청과 응답이 이루어진다.
+
+1. 우선 앱이 실행되면 MSW는 브라우저에 Service Worker를 등록한다.
+2. 등록된 Service Worker는 Fetch 이벤트를 통해 외부로 가는 요청을 가로챈다.
+3. 가로챈 요청에 만들어둔 응답을 실어 보낸다.
+
 ![Untitled](MSW%20475e19b768a14328a387e8610185d1cf/Untitled.png)
 
 ## 특징
 
 MSW 외에도 Mock API를 제공하거나 Mock Server를 구축할 수 있는 여러가지 라이브러리가 있지만, 다른 라이브러리와 비교했을 때 MSW는 아래와 같은 장점을 지니고 있다.
 
-- 모킹이 네트워크 통신 레벨에서 일어나기 때문에 프론트엔드 코드를 실제로 서버와 통신하는 것처럼 작성할 수 있다는 이점
-  - Mock API → Real API 교체가 간편하게 이루어짐
-  - DX, 개발 생산성 향상
-- 브라우저의 Service Worker 환경이나 테스트 환경에서 모두 하나의 코드를 작성해서 활용할 수 있음
-  - 개발 생산성, 유지보수 측면의 DX 향상
-- REST API 모킹, GraphQL API 모킹 모두 지원
-- Web의 Service Worker API를 사용하다보니 지원하지 않는 브라우저 있을 수 있음 (ex. IE)
+- Mocking이 네트워크 통신 레벨에서 일어나기 때문에 클라이언트 코드를 실제로 서버와 통신하는 것처럼 작성할 수 있다.
+  - 따라서 백엔드의 API 개발이 완료된 후에 수정해야 할 코드가 현저히 줄어든다.
+  - 즉, API 개발 완료 시기에 종속 받지 않고 클라이언트 개발을 이어나갈 수 있다.
+- 브라우저의 Service Worker 환경이나 Nodejs의 테스트 환경에서 모두 하나의 코드를 작성해서 활용할 수 있다.
+  - 변경사항이 발생했을 때 반영해야 하는 코드의 범위가 적기 때문에 개발자 경험을 향상시킨다.
+- REST API와 GraphQL API 모킹을 모두 지원한다.
 
 # 사용 방법
 
 MSW에 대해서 간단하게 살펴보았으니 이제 어떻게 사용하는지도 알아보자!
 
-## MSW 패키지 설치
+## MSW 설치
 
 ```jsx
 yarn add msw
 npm install msw
 ```
 
-## 서비스 워커 코드 생성
+## 서비스 워커 파일 생성
 
 ```jsx
 $ npx msw init public/ --save
 ```
 
-public 폴더에 `mockServiceWorker.js`가 자동으로 생성되는 것을 확인할 수 있다.
+위의 명령어를 실행하면 public 폴더에 `mockServiceWorker.js` 파일이 생성된다.
 
 ![Screen Shot 2022-12-02 at 09.00.16.png](MSW%20475e19b768a14328a387e8610185d1cf/Screen_Shot_2022-12-02_at_09.00.16.png)
 
