@@ -38,7 +38,7 @@ MSW를 브라우저 환경에서 사용하는 경우 아래의 그림과 같이 
 2. 등록된 Service Worker는 Fetch 이벤트를 통해 외부로 가는 요청을 가로챈다.
 3. 가로챈 요청에 만들어둔 응답을 실어 보낸다.
 
-![Untitled](MSW%20475e19b768a14328a387e8610185d1cf/Untitled.png)
+<img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/12/msw_request-flow.png" width="100%" alt="msw-request-flow">
 
 ## 특징
 
@@ -70,15 +70,17 @@ $ npx msw init public/ --save
 
 위의 명령어를 실행하면 public 폴더에 `mockServiceWorker.js` 파일이 생성된다.
 
-![Screen Shot 2022-12-02 at 09.00.16.png](MSW%20475e19b768a14328a387e8610185d1cf/Screen_Shot_2022-12-02_at_09.00.16.png)
+<p align="center">
+  <img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/12/msw_init.png" alt="msw-init" width="50%">
+</p>
+
+mockServiceWorker.js 파일을 들여다보면 `install`, `activate`, `message`, `fetch` 이벤트 핸들러를 볼 수 있다.
+
+message, fetch 이벤트에 대해서 자세히 작성하기
 
 ## Request Handler
 
-- 요청이 들어왔을 때 응답할 임의의 핸들러로, REST API, GraphQL API 모두 처리 가능
-- REST API의 경우 method, path(endpoint), 리스폰스를 반환해 줄 resolver가 필요함
-- rest[http method] 함수는 두 개의 인자를 받음
-  - 엔드포인트
-  - Response resolver
+Mock API를 사용하려면 우선 요청이 들어왔을 때 임의의 응답을 보내줄 Request handler를 작성해야 한다. Request handler는 REST API와 GraphQL API 모두 처리할 수 있다. 그중 REST API용 Request handler를 작성하려면 `메소드`와 `URL 엔드포인트`, Mock Response를 반환해 줄 `Response resolver`가 필요하다.
 
 ```jsx
 ├─src
@@ -185,10 +187,11 @@ useEffect(() => {
 
 ### node.js 환경에서 setupWorker를 실행할 수 없는 문제
 
-![Screen Shot 2022-12-02 at 15.08.24.png](MSW%20475e19b768a14328a387e8610185d1cf/Screen_Shot_2022-12-02_at_15.08.24.png)
+MSW를 사용하는 데 필요한 것들을 세팅하고나서 앱을 실행시켜 확인하는데 아래와 같은 에러가 발생했다. 브라우저에 Service Worker를 등록하려면 당연하게도 브라우저 환경에서 setupWorker가 실행되어야 하지만, Nextjs가 빌드될 때에는 nodejs(server) 환경에서 실행되기 때문에 브라우저에 접근할 수 없기 때문에 발생하는 에러이다.
 
-- setupWorker은 브라우저 환경에서만 정상적으로 실행될 수 있는데 Nextjs는 node(server)환경에서 빌드되어 브라우저에 접근하기 전에 setupWorker 함수가 실행되어 발생하는 문제
-- window 객체가 있을 때에만 setupWorker 함수가 실행되도록 실행 시점을 제어하여 해결
+<img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/12/msw_browser-error.png" alt="msw-browser-error" width="100%">
+
+이 부분은 `_app.tsx`에서 `useEffect`를 사용하여 window 객체가 있을 때에만 setupWorker 함수가 실행되도록 실행 시점을 제어하여 해결하였다.
 
 ```jsx
 // 문제
@@ -267,9 +270,13 @@ export default function FactoroidStatusPage() {
 
 ## MSW를 사용하기 전에는…
 
-![Screen Shot 2022-12-04 at 19.43.17.png](MSW%20475e19b768a14328a387e8610185d1cf/Screen_Shot_2022-12-04_at_19.43.17.png)
+<p align="center">
+  <img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/12/msw_hard-coded-mock-data-1.png" alt="hard-coded-mock-data-1" width="60%">
+</p>
 
-![Screen Shot 2022-12-04 at 19.43.43.png](MSW%20475e19b768a14328a387e8610185d1cf/Screen_Shot_2022-12-04_at_19.43.43.png)
+<p align="center">
+  <img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/12/msw_hard-coded-mock-data-2.png" alt="hard-coded-mock-data-2" width="60%">
+</p>
 
 - 여러 컴포넌트에 침투해 있는 하드 코딩 Mock 데이터들
   - key 이름도 내마음대로
