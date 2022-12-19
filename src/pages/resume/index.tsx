@@ -270,8 +270,20 @@ export const ResumePage = () => {
       <MainSection title='Others'>
         <TaskSection title='외국어'>
           <ul>
-            <li>영어: TOEIC 950점 / TOEIC Speaking level 6</li>
-            <li>일본어: JLPT N1</li>
+            <li>
+              영어
+              <ul>
+                <li>
+                  TOEIC 950점 <Period>(취득일: 2021.01.24)</Period>
+                </li>
+                <li>
+                  TOEIC Speaking level 6 <Period>(취득일: 2021.05.02)</Period>
+                </li>
+              </ul>
+            </li>
+            <li>
+              일본어: JLPT N1 <Period>(취득일: 2021.08.09)</Period>
+            </li>
           </ul>
         </TaskSection>
         <TaskSection title='교육'>
@@ -281,7 +293,8 @@ export const ResumePage = () => {
               <Period>(2021.11 - 2022.02)</Period>
             </li>
             <li>
-              경영학 전공 <Period>(2013.03 - 2018.02)</Period>
+              가천대학교 경영학트랙 전공 및 2018년 2월 졸업{' '}
+              <Period>(2013.03 - 2018.02)</Period>
             </li>
           </ul>
         </TaskSection>
