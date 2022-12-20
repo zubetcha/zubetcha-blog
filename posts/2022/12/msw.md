@@ -82,93 +82,115 @@ message, fetch 이벤트에 대해서 자세히 작성하기
 
 Mock API를 사용하려면 우선 요청이 들어왔을 때 임의의 응답을 보내줄 Request handler를 작성해야 한다. Request handler는 REST API와 GraphQL API 모두 처리할 수 있다. 그중 REST API용 Request handler를 작성하려면 `메소드`와 `URL 엔드포인트`, Mock Response를 반환해 줄 `Response resolver`가 필요하다.
 
+우선 폴더 구조는 이렇게 정리했다. mocks 폴더 아래에 도메인별로 폴더를 만들어 Mock data와 Request handler, Response resolver를 한 데 둘까 고민도 해봤지만, 도메인이 많아지는 만큼에 비례해서 폴더의 개수도 많아지는 걸 선호하는 편이 아니라서 (에디터에서 파일명으로 찾을 때 빨리 찾기 힘듦🥲) data, resolver, type, const 등으로 폴더를 나누어놓았다.
+
 ```jsx
 ├─src
 │  └─mocks
 │    ├─handlers.ts // request 핸들러
 │    ├─data // mock data
 │    │ ├─account.ts
-│    │ ├─sensor.ts
+│    │ ├─auth.ts
 │    │ └─// ...
 │    └─resolver // request 리졸버
 │      ├─account.ts
-│      ├─sensor.ts
+│      ├─auth.ts
 │      └─// ...
 ```
+
+이제 진짜 핸들러를 만들어보자..!
+
+작성한 Request handler들은 모두 모아서 Service Worker 인스턴스를 생성해주는 함수의 인자로 전달할 것이기 때문에 하나의 파일에 작성하였다. 작성할 핸들러가 많지 않다면 반환하는 배열 안에 바로 작성해도 괜찮지만, 도메인별 핸들러가 많아지면 나중에 찾기 어려워지는 상황이 생길 수도 있을 것 같아 따로 나눠보았다.
+
+REST API용 Request handler를 작성하기 위해서는 우선 msw가 제공하는 `rest` 객체를 import 해야 한다. rest 객체는 HTTP 통신 `메서드`들을 key로 가지고 있고, 각 메서드는 함수의 형태로 되어 있다. 그리고 각 메서드의 함수는 첫 번째 인자로 요청을 보낼 `경로`를, 두 번째 인자로는 `Response resolver`를 전달 받아 `RestHandler`를 반환한다.
 
 ```jsx
 // src/mocks/handlers.ts
 
-import { DefaultBodyType, rest } from 'msw';
-import {
-  getCustomerCount,
-  getFactoryCount,
-  getEquipmentCount,
-  getSensorCount,
-  getFactoryMapInfo,
-} from './resolver/factoroid-status';
-
-const todos = ['먹기', '자기', '놀기'];
+import { rest } from 'msw';
 
 export const handlers = () => {
   return [
-    /** admin/factoroid-status */
+    /** 계정 관련 핸들러 */
+    ...accountHandles,
 
-    /** 전체 고객사 개수 */
-    rest.get('/api/customer/count', getCustomerCount),
-
-    /** 전체 설치 공장 개수 및 평균 */
-    rest.get('/api/factory/count', getFactoryCount),
-
-    /** 전체 설치 설비 개수 및 평균 */
-    rest.get('/api/equipment/count', getEquipmentCount),
-
-    /** 전체 설치 센서 개수 및 센서 타입별 개수 */
-    rest.get('/api/sensor/count', getSensorCount),
-
-    /** 공장별 위도 경도 및 설치 설비, 센서 개수 */
-    rest.get('/api/factory/map/info', getFactoryMapInfo),
+    /** 인증 관련 핸들러 */
+    ...authHandlers
   ];
 };
+
+const accountHandlers = [
+  /** 전체 계정 조회 */
+  rest.get(API_ENDPOINT.account.getAllAccounts, getAllAccounts),
+
+  /** 특정 계정 조회 */
+  rest.get(API_ENDPOINT.account.getAccount, getAccount),
+
+  /** 계정 추가 */
+  rest.post(API_ENDPOINT.account.createAccount, createAccount),
+
+  /** 계정 이메일 수정 */
+  rest.patch(API_ENDPOINT.account.updateEmail, updateEmail),
+
+  /** 계정 삭제 */
+  rest.delete(API_ENDPOINT.account.deleteAccount, deleteAccount),
+];
+
+const authHanlders = [
+  /** 로그인 */
+  rest.post(API_ENDPOINT.auth.login, loginResolver),
+
+  /** JWT로 현재 로그인한 유저 조회 */
+  rest.get(API_ENDPOINT.auth.getAccountWithJWT, getAccountWithJWTResolver),
+];
 ```
+
+### 경로에 대해서
+
+보통 서버로 데이터를 전달하는 방식에는 `Request variables`, `Request params`, `Request body` 등의 여러가지 방식이 있다. 그 중 Request variables와 Request params는 서버로 보내는 경로에 노출이 되는 정보들이다.
+
+Response resolver에서는 Request 정보들에서 각기 다른 방식으로 전달되는 데이터들에 접근할 수 있는데, 그 중 Request variables는 API 경로에 아래와 같이 명시해 주어야 한다.
+
+> '/api/accounts/`:accountId`/email',
+
+이렇게 하면 Response resolver에서 이렇게 접근이 가능하다!
+
+```jsx
+const { accountId } = req.params;
+```
+
+`Request params`와 `Request body`는 경로와 상관 없이 request 객체의 또 다른 방법으로 접근할 수 있으니 Response resolver에서 자세히 다뤄보겠다.
 
 ## Response resolver
 
-- 브라우저에서 발생하는 네트워크 요청을 가로채서 대신 응답을 보내주는 역할
-- req, res, ctx 세 개의 인자를 받음
-  - req: 일치하는 request에 대한 정보
-  - res: mocked response를 생성해주는 함수
-  - ctx: mocked response의 status code, headers, body 등을 설정해주는 함수들을 담고 있는 객체
+Response resolver는 브라우저에서 발생하는 네트워크 요청을 가로채서 대신 응답을 보내주는 역할을 한다. 함수로 되어 있으며 매개변수로 `request`, `response`, `context` 세 개의 인자를 받는다.
 
-**자주 사용하는 ctx 메서드**
-
-- ctx.status() : status code
-- ctx.json() : response body
+- request: 일치하는 request에 대한 정보
+- response: mocked response를 생성해주는 함수
+- context: mocked response의 status code, headers, body 등을 설정해주는 함수들을 담고 있는 객체
 
 ```jsx
-// src/mocks/resolver/factoroid-status.ts
-
-export const getSensorCount: Parameters<typeof rest.get>[1] = (req, res, ctx) => {
-  return res(ctx.status(200), ctx.json(sensorCount));
+export const responseResolver: Parameters<typeof rest.get>[1] = (req, res, ctx) => {
+  return res(ctx.status(200), ctx.json(보내고 싶은 Mock Response!));
 };
 ```
 
 ## Service Worker 인스턴스 생성
 
-- msw가 제공해주는 setupWorker 함수를 사용하여 Service Worker 생성
-- setupWorker함수는 이미 정의되어 있는 Request handler들로 worker 인스턴스를 생성해줌
-- handlers.ts에 작성한 request handler들을 setupWorker() 함수의 인자로 전달
+일반적으로 Service Worker를 브라우저에 등록하기 위해서는..! 하지만 MSW가 제공해주는 `setupWorker` 함수가 알아서 Service Worker 인스턴스를 생성해주고, 앱이 실행되면 브라우저에 등록해주는 일까지 해주기 때문에 신경쓰지 않아도 괜찮다! setupWorker 함수는 우리가 작성(혹은 정의)한 Request handler들을 가지고 Service Worker 인스턴스를 생성해준다.
 
 ```jsx
 // src/mocks/browser.ts
 
 import { setupWorker } from 'msw';
-import { handlers } from './handlers';
+import { handlers } from './handlers'; // Request handler들
 
 export const worker = setupWorker(...handlers());
 ```
 
 ## Service Worker 삽입
+
+앱이 실행될 때 Entry Point가 되는 파일에 Service Worker를 실행시키는 코드를 작성해야 한다.
 
 - 애플리케이션의 Entry Point에 Service Worker를 실행시키는 코드 삽입
 - Next.js에서는 \_app.tsx
