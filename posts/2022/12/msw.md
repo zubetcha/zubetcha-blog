@@ -177,7 +177,7 @@ export const responseResolver: Parameters<typeof rest.get>[1] = (req, res, ctx) 
 
 ## Service Worker 인스턴스 생성
 
-일반적으로 Service Worker를 브라우저에 등록하기 위해서는..! 하지만 MSW가 제공해주는 `setupWorker` 함수가 알아서 Service Worker 인스턴스를 생성해주고, 앱이 실행되면 브라우저에 등록해주는 일까지 해주기 때문에 신경쓰지 않아도 괜찮다! setupWorker 함수는 우리가 작성(혹은 정의)한 Request handler들을 가지고 Service Worker 인스턴스를 생성해준다.
+보ㅇ Service Worker를 브라우저에 등록하기 위해서 [Navigator.serviceWorker](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/serviceWorker) 를 사용하고는 하지만 MSW에서는 `setupWorker` 함수가 알아서 Service Worker 인스턴스를 생성해주고, 앱이 실행되면 브라우저에 등록해주는 일까지 해주기 때문에 신경쓰지 않아도 괜찮다! setupWorker 함수는 우리가 작성(혹은 정의)한 Request handler들을 가지고 Service Worker 인스턴스를 생성해준다.
 
 ```jsx
 // src/mocks/browser.ts
@@ -188,12 +188,9 @@ import { handlers } from './handlers'; // Request handler들
 export const worker = setupWorker(...handlers());
 ```
 
-## Service Worker 삽입
+## Service Worker 실행
 
-앱이 실행될 때 Entry Point가 되는 파일에 Service Worker를 실행시키는 코드를 작성해야 한다.
-
-- 애플리케이션의 Entry Point에 Service Worker를 실행시키는 코드 삽입
-- Next.js에서는 \_app.tsx
+앱이 실행될 때 Entry Point가 되는 파일에 Service Worker를 실제로 브라우저에 등록하고 활성화해주어야 한다. 방금 setupWorker 함수로 만들어 둔 Service Worker 인스턴스에는 몇 가지 메소드가 있는데, 이 중 start가 public 폴더에 생성된 mockServiceWorker.js 파일을 가지고 브라우저에 ServiceWorker를 등록하고 활성화시켜준다.
 
 ```jsx
 // src/pages/_app.tsx
@@ -209,7 +206,7 @@ useEffect(() => {
 
 ### node.js 환경에서 setupWorker를 실행할 수 없는 문제
 
-MSW를 사용하는 데 필요한 것들을 세팅하고나서 앱을 실행시켜 확인하는데 아래와 같은 에러가 발생했다. 브라우저에 Service Worker를 등록하려면 당연하게도 브라우저 환경에서 setupWorker가 실행되어야 하지만, Nextjs가 빌드될 때에는 nodejs(server) 환경에서 실행되기 때문에 브라우저에 접근할 수 없기 때문에 발생하는 에러이다.
+필요한 것들을 세팅하고나서 앱을 실행시켜 확인하는데 아래와 같은 에러가 발생했다. 브라우저에 Service Worker를 등록하려면 당연하게도 브라우저 환경에서 setupWorker가 실행되어야 하지만, Nextjs가 빌드될 때에는 nodejs(server) 환경에서 실행되기 때문에 브라우저에 접근할 수 없기 때문에 발생하는 에러이다.
 
 <img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/12/msw_browser-error.png" alt="msw-browser-error" width="100%">
 
@@ -240,6 +237,8 @@ useEffect(() => {
 ```
 
 ![Screen Shot 2022-12-02 at 15.33.24.png](MSW%20475e19b768a14328a387e8610185d1cf/Screen_Shot_2022-12-02_at_15.33.24.png)
+
+이제 여기까지 했다면 MSW를 사용할 준비를 모두 마친 것이다!
 
 # 적용해보기
 
