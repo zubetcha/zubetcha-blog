@@ -111,38 +111,9 @@ import { rest } from 'msw';
 
 export const handlers = () => {
   return [
-    /** 계정 관련 핸들러 */
-    ...accountHandles,
-
-    /** 인증 관련 핸들러 */
-    ...authHandlers
+    rest.get('/api/accounts/:accountId', (req, res, ctx) => res(ctx.status(200), ctx.text('성공!'))),
   ];
 };
-
-const accountHandlers = [
-  /** 전체 계정 조회 */
-  rest.get(API_ENDPOINT.account.getAllAccounts, getAllAccounts),
-
-  /** 특정 계정 조회 */
-  rest.get(API_ENDPOINT.account.getAccount, getAccount),
-
-  /** 계정 추가 */
-  rest.post(API_ENDPOINT.account.createAccount, createAccount),
-
-  /** 계정 이메일 수정 */
-  rest.patch(API_ENDPOINT.account.updateEmail, updateEmail),
-
-  /** 계정 삭제 */
-  rest.delete(API_ENDPOINT.account.deleteAccount, deleteAccount),
-];
-
-const authHanlders = [
-  /** 로그인 */
-  rest.post(API_ENDPOINT.auth.login, loginResolver),
-
-  /** JWT로 현재 로그인한 유저 조회 */
-  rest.get(API_ENDPOINT.auth.getAccountWithJWT, getAccountWithJWTResolver),
-];
 ```
 
 ### 경로에 대해서
@@ -236,24 +207,253 @@ useEffect(() => {
   }, []);
 ```
 
-![Screen Shot 2022-12-02 at 15.33.24.png](MSW%20475e19b768a14328a387e8610185d1cf/Screen_Shot_2022-12-02_at_15.33.24.png)
+<p align="center">
+  <img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/12/msw_mock-enabled.png" alt="mock-enabled" width="60%">
+</p>
 
-이제 여기까지 했다면 MSW를 사용할 준비를 모두 마친 것이다!
+이제 여기까지 하고 앱을 실행시킨 후 콘솔을 확인했을 때 위와 같이 `Mocking enabled.` 가 보인다면 MSW를 사용할 준비를 모두 마친 것이다!
+
+브라우저의 개발자 도구에서도 확인해보면 mockServiceWorker가 잘 등록되어 있고 활성화되어 있는 것까지 확인할 수 있다.
+
+<p align="center">
+  <img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/12/msw_service-worker.png" alt="service-worker" width="60%">
+</p>
 
 # 적용해보기
 
+MSW와 사용 방법에 대해서 알아봤으니 이제 사용해 볼 차례이다.
+
 ## 준비
+
+MSW를 사용할 때 누릴 수 있는 가장 큰 이점인 Mock API에서 실제 API로 변경해서 연동할 때 **수정할 코드의 양을 줄일 수 있다는 점**을 톡톡히 누리기 위해서는 몇 가지 미리 준비해야 할 것들이 있다. Request handler와 Response Resolver에 사용할 API의 URL과 Request에 필요한 데이터의 형태, Response resolver에서 반환할 응답 데이터의 형태가 그러하다.
 
 ### API
 
+우선 API는 Mock API용과 실제 API 두 종류를 준비해야 한다. (이 부분이 MSW를 사용할 때 다소 아쉬운 부분 중 하나이다...🥲) 만약 API URL에 Request variables가 들어가지 않는다면 하나의 API로 통합하여 사용하여도 무방하다.
+
 ```jsx
-export const FactoroidStatusAPI = {
-  getCustomerCount: () => api.get('/api/customer/count'),
-  getFactoryCount: () => api.get('/api/factory/count'),
-  getEquipmentCount: () => api.get('/api/equipment/count'),
-  getSensorCount: () => api.get('/api/sensor/count'),
-  getFactoryMapInfo: () => api.get('/api/factory/map/info'),
+// Mock API용
+export const API_ENDPOINT = {
+  account: {
+    /** 전체 계정 쿼리 */
+    getAllAccounts: '/api/accounts',
+
+    /** 특정 계정 조회 */
+    getAccount: '/api/accounts/:accountId',
+
+    /** 계정 추가 */
+    createAccount: '/api/accounts',
+
+    /** 계정 이메일 수정 */
+    updateEmail: '/api/accounts/:accountId/email',
+
+    /** 계정 일괄 삭제 */
+    deleteAccount: '/api/accounts',
+  }
 };
+
+// 실제 API용
+export const AccountAPI = {
+  /** 전체 계정 조회 */
+  getAccounts: ({ pageParam, ...rest }: AccountsQueryParams): Promise<AxiosResponse<AccountsInfiniteQueryResult>> =>
+    api.get('/api/accounts', { params: { page: pageParam, ...rest } }),
+
+  /** 특정 계정 조회 */
+  getAccount: (accountId: number): Promise<AxiosResponse<Account>> => api.get(`/api/accounts/${accountId}`),
+
+
+  /** 계정 추가 */
+  createAccount: (account: AccountPostRequestDTO): Promise<AxiosResponse<Account>> =>
+    api.post('/api/accounts', account),
+
+  /** 계정 이메일 수정 */
+  updateEmail: ({ accountId, email }: PatchEmailRequestDTO): Promise<AxiosResponse<Account>> =>
+    api.patch(`/api/accounts/${accountId}/email`, { email }),
+
+  /** 계정 삭제 */
+  deleteAccount: (accountIdList: number[]): Promise<AxiosResponse<string>> => {
+    const requestParams = accountIdList.map((accountId) => `id=${accountId}`).join('&');
+
+    return api.delete(`/api/accounts?${requestParams}`);
+  },
+}
+```
+
+### Request Handler
+
+위의 Mock API를 사용하여 Request handler를 만든다.
+
+```jsx
+// src/mocks/handlers.ts
+
+import { rest } from 'msw';
+
+export const handlers = () => {
+  return [
+    /** 계정 관련 핸들러 */
+    ...accountHandles,
+  ];
+};
+
+const accountHandlers = [
+  /** 전체 계정 조회 */
+  rest.get(API_ENDPOINT.account.getAllAccounts, getAllAccounts),
+
+  /** 특정 계정 조회 */
+  rest.get(API_ENDPOINT.account.getAccount, getAccount),
+
+  /** 계정 추가 */
+  rest.post(API_ENDPOINT.account.createAccount, createAccount),
+
+  /** 계정 이메일 수정 */
+  rest.patch(API_ENDPOINT.account.updateEmail, updateEmail),
+
+  /** 계정 삭제 */
+  rest.delete(API_ENDPOINT.account.deleteAccount, deleteAccount),
+];
+```
+
+### Response resolver
+
+먼저 Response resolver를 작성하기에 앞서 Request와 Response에 필요한 타입들을 먼저 정의해두면 편리하다.
+
+```jsx
+export interface CreateAccountReq {
+  username: string | null;
+  name: string;
+  email: string;
+  phone: string | null;
+  profileUrl: string | null;
+  canInquire: boolean;
+  authorityId: number;
+  customerId: number;
+  depthId: number;
+}
+
+export interface Account {
+  id: number;
+  username: string;
+  name: string;
+  email: string | null;
+  phone: string | null;
+  canInquire: boolean;
+  authority: Authority;
+  customer: Customer;
+  depth: Depth;
+  profileUrl: string | null;
+}
+```
+
+Response는 다양한 형태로 보낼 수 있다.
+
+- json: ctx.json() 
+- text: ctx.text()
+- xml: ctx.xml()
+
+Response resolver 함수는 아래와 같은 형태로 작성하는데, 그 중 함수의 인자로 주어지는 req 매개변수를 이용하여 요청이 싣고 온 데이터들에 접근할 수 있다.
+
+```jsx
+
+```
+
+**Request variables 정보 가져오기**
+
+```jsx
+
+```
+
+**Request body 정보 가져오기**
+
+
+
+**Request params 정보 가져오기**
+
+```jsx
+/** 전체 계정 조회 */
+export const getAllAccounts: Parameters<typeof rest.get>[1] = (req, res, ctx) => {
+  return res(
+    ctx.status(200),
+    ctx.json<AccountsInfiniteQueryResult>({
+      content: accountList,
+      pageable: {
+        sort: {
+          empty: false,
+          sorted: true,
+          unsorted: false,
+        },
+        offset: 0,
+        pageNumber: 0,
+        pageSize: 20,
+        paged: false,
+        unpaged: true,
+      },
+      number: 0,
+      sort: {
+        empty: false,
+        sorted: true,
+        unsorted: false,
+      },
+      first: true,
+      last: true,
+      size: 20,
+      numberOfElements: 20,
+      empty: false,
+    }),
+  );
+};
+
+/** 특정 계정 조회 */
+export const getAccount: Parameters<typeof rest.get>[1] = (req, res, ctx) => {
+  const { accountId } = req.params;
+
+  return res(ctx.status(200), ctx.json<Account>({ ...accountList[0], id: accountId }));
+};
+
+/** 계정 추가 */
+export const createAccount: Parameters<typeof rest.post>[1] = async (req, res, ctx) => {
+  const { username, email, phone, profileUrl, canInquire, authorityId, customerId, depthId } = await req.json<CreateAccountReq>();
+
+  return res(
+    ctx.status(200),
+    ctx.json<Account>({
+      accountId: 100,
+      username,
+      name,
+      email,
+      phone,
+      profileUrl,
+      canInquire,
+      authority: {
+        id: authorityId,
+        name: authorityId,
+      },
+      customer: {
+        id: customerId,
+        name: `${customerId} 소속이에용`,
+      },
+      depth: {
+        id: depthId,
+        name: `${depthId} 부서에용`,
+      },
+    }),
+  );
+};
+
+/** 계정 이메일 수정 */
+export const updateEmail: Parameters<typeof rest.patch>[1] = async (req, res, ctx) => {
+  const { email } = await req.json<PatchAccountRequestBody<PatchEmailReq>>();
+  const { accountId } = req.params;
+
+  return res(ctx.status(200), ctx.json({ id: accountId, email }));
+};
+
+/** 계정 삭제 */
+export const deleteAccount: Parameters<typeof rest.delete>[1] = (req, res, ctx) => {
+  const accountId = req.url.searchParams.getAll('id');
+
+  return res(ctx.status(200), ctx.text(`accountId: ${accountId} 계정 삭제 완료`));
+};
+
 ```
 
 ### useQueries
