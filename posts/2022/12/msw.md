@@ -296,9 +296,6 @@ export const handlers = () => {
 };
 
 const accountHandlers = [
-  /** 전체 계정 조회 */
-  rest.get(API_ENDPOINT.account.getAllAccounts, getAllAccounts),
-
   /** 특정 계정 조회 */
   rest.get(API_ENDPOINT.account.getAccount, getAccount),
 
@@ -317,91 +314,48 @@ const accountHandlers = [
 
 먼저 Response resolver를 작성하기에 앞서 Request와 Response에 필요한 타입들을 먼저 정의해두면 편리하다.
 
-```jsx
-export interface CreateAccountReq {
-  username: string | null;
-  name: string;
-  email: string;
-  phone: string | null;
-  profileUrl: string | null;
-  canInquire: boolean;
-  authorityId: number;
-  customerId: number;
-  depthId: number;
-}
-
-export interface Account {
-  id: number;
-  username: string;
-  name: string;
-  email: string | null;
-  phone: string | null;
-  canInquire: boolean;
-  authority: Authority;
-  customer: Customer;
-  depth: Depth;
-  profileUrl: string | null;
-}
-```
-
 Response는 다양한 형태로 보낼 수 있다.
 
-- json: ctx.json() 
+- json: ctx.json()
 - text: ctx.text()
 - xml: ctx.xml()
 
 Response resolver 함수는 아래와 같은 형태로 작성하는데, 그 중 함수의 인자로 주어지는 req 매개변수를 이용하여 요청이 싣고 온 데이터들에 접근할 수 있다.
 
 ```jsx
+export const requestHandler = (req, res, ctx) => {
+  return res();
+};
 
 ```
 
 **Request variables 정보 가져오기**
 
-```jsx
+만약 Request handler의 url을 `/api/accounts/:accountId`로 작성했다면, `req.params` 객체 안에 accountId라는 key 이름으로 Request variables 정보에 접근할 수 있다.
 
+```jsx
+const {/** Request handler의 url에 작성한 키*/} = req.params;
 ```
 
 **Request body 정보 가져오기**
 
+Request body에 대한 정보는 req.json()을 통해 가져올 수 있다. 또한 req.json에 제네릭으로 Request body에 대한 타입 인터페이스를 제공하면 자동완성으로 더 편하게 사용할 수 있다. req.json 함수는 (T = any) => Promise<T>의 형태로 되어 있기 때문에 `async-await`을 함께 사용하였다.
 
+```jsx
+const { email } = await req.json<CreateAccountReq>();
+```
 
 **Request params 정보 가져오기**
 
-```jsx
-/** 전체 계정 조회 */
-export const getAllAccounts: Parameters<typeof rest.get>[1] = (req, res, ctx) => {
-  return res(
-    ctx.status(200),
-    ctx.json<AccountsInfiniteQueryResult>({
-      content: accountList,
-      pageable: {
-        sort: {
-          empty: false,
-          sorted: true,
-          unsorted: false,
-        },
-        offset: 0,
-        pageNumber: 0,
-        pageSize: 20,
-        paged: false,
-        unpaged: true,
-      },
-      number: 0,
-      sort: {
-        empty: false,
-        sorted: true,
-        unsorted: false,
-      },
-      first: true,
-      last: true,
-      size: 20,
-      numberOfElements: 20,
-      empty: false,
-    }),
-  );
-};
+Request params에 대한 정보 또한 req 객체에서 가져올 수 있다. req.url 객체에서 searchParams는 URL API인 [URLSearchParams](https://developer.mozilla.org/ko/docs/Web/API/URLSearchParams)의 인터페이스와 동일하다.
 
+```jsx
+const accountId = req.url.searchParams.getAll('id');
+```
+
+특히 POST 메소드로 데이터를 새로 생성할 때 Request body에 있는 데이터를 그대로 Response에 사용할 수 있어 Mock API로 개발할 때 굉장히 편리했다.
+
+```jsx
 /** 특정 계정 조회 */
 export const getAccount: Parameters<typeof rest.get>[1] = (req, res, ctx) => {
   const { accountId } = req.params;
@@ -456,22 +410,9 @@ export const deleteAccount: Parameters<typeof rest.delete>[1] = (req, res, ctx) 
 
 ```
 
-### useQueries
-
-```jsx
-export const useFactoroidStatusQuery = () => {
-  return useQueries({
-    queries: Object.entries(FactoroidStatusAPI).map(([key, fetcher]) => {
-      return {
-        queryKey: [QUERY_KEYS.FACTOROID_STATUS, key],
-        queryFn: fetcher,
-      };
-    }),
-  });
-};
-```
-
 ## 확인
+
+Mock API를 만들었으니 클라이언트 개발에 연동하는 코드를 작성한 후 확인해보자. 회사에서 react-query를 적극적으로 사용하고 있는데, 실제로 API 개발이 완료되어 코드를 작성하는 것처럼 동일하게 작성하였다.
 
 ```jsx
 
