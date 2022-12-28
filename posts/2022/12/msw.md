@@ -3,8 +3,8 @@
 title: MSW로 개발자 경험 향상시키기
 category: Etc
 date: 2022-12-13
-description: API 개발 후에 고통 받고 있다면..
-published: false
+description: API 개발 후에 고통 받고 있다면 
+published: true
 slug: improve-DX-with-MSW
 tags: 
   - etc
@@ -38,7 +38,7 @@ MSW를 브라우저 환경에서 사용하는 경우 아래의 그림과 같이 
 2. 등록된 Service Worker는 Fetch 이벤트를 통해 외부로 가는 요청을 가로챈다.
 3. 가로챈 요청에 만들어둔 응답을 실어 보낸다.
 
-<img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/12/msw_request-flow.png" width="100%" alt="msw-request-flow">
+<img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/12/msw_request-flow.png" width="100%" alt="msw-request-flow" />
 
 ## 특징
 
@@ -71,7 +71,7 @@ $ npx msw init public/ --save
 위의 명령어를 실행하면 public 폴더에 `mockServiceWorker.js` 파일이 생성된다.
 
 <p align="center">
-  <img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/12/msw_init.png" alt="msw-init" width="50%">
+  <img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/12/msw_init.png" alt="msw-init" width="50%" />
 </p>
 
 mockServiceWorker.js 파일을 들여다보면 `install`, `activate`, `message`, `fetch` 이벤트 핸들러를 볼 수 있다.
@@ -179,7 +179,7 @@ useEffect(() => {
 
 필요한 것들을 세팅하고나서 앱을 실행시켜 확인하는데 아래와 같은 에러가 발생했다. 브라우저에 Service Worker를 등록하려면 당연하게도 브라우저 환경에서 setupWorker가 실행되어야 하지만, Nextjs가 빌드될 때에는 nodejs(server) 환경에서 실행되기 때문에 브라우저에 접근할 수 없기 때문에 발생하는 에러이다.
 
-<img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/12/msw_browser-error.png" alt="msw-browser-error" width="100%">
+<img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/12/msw_browser-error.png" alt="msw-browser-error" width="100%" />
 
 이 부분은 `_app.tsx`에서 `useEffect`를 사용하여 window 객체가 있을 때에만 setupWorker 함수가 실행되도록 실행 시점을 제어하여 해결하였다.
 
@@ -208,7 +208,7 @@ useEffect(() => {
 ```
 
 <p align="center">
-  <img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/12/msw_mock-enabled.png" alt="mock-enabled" width="60%">
+  <img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/12/msw_mock-enabled.png" alt="mock-enabled" width="60%" />
 </p>
 
 이제 여기까지 하고 앱을 실행시킨 후 콘솔을 확인했을 때 위와 같이 `Mocking enabled.` 가 보인다면 MSW를 사용할 준비를 모두 마친 것이다!
@@ -216,7 +216,7 @@ useEffect(() => {
 브라우저의 개발자 도구에서도 확인해보면 mockServiceWorker가 잘 등록되어 있고 활성화되어 있는 것까지 확인할 수 있다.
 
 <p align="center">
-  <img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/12/msw_service-worker.png" alt="service-worker" width="60%">
+  <img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/12/msw_service-worker.png" alt="service-worker" width="60%" />
 </p>
 
 # 적용해보기
@@ -339,7 +339,7 @@ const {/** Request handler의 url에 작성한 키*/} = req.params;
 
 **Request body 정보 가져오기**
 
-Request body에 대한 정보는 req.json()을 통해 가져올 수 있다. 또한 req.json에 제네릭으로 Request body에 대한 타입 인터페이스를 제공하면 자동완성으로 더 편하게 사용할 수 있다. req.json 함수는 (T = any) => Promise<T>의 형태로 되어 있기 때문에 `async-await`을 함께 사용하였다.
+Request body에 대한 정보는 req.json()을 통해 가져올 수 있다. 또한 req.json에 제네릭으로 Request body에 대한 타입 인터페이스를 제공하면 자동완성으로 더 편하게 사용할 수 있다. req.json 함수는 `(T = any) => Promise<T>`의 형태로 되어 있기 때문에 `async-await`을 함께 사용하였다.
 
 ```jsx
 const { email } = await req.json<CreateAccountReq>();
@@ -412,32 +412,78 @@ export const deleteAccount: Parameters<typeof rest.delete>[1] = (req, res, ctx) 
 
 ## 확인
 
-Mock API를 만들었으니 클라이언트 개발에 연동하는 코드를 작성한 후 확인해보자. 회사에서 react-query를 적극적으로 사용하고 있는데, 실제로 API 개발이 완료되어 코드를 작성하는 것처럼 동일하게 작성하였다.
+Mock API를 만들었으니 클라이언트 개발에 연동하는 코드를 작성한 후 확인해보자. 프로젝트에서 react-query를 적극적으로 사용하고 있는데, 실제로 API 개발이 완료되어 코드를 작성하는 것처럼 동일하게 작성하였다.
 
 ```jsx
+export const useAccountQuery = (accountId: number): QueryResult<Account> => {
+  return useQuery([QUERY_KEYS.ACCOUNT, accountId], () => AccountAPI.getAccount(accountId));
+};
 
-import { useFactoroidStatusQuery } from '@services/factoroid-status/query';
+export const useCreateAccount = () => {
+  const queryClient = useQueryClient();
 
-export default function FactoroidStatusPage() {
-  const result = useFactoroidStatusQuery();
-  console.log(result);
+  return useMutation({
+    mutationFn: (account: CreateAccountReq) => AccountAPI.createAccount(account),
+    onSuccess: (res) => {
+      console.log(res);
+      queryClient.invalidateQueries([QUERY_KEYS.ACCOUNT]);
+    },
+  });
+};
 
-	// ...
-}
+export const useDeleteAccount = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (accountIds: number[]) => AccountAPI.deleteAccount(accountIds),
+    onSuccess: (res) => {
+      queryClient.invalidateQueries([QUERY_KEYS.ACCOUNT]);
+    },
+  });
+};
 ```
 
-![Screen Shot 2022-12-04 at 19.16.36.png](MSW%20475e19b768a14328a387e8610185d1cf/Screen_Shot_2022-12-04_at_19.16.36.png)
+### GET
 
-![Screen Shot 2022-12-04 at 19.17.06.png](MSW%20475e19b768a14328a387e8610185d1cf/Screen_Shot_2022-12-04_at_19.17.06.png)
+<p align="center">
+  <img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/12/msw_example-get1.png" alt="" width="80%" />
+</p>
+<p align="center">
+  <img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/12/msw_example-get2.png" alt="" width="80%" />
+</p>
+
+### POST
+
+<p align="center">
+  <img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/12/msw_example-post1.png" alt="" width="80%" />
+</p>
+<p align="center">
+  <img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/12/msw_example-post2.png" alt="" width="80%" />
+</p>
+<p align="center">
+  <img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/12/msw_example-post3.png" alt="" width="80%" />
+</p>
+<p align="center">
+  <img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/12/msw_example-post4.png" alt="" width="80%" />
+</p>
+
+### DELETE
+
+<p align="center">
+  <img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/12/msw_example-delete1.png" alt="" width="80%" />
+</p>
+<p align="center">
+  <img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/12/msw_example-delete2.png" alt="" width="80%" />
+</p>
 
 ## MSW를 사용하기 전에는…
 
 <p align="center">
-  <img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/12/msw_hard-coded-mock-data-1.png" alt="hard-coded-mock-data-1" width="60%">
+  <img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/12/msw_hard-coded-mock-data-1.png" alt="hard-coded-mock-data-1" width="80%" />
 </p>
 
 <p align="center">
-  <img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/12/msw_hard-coded-mock-data-2.png" alt="hard-coded-mock-data-2" width="60%">
+  <img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2022/12/msw_hard-coded-mock-data-2.png" alt="hard-coded-mock-data-2" width="80%" />
 </p>
 
 - 여러 컴포넌트에 침투해 있는 하드 코딩 Mock 데이터들

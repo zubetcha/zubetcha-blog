@@ -3,253 +3,253 @@
 @import '../../styles/sizes';
 
 .container {
-	max-width: 1024px;
-	margin: $margin-top auto toRem(120);
-	padding: 0 toRem(32);
+  max-width: 1024px;
+  margin: $margin-top auto toRem(120);
+  padding: 0 toRem(32);
 
-	@include mobile() {
-		margin: toRem(96) auto toRem(24);
-		padding: 0 toRem(16);
-	}
-	@include tablet() {
-		margin: toRem(96) auto toRem(24);
-		padding: 0 toRem(16);
-	}
+  @include mobile() {
+    margin: toRem(96) auto toRem(24);
+    padding: 0 toRem(16);
+  }
+  @include tablet() {
+    margin: toRem(96) auto toRem(24);
+    padding: 0 toRem(16);
+  }
 
-	header {
-		@include flex-direction(column, 24);
-		@include flex-box(start, center);
-		border-bottom: 1px solid var(--color-post-divider);
-		color: var(--color-post-main-text);
-		padding: 0 0 toRem(24);
-		.tags-wrapper {
-			@include flex-direction(row, 12);
-		}
-		h1 {
-			@include display-small(800);
-			@include mobile() {
-				@include headline-large(800);
-			}
-			@include tablet() {
-				@include headline-large(800);
-			}
-			@include tablet-hori() {
-				// @include display-small(800);
-			}
-		}
-		time {
-			@include label-large();
-			color: var(--color-post-sub-text);
-		}
-	}
+  header {
+    @include flex-direction(column, 24);
+    @include flex-box(start, center);
+    border-bottom: 1px solid var(--color-post-divider);
+    color: var(--color-post-main-text);
+    padding: 0 0 toRem(24);
+    .tags-wrapper {
+      @include flex-direction(row, 12);
+    }
+    h1 {
+      @include display-small(800);
+      @include mobile() {
+        @include headline-large(800);
+      }
+      @include tablet() {
+        @include headline-large(800);
+      }
+      @include tablet-hori() {
+        // @include display-small(800);
+      }
+    }
+    time {
+      @include label-large();
+      color: var(--color-post-sub-text);
+    }
+  }
 
-	.content-wrapper {
-		@include flex-direction(row, 0);
-	}
+  .content-wrapper {
+    @include flex-direction(row, 0);
+  }
 
-	.content {
-		// display: grid;
-		flex-grow: 1;
-		@include flex-direction(column, 0);
+  .content {
+    // display: grid;
+    flex-grow: 1;
+    @include flex-direction(column, 0);
 
-		img {
-			margin: toRem(24) 0;
-			border-radius: 8px;
-			box-shadow: var(--box-shadow-2);
-		}
-		div {
-			margin: toRem(16) 0 toRem(24);
-		}
-		div > p {
-			@include flex-box(center, start);
-			img {
-				width: 100%;
-			}
-		}
+    img {
+      margin: toRem(24) 0;
+      border-radius: 4px;
+      // box-shadow: var(--box-shadow-2);
+    }
+    div {
+      margin: toRem(16) 0 toRem(24);
+    }
+    div > p {
+      @include flex-box(center, start);
+      img {
+        width: 100%;
+      }
+    }
 
-		h1 {
-			@include headline-medium(700);
-			margin: toRem(40) 0 toRem(24);
-			color: var(--color-post-h2-text);
-			@include mobile() {
-				@include headline-small(700);
-			}
-			@include tablet() {
-				@include headline-small(700);
-			}
+    h1 {
+      @include headline-medium(700);
+      margin: toRem(40) 0 toRem(24);
+      color: var(--color-post-h2-text);
+      @include mobile() {
+        @include headline-small(700);
+      }
+      @include tablet() {
+        @include headline-small(700);
+      }
 
-			code,
-			strong {
-				color: var(--color-post-h2-text);
-			}
-		}
+      code,
+      strong {
+        color: var(--color-post-h2-text);
+      }
+    }
 
-		h2 {
-			@include title-large(700);
-			margin: toRem(32) 0 toRem(16);
-			color: var(--color-post-main-text);
-			@include mobile() {
-				@include title-medium(700);
-			}
-			@include tablet() {
-				@include title-medium(700);
-			}
+    h2 {
+      @include title-large(700);
+      margin: toRem(32) 0 toRem(16);
+      color: var(--color-post-main-text);
+      @include mobile() {
+        @include title-medium(700);
+      }
+      @include tablet() {
+        @include title-medium(700);
+      }
 
-			code {
-				color: var(--color-post-main-text);
-			}
-		}
+      code {
+        color: var(--color-post-main-text);
+      }
+    }
 
-		h3 {
-			@include title-medium(700);
-			margin: toRem(32) 0 toRem(16);
-			color: var(--color-post-main-text);
-			@include mobile() {
-				@include title-small(700);
-			}
-			@include tablet() {
-				@include title-small(700);
-			}
+    h3 {
+      @include title-medium(700);
+      margin: toRem(32) 0 toRem(16);
+      color: var(--color-post-main-text);
+      @include mobile() {
+        @include title-small(700);
+      }
+      @include tablet() {
+        @include title-small(700);
+      }
 
-			code {
-				color: var(--color-post-main-text);
-			}
-		}
+      code {
+        color: var(--color-post-main-text);
+      }
+    }
 
-		p {
-			@include body-large();
-			color: var(--color-post-main-text);
-			margin: toRem(12) 0 toRem(16);
-		}
+    p {
+      @include body-large();
+      color: var(--color-post-main-text);
+      margin: toRem(12) 0 toRem(16);
+    }
 
-		p > strong {
-			color: var(--color-post-strong-text);
-		}
+    p > strong {
+      color: var(--color-post-strong-text);
+    }
 
-		p > em {
-			color: var(--color-post-em-text);
-		}
+    p > em {
+      color: var(--color-post-em-text);
+    }
 
-		p > code,
-		li > code {
-			@include body-medium(500);
-			border-radius: 4px;
-			// color: var(--color-post-main-text);
-			color: var(--color-primary);
-			background-color: var(--color-post-strong-bg);
-			padding: toRem(2) toRem(4);
-			margin-right: toRem(2);
-		}
+    p > code,
+    li > code {
+      @include body-medium(500);
+      border-radius: 4px;
+      // color: var(--color-post-main-text);
+      color: var(--color-primary);
+      background-color: var(--color-post-strong-bg);
+      padding: toRem(2) toRem(4);
+      margin-right: toRem(2);
+    }
 
-		a {
-			color: var(--color-post-anchor-text);
-			strong {
-				color: var(--color-post-anchor-text);
-			}
-			&:hover {
-				text-decoration: underline;
-			}
-		}
+    a {
+      color: var(--color-post-anchor-text);
+      strong {
+        color: var(--color-post-anchor-text);
+      }
+      &:hover {
+        text-decoration: underline;
+      }
+    }
 
-		a > code {
-			color: var(--color-post-anchor-text);
-			background-color: transparent;
-			&:hover {
-				text-decoration: underline;
-			}
-		}
+    a > code {
+      color: var(--color-post-anchor-text);
+      background-color: transparent;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
 
-		table {
-			border-collapse: collapse;
-			margin: toRem(24) 0;
-			thead {
-				tr {
-					@include body-large(500);
-					th {
-						padding: toRem(8) toRem(12);
-						// color: var(--color-post-sub-text);
-						color: var(--color-post-h2-text);
-						text-align: left;
-					}
-				}
-			}
+    table {
+      border-collapse: collapse;
+      margin: toRem(24) 0;
+      thead {
+        tr {
+          @include body-large(500);
+          th {
+            padding: toRem(8) toRem(12);
+            // color: var(--color-post-sub-text);
+            color: var(--color-post-h2-text);
+            text-align: left;
+          }
+        }
+      }
 
-			tbody {
-				border-top: 1px solid var(--color-post-divider);
-				tr {
-					@include body-large(300);
-					border-bottom: 1px solid var(--color-post-divider);
-					td {
-						padding: toRem(8) toRem(12);
-						border-right: 1px solid var(--color-post-divider);
-					}
-					td:nth-last-child(1) {
-						border-right: transparent;
-					}
-				}
-			}
-		}
+      tbody {
+        border-top: 1px solid var(--color-post-divider);
+        tr {
+          @include body-large(300);
+          border-bottom: 1px solid var(--color-post-divider);
+          td {
+            padding: toRem(8) toRem(12);
+            border-right: 1px solid var(--color-post-divider);
+          }
+          td:nth-last-child(1) {
+            border-right: transparent;
+          }
+        }
+      }
+    }
 
-		ul > li {
-			@include body-large();
-			padding-left: toRem(16);
-			margin: toRem(8) 0 toRem(8) toRem(4);
-			position: relative;
-		}
-		ul > li::before {
-			position: absolute;
-			content: '•';
-			left: 0;
-			display: inline-block;
-			color: var(--color-post-em-text);
-		}
+    ul > li {
+      @include body-large();
+      padding-left: toRem(16);
+      margin: toRem(8) 0 toRem(8) toRem(4);
+      position: relative;
+    }
+    ul > li::before {
+      position: absolute;
+      content: '•';
+      left: 0;
+      display: inline-block;
+      color: var(--color-post-em-text);
+    }
 
-		ol > li {
-			@include body-large();
-			margin: toRem(8) 0 toRem(8) toRem(16);
-			padding-left: toRem(4);
-		}
+    ol > li {
+      @include body-large();
+      margin: toRem(8) 0 toRem(8) toRem(16);
+      padding-left: toRem(4);
+    }
 
-		li {
-			color: var(--color-post-main-text);
-		}
+    li {
+      color: var(--color-post-main-text);
+    }
 
-		strong {
-			font-weight: 700;
-		}
+    strong {
+      font-weight: 700;
+    }
 
-		li > p {
-			margin: 0;
-		}
+    li > p {
+      margin: 0;
+    }
 
-		hr {
-			width: 100%;
-			border-top: 1px solid var(--color-post-divider);
-			border-bottom: none;
-			border-left: none;
-			border-right: none;
-			margin: toRem(32) 0 toRem(24);
-		}
+    hr {
+      width: 100%;
+      border-top: 1px solid var(--color-post-divider);
+      border-bottom: none;
+      border-left: none;
+      border-right: none;
+      margin: toRem(32) 0 toRem(24);
+    }
 
-		// p > img {
-		// 	width: 100%;
-		// }
+    // p > img {
+    // 	width: 100%;
+    // }
 
-		@include mobile() {
-			img {
-				width: 100%;
-			}
-		}
-		@include tablet() {
-			img {
-				width: 100%;
-			}
-		}
-	}
+    @include mobile() {
+      img {
+        width: 100%;
+      }
+    }
+    @include tablet() {
+      img {
+        width: 100%;
+      }
+    }
+  }
 }
 
 .divider {
-	height: 1px;
-	background-color: var(--color-post-divider);
-	margin: toRem(24) 0 0 !important;
+  height: 1px;
+  background-color: var(--color-post-divider);
+  margin: toRem(24) 0 0 !important;
 }
