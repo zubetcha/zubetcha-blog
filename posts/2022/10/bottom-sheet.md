@@ -5,7 +5,6 @@ category: React
 date: 2022-10-23
 description: 그런데 버그를 곁들인...
 published: true
-slug: react-bottom-sheet
 tags: 
   - react
   - bottomsheet

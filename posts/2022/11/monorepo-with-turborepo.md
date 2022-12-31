@@ -5,7 +5,6 @@ category: Etc
 date: 2022-11-16
 description: 구축기라고 쓰고 반성문이라고 읽는다.
 published: true
-slug: monorepo-with-turborepo
 tags: 
   - monorepo
   - tureborepo

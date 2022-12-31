@@ -17,38 +17,16 @@ import rehypePrism from 'rehype-prism-plus';
 import { Post, FrontMatter } from '../type/post';
 
 const DIR_REPLACE_STRING = '/posts';
-const postsDir = path.join(process.cwd(), 'posts');
+export const postsDir = path.join(process.cwd(), 'posts');
 
 export const getAllPosts = async () => {
   const files = sync(`${postsDir}/**/*.md*`).reverse();
 
   const posts = files
     .reduce<Post[]>((prev, path) => {
-      const file = fs.readFileSync(path, { encoding: 'utf-8' });
-      const { data, content } = matter(file);
+      const result = getPost(path);
 
-      const slug = path
-        .slice(path.indexOf(DIR_REPLACE_STRING) + DIR_REPLACE_STRING.length + 1)
-        .replace('.mdx', '')
-        .replace('.md', '');
-
-      if (data.published) {
-        const tags: string[] = (data.tags || []).map((tag: string) =>
-          tag.trim(),
-        );
-
-        const result: Post = {
-          frontMatter: {
-            ...(data as FrontMatter),
-            tags,
-            date: new Date(data.date).toString(),
-          },
-          content,
-          fields: {
-            slug,
-          },
-          path,
-        };
+      if (result) {
         prev.push(result);
       }
 
@@ -62,6 +40,38 @@ export const getAllPosts = async () => {
     });
 
   return posts;
+};
+
+export const getPost = (path: string) => {
+  const file = fs.readFileSync(path, { encoding: 'utf-8' });
+  const { data, content } = matter(file);
+  const slug = getSlug(path);
+
+  if (data.published) {
+    const tags: string[] = (data.tags || []).map((tag: string) => tag.trim());
+
+    const result: Post = {
+      frontMatter: {
+        ...(data as FrontMatter),
+        tags,
+        date: new Date(data.date).toString(),
+      },
+      content,
+      fields: {
+        slug,
+      },
+      path,
+    };
+
+    return result;
+  }
+};
+
+const getSlug = (path: string) => {
+  return path
+    .slice(path.indexOf(DIR_REPLACE_STRING) + DIR_REPLACE_STRING.length + 1)
+    .replace('.mdx', '')
+    .replace('.md', '');
 };
 
 export const getLinkContent = (content: string) => {
