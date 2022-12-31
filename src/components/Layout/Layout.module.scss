@@ -3,52 +3,24 @@
 @import '../../styles/sizes';
 
 .page_container {
-	@include flex-direction(row, 0);
-	height: calc(var(--vh, 1vh) * 100);
-	overflow: hidden;
+  @include flex-direction(row, 0);
+  height: calc(var(--vh, 1vh) * 100);
+  overflow: hidden;
 
-	.body {
-		width: 100%;
-		overflow: hidden overlay;
-		height: 100%;
-		padding: 0;
-		// @include flex-direction(column, 32);
-		@include scroll-bar();
-		@include mobile() {
-			@include flex-direction(column, 0);
-			@include flex-direction(between, start);
-		}
-		@include tablet() {
-			@include flex-direction(column, 0);
-			@include flex-direction(between, start);
-		}
-	}
-}
-
-.content-container {
-	padding: toRem(32) toRem(32) 0;
-	margin-bottom: auto;
-
-	@include mobile() {
-		padding: toRem(96) toRem(16) 0;
-	}
-	@include tablet() {
-		padding: toRem(96) toRem(16) 0;
-	}
-
-	.content-wrapper {
-		margin: $margin-top auto toRem(64);
-		width: fit-content;
-		@include flex-direction(column, 24);
-		@include mobile() {
-			margin: 0 auto toRem(32);
-		}
-		@include tablet() {
-			margin: 0 auto toRem(32);
-		}
-
-		.title {
-			@include display-medium(900);
-		}
-	}
+  .body {
+    width: 100%;
+    overflow: hidden overlay;
+    height: 100%;
+    padding: 0;
+    // @include flex-direction(column, 32);
+    @include scroll-bar();
+    @include mobile() {
+      @include flex-direction(column, 0);
+      @include flex-direction(between, start);
+    }
+    @include tablet() {
+      @include flex-direction(column, 0);
+      @include flex-direction(between, start);
+    }
+  }
 }

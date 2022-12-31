@@ -1,0 +1,43 @@
+@import '@styles/colors';
+@import '@styles/mixins';
+@import '@styles/sizes';
+
+.cards-wrapper {
+  width: fit-content;
+  display: grid;
+  grid-template-columns: repeat(1, minmax(toRem(360), toRem(720)));
+  gap: toRem(24);
+
+  @include large-desktop() {
+    grid-template-columns: repeat(2, minmax(toRem(480), toRem(600)));
+  }
+}
+
+.button-wrapper {
+  @include flex-box(between, center);
+
+  .page-button {
+    width: fit-content;
+    border-radius: 48px;
+    background-color: var(--color-btn-bg);
+    border: 1px solid var(--color-btn-bg);
+    color: var(--color-btn-main-text);
+    cursor: pointer;
+    transition: border-color 0.2s ease-in-out;
+    @include label-large();
+    @include flex-box(between, center);
+    @include flex-direction(row, 8);
+
+    &:hover {
+      border-color: var(--color-btn-hover-border);
+    }
+
+    &.prev {
+      padding: toRem(12) toRem(20) toRem(12) toRem(16);
+    }
+
+    &.next {
+      padding: toRem(12) toRem(16) toRem(12) toRem(20);
+    }
+  }
+}

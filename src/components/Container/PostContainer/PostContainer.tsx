@@ -1,9 +1,10 @@
+import type { FrontMatter, HeadingContent } from '@type/post';
+
 import { useRef } from 'react';
 import { useWindowSize } from '@hooks/useWindowSize';
-import classes from './Post.module.scss';
+import classes from './PostContainer.module.scss';
 import { formatDate } from '@utils/date';
 import { Tag, PostSEO, ToC, Comment } from '@components/index';
-import { FrontMatter, HeadingContent } from '@type/post';
 
 interface Props {
   children: React.ReactNode;

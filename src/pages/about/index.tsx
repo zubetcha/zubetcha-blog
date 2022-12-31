@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import classes from './about.module.scss';
 import { BLOG_INFO } from '@constants/blog';
-import { ContentLayout } from '@components/index';
+import { PageTitleContainer } from '@components/Container';
 import Zubetcha from '../../assets/images/zubetcha.jpeg';
 
 const AboutPage = () => {
@@ -15,7 +15,7 @@ const AboutPage = () => {
         <title>{BLOG_INFO.author}</title>
         <meta name='description' content={BLOG_INFO.title} />
       </Head>
-      <ContentLayout title='About'>
+      <PageTitleContainer title='About'>
         <div className={classes.container}>
           <div className={classes['profile-image-wrapper']}>
             <Image
@@ -37,7 +37,7 @@ const AboutPage = () => {
             </p>
           </div>
         </div>
-      </ContentLayout>
+      </PageTitleContainer>
     </>
   );
 };
