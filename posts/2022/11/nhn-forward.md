@@ -5,7 +5,6 @@ category: Etc
 date: 2022-11-24
 description: 
 published: false
-slug: tech-conference
 tags: 
   - conference
 

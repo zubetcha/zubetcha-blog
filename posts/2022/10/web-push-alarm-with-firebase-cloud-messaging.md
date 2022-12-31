@@ -5,7 +5,6 @@ category: PWA
 date: 2022-10-16
 description: 내 눈물 모아....💧 푸시 알림 구현기
 published: true
-slug: web-push-alarm-with-firebase-cloud-messaging
 tags: 
   - PWA
   - next
