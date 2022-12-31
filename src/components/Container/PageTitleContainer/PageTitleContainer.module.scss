@@ -1,0 +1,31 @@
+@import '@styles/colors';
+@import '@styles/mixins';
+@import '@styles/sizes';
+
+.container {
+  padding: toRem(32) toRem(32) 0;
+  margin-bottom: auto;
+
+  @include mobile() {
+    padding: toRem(96) toRem(16) 0;
+  }
+  @include tablet() {
+    padding: toRem(96) toRem(16) 0;
+  }
+
+  .wrapper {
+    margin: $margin-top auto toRem(64);
+    width: fit-content;
+    @include flex-direction(column, 24);
+    @include mobile() {
+      margin: 0 auto toRem(32);
+    }
+    @include tablet() {
+      margin: 0 auto toRem(32);
+    }
+
+    .title {
+      @include display-medium(900);
+    }
+  }
+}

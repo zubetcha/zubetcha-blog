@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import { RecoilRoot } from 'recoil';
 
 import * as gtag from '@utils/gtag';
-import { PageLayout } from '@components/index';
+import { Layout } from '@components/index';
 import { EXCLUSION_PATH_LIST } from '@constants/navigation';
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -34,9 +34,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         {EXCLUSION_PATH_LIST.includes(router.asPath) ? (
           <Component {...pageProps} />
         ) : (
-          <PageLayout>
+          <Layout>
             <Component {...pageProps} />
-          </PageLayout>
+          </Layout>
         )}
       </RecoilRoot>
     </>

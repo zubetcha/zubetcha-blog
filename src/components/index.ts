@@ -1,7 +1,6 @@
 export * from './Elements/index';
 export * from './Header/Header';
-export * from './Layout/PageLayout';
-export * from './Layout/ContentLayout';
+export * from './Layout/Layout';
 export * from './NavBar/NavBar';
 export * from './NavBar/NavItem';
 export * from './PostCard/PostCard';
@@ -14,3 +13,4 @@ export * from './Footer/Footer';
 export * from './MDXComponents/MDXComponents';
 export * from './ToC/ToC';
 export * from './Comment/Comment';
+export * from './Container';

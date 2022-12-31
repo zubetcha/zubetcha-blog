@@ -11,7 +11,7 @@ interface Props {
   children: JSX.Element[] | JSX.Element;
 }
 
-export const PageLayout = ({ children }: Props) => {
+export const Layout = ({ children }: Props) => {
   const { asPath } = useRouter();
   const [theme, setTheme] = useTheme();
   const expanded = useExpandedValue();

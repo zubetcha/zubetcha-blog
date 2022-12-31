@@ -1,16 +1,16 @@
+import type { Post } from '@type/post';
+
 import { useRouter } from 'next/router';
-import classes from './PostList.module.scss';
 import { getUpperCategory } from '@utils/category';
+import classes from './PostListContainer.module.scss';
 
 import {
-  ContentLayout,
   PostCard,
   Select,
   PageSEO,
   Button,
+  PageTitleContainer,
 } from '@components/index';
-
-import { Post } from '@type/post';
 
 interface Props {
   posts: Array<Post>;
@@ -74,7 +74,7 @@ export const PostListContainer = ({
         description={title}
         path={router.asPath}
       />
-      <ContentLayout title={title}>
+      <PageTitleContainer title={title}>
         <Select
           defaultLabel={
             router.asPath.split('/').includes('category')
@@ -120,7 +120,7 @@ export const PostListContainer = ({
             )}
           </div>
         </div>
-      </ContentLayout>
+      </PageTitleContainer>
     </>
   );
 };
