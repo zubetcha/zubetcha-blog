@@ -64,6 +64,8 @@ tags:
 
 Compound component
 
+TextField 컴포넌트는 초기에 디자인 되었을 때 아래와 같이 input의 위에는 레이블, 아래에는 헬퍼 텍스트가 함께 보이는 UI를 띄고 있었고, TextField가 사용되는 곳은 모두 시안이 같았다. 그래서 처음 개발했을 때에는 반드시 레이블과 헬퍼텍스트를 
+
 Render props
 
 확장성, 유연함, 제약
