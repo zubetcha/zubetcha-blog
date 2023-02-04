@@ -48,7 +48,9 @@ export const getPost = (path: string) => {
   const slug = getSlug(path);
 
   if (data.published) {
-    const tags: string[] = (data.tags || []).map((tag: string) => tag.trim());
+    const tags: string[] = (data.tags || []).map((tag: string) =>
+      tag.toString().trim(),
+    );
 
     const result: Post = {
       frontMatter: {
