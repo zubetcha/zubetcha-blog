@@ -55,6 +55,18 @@ export const ResumePage = () => {
           </div>
         </div>
       </div>
+      <SubSection
+        content={{
+          title: '의식주컴퍼니',
+          period: '2023.01 - 현재',
+          description: '모노레포 / 어드민 / 백오피스',
+          tech: 'React / Redux / Redux-saga / Styled-components / Turborepo / Yarn berry',
+        }}
+      >
+        <TaskSection title='모노레포 구축'>
+          <ul></ul>
+        </TaskSection>
+      </SubSection>
       <MainSection title='Work Experiences'>
         <SubSection
           content={{
@@ -242,8 +254,8 @@ export const ResumePage = () => {
         <TaskSection title='스파르타 코딩클럽 항해99 React 튜터'>
           <ul>
             <li>
-              스파르타 코딩클럽 항해99 (9기, 10기){' '}
-              <Period>(2022.09 - 현재)</Period>
+              스파르타 코딩클럽 항해99 (9기, 10기, 12기){' '}
+              <Period>(2022.09 - 2023.03)</Period>
             </li>
             <li>
               스파르타 코딩클럽 X ICT 이노베이션 캠프 (서울, 동북){' '}
