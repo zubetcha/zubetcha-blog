@@ -45,6 +45,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["next", "virtual:bb3404aed19d713c305193cdeaaf636f166654620e47cc8f6aad85c937f77ba2af0e43faec73ccf7391386713717a5908d9ebe65f994c67c4c344305ba825c00#npm:12.2.5"],\
             ["next-compose-plugins", "npm:2.2.1"],\
             ["next-mdx-remote", "virtual:bb3404aed19d713c305193cdeaaf636f166654620e47cc8f6aad85c937f77ba2af0e43faec73ccf7391386713717a5908d9ebe65f994c67c4c344305ba825c00#npm:4.1.0"],\
+            ["next-seo", "virtual:bb3404aed19d713c305193cdeaaf636f166654620e47cc8f6aad85c937f77ba2af0e43faec73ccf7391386713717a5908d9ebe65f994c67c4c344305ba825c00#npm:5.15.0"],\
             ["prettier", "npm:2.7.1"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:bb3404aed19d713c305193cdeaaf636f166654620e47cc8f6aad85c937f77ba2af0e43faec73ccf7391386713717a5908d9ebe65f994c67c4c344305ba825c00#npm:18.2.0"],\
@@ -8393,6 +8394,36 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["next-seo", [\
+        ["npm:5.15.0", {\
+          "packageLocation": "./.yarn/cache/next-seo-npm-5.15.0-4ac654b130-05b0769d9c.zip/node_modules/next-seo/",\
+          "packageDependencies": [\
+            ["next-seo", "npm:5.15.0"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:bb3404aed19d713c305193cdeaaf636f166654620e47cc8f6aad85c937f77ba2af0e43faec73ccf7391386713717a5908d9ebe65f994c67c4c344305ba825c00#npm:5.15.0", {\
+          "packageLocation": "./.yarn/__virtual__/next-seo-virtual-b7fe177495/0/cache/next-seo-npm-5.15.0-4ac654b130-05b0769d9c.zip/node_modules/next-seo/",\
+          "packageDependencies": [\
+            ["next-seo", "virtual:bb3404aed19d713c305193cdeaaf636f166654620e47cc8f6aad85c937f77ba2af0e43faec73ccf7391386713717a5908d9ebe65f994c67c4c344305ba825c00#npm:5.15.0"],\
+            ["@types/next", null],\
+            ["@types/react", "npm:18.0.25"],\
+            ["@types/react-dom", "npm:18.0.6"],\
+            ["next", "virtual:bb3404aed19d713c305193cdeaaf636f166654620e47cc8f6aad85c937f77ba2af0e43faec73ccf7391386713717a5908d9ebe65f994c67c4c344305ba825c00#npm:12.2.5"],\
+            ["react", "npm:18.2.0"],\
+            ["react-dom", "virtual:bb3404aed19d713c305193cdeaaf636f166654620e47cc8f6aad85c937f77ba2af0e43faec73ccf7391386713717a5908d9ebe65f994c67c4c344305ba825c00#npm:18.2.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/next",\
+            "@types/react-dom",\
+            "@types/react",\
+            "next",\
+            "react-dom",\
+            "react"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["node-gyp", [\
         ["npm:9.3.1", {\
           "packageLocation": "./.yarn/unplugged/node-gyp-npm-9.3.1-43540bab9c/node_modules/node-gyp/",\
@@ -10919,6 +10950,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["next", "virtual:bb3404aed19d713c305193cdeaaf636f166654620e47cc8f6aad85c937f77ba2af0e43faec73ccf7391386713717a5908d9ebe65f994c67c4c344305ba825c00#npm:12.2.5"],\
             ["next-compose-plugins", "npm:2.2.1"],\
             ["next-mdx-remote", "virtual:bb3404aed19d713c305193cdeaaf636f166654620e47cc8f6aad85c937f77ba2af0e43faec73ccf7391386713717a5908d9ebe65f994c67c4c344305ba825c00#npm:4.1.0"],\
+            ["next-seo", "virtual:bb3404aed19d713c305193cdeaaf636f166654620e47cc8f6aad85c937f77ba2af0e43faec73ccf7391386713717a5908d9ebe65f994c67c4c344305ba825c00#npm:5.15.0"],\
             ["prettier", "npm:2.7.1"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:bb3404aed19d713c305193cdeaaf636f166654620e47cc8f6aad85c937f77ba2af0e43faec73ccf7391386713717a5908d9ebe65f994c67c4c344305ba825c00#npm:18.2.0"],\

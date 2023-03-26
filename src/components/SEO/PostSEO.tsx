@@ -1,40 +1,57 @@
 import Head from 'next/head';
-import { getBlogJSONLD } from '@utils/page';
+import { NextSeo, ArticleJsonLd } from 'next-seo';
 import { BLOG_INFO } from '@constants/blog';
+
+import type { NextSeoProps, ArticleJsonLdProps } from 'next-seo';
+
 interface Props {
   title: string;
   description: string;
   path: string;
   date: string;
+  tags: string[];
 }
 
-export const PostSEO = ({ title, description, path, date }: Props) => {
-  const url = BLOG_INFO.baseUrl + path;
-  const jsonld = getBlogJSONLD({
-    path,
-    title,
+export const PostSEO = ({ title, description, path, date, tags }: Props) => {
+  const { author, baseUrl } = BLOG_INFO;
+  const publishedAt = new Date(date).toISOString();
+  const modifiedAt = new Date(date).toISOString();
+  const url = baseUrl + path;
+
+  const seoProps: NextSeoProps = {
+    title: `${title} - ${author}`,
     description,
-    datePublished: new Date(date).toISOString(),
-  });
+    canonical: url,
+    openGraph: {
+      type: 'article',
+      url,
+      title,
+      description,
+      article: {
+        publishedTime: publishedAt,
+        modifiedTime: modifiedAt,
+        authors: [`${BLOG_INFO.baseUrl}/about`],
+        tags,
+      },
+    },
+    additionalMetaTags: [],
+  };
+
+  const jsonLdProps: ArticleJsonLdProps = {
+    authorName: author,
+    dateModified: modifiedAt,
+    datePublished: publishedAt,
+    description,
+    images: [],
+    publisherName: author,
+    title,
+    url,
+  };
 
   return (
-    <Head>
-      <title>{`${title} - ${BLOG_INFO.author}`}</title>
-      <meta name='description' content={description} />
-      <meta property='og:title' content={title} />
-      <meta property='og:description' content={description} />
-      <meta property='og:type' content='article' />
-      <meta property='og:url' content={url} />
-      <meta property='og:image' content={BLOG_INFO.image} />
-      <meta property='og:article:author' content={BLOG_INFO.author} />
-      <meta property='twitter:card' content='summary' />
-      <meta property='twitter:title' content={title} />
-      <meta property='twitter:description' content={description} />
-      <meta property='twitter:image' content={BLOG_INFO.image} />
-      <link rel='canonical' href={url} />
-      {Object.keys(jsonld).length > 0 && (
-        <script type='application/ld+json'>{JSON.stringify(jsonld)}</script>
-      )}
-    </Head>
+    <>
+      <NextSeo {...seoProps} />
+      <ArticleJsonLd {...jsonLdProps} />
+    </>
   );
 };
