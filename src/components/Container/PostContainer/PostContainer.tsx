@@ -32,6 +32,7 @@ export const PostContainer = ({
         description={description}
         path={`/${slug}`}
         date={date}
+        tags={tags}
       />
       <article>
         <div className={classes.container}>
