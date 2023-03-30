@@ -3,7 +3,6 @@ import path from 'path';
 import { serialize } from 'next-mdx-remote/serialize';
 import { sync } from 'glob';
 import matter from 'gray-matter';
-import { visit } from 'unist-util-visit';
 
 import remarkToc from 'remark-toc';
 import remarkGfm from 'remark-gfm';
@@ -33,10 +32,7 @@ export const getAllPosts = async () => {
       return prev;
     }, [])
     .sort((a, b) => {
-      return (
-        new Date(b.frontMatter.date).getTime() -
-        new Date(a.frontMatter.date).getTime()
-      );
+      return new Date(b.frontMatter.date).getTime() - new Date(a.frontMatter.date).getTime();
     });
 
   return posts;
@@ -48,9 +44,7 @@ export const getPost = (path: string) => {
   const slug = getSlug(path);
 
   if (data.published) {
-    const tags: string[] = (data.tags || []).map((tag: string) =>
-      tag.toString().trim(),
-    );
+    const tags: string[] = (data.tags || []).map((tag: string) => tag.toString().trim());
 
     const result: Post = {
       frontMatter: {
@@ -78,19 +72,6 @@ const getSlug = (path: string) => {
 
 export const getLinkContent = (content: string) => {
   return content.replace(/ /g, '_').toLowerCase();
-};
-
-const setAriaLabelToHeading = () => {
-  return (tree: Node) => {
-    visit(tree as any, 'element', (node: any) => {
-      const headingTagList = ['h1', 'h2', 'h3'];
-      const tagName = node.tagName || '';
-
-      if (headingTagList.includes(tagName)) {
-        node.properties.ariaLabel = getLinkContent(node.children[0].value);
-      }
-    });
-  };
 };
 
 export const parseMdx = async (source: string) => {
