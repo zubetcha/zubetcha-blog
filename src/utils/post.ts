@@ -74,19 +74,6 @@ export const getLinkContent = (content: string) => {
   return content.replace(/ /g, '_').toLowerCase();
 };
 
-const setAriaLabelToHeading = () => {
-  return (tree: Node) => {
-    visit(tree as any, 'element', (node: any) => {
-      const headingTagList = ['h1', 'h2', 'h3'];
-      const tagName = node.tagName || '';
-
-      if (headingTagList.includes(tagName)) {
-        node.properties.ariaLabel = getLinkContent(node.children[0].value);
-      }
-    });
-  };
-};
-
 export const parseMdx = async (source: string) => {
   return serialize(source, {
     parseFrontmatter: true,
