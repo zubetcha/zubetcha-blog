@@ -49,16 +49,44 @@ tags:
 |               | update             | push 명령어 실행 시 (pre-receive와 비슷하며, 다수의 브랜치를 push 하는 경우에만 차이가 있음) |
 |               | post-receive       | push 명령어 실행 시 완료된 후                                                                |
 
-이름에서도 알 수 있듯 pre라는 이름이 있으면 특정 이벤트 완료 전, post라는 이름이 있으면 특정 이벤트가 완료된 후 실행되는 경우가 많다. 그리고 대부분의 `pre-\*` 훅은 실행 스크립트가 반환하는 exit status가 0이 아니면 해당 이벤트가 거절된다. 인자로 받는 값, 이벤트 중단 가능 여부 등 훅마다 달라지는 것들도 많으니 더 자세한 내용은 [공식문서](https://git-scm.com/book/ko/v2/Git%EB%A7%9E%EC%B6%A4-Git-Hooks)에서 확인할 수 있다. 영어로 되어 있는 문서가 한국어보다 더 자세하게 설명되어 있다.
+이름에서도 알 수 있듯 pre라는 이름이 있으면 특정 이벤트 완료 전, post라는 이름이 있으면 특정 이벤트가 완료된 후 실행되는 경우가 많다. 그리고 대부분의 `pre-\*` 훅은 실행 스크립트가 반환하는 exit status가 0이 아니면 해당 이벤트가 거절된다. 인자로 받는 값, 이벤트 중단 가능 여부 등 훅마다 달라지는 것들도 많으니 더 자세한 내용은 [공식문서](https://git-scm.com/book/ko/v2/Git%EB%A7%9E%EC%B6%A4-Git-Hooks)에서 확인할 수 있다.
 
 ## Husky란?
 
-husky는 위에서 살펴본 git hook을 보다 더 편리하게 사용할 수 있도록 해주는 라이브러리이다.
+husky는 위에서 살펴본 git hook을 보다 더 편리하게 사용할 수 있도록 해주는 라이브러리이다. git hook을 바로 사용할 수 있는데도 불구하고 많은 사람들이 굳이 husky를 사용하는 이유는 뭘까?
+
+사실 git hook 자체를 적용하는 방법 자체는 간단하다. 프로젝트의 루트에서 `.git/hooks/` 폴더 하위에 파일명만 git hook의 이름으로 설정해놓으면 자동으로 적용된다. 심지어 폴더도 이미 만들어져 있으며 sample 파일도 존재한다.
+
+사실 .git 폴더는 숨김 처리되어 있어 에디터에서는 바로 확인하기 어렵다. 숨겨져 있는 폴더와 파일까지 리스트업해주는 명령어를 실행해보면,
+
+```jsx
+$ ls -a
+```
+
+<p align="center">
+  <img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2023/03/2023-03_husky-git-hook.png" alt="git hooks location" width="80%">
+</p>
+
+이렇게 `.git` 폴더가 이미 만들어져 있는 걸 확인할 수 있다. 그리고 hooks 폴더까지 들어가보면,
+
+<p align="center">
+  <img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2023/03/2023-03_husky-git-hook-2.png" alt="git hooks location" width="80%">
+</p>
+
+사용할 수 있는 git hook의 전체 종류들을 확인할 수 있다. 각 파일에서 `.sample`만 지워주면 바로 적용할 수도 있다.
+
+하지만 지금까지 본 것처럼 .git 폴더는 숨겨져 있기 때문에 우리가 흔히 사용하는 에디터에서는 찾아볼 수 없다. 그렇기 때문에 실제로 git hook을 바로 적용하기 위해 수정하기 위해서는 터미널에서 vi, vim 등으로 편집을 해야 하는데 익숙하지 않은 사람들에게는 꽤나 번거롭고 어려운 작업이 될 것이다.
+
+`huksy`는 개발자가 겪을 수 있는 이러한 불편한 점을 에디터에서 원하는 스크립트로 수정할 수 있는 환경을 제공해줌으로써 해결해주고 있다.
 
 스크립트 실행 불가 - 권한 문제 [이슈](https://github.com/typicode/husky/issues/1177)
 
-# 02. 커밋 시 lint 검사하기
+# 02. husky 사용 방법
 
-# 03. 커밋 메시지에 Jira 이슈 번호 자동으로 추가하기
+## 설치 및 세팅
+
+## stage 소스코드 lint 검사하기
+
+## 커밋 메시지에 Jira 이슈 번호 자동으로 추가하기
 
 # 마무링
