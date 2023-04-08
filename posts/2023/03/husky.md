@@ -81,9 +81,55 @@ $ ls -a
 
 스크립트 실행 불가 - 권한 문제 [이슈](https://github.com/typicode/husky/issues/1177)
 
-# 02. husky 사용 방법
+# 02. husky 사용하기
 
-## 설치 및 세팅
+## 사용 방법
+
+### husky 설치
+
+```jsx
+$ npm install husky --dev
+$ yarn add husky --dev
+```
+
+### prepare 세팅
+
+패키지 설치 후 자동으로 Git hook을 사용할 수 있도록 하기 위해 package.json을 수정해야 한다. 직접 수정해도 되고, 명령어를 사용해도 된다.
+
+```jsx
+$ npm pkg set scripts.prepare="husky install"
+```
+
+```jsx
+// package.json
+
+{
+  "scripts": {
+    "prepare": "husky install"
+  }
+}
+```
+
+`prepare`는 `라이프 사이클 스크립트`이다.
+
+> `라이프 사이클 스크립트`란?
+> package.json의 scripts 필드는 개발자가 커스텀하여 설정하는 스크립트 외에도, 기본으로 정해져 있는 스크립트가 있다. 이러한 예약 스크립트를 라이프 사이클 스크립트라고 부른다.
+> 라이프 사이클 스크립트는 종류와 prefix에 따라 패키지의 install 혹은 publish 명령어가 실행되기 전/후로 호출된다.
+
+라이프 사이클 스크립트는 [이 블로그](https://beomy.github.io/tech/etc/package-json-scripts/)에 잘 정리되어 있으니 읽어보면 좋을 것 같다!
+
+단, 패키지 매니저로 Yarn berry를 사용하고 있다면 Yarn +2부터는 prepare를 지원하지 않기 때문에 `postinstall`로 설정해야 한다.
+
+```jsx
+// package.json
+{
+  "scripts": {
+    "postinstall": "husky install"
+  }
+}
+```
+
+### hook 생성하기
 
 ## stage 소스코드 lint 검사하기
 
