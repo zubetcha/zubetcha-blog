@@ -1,6 +1,6 @@
 ---
 
-title: [Typescript] never 타입에 대한 고찰
+title: '[Typescript] never 타입에 대한 고찰'
 category: Typescript
 date: 2023-04-22
 description: 
@@ -11,6 +11,8 @@ tags:
   - never
 
 ---
+
+# 들어가며
 
 요즘 타입스크립트 공부를 위해 [type-challenges](https://github.com/type-challenges/type-challenges) 문제들을 풀어보는 스터디를 하고 있는데, 며칠 전 푼 문제 중 이런 게 있었다.
 
