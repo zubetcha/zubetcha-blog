@@ -53,7 +53,7 @@ tags:
 
 ## Husky란?
 
-husky는 위에서 살펴본 git hook을 보다 더 편리하게 사용할 수 있도록 해주는 라이브러리이다. git hook을 바로 사용할 수 있는데도 불구하고 많은 사람들이 굳이 husky를 사용하는 이유는 뭘까?
+[husky](https://typicode.github.io/husky/#/)는 위에서 살펴본 git hook을 보다 더 편리하게 사용할 수 있도록 해주는 라이브러리이다. git hook을 바로 사용할 수 있는데도 불구하고 많은 사람들이 굳이 husky를 사용하는 이유는 뭘까?
 
 사실 git hook 자체를 적용하는 방법 자체는 간단하다. 프로젝트의 루트에서 `.git/hooks/` 폴더 하위에 파일명만 git hook의 이름으로 설정해놓으면 자동으로 적용된다. 심지어 폴더도 이미 만들어져 있으며 sample 파일도 존재한다.
 
@@ -118,7 +118,7 @@ $ npm pkg set scripts.prepare="husky install"
 
 라이프 사이클 스크립트는 [이 블로그](https://beomy.github.io/tech/etc/package-json-scripts/)에 잘 정리되어 있으니 읽어보면 좋을 것 같다!
 
-단, 패키지 매니저로 Yarn berry를 사용하고 있다면 Yarn +2부터는 prepare를 지원하지 않기 때문에 `postinstall`로 설정해야 한다.
+단, `Yarn berry`를 사용하고 있다면 Yarn +2부터는 prepare를 지원하지 않기 때문에 `postinstall`로 설정해야 한다.
 
 ```jsx
 // package.json
@@ -131,7 +131,53 @@ $ npm pkg set scripts.prepare="husky install"
 
 ### hook 생성하기
 
+husky install이 실행되어 루트에 .husky 폴더가 생성되어 있다면 huksy CLI로 훅을 간편하게 생성할 수 있다.
+
+```jsx
+$ npx husky add .husky/pre-commit "npm test"
+```
+
+위의 명령어를 실행하면 .huksy 폴더에 pre-commit 파일이 생성되고 파일 안에는 npm test라는 스크립트가 작성되어 있을 것이다. pre-commit은 커밋이 되기 전에 호출되는 훅이다.
+
+변경사항을 스테이지로 올린 후 커밋을 했을 때,
+
+```jsx
+$ git add .husky/pre-commit
+$ git commit -m "pre-commit"
+```
+
+만약 test에 실패했다면 커밋도 취소될 것이다.
+
+만약 작성해야 하는 스크립트가 길고 복잡하다면 직접 .husky 폴더에 파일을 생성해줘도 된다. 이 때 파일 이름은 반드시 git hook 이름과 일치해야 한다는 점을 유의하자.
+
 ## stage 소스코드 lint 검사하기
+
+husky로 처음 적용한 건 lint-staged이다.
+
+입사 후 초반에 개발한 작업들이 있었는데, 잘 돌아가는 걸 확인한 후 소스코드를 합치는 브랜치로 병합까지 잘 마쳤다. 그 후 다른 개발자분이 해당 브랜치를 배포하려고 하셨는데 아래와 같은 디엠을 받았다.
+
+<p align="center">
+  <img src="https://zubetcha-blog.s3.ap-northeast-2.amazonaws.com/2023/03/2023-03_husky-dm.png" alt="dm" width="80%" />
+</p>
+
+lint 생각을 하지 못하고 바로 커밋을 해버린 것이다. 커밋 전에 빌드를 해보지 않은 것 또한 내 불찰이었다.
+
+결국 다시 lint 오류가 나는 곳들을 다 고치고, 커밋 전에 빌드 테스트를 해본 후, PR을 올리고, 승인을 받고, 머지하고 다시 배포를 하는 프로세스를 반복해야 했다.
+
+모노레포를 구축하면서 이렇게 사람의 실수로 인해 불필요한 리소스를 써야 하는 경우가 발생하지 않도록 시스템화하면 좋겠다는 생각을 했고, 마침 이런 상황에 적합한 `lint-staged`라는 라이브러리가 있어 도입해 보았다.
+
+### lint-staged
+
+[lint-staged](https://github.com/okonet/lint-staged)는 스테이지에 올라가 있는 소스코드에 대해서 lint 검사를 실시하고, 만약 검사에 통과하지 못했다면 실행하려고 하는 것을 중지시켜주는 라이브러리이다. 즉, lint-staged를 잘 활용하면 원격 레포지토리에는 lint 에러가 발생할 수 있는 코드는 없다는 걸 보장할 수 있다.
+
+사용 방법은 매우 간단하다.
+
+설치
+
+```jsx
+$ npm install --save-dev lint-staged
+
+```
 
 ## 커밋 메시지에 Jira 이슈 번호 자동으로 추가하기
 
