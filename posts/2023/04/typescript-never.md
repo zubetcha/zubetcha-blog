@@ -4,7 +4,7 @@ title: '[Typescript] never 타입에 대한 고찰'
 category: Typescript
 date: 2023-04-22
 description: 
-published: true
+published: false
 slug: typescript-never
 tags: 
   - typescript
@@ -18,9 +18,7 @@ tags:
 
 never를 직접 타입으로 지정할 일이 거의 없었기 때문에 그냥 없는 타입(?) 정도로만 생각했었는데 이 참에 자세히 찾아 볼 필요가 있다는 생각이 들었다.
 
-# never Shallow Dive
-
-## never?
+# never Deep Dive
 
 React로 개발을 해 본 사람이라면 한 번쯤 이런 경험을 한 적이 있을 것이다.
 
@@ -46,6 +44,26 @@ useState로 초기 상태를 `빈 배열`로 할당한다. 그 다음, 어딘가
 
 어떤 변수에 빈 배열을 할당할 때 타입을 별도로 지정해주지 않으면 해당 변수의 타입은 `never[]`로 추론된다. 아무래도 never에 할당할 수 없는 타입들이 존재하는 모양이다.
 
+## never 타입이란?
+
+타입스크립트에서 never 타입은 값의 공집합을 의미한다. 즉, never 타입은 값을 포함할 수 없는 빈 타입이다.
+
+never 타입은 아래와 같은 상황에서의 타입을 나타낸다.
+
+- 값을 포함할 수 없는 빈 타입
+
+  - 제네릭과 함수에서 허용되지 않는 매개변수
+  - 호환되지 않는 타입들의 교차 타입
+  - 빈 합집합(무의 합집합)
+
+- 실행이 끝날 때 호출자에게 제어를 반환하지 않는 함수의 반환 타입
+
+  - 예) Node의 process.exit
+  - void는 호출자에게 함수가 유용한 것을 반환하지 않는다는 것이므로 혼동하지 않도록 한다.
+
+- 절대로 도달할수 없을 esle 분기의 조건 타입
+- 거부된 프로미스에서 처리된 값의 타입
+
 ## never의 타입 호환성
 
 다음은 타입스크립트 공식문서 중 [`타입 좁히기`](https://www.typescriptlang.org/docs/handbook/2/narrowing.html)에서 발췌한 내용이다.
@@ -68,8 +86,6 @@ useState로 초기 상태를 `빈 배열`로 할당한다. 그 다음, 어딘가
 즉, never 타입에는 어떠한 타입도 할당할 수 없다. 위에서 살펴본 객체뿐만 아니라 never가 아니라면 할당이 불가능한 것이다.
 
 따라서 배열을 선언할 때에는 요소로 어떤 타입이 올 수 있는지 명시해줘야 한다.
-
-# never Deep Dive
 
 ## union과 never
 
@@ -140,4 +156,5 @@ type cases = [
 참고
 
 - [The Type Hierarchy Tree](https://www.zhenghao.io/posts/type-hierarchy-tree#the-bottom-of-the-tree)
+- [A Complete Guide To TypeScript's Never Type](https://www.zhenghao.io/posts/ts-never)
 - [타입스크립트의 Never 타입 완벽 가이드](https://ui.toast.com/posts/ko_20220323)
