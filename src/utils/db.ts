@@ -50,9 +50,10 @@ const getPosts = async ({ page, limit = 10, category }: GetPostsParams) => {
 
   const posts = await Post.find({ published: true }, null, { sort: { updatedDate: -1 } })
     .limit(limit)
-    .skip(offset);
-
-  console.log(posts);
+    .skip(offset)
+    .lean()
+    .exec()
+    .then((posts) => posts.map((post: any) => ({ ...post, _id: post._id.toString(), date: post.date.toString(), updatedDate: post.updatedDate.toString() })));
 
   const totalPost = await Post.countDocuments({ published: true });
   const totalPage = Math.ceil(totalPost / limit);

@@ -30,8 +30,8 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({ query }) =
 
   return {
     props: {
-      posts: [],
-      totalPage: 0,
+      posts,
+      totalPage,
     },
   };
 };
