@@ -1,7 +1,7 @@
 import { IconRoleUnionType } from '@type/element';
 
 export const NAV_LIST = [
-  { name: 'Posts', path: '/page/1' },
+  { name: 'Posts', path: '/post?page=1' },
   { name: 'About', path: '/about' },
 ];
 
