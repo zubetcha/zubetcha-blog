@@ -22,3 +22,20 @@ export interface HeadingContent {
   link: string;
   className: string;
 }
+
+export type Category = string;
+
+export type NewFrontMatter = {
+  author: string;
+  category: string;
+  date: string;
+  description: string;
+  published: boolean;
+  slug: string;
+  tags: string[];
+  title: string;
+  updatedDate: string;
+  url: string;
+  __v: number;
+  _id: string;
+};

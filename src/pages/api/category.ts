@@ -1,9 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { getCategories } from '@lib/db';
+import type { Category } from '@type/post';
 
 type Data = {
-  categories: { id: string; name: string }[];
+  categories: Category[];
 };
 
 const handler = async (req: NextApiRequest, res: NextApiResponse<Data>) => {

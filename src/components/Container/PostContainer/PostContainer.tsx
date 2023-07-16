@@ -4,21 +4,17 @@ import { useRef } from 'react';
 import { useWindowSize } from '@hooks/useWindowSize';
 import classes from './PostContainer.module.scss';
 import { formatDate } from '@utils/date';
+import type { NewFrontMatter } from '@type/post';
 import { Tag, PostSEO, ToC, Comment } from '@components/index';
 
 interface Props {
   children: React.ReactNode;
-  frontMatter: FrontMatter;
+  frontMatter: NewFrontMatter;
   slug: string;
   headingList: Array<HeadingContent>;
 }
 
-export const PostContainer = ({
-  children,
-  frontMatter,
-  slug,
-  headingList,
-}: Props) => {
+export const PostContainer = ({ children, frontMatter, slug, headingList }: Props) => {
   const { title, date, tags, category, description } = frontMatter;
   const { isMobile } = useWindowSize();
   const formattedDate = formatDate(date);
@@ -27,13 +23,7 @@ export const PostContainer = ({
 
   return (
     <>
-      <PostSEO
-        title={title}
-        description={description}
-        path={`/${slug}`}
-        date={date}
-        tags={tags}
-      />
+      <PostSEO title={title} description={description} path={`/${slug}`} date={date} tags={tags} />
       <article>
         <div className={classes.container}>
           <header>
