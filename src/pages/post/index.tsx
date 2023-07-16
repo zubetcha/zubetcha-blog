@@ -1,7 +1,9 @@
-import type { GetServerSideProps, InferGetServerSidePropsType } from 'next';
-import type { ParsedUrlQuery } from 'querystring';
+import { useEffect } from 'react';
 
-import { getPosts } from '@utils/db';
+import axios from 'axios';
+import type { GetServerSideProps } from 'next';
+
+import { getPosts } from '@lib/db';
 
 type Props = {
   posts: Array<any>;
@@ -12,12 +14,21 @@ const PostListPage = ({ posts, totalPage }: Props) => {
   console.log(posts);
   console.log(totalPage);
 
+  useEffect(() => {
+    const getCategories = async () => {
+      const { data } = await axios.get('/api/category');
+      console.log(data);
+    };
+
+    getCategories();
+  }, []);
+
   return <div>PostListPage</div>;
 };
 
 export default PostListPage;
 
-export const getServerSideProps: GetServerSideProps<Props> = async ({ query }) => {
+export const getServerSideProps: GetServerSideProps<Props> = async ({ query, res }) => {
   if (typeof query.page !== 'string') {
     return {
       notFound: true,
@@ -25,7 +36,6 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({ query }) =
   }
 
   const page = parseInt(query.page, 10);
-
   const { posts, totalPage } = await getPosts({ page });
 
   return {
