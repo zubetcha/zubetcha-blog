@@ -1,9 +1,4 @@
-import fs from 'fs';
-import path from 'path';
 import { serialize } from 'next-mdx-remote/serialize';
-import { sync } from 'glob';
-import matter from 'gray-matter';
-
 import remarkToc from 'remark-toc';
 import remarkGfm from 'remark-gfm';
 import remarkBreaks from 'remark-breaks';
@@ -12,63 +7,6 @@ import remarkMath from 'remark-math';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeKatex from 'rehype-katex';
 import rehypePrism from 'rehype-prism-plus';
-
-import { Post, FrontMatter } from '../type/post';
-
-const DIR_REPLACE_STRING = '/posts';
-export const postsDir = path.join(process.cwd(), 'posts');
-
-export const getAllPosts = async () => {
-  const files = sync(`${postsDir}/**/*.md*`).reverse();
-
-  const posts = files
-    .reduce<Post[]>((prev, path) => {
-      const result = getPost(path);
-
-      if (result) {
-        prev.push(result);
-      }
-
-      return prev;
-    }, [])
-    .sort((a, b) => {
-      return new Date(b.frontMatter.date).getTime() - new Date(a.frontMatter.date).getTime();
-    });
-
-  return posts;
-};
-
-export const getPost = (path: string) => {
-  const file = fs.readFileSync(path, { encoding: 'utf-8' });
-  const { data, content } = matter(file);
-  const slug = getSlug(path);
-
-  if (data.published) {
-    const tags: string[] = (data.tags || []).map((tag: string) => tag.toString().trim());
-
-    const result: Post = {
-      frontMatter: {
-        ...(data as FrontMatter),
-        tags,
-        date: new Date(data.date).toString(),
-      },
-      content,
-      fields: {
-        slug,
-      },
-      path,
-    };
-
-    return result;
-  }
-};
-
-const getSlug = (path: string) => {
-  return path
-    .slice(path.indexOf(DIR_REPLACE_STRING) + DIR_REPLACE_STRING.length + 1)
-    .replace('.mdx', '')
-    .replace('.md', '');
-};
 
 export const getLinkContent = (content: string) => {
   return content.replace(/ /g, '_').toLowerCase();

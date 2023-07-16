@@ -1,0 +1,125 @@
+@import '@styles/colors';
+@import '@styles/mixins';
+@import '@styles/sizes';
+
+.cards-wrapper {
+  width: fit-content;
+  display: grid;
+  grid-template-columns: repeat(1, minmax(toRem(360), toRem(720)));
+  gap: toRem(24);
+
+  @include large-desktop() {
+    grid-template-columns: repeat(2, minmax(toRem(480), toRem(600)));
+  }
+}
+
+.button-wrapper {
+  @include flex-box(between, center);
+
+  .page-button {
+    width: fit-content;
+    border-radius: 48px;
+    background-color: var(--color-btn-bg);
+    border: 1px solid var(--color-btn-bg);
+    color: var(--color-btn-main-text);
+    cursor: pointer;
+    transition: border-color 0.2s ease-in-out;
+    @include label-large();
+    @include flex-box(between, center);
+    @include flex-direction(row, 8);
+
+    &:hover {
+      border-color: var(--color-btn-hover-border);
+    }
+
+    &.prev {
+      padding: toRem(12) toRem(20) toRem(12) toRem(16);
+    }
+
+    &.next {
+      padding: toRem(12) toRem(16) toRem(12) toRem(20);
+    }
+  }
+}
+
+.container {
+  border-radius: $border-radius;
+  background-color: var(--color-postcard-bg); // done
+  transition: background-color, box-shadow 0.2s ease-in-out;
+  // width: toRem(600);
+  @include flex-box(row, 0);
+
+  &:hover {
+    box-shadow: var(--box-shadow-3);
+    .readmore {
+      color: var(--color-postcard-main-text) !important;
+    }
+    svg {
+      fill: var(--color-postcard-main-text) !important;
+    }
+  }
+
+  .wrapper {
+    width: 100%;
+    padding: toRem(32);
+    @include flex-direction(column, 24);
+
+    .tags-wrapper {
+      @include flex-direction(row, 12);
+    }
+
+    .contents-wrapper {
+      @include flex-box(between, start);
+      @include flex-direction(column, 16);
+      height: 100%;
+      .title {
+        @include headline-small(700);
+        color: var(--color-postcard-main-text);
+      }
+
+      .above-wrapper {
+        width: 100%;
+        @include flex-box(between, start);
+        @include flex-direction(column, 16);
+        .description {
+          @include body-medium();
+          color: var(--color-postcard-sub-text);
+        }
+      }
+
+      .below-wrapper {
+        @include flex-box(between, center);
+        width: 100%;
+
+        .readmore-wrapper {
+          @include flex-box(center, center);
+          @include flex-direction(row, 4);
+          cursor: pointer;
+
+          .readmore {
+            @include body-medium();
+            color: var(--color-postcard-sub-text);
+            transition: color 0.2s ease-in-out;
+          }
+          svg {
+            fill: var(--color-postcard-sub-text);
+            transition: fill 0.2s ease-in-out;
+          }
+          &:hover {
+            .readmore {
+              color: var(--color-postcard-main-text);
+            }
+            svg {
+              fill: var(--color-postcard-main-text);
+            }
+          }
+        }
+
+        .createdAt {
+          @include body-small();
+          color: var(--color-postcard-sub-text);
+        }
+      }
+    }
+  }
+}

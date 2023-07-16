@@ -11,6 +11,7 @@ const nextConfig = {
     includePaths: [path.join(__dirname, 'src/styles')],
     reactStrictMode: true,
   },
+  pageExtensions: ['tsx', 'ts'],
   async rewrites() {
     return [
       {

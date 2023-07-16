@@ -5,7 +5,7 @@ export default function HomePage() {
   const router = useRouter();
 
   useLayoutEffect(() => {
-    router.push('/page/1');
+    router.push('/post?page=1');
   }, [router]);
 
   return <></>;
