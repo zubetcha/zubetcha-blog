@@ -23,10 +23,9 @@ const PostListPage = ({ posts, page, totalPage, category }: Props) => {
 
   useEffect(() => {
     const getCategories = async () => {
-      const { data } = await axios.get('/api/category');
-      const { categories } = data;
-
-      setCategories(categories);
+      // const { data } = await axios.get('/api/category');
+      // const { categories } = data;
+      // setCategories(categories);
     };
 
     getCategories();
