@@ -8,8 +8,6 @@ interface Props {
 type Ref = HTMLDivElement;
 
 export const ToC = forwardRef<Ref, Props>(({ headingList }, ref) => {
-  console.log(headingList);
-
   return (
     <div className={classes.ToC} ref={ref}>
       <ul>
