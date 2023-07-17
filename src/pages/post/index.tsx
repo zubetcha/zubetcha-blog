@@ -20,14 +20,11 @@ type Props = {
 const PostListPage = ({ posts, page, totalPage, category }: Props) => {
   const hasMore = page < totalPage;
   const [categories, setCategories] = useState<Category[]>([]);
-  console.log(posts);
-  console.log(totalPage);
 
   useEffect(() => {
     const getCategories = async () => {
       const { data } = await axios.get('/api/category');
       const { categories } = data;
-      console.log(categories);
 
       setCategories(categories);
     };

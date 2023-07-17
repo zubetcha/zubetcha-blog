@@ -3,8 +3,6 @@ import { useEffect, useRef } from 'react';
 export const Comment = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  console.log('comment');
-
   useEffect(() => {
     if (containerRef.current) {
       const utterances = document.createElement('script');
