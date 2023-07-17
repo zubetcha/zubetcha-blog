@@ -23,9 +23,13 @@ const PostListPage = ({ posts, page, totalPage, category }: Props) => {
 
   useEffect(() => {
     const getCategories = async () => {
-      // const { data } = await axios.get('/api/category');
-      // const { categories } = data;
-      // setCategories(categories);
+      try {
+        const { data } = await axios.get('/api/category');
+        const { categories } = data;
+        setCategories(categories);
+      } catch (err) {
+        console.error(err);
+      }
     };
 
     getCategories();
@@ -59,14 +63,22 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({ query, res
     params.category = query.category;
   }
 
-  const { posts, totalPage } = await getPosts(params);
+  try {
+    const { posts, totalPage } = await getPosts(params);
 
-  return {
-    props: {
-      posts,
-      page,
-      totalPage,
-      category: query.category || 'All',
-    },
-  };
+    return {
+      props: {
+        posts,
+        page,
+        totalPage,
+        category: query.category || 'All',
+      },
+    };
+  } catch (err) {
+    console.error(err);
+
+    return {
+      notFound: true,
+    };
+  }
 };
