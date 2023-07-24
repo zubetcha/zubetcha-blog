@@ -1,7 +1,7 @@
 # zubetcha blog
 
-### Tech Stack
-
 - Nextjs
 - Typescript
-- SCSS
+- scss
+- S3
+- MongoDB
