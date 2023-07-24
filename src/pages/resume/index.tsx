@@ -63,7 +63,8 @@ export const ResumePage = () => {
         <TaskSection title='모노레포 구축'>
           <ul>
             <li>turborepo와 yarn berry를 사용하여 모노레포 환경 구축</li>
-            <li>Jira 이슈 번호를 커밋 메시지에 자동으로 prefix 해주는 prepare-commit-msg 훅 스크립트 개발</li>
+            <li>Jira 이슈 번호를 커밋 메시지에 자동으로 prefix 해주는 prepare-commit-msg 훅 쉘 스크립트 개발</li>
+            <li>모노레포 내 공통 패키지를 포함하는 새 프로젝트 생성 쉘 스크립트 개발</li>
             <li>젠킨스 서버 배포 환경, 파이프라인 개편 및 배포 속도 개선</li>
           </ul>
         </TaskSection>
